@@ -1,0 +1,22 @@
+/* Meaning — Hivory sub-brand theme scope.
+   Apply with <body data-brand="meaning"> (or any container).
+   Meaning inherits ALL Hivory tokens by default; this scope only overrides
+   what is distinct to Meaning.
+
+   CONFIRMED so far: the Meaning lockup is the shared Hivory hex mark + the
+   "Meaning" wordmark, supplied as an all-white on-dark logo — Meaning leans
+   dark-surface-first.
+
+   TBD with the user: Meaning's own accent color (if any), fonts, and the
+   correct on-light treatment. Until then it uses Hivory green. */
+[data-brand="meaning"] {
+  --brand-name: "Meaning"; /* @kind other */
+  /* Dark-first: Meaning surfaces default to black */
+  --surface-page: var(--black);
+  --surface-card: var(--ink-900);
+  --text-display: var(--white);
+  --text-body: var(--white);
+  --text-muted: var(--ink-300);
+  --border-subtle: var(--ink-700);
+  --border-strong: var(--ink-500);
+}

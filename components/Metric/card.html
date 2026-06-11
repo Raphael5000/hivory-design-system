@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x430" name="Metric" subtitle="MetricChip + DifficultyMeter — per-article indicators (KD, volume, position) in and out of tables" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--surface-app); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .article { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 14px 16px; }
+  .article h3 { margin: 0; font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink-950); }
+  .article p { margin: 3px 0 10px; font-size: 12px; color: var(--text-muted); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .tablebox { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { MetricChip, DifficultyMeter, Table, Badge } = window.HivoryDesignSystem_354905;
+
+const meter = (v) => e(DifficultyMeter, { value: v, label: 'Keyword difficulty' });
+const bare = (label, value) => e(MetricChip, { label: label, value: value, variant: 'bare' });
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { className: 'wrap' },
+
+    e('div', { className: 'article' },
+      e('h3', null, 'How to cut CAC without cutting growth'),
+      e('p', null, 'Targeting "reduce customer acquisition cost" — draft by Scout, awaiting review'),
+      e('div', { className: 'chips' },
+        e(MetricChip, { label: 'KD', value: '38', icon: e(DifficultyMeter, { value: 38, showValue: false }) }),
+        e(MetricChip, { label: 'Vol', value: '12.4K/mo' }),
+        e(MetricChip, { label: 'Pos', value: '#7' }),
+        e(MetricChip, { label: 'Score', value: '86', icon: e(DifficultyMeter, { value: 86, semantics: 'score', showValue: false }) }),
+        e(MetricChip, { label: 'Words', value: '2,140' })
+      )
+    ),
+
+    e('div', { className: 'tablebox' },
+      e(Table, {
+        columns: [
+          { key: 'article', label: 'Article', strong: true },
+          { key: 'kd', label: 'KD' },
+          { key: 'vol', label: 'Volume', num: true },
+          { key: 'pos', label: 'Pos', num: true },
+          { key: 'status', label: 'Status' }
+        ],
+        rows: [
+          { article: 'How to cut CAC without cutting growth', kd: meter(38), vol: '12.4K', pos: '#7', status: e(Badge, { status: 'caution', dot: true }, 'In review') },
+          { article: 'The 2026 growth-loop playbook', kd: meter(64), vol: '6.8K', pos: '#12', status: e(Badge, { status: 'info', dot: true }, 'Writing') },
+          { article: 'Attribution models, explained simply', kd: meter(22), vol: '3.1K', pos: '#3', status: e(Badge, { status: 'positive', dot: true }, 'Live') },
+          { article: 'Paid social benchmarks by industry', kd: meter(81), vol: '18.9K', pos: '—', status: e(Badge, { status: 'neutral' }, 'Idea') }
+        ],
+        hover: true
+      })
+    )
+  )
+);
+</script>
+</body></html>

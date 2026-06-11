@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Spinner" subtitle="Dual-hex activity indicator — counter-rotating mark outlines, plus PulseDot for ambient presence" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--surface-card); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .cap { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); width: 92px; flex: none; }
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Spinner, PulseDot, Button } = window.HivoryDesignSystem_354905;
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { className: 'wrap' },
+    e('div', { className: 'row' },
+      e('span', { className: 'cap' }, 'sizes'),
+      e(Spinner, { size: 12 }),
+      e(Spinner, { size: 16 }),
+      e(Spinner, { size: 20 }),
+      e(Spinner, { size: 28 }),
+      e(Spinner, { size: 16, tone: 'ink' }),
+      e(Spinner, { size: 16, label: 'Syncing…' })
+    ),
+    e('div', { className: 'row' },
+      e('span', { className: 'cap' }, 'in flight'),
+      e(Button, { variant: 'primary', size: 'md', disabled: true },
+        e(Spinner, { size: 13, tone: 'on-dark' }), 'Publishing…'
+      ),
+      e(Button, { variant: 'outline', size: 'md', disabled: true },
+        e(Spinner, { size: 13, tone: 'ink' }), 'Running audit…'
+      ),
+      e(Spinner, { size: 14, calm: true, label: 'Agent writing draft — 2 min' })
+    ),
+    e('div', { className: 'row' },
+      e('span', { className: 'cap' }, 'ambient'),
+      e('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 500 } },
+        e(PulseDot, { tone: 'positive' }), '3 agents running'
+      ),
+      e('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 500 } },
+        e(PulseDot, { tone: 'info' }), 'Live sync'
+      ),
+      e('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 500, color: 'var(--status-caution-text)' } },
+        e(PulseDot, { tone: 'caution' }), 'Awaiting review'
+      )
+    ),
+    e('div', { className: 'row', style: { background: 'var(--ink-950)', borderRadius: '10px', padding: '16px 18px' } },
+      e('span', { className: 'cap', style: { color: 'var(--ink-500)' } }, 'on dark'),
+      e(Spinner, { size: 18, tone: 'on-dark' }),
+      e(Spinner, { size: 14, tone: 'on-dark', label: 'Calling Meta Ads API…' }),
+      e(Spinner, { size: 14, tone: 'on-dark', calm: true, label: 'Agent thinking' })
+    )
+  )
+);
+</script>
+</body></html>

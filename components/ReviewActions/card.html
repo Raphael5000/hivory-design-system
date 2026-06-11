@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x280" name="ReviewActions" subtitle="Repeated approve/reject — quiet at rest, tone on hover, collapses to chip when decided" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { ReviewActions, Card, Table, Button } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '16px' } },
+    e(Card, {
+      flush: true,
+      title: 'Pending deliverables',
+      subtitle: '4 awaiting review',
+      actions: e(Button, { variant: 'outline', size: 'sm' }, 'Approve all')
+    },
+      e(Table, {
+        hover: true,
+        columns: [
+          { key: 'item', label: 'Deliverable', strong: true },
+          { key: 'client', label: 'Client' },
+          { key: 'actions', label: '' }
+        ],
+        rows: [
+          { item: 'Sept content calendar', client: 'Acme Co.', actions: e(ReviewActions, null) },
+          { item: 'Landing page copy v3', client: 'Northwind', actions: e(ReviewActions, null) },
+          { item: 'Q3 performance report', client: 'Acme Co.', actions: e(ReviewActions, { defaultState: 'approved' }) },
+          { item: 'Display creative set', client: 'Globex', actions: e(ReviewActions, { defaultState: 'rejected' }) }
+        ]
+      })
+    )
+  )
+);
+</script>
+</body></html>

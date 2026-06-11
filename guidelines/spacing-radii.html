@@ -1,0 +1,43 @@
+<!-- @dsCard group="Spacing" viewport="700x230" subtitle="Engine: radius 8–10, 4px spacing grid, whisper-quiet shadows, 120ms ease" name="Radii · spacing · shadows" -->
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-app); font-family: var(--font-body); }
+  .wrap { padding: 16px; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 12px; }
+  .panel { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px 16px; }
+  .lbl { font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .radii { display: flex; gap: 10px; align-items: flex-end; }
+  .radii div { background: var(--surface-sunken); border: 1px solid var(--border-strong); width: 52px; height: 52px; display: flex; align-items: flex-end; justify-content: center; font-family: var(--font-mono); font-size: 8.5px; color: var(--text-muted); padding-bottom: 4px; box-sizing: border-box; }
+  .spaces { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+  .spaces span { background: var(--green-500); width: 14px; display: inline-block; border-radius: 2px; }
+  .shadows { display: flex; gap: 12px; }
+  .shadows div { background: var(--white); border-radius: var(--radius-md); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 8.5px; color: var(--text-muted); }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <span class="lbl">Radii</span>
+      <div class="radii">
+        <div style="border-radius: var(--radius-sm);">6</div>
+        <div style="border-radius: var(--radius-md);">8</div>
+        <div style="border-radius: var(--radius-lg);">10</div>
+        <div style="border-radius: var(--radius-xl);">14</div>
+        <div style="border-radius: var(--radius-pill); width: 64px; height: 36px;">pill</div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="lbl">Spacing · 4px grid</span>
+      <div class="spaces">
+        <span style="height: 4px;"></span><span style="height: 8px;"></span><span style="height: 12px;"></span><span style="height: 16px;"></span><span style="height: 20px;"></span><span style="height: 24px;"></span><span style="height: 32px;"></span><span style="height: 40px;"></span><span style="height: 48px;"></span><span style="height: 64px;"></span>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="lbl">Shadows</span>
+      <div class="shadows">
+        <div style="box-shadow: var(--shadow-card);">card</div>
+        <div style="box-shadow: var(--shadow-raised);">raised</div>
+        <div style="box-shadow: var(--shadow-overlay);">overlay</div>
+      </div>
+    </div>
+  </div>
+</body></html>

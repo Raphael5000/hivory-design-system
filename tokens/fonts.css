@@ -1,0 +1,8 @@
+/* Hivory — webfonts.
+   · Hanken Grotesk — Google Fonts (OFL), variable 300–800 + italics. THE brand
+     sans, chosen 2026-06 to replace Söhne (Klim, unaffordable). Closest free
+     match to Söhne's temperament: warm bowls, disciplined skeleton, tall
+     x-height for dense 13px UI, tabular numerals available.
+   · Martel — Google Fonts, at the weights the live site uses (200/300/400).
+   · Geist Mono — Google Fonts (OFL). Replaces Söhne Mono for data/metrics/code. */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=Martel:wght@200;300;400&family=Geist+Mono:wght@400..600&display=swap');

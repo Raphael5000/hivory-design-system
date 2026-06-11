@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x190" subtitle="The platform foundation — black & white carry everything; green is the signal" name="Black & white foundation" -->
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-body); }
+  .strip { display: grid; grid-template-columns: 5fr 5fr 1.6fr; gap: 10px; padding: 14px 16px; }
+  .panel { border-radius: 10px; padding: 16px; height: 118px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+  h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 21px; letter-spacing: -0.02em; }
+  .tok { font-family: var(--font-mono); font-size: 9.5px; }
+</style></head>
+<body>
+  <div class="strip">
+    <div class="panel" style="background: var(--white); border: 1px solid var(--border-subtle);">
+      <h2 style="color: var(--black);">Light surfaces.<br>Black type.</h2>
+      <span class="tok" style="color: var(--text-muted);">--surface-page · --text-display</span>
+    </div>
+    <div class="panel" style="background: var(--black);">
+      <h2 style="color: var(--white);">Dark surfaces.<br>White type.</h2>
+      <span class="tok" style="color: var(--ink-400);">--surface-dark · --text-on-dark</span>
+    </div>
+    <div class="panel" style="background: var(--green-500);">
+      <h2 style="color: var(--black);">Signal.</h2>
+      <span class="tok" style="color: var(--green-900);">green-500</span>
+    </div>
+  </div>
+</body></html>

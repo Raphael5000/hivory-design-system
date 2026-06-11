@@ -1,0 +1,33 @@
+/* Hivory layout tokens — "Engine" direction.
+   Radius 8–10 default, structured spacing on a 4px grid,
+   borders over shadows on the platform (shadows stay whisper-quiet). */
+:root {
+  /* Radii */
+  --radius-sm: 6px;    /* inputs, badges, small chips */
+  --radius-md: 8px;    /* buttons, controls */
+  --radius-lg: 10px;   /* cards, panels */
+  --radius-xl: 14px;   /* modals, large surfaces */
+  --radius-pill: 999px;
+
+  /* Spacing — 4px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Shadows — quiet; platform leans on borders instead */
+  --shadow-card: 0 1px 2px rgba(13, 13, 13, 0.05);
+  --shadow-raised: 0 1px 3px rgba(13, 13, 13, 0.07), 0 4px 14px rgba(13, 13, 13, 0.06);
+  --shadow-overlay: 0 4px 10px rgba(13, 13, 13, 0.08), 0 16px 40px rgba(13, 13, 13, 0.12);
+
+  /* Motion (matches the Meaning production app) */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-slow: 240ms; /* @kind other */
+}

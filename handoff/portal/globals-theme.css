@@ -1,0 +1,159 @@
+/* =====================================================================
+   HIVORY DESIGN SYSTEM → CLIENT PORTAL THEME
+   Drop-in replacement for the token sections of src/app/globals.css.
+   Maps the Hivory DS v1 "Engine" tokens onto the portal's existing
+   shadcn variable contract — no component changes required.
+
+   REPLACES in globals.css:
+     1. The Söhne @font-face block  → SECTION 1 (fonts)
+     2. The three --font-* lines inside @theme inline → SECTION 2
+     3. The :root { … } token block → SECTION 3
+     4. The .dark { … } token block → SECTION 4
+   Everything else in globals.css (animations, rv-*, pl-*, prose, tables)
+   stays as-is — it reads these variables and will realign automatically.
+   ===================================================================== */
+
+/* ── SECTION 1 — fonts ──────────────────────────────────────────────
+   Replaces the three Söhne @font-face rules (which load from
+   assets.anthropic.com — unlicensed and liable to disappear).
+   NOTE: @import must be the FIRST rules in the file, place this line
+   directly under the existing tailwind/shadcn @imports. */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=Geist+Mono:wght@400..600&display=swap');
+
+/* ── SECTION 2 — @theme inline font lines ───────────────────────────
+   Replace the three --font-* lines inside the existing @theme inline:
+
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --font-heading: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+   Also in @layer base → body: change
+     font-feature-settings: 'ss01', 'cv11';   (Söhne-specific)
+   to
+     font-feature-settings: normal;
+*/
+
+/* ── SECTION 3 — light theme (replaces :root token block) ──────────
+   Engine neutrals: warm gray, NOT green-tinted. White cards on
+   --ink-50 #FAFAF9 canvas. Signal green #008347 (AA 4.9:1 on white). */
+:root {
+  --background:           #FAFAF9;  /* ink-50 — platform canvas */
+  --foreground:           #1A1A1A;  /* ink-900 */
+  --foreground-secondary: #3D3D3C;  /* ink-700 */
+  --card:                 #FFFFFF;
+  --card-foreground:      #1A1A1A;
+  --popover:              #FFFFFF;
+  --popover-foreground:   #1A1A1A;
+  --primary:              #0D0D0D;  /* ink-950 — black-filled actions */
+  --primary-foreground:   #FFFFFF;
+  --secondary:            #ECECEA;  /* ink-100 */
+  --secondary-foreground: #1A1A1A;
+  --muted:                #ECECEA;  /* ink-100 — hovers, fills */
+  --muted-foreground:     #6E6E6C;  /* ink-500 */
+  --accent:               #E0E0DE;  /* ink-200 */
+  --accent-foreground:    #1A1A1A;
+  --destructive:          #8F2F1D;  /* red-700 — AA text on white */
+  --destructive-foreground: #FFFFFF;
+  --success:              #005C32;  /* green-800 — AAA on white */
+  --success-foreground:   #FFFFFF;
+  --border:               #ECECEA;  /* ink-100 */
+  --input:                #E0E0DE;  /* ink-200 */
+  --ring:                 #00A458;  /* green-600 — focus */
+  --radius:               0.5rem;
+
+  /* Signal green. The only green on light surfaces: dots, eyebrows,
+     links, highlights. Never a fill larger than a dot on white.
+     green-700, AA 4.9:1. --signal-inverse for dark surfaces in
+     light mode (toasts) = the electric brand green. */
+  --signal:         #008347;
+  --signal-inverse: #00EE7F;
+
+  /* Chart categorical scale — Engine data order: green → teal →
+     amber → warm gray. No blue, no purple. */
+  --chart-1: #00A458;  /* green-600 */
+  --chart-2: #17876F;  /* teal-500 */
+  --chart-3: #E8A33D;  /* amber-500 */
+  --chart-4: #8C8C8A;  /* ink-400 */
+  --chart-5: #C2452D;  /* red-500 — last resort */
+
+  /* Sidebar — sits on the canvas, one step sunken */
+  --sidebar:                  #FAFAF9;
+  --sidebar-foreground:       #1A1A1A;
+  --sidebar-primary:          #0D0D0D;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent:           #ECECEA;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border:           #ECECEA;
+  --sidebar-ring:             #00A458;
+
+  /* Motion — Engine standard ease */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Shadows — hairline + breath, never heavy */
+  --shadow-card: 0 1px 0 rgba(0,0,0,0.02), 0 0 0 1px var(--border);
+  --shadow-pop:  0 10px 40px -12px rgba(0,0,0,0.16), 0 0 0 1px var(--border);
+
+  /* Review-system extras (the later :root block in globals.css —
+     update those values to these) */
+  --hl:            rgba(0,131,71,0.10);
+  --hl-strong:     rgba(0,131,71,0.18);
+  --av-bg:         #ECECEA;
+  --av-fg:         #3D3D3C;
+  --border-strong: #E0E0DE;
+}
+
+/* ── SECTION 4 — dark theme (replaces .dark token block) ───────────
+   Engine dark: true black base, ink-900 cards, electric green at
+   full intensity (12.6:1 on black). */
+.dark {
+  --background:           #0D0D0D;
+  --foreground:           #FFFFFF;
+  --foreground-secondary: #B5B5B2;  /* ink-300 */
+  --card:                 #1A1A1A;  /* ink-900 */
+  --card-foreground:      #FFFFFF;
+  --popover:              #1A1A1A;
+  --popover-foreground:   #FFFFFF;
+  --primary:              #FFFFFF;
+  --primary-foreground:   #0D0D0D;
+  --secondary:            #262625;
+  --secondary-foreground: #FFFFFF;
+  --muted:                #262625;
+  --muted-foreground:     #8C8C8A;  /* ink-400 */
+  --accent:               #3D3D3C;  /* ink-700 */
+  --accent-foreground:    #FFFFFF;
+  --destructive:          #E06A52;
+  --destructive-foreground: #FFFFFF;
+  --success:              #00EE7F;
+  --success-foreground:   #0D0D0D;
+  --border:               #2E2E2D;
+  --input:                #3D3D3C;
+  --ring:                 #00EE7F;
+
+  --signal:         #00EE7F;  /* electric, full intensity on black */
+  --signal-inverse: #008347;
+
+  --chart-1: #00EE7F;  /* green-500 */
+  --chart-2: #5FB8A3;  /* teal-300 */
+  --chart-3: #EEC279;  /* amber-300 */
+  --chart-4: #8C8C8A;  /* ink-400 */
+  --chart-5: #E06A52;
+
+  --sidebar:                  #0D0D0D;
+  --sidebar-foreground:       #FFFFFF;
+  --sidebar-primary:          #FFFFFF;
+  --sidebar-primary-foreground: #0D0D0D;
+  --sidebar-accent:           #262625;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border:           #2E2E2D;
+  --sidebar-ring:             #00EE7F;
+
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.02), 0 0 0 1px var(--border);
+  --shadow-pop:  0 24px 60px -18px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+
+  /* Review-system extras (.dark block) */
+  --hl:            rgba(0,238,127,0.12);
+  --hl-strong:     rgba(0,238,127,0.22);
+  --av-bg:         #262625;
+  --av-fg:         #B5B5B2;
+  --border-strong: #3D3D3C;
+}

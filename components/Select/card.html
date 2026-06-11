@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x140" name="Select" subtitle="Native select in Input chrome — chevron, focus ring, hint" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-card);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Select } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', padding: '20px', alignItems: 'start' } },
+    e(Select, { label: 'Date range', defaultValue: 'Last 30 days', options: ['Last 7 days', 'Last 30 days', 'Last quarter', 'Year to date'] }),
+    e(Select, { label: 'Channel', defaultValue: 'all', options: [ { value: 'all', label: 'All channels' }, { value: 'paid', label: 'Paid search' }, { value: 'organic', label: 'Organic' }, { value: 'email', label: 'Email' } ], hint: 'Filters every widget below.' }),
+    e(Select, { label: 'Owner', options: ['Anyone'], disabled: true })
+  )
+);
+</script>
+</body></html>

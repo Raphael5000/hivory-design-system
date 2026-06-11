@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x330" name="Density doctrine" subtitle="The system is dense so the product isn't — disclosure ladder and per-view budgets" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-card); font-family: var(--font-sans); color: var(--text-body); padding: 18px 20px; }
+  h2 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink-950); }
+  .lead { margin: 4px 0 14px; font-size: 12.5px; color: var(--text-muted); max-width: 70ch; line-height: 1.5; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px 14px; }
+  .panel h3 { margin: 0 0 8px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); }
+  .panel ol, .panel ul { margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.7; }
+  .panel li b { color: var(--ink-950); font-weight: 600; }
+  .panel li span.tok { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); }
+</style>
+</head><body>
+  <h2>Dense system, simple product.</h2>
+  <p class="lead">Every component carries its full capability; every screen uses the minimum of it. A view earns density only when the user asks for it.</p>
+  <div class="cols">
+    <div class="panel">
+      <h3>The disclosure ladder</h3>
+      <ol>
+        <li><b>Glance</b> — decision-level only: a Badge, one number, a PulseDot. <span class="tok">"In review · KD 38"</span></li>
+        <li><b>Hover</b> — one layer deeper: Tooltip, ChartTooltip, full timestamp.</li>
+        <li><b>Click</b> — everything: Modal / detail view, all MetricChips, history.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h3>Per-view budgets</h3>
+      <ul>
+        <li><b>1</b> brand-green CTA per view</li>
+        <li><b>≤ 4</b> Stats in a scorecard row</li>
+        <li><b>≤ 3</b> MetricChips visible per item — rest behind <span class="tok">+N</span> or the detail view</li>
+        <li><b>1</b> meter column per table; numbers stay bare in cells</li>
+        <li><b>1</b> chart per card; mono reserved for data only</li>
+      </ul>
+    </div>
+  </div>
+</body></html>

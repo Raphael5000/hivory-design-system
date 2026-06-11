@@ -1,0 +1,114 @@
+/* Hivory color tokens — v3 "Engine".
+   Direction: light, structured, quietly warm. Black & white carry the platform;
+   electric green is the single signal; teal + amber are the companions
+   (tonal kin of the green — teal for info/secondary data, amber for warmth + caution).
+
+   GREEN LEGIBILITY RULES (unchanged, contrast-checked):
+   · green-500 #00EE7F is a FILL, never text on white (1.6:1 ✗).
+     Text on green-500 is always black (13.5:1 ✓), never white.
+   · On white: text/links use green-700 (4.9:1 AA) or green-800 (8.2:1 AAA);
+     green-600 only for large text/icons (3.3:1).
+   · On black: green-500 at full intensity (12.6:1 ✓). */
+:root {
+  /* Absolutes */
+  --black: #000000;
+  --white: #FFFFFF;
+
+  /* Neutrals — warm-leaning gray (Engine) */
+  --ink-950: #0D0D0D;
+  --ink-900: #1A1A1A;
+  --ink-700: #3D3D3C;
+  --ink-500: #6E6E6C;
+  --ink-400: #8C8C8A;
+  --ink-300: #B5B5B2;
+  --ink-200: #E0E0DE;
+  --ink-100: #ECECEA;
+  --ink-50:  #FAFAF9;
+
+  /* Green ramp — contrast-graded around the brand electric */
+  --green-50:  #E9FFF4;
+  --green-100: #C9FFE5;
+  --green-200: #93FBC9;
+  --green-300: #4FF5A6;
+  --green-400: #1FF08D;
+  --green-500: #00EE7F; /* ★ brand electric — fills & dark surfaces only */
+  --green-600: #00A458; /* large text / icons on white (3.3:1) */
+  --green-700: #008347; /* AA text & links on white (4.9:1) */
+  --green-800: #005C32; /* AAA small text on white (8.2:1) */
+  --green-900: #00391F;
+
+  /* Teal ramp — companion: secondary data, info states */
+  --teal-50:  #E6F4F0;
+  --teal-100: #C4E5DC;
+  --teal-300: #5FB8A3;
+  --teal-500: #17876F; /* AA large on white */
+  --teal-600: #0E6B5A; /* AA text on white */
+  --teal-700: #0A5446;
+  --teal-900: #06352C;
+
+  /* Amber ramp — companion: warmth, caution, pending states */
+  --amber-50:  #FBF3E4;
+  --amber-100: #F6E3C1;
+  --amber-300: #EEC279;
+  --amber-500: #E8A33D; /* fill; pair with ink text */
+  --amber-600: #B0792A; /* large text on white */
+  --amber-700: #8A5B12; /* AA text on white */
+  --amber-900: #5C3B0A;
+
+  /* Red — errors only, used sparingly */
+  --red-50:  #FBEAE5;
+  --red-500: #C2452D; /* AA large on white */
+  --red-700: #8F2F1D; /* AA text on white */
+
+  /* Semantic — text */
+  --text-display: var(--black);
+  --text-body: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-faint: var(--ink-400);
+  --text-on-dark: var(--white);
+  --text-muted-on-dark: var(--ink-300);
+  --text-brand: var(--green-700);
+  --text-brand-strong: var(--green-800);
+  --text-brand-on-dark: var(--green-500);
+  --text-on-green: var(--black);
+
+  /* Semantic — surfaces (Engine: light platform on warm gray) */
+  --surface-page: var(--white);
+  --surface-app: var(--ink-50);          /* platform canvas */
+  --surface-sunken: var(--ink-100);
+  --surface-card: var(--white);
+  --surface-dark: var(--black);
+  --surface-dark-raised: var(--ink-900);
+  --surface-brand: var(--green-500);
+  --surface-brand-tint: var(--green-50);
+
+  /* Semantic — borders */
+  --border-subtle: var(--ink-100);
+  --border-strong: var(--ink-200);
+  --border-focus: var(--green-600);
+
+  /* Semantic — actions (Engine: black-filled primary; green = hero CTA only) */
+  --action-primary: var(--ink-950);
+  --action-primary-hover: var(--ink-700);
+  --on-action-primary: var(--white);
+  --action-brand: var(--green-500);
+  --action-brand-hover: var(--green-400);
+  --on-action-brand: var(--black);
+
+  /* Semantic — statuses */
+  --status-positive-text: var(--green-800);
+  --status-positive-bg: var(--green-50);
+  --status-info-text: var(--teal-600);
+  --status-info-bg: var(--teal-50);
+  --status-caution-text: var(--amber-700);
+  --status-caution-bg: var(--amber-50);
+  --status-negative-text: var(--red-700);
+  --status-negative-bg: var(--red-50);
+
+  /* Semantic — data series order */
+  --data-1: var(--green-500);  /* on dark */
+  --data-1-on-light: var(--green-600);
+  --data-2: var(--teal-500);
+  --data-3: var(--amber-500);
+  --data-4: var(--ink-400);
+}

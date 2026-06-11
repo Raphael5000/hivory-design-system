@@ -1,0 +1,30 @@
+<!-- @dsCard group="Brand" viewport="700x330" subtitle="Four standard lockups: black+green, green+white, all-black, all-white" name="Hivory logo" -->
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+  .cell { border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 130px; position: relative; }
+  .cell img { height: 42px; width: auto; }
+  .tag { position: absolute; bottom: 8px; left: 12px; font-family: var(--font-mono); font-size: 9px; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="cell" style="background: #FFFFFF; border: 1px solid var(--border-subtle);">
+      <img src="../assets/logo/hivory/black-green.svg" alt="Hivory — black and green">
+      <span class="tag" style="color: var(--text-muted);">black-green · primary on light</span>
+    </div>
+    <div class="cell" style="background: var(--surface-dark);">
+      <img src="../assets/logo/hivory/green-white.svg" alt="Hivory — green and white">
+      <span class="tag" style="color: var(--ink-400);">green-white · primary on dark</span>
+    </div>
+    <div class="cell" style="background: #FFFFFF; border: 1px solid var(--border-subtle);">
+      <img src="../assets/logo/hivory/all-black.svg" alt="Hivory — all black">
+      <span class="tag" style="color: var(--text-muted);">all-black · mono on light</span>
+    </div>
+    <div class="cell" style="background: var(--green-500);">
+      <img src="../assets/logo/hivory/all-white.svg" alt="Hivory — all white">
+      <span class="tag" style="color: var(--green-900);">all-white · mono on dark / green</span>
+    </div>
+  </div>
+</body></html>

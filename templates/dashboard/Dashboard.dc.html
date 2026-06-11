@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Dashboard" description="App dashboard — sidebar, scorecards, performance chart and review queue, composed from the Hivory system" -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <style>html,body{margin:0;height:100%;background:#F7F7F5}</style>
+</helmet>
+<div style="display:flex; height:100vh; background:var(--surface-app); font-family:var(--font-sans); color:var(--text-body); overflow:hidden;">
+  <x-import component-from-global-scope="HivoryDesignSystem_354905.Sidebar" workspace="{{ workspace }}" top-items="{{ topItems }}" sections="{{ sections }}" footer-items="{{ footerItems }}" active-id="{{ activeId }}" on-navigate="{{ onNavigate }}" height="100%" hint-size="272px,100%" style="flex:none;"></x-import>
+  <main style="flex:1; overflow-y:auto; min-width:0;" data-screen-label="Dashboard">
+    <div style="max-width:1060px; margin:0 auto; padding:26px 32px 56px; display:flex; flex-direction:column; gap:18px; box-sizing:border-box;">
+
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+        <div>
+          <h1 style="margin:0; font-size:20px; font-weight:600; letter-spacing:-0.02em; color:var(--ink-950);">Dashboard</h1>
+          <p style="margin:4px 0 0; font-size:13px; color:var(--text-muted);">Acme Co. — growth overview</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <x-import component-from-global-scope="HivoryDesignSystem_354905.DateRangePicker" default-preset="30d" hint-size="150px,32px"></x-import>
+          <x-import component-from-global-scope="HivoryDesignSystem_354905.Button" variant="primary" size="md" hint-size="110px,32px">New report</x-import>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;">
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Sessions" value="412.8K" delta="18.2%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Qualified leads" value="1,284" delta="11.4%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Pipeline value" value="$2.41M" delta="6.8%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="CAC" value="$118" delta="3.1%" direction="down" delta-tone="caution" hint-size="100%,108px"></x-import>
+      </div>
+
+      <x-import component-from-global-scope="HivoryDesignSystem_354905.Card" title="Acquisition" subtitle="Sessions by source, last 30 days" actions="{{ chartLegend }}" hint-size="100%,300px">
+        <svg viewBox="0 0 720 200" style="display:block; width:100%; height:auto;" preserveAspectRatio="none" aria-label="Sessions by source">
+          <line x1="0" y1="50" x2="720" y2="50" stroke="var(--border-subtle)" stroke-width="1"></line>
+          <line x1="0" y1="100" x2="720" y2="100" stroke="var(--border-subtle)" stroke-width="1"></line>
+          <line x1="0" y1="150" x2="720" y2="150" stroke="var(--border-subtle)" stroke-width="1"></line>
+          <path d="M0 158 C60 150 120 142 180 132 C240 122 300 118 360 104 C420 90 480 92 540 72 C600 54 660 48 720 38 L720 200 L0 200 Z" fill="var(--green-600)" opacity="0.07"></path>
+          <path d="M0 158 C60 150 120 142 180 132 C240 122 300 118 360 104 C420 90 480 92 540 72 C600 54 660 48 720 38" fill="none" stroke="var(--green-600)" stroke-width="2"></path>
+          <path d="M0 176 C60 172 120 174 180 166 C240 158 300 162 360 152 C420 144 480 148 540 138 C600 130 660 134 720 124" fill="none" stroke="var(--ink-300)" stroke-width="2"></path>
+          <circle cx="540" cy="72" r="3.5" fill="var(--green-600)"></circle>
+        </svg>
+        <div style="display:flex; justify-content:space-between; margin-top:8px; font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint);">
+          <span>May 12</span><span>May 19</span><span>May 26</span><span>Jun 2</span><span>Jun 9</span>
+        </div>
+      </x-import>
+
+      <x-import component-from-global-scope="HivoryDesignSystem_354905.Card" title="Review queue" subtitle="Agent output awaiting your decision" actions="{{ queueBadge }}" flush="{{ true }}" hint-size="100%,280px">
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Table" columns="{{ queueColumns }}" rows="{{ queueRows }}" hover="{{ true }}" hint-size="100%,240px"></x-import>
+      </x-import>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeId: 'dashboard' };
+
+  componentDidMount() {
+    // The DS bundle loads async via ds-base.js — re-render once it lands.
+    if (!window.HivoryDesignSystem_354905) {
+      this._dsPoll = setInterval(() => {
+        if (window.HivoryDesignSystem_354905) {
+          clearInterval(this._dsPoll);
+          this.forceUpdate();
+        }
+      }, 80);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._dsPoll) clearInterval(this._dsPoll);
+  }
+
+  renderVals() {
+    const DS = window.HivoryDesignSystem_354905 || {};
+    const e = React.createElement;
+    const icon = (n) => (DS.SidebarIcon ? e(DS.SidebarIcon, { name: n }) : null);
+    const badge = (status, text) => (DS.Badge ? e(DS.Badge, { status: status, dot: true }, text) : text);
+    const review = (def) => (DS.ReviewActions ? e(DS.ReviewActions, { defaultState: def || 'pending' }) : null);
+
+    return {
+      activeId: this.state.activeId,
+      onNavigate: (id) => this.setState({ activeId: id }),
+      workspace: { name: 'Acme Co.', switchable: true },
+      topItems: [{ id: 'dashboard', label: 'Dashboard', icon: icon('dashboard') }],
+      sections: [
+        { key: 'content', label: 'Content', items: [
+          { id: 'pipeline', label: 'Pipeline', icon: icon('pipeline') }
+        ] },
+        { key: 'agents', label: 'Agents', items: [
+          { id: 'runs', label: 'Run Log', icon: icon('clock') },
+          { id: 'agents', label: 'Agents', icon: icon('bot') },
+          { id: 'resources', label: 'Resources', icon: icon('upload') }
+        ] },
+        { key: 'reporting', label: 'Reporting', items: [
+          { id: 'performance', label: 'Performance', icon: icon('chart') }
+        ] }
+      ],
+      footerItems: [
+        { id: 'theme', label: 'Dark mode', icon: icon('moon') },
+        { id: 'signout', label: 'Sign out', icon: icon('signout') }
+      ],
+      chartLegend: DS.ChartLegend
+        ? e(DS.ChartLegend, { items: [
+            { label: 'Organic', value: '264.1K' },
+            { label: 'Paid', value: '148.7K', color: 'var(--ink-300)' }
+          ] })
+        : null,
+      queueBadge: badge('caution', '4 pending'),
+      queueColumns: [
+        { key: 'asset', label: 'Asset', strong: true },
+        { key: 'channel', label: 'Channel' },
+        { key: 'status', label: 'Status' },
+        { key: 'impressions', label: 'Impressions', num: true },
+        { key: 'ctr', label: 'CTR', num: true },
+        { key: 'actions', label: '' }
+      ],
+      queueRows: [
+        { asset: 'Q3 pricing comparison post', channel: 'Blog', status: badge('caution', 'Draft ready'), impressions: '—', ctr: '—', actions: review('pending') },
+        { asset: 'Retargeting creative — v4', channel: 'Meta Ads', status: badge('info', 'Testing'), impressions: '38,402', ctr: '1.9%', actions: review('pending') },
+        { asset: 'Onboarding nurture — email 3', channel: 'Email', status: badge('caution', 'Draft ready'), impressions: '—', ctr: '—', actions: review('pending') },
+        { asset: '"Growth audit" landing page', channel: 'Web', status: badge('positive', 'Live'), impressions: '12,114', ctr: '4.2%', actions: review('approved') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

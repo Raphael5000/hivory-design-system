@@ -1,0 +1,55 @@
+<!-- @dsCard group="Components" viewport="760x440" name="Dashboard widget pattern" subtitle="Scorecard row → chart-in-Card → table-in-Card, all on the warm-gray app surface" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}
+.axis{font-family:var(--font-mono);font-size:10px;fill:var(--ink-400)}
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Stat, Card, Table, Badge, Button, ChartLegend } = window.HivoryDesignSystem_354905;
+const grid = [30, 60, 90].map(y =>
+  e('line', { key: y, x1: 0, x2: 420, y1: y, y2: y, stroke: 'var(--ink-100)', strokeWidth: 1 })
+);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' } },
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
+      e(Stat, { label: 'Pipeline', value: '$2.41M', delta: '38.2%', deltaTone: 'positive' }),
+      e(Stat, { label: 'CAC', value: '$118', delta: '12.4%', direction: 'down', deltaTone: 'caution' }),
+      e(Stat, { label: 'Win rate', value: '31%', delta: '4.1%', deltaTone: 'positive' })
+    ),
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '12px', alignItems: 'start' } },
+      e(Card, { title: 'Pipeline by week', actions: e(Button, { variant: 'outline', size: 'sm' }, 'Last 30 days ▾') },
+        e('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
+          e('svg', { width: '100%', height: 110, viewBox: '0 0 420 110', preserveAspectRatio: 'none' },
+            grid,
+            e('polyline', { points: '0,86 60,74 120,80 180,58 240,52 300,34 360,40 420,18', fill: 'none', stroke: 'var(--data-1-on-light)', strokeWidth: 2, strokeLinejoin: 'round' })
+          ),
+          e(ChartLegend, { items: [ { label: 'Pipeline', value: '$2.41M' } ] })
+        )
+      ),
+      e(Card, { flush: true, title: 'Top campaigns' },
+        e(Table, {
+          columns: [
+            { key: 'name', label: 'Campaign', strong: true },
+            { key: 'status', label: 'Status' },
+            { key: 'roas', label: 'ROAS', num: true }
+          ],
+          rows: [
+            { name: 'Q3 demand engine', status: e(Badge, { status: 'positive', dot: true }, 'Live'), roas: '5.8×' },
+            { name: 'Founder content', status: e(Badge, { status: 'info', dot: true }, 'Testing'), roas: '3.1×' },
+            { name: 'Lifecycle winback', status: e(Badge, { status: 'caution', dot: true }, 'Queued'), roas: '—' }
+          ]
+        })
+      )
+    )
+  )
+);
+</script>
+</body></html>

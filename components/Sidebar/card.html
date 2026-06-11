@@ -1,0 +1,59 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Sidebar" subtitle="App rail from the portal — workspace chip, group headers, ink active bar, signal dots, 56px collapse" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Sidebar, SidebarIcon } = window.HivoryDesignSystem_354905;
+
+function Demo() {
+  const [active, setActive] = React.useState('pipeline');
+  const sections = [
+    { key: 'content', label: 'Content', items: [
+      { id: 'pipeline', label: 'Pipeline', icon: e(SidebarIcon, { name: 'pipeline' }) }
+    ] },
+    { key: 'agents', label: 'Agents', items: [
+      { id: 'runs', label: 'Run Log', icon: e(SidebarIcon, { name: 'clock' }) },
+      { id: 'agents', label: 'Agents', icon: e(SidebarIcon, { name: 'bot' }) },
+      { id: 'resources', label: 'Resources', icon: e(SidebarIcon, { name: 'upload' }) }
+    ] },
+    { key: 'account', label: 'Account', items: [
+      { id: 'proposal', label: 'Q4 Growth Proposal', icon: e(SidebarIcon, { name: 'doc' }), pill: 'Review', pillTone: 'caution' }
+    ] },
+    { key: 'reporting', label: 'Reporting', defaultExpanded: false, items: [
+      { id: 'reporting', label: 'Not set up', icon: e(SidebarIcon, { name: 'chart' }), disabled: true }
+    ] }
+  ];
+  return e('div', { style: { display: 'flex', gap: '14px', height: '420px', padding: '0' } },
+    e(Sidebar, {
+      workspace: { name: 'Acme Co.', switchable: true },
+      topItems: [{ id: 'dashboard', label: 'Dashboard', icon: e(SidebarIcon, { name: 'dashboard' }) }],
+      sections,
+      footerItems: [
+        { id: 'theme', label: 'Dark mode', icon: e(SidebarIcon, { name: 'moon' }) },
+        { id: 'signout', label: 'Sign out', icon: e(SidebarIcon, { name: 'signout' }) }
+      ],
+      activeId: active,
+      onNavigate: setActive
+    }),
+    e(Sidebar, {
+      collapsed: true,
+      workspace: { name: 'Acme Co.' },
+      topItems: [{ id: 'dashboard', label: 'Dashboard', icon: e(SidebarIcon, { name: 'dashboard' }) }],
+      sections,
+      footerItems: [{ id: 'signout', label: 'Sign out', icon: e(SidebarIcon, { name: 'signout' }) }],
+      activeId: active,
+      onNavigate: setActive
+    }),
+    e('div', { style: { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12.5px', color: 'var(--text-muted)' } }, '← expanded 272px and collapsed 56px (click around)')
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(e(Demo));
+</script>
+</body></html>

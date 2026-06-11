@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x130" name="Tooltip" subtitle="Ink chip on hover/focus — short labels only, top or bottom" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-card);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Tooltip, Button, Badge } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { display: 'flex', gap: '28px', alignItems: 'center', padding: '40px 24px 24px' } },
+    e(Tooltip, { label: 'Refresh data (⌘R)', open: true }, e(Button, { variant: 'outline', size: 'sm' }, 'Refresh')),
+    e(Tooltip, { label: 'Last synced 4 min ago', side: 'bottom' }, e(Badge, { status: 'positive', dot: true }, 'Live')),
+    e('span', { style: { fontSize: '12.5px', color: 'var(--text-muted)' } }, '← hover the badge')
+  )
+);
+</script>
+</body></html>

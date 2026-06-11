@@ -1,0 +1,31 @@
+<!-- @dsCard group="Type" viewport="700x250" subtitle="Two families, hard scope rule — Martel is marketing H1/H2 only" name="Family scope rules" -->
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px 16px; }
+  .panel { border-radius: 10px; border: 1px solid var(--border-subtle); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .scope { font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .mk-h { margin: 0; font-family: var(--font-marketing-display); font-weight: 200; font-size: 27px; line-height: 1.1; }
+  .pf-h { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 24px; letter-spacing: -0.02em; line-height: 1.1; }
+  .body-s { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+  .rule { font-size: 12px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--border-strong); }
+  .rule b { color: var(--green-700); }
+  .rule .no { color: #C2452D; font-weight: 600; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="panel">
+      <span class="scope">Marketing website</span>
+      <h2 class="mk-h">Martel for H1 + H2.</h2>
+      <p class="body-s">Light serif — 200 for display, 400 standard. Hanken Grotesk for everything else — body, H3+, nav, buttons, captions.</p>
+      <p class="rule"><b>Martel ✓</b> H1, H2 · <span class="no">✗</span> H3+, body, UI</p>
+    </div>
+    <div class="panel">
+      <span class="scope">Platform (product)</span>
+      <h2 class="pf-h">Hanken Grotesk everywhere.</h2>
+      <p class="body-s">Headings, body, data tables, controls — one family, weight does the work.</p>
+      <p class="rule"><span class="no">✗ Martel never appears on the platform.</span></p>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,32 @@
+<!-- @dsCard group="Components" viewport="700x190" name="Button" subtitle="Ink primary · green brand CTA · outline · ghost · danger — radius 8, 120ms" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Button } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px', padding: '18px 20px' } },
+    e('div', { style: { display: 'flex', gap: '10px', alignItems: 'center' } },
+      e(Button, { variant: 'primary' }, 'New report'),
+      e(Button, { variant: 'brand' }, 'Start a project'),
+      e(Button, { variant: 'outline' }, 'Last 30 days'),
+      e(Button, { variant: 'ghost' }, 'Cancel'),
+      e(Button, { variant: 'danger' }, 'Delete')
+    ),
+    e('div', { style: { display: 'flex', gap: '10px', alignItems: 'center' } },
+      e(Button, { variant: 'primary', size: 'sm' }, 'Small'),
+      e(Button, { variant: 'primary', size: 'md' }, 'Medium'),
+      e(Button, { variant: 'primary', size: 'lg' }, 'Large'),
+      e(Button, { variant: 'primary', disabled: true }, 'Disabled')
+    )
+  )
+);
+</script>
+</body></html>

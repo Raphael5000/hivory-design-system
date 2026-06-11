@@ -1,0 +1,36 @@
+<!-- @dsCard group="Brand" viewport="700x300" name="Iconography" subtitle="Custom Hivory set — hexagon signature, 1.5px round strokes, drawn in-house" -->
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 18px 22px; }
+  .grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 11px 2px 8px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: var(--text-muted); }
+  .cell span { font-family: var(--font-mono); font-size: 8.5px; color: var(--text-faint); }
+  .rules { display: flex; gap: 18px; margin-top: 14px; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .rules b { color: var(--ink-900); font-weight: 600; display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .rules > div { flex: 1; }
+</style>
+</head><body>
+<div class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="rules">
+    <div><b>Grammar</b>16px grid, 1.5px even stroke, round caps + joins, no fills. Diagonals prefer the hexagon's 60° family over generic 45°.</div>
+    <div><b>Signature</b>The mark's hexagon replaces generic squares/circles — dashboard's fourth tile, the agent's body. Ours, not a pack's.</div>
+    <div><b>Color & fallback</b>Rest <code>text-muted</code> → active <code>ink-950</code> → disabled <code>ink-200</code>. Never green. Long-tail fallback in code: Phosphor (closest grammar).</div>
+  </div>
+</div>
+<script>
+const e = React.createElement;
+const { Icon, ICON_NAMES } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('grid')).render(
+  e(React.Fragment, null, ICON_NAMES.map((n) =>
+    e('div', { className: 'cell', key: n }, e(Icon, { name: n }), e('span', null, n))
+  ))
+);
+</script>
+</body></html>
