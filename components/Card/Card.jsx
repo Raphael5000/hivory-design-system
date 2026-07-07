@@ -34,7 +34,48 @@ export function Card({ title, subtitle, actions, flush = false, children }) {
   );
 }
 
-/* Stat — metric tile used on dashboards. delta direction: 'up' | 'down'. */
+/*
+ * Scorecard — analytics metric tile for dashboards and summaries.
+ *
+ * Props:
+ *   label       — metric name, e.g. "Website Views"
+ *   value       — pre-formatted string, e.g. "585" or "R1,899.90"
+ *   change      — percentage string, e.g. "+35.3%" or "-22.2%"
+ *   sentiment   — 'up_is_good' | 'down_is_good' — determines color of change
+ *
+ * Sizing: 11px label, 22px mono value (tabular-nums), 11.5px change.
+ * Change color respects sentiment: positive = signal green, negative = red.
+ * A +35% on a "cost" metric (down_is_good) renders red, not green.
+ */
+function scorecardDirection(change, sentiment) {
+  const num = parseFloat(change);
+  if (isNaN(num) || num === 0) return 'neutral';
+  const isUp = num > 0;
+  if (sentiment === 'up_is_good') return isUp ? 'positive' : 'negative';
+  return isUp ? 'negative' : 'positive';
+}
+
+export function Scorecard({ label, value, change, sentiment = 'up_is_good' }) {
+  hvEnsureCardCss();
+  const direction = change ? scorecardDirection(change, sentiment) : null;
+  const toneColor = direction === 'positive' ? 'var(--status-positive-text)'
+    : direction === 'negative' ? 'var(--status-negative-text)'
+    : 'var(--text-muted)';
+  const showChange = change && change !== '+0.0%' && change !== '-0.0%';
+  return (
+    <div className="hv-card" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '0' }}>
+      <span style={{ fontSize: '11px', fontWeight: 500, color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
+      {showChange ? (
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 500, color: toneColor, marginTop: '6px' }}>
+          {change}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+/* Legacy Stat — kept for backward compatibility. Prefer Scorecard for analytics. */
 export function Stat({ label, value, delta, direction = 'up', deltaTone = 'positive' }) {
   hvEnsureCardCss();
   const toneColor = deltaTone === 'positive' ? 'var(--status-positive-text)'
