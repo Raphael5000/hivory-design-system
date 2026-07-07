@@ -58,18 +58,34 @@ function scorecardDirection(change, sentiment) {
 export function Scorecard({ label, value, change, sentiment = 'up_is_good' }) {
   hvEnsureCardCss();
   const direction = change ? scorecardDirection(change, sentiment) : null;
-  const toneColor = direction === 'positive' ? 'var(--status-positive-text)'
+  const showChange = change && change !== '+0.0%' && change !== '-0.0%';
+  const num = parseFloat(change);
+  const isDown = num < 0;
+  const toneBg = direction === 'positive' ? 'var(--status-positive-bg)'
+    : direction === 'negative' ? 'var(--status-negative-bg)'
+    : 'var(--ink-100)';
+  const toneText = direction === 'positive' ? 'var(--status-positive-text)'
     : direction === 'negative' ? 'var(--status-negative-text)'
     : 'var(--text-muted)';
-  const showChange = change && change !== '+0.0%' && change !== '-0.0%';
   return (
     <div className="hv-card" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '0' }}>
       <span style={{ fontSize: '11px', fontWeight: 500, color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
       <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
       {showChange ? (
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 500, color: toneColor, marginTop: '6px' }}>
-          {change}
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: '3px',
+            borderRadius: '999px', padding: '2px 8px',
+            fontSize: '11px', fontWeight: 500,
+            background: toneBg, color: toneText,
+          }}>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{ flexShrink: 0, transform: isDown ? 'rotate(180deg)' : 'none' }}>
+              <path d="M5 2.5V7.5M5 2.5L2.5 5M5 2.5L7.5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {change.replace(/^[+-]/, '')}
+          </span>
+          <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>vs prev period</span>
+        </div>
       ) : null}
     </div>
   );
