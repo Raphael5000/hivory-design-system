@@ -1,70 +1,85 @@
-/* Hivory color tokens — v3 "Engine".
-   Direction: light, structured, quietly warm. Black & white carry the platform;
-   electric green is the single signal; teal + amber are the companions
-   (tonal kin of the green — teal for info/secondary data, amber for warmth + caution).
+/* Hivory color tokens — v4 "Glass Engine" (reconciled to the client-portal direction, 24 Jul).
+   The portal is canonical. Two layers:
+   · CORE — brand-universal values (green ramp, ink ladder, companions, semantics).
+   · GLASS ENGINE (platform theme) — the surface treatment the portal wears:
+     a warm-gray canvas with two faint radial washes, ONE glass object (the sidebar),
+     solid white cards over hairlines. Marketing/other surfaces may use CORE without the glass.
 
    GREEN LEGIBILITY RULES (unchanged, contrast-checked):
-   · green-500 #00EE7F is a FILL, never text on white (1.6:1 ✗).
-     Text on green-500 is always black (13.5:1 ✓), never white.
+   · green-500 #00EE7F is a FILL, never text on white (1.6:1 ✗). Text on it is always black.
    · On white: text/links use green-700 (4.9:1 AA) or green-800 (8.2:1 AAA);
-     green-600 only for large text/icons (3.3:1).
+     green-600 #00A352 only for large text/icons + functional marks (3.3:1).
    · On black: green-500 at full intensity (12.6:1 ✓). */
 :root {
-  /* Absolutes */
+  /* ---- Absolutes ---- */
   --black: #000000;
   --white: #FFFFFF;
 
-  /* Neutrals — warm-leaning gray (Engine) */
-  --ink-950: #0D0D0D;
-  --ink-900: #1A1A1A;
-  --ink-700: #3D3D3C;
-  --ink-500: #6E6E6C;
-  --ink-400: #8C8C8A;
-  --ink-300: #B5B5B2;
-  --ink-200: #E0E0DE;
-  --ink-100: #ECECEA;
-  --ink-50:  #FAFAF9;
+  /* ---- Neutrals — the portal's cool-gray ladder (every step it actually uses) ---- */
+  --ink-950: #0D0D0D;   /* dark surfaces */
+  --ink-900: #1A1B1D;   /* body text */
+  --ink-800: #17181A;   /* primary action fill (buttons) · hover → --ink-750 */
+  --ink-750: #2C2D30;   /* primary action hover */
+  --ink-700: #3A3C3E;   /* secondary text */
+  --ink-600: #55585B;   /* nav / tertiary text */
+  --ink-500: #8A8D90;   /* muted text, labels */
+  --ink-400: #9DA0A3;   /* faint text, eyebrows */
+  --ink-300: #B4B7B9;   /* fainter — ghost actions at rest, disabled */
+  --ink-250: #C6C8C6;   /* faintest — struck/retracted, quiet counts */
+  --ink-200: #E4E5E2;   /* strong border */
+  --ink-100: #ECEDEA;   /* subtle border */
+  --ink-50:  #F6F6F3;   /* near-white inset surface (logo fields, tiles) */
 
-  /* Green ramp — contrast-graded around the brand electric */
+  /* ---- Green ramp — contrast-graded around the brand electric ---- */
   --green-50:  #E9FFF4;
   --green-100: #C9FFE5;
   --green-200: #93FBC9;
   --green-300: #4FF5A6;
   --green-400: #1FF08D;
-  --green-500: #00EE7F; /* ★ brand electric — fills & dark surfaces only */
-  --green-600: #00A458; /* large text / icons on white (3.3:1) */
+  --green-500: #00EE7F; /* ★ brand electric — fills, dark surfaces, signal dots */
+  --green-600: #00A352; /* large text / icons / FUNCTIONAL marks on white (3.3:1) */
   --green-700: #008347; /* AA text & links on white (4.9:1) */
   --green-800: #005C32; /* AAA small text on white (8.2:1) */
   --green-900: #00391F;
 
-  /* Teal ramp — companion: secondary data, info states */
+  /* ---- Teal — companion: secondary data, info states ---- */
   --teal-50:  #E6F4F0;
   --teal-100: #C4E5DC;
   --teal-300: #5FB8A3;
-  --teal-500: #17876F; /* AA large on white */
-  --teal-600: #0E6B5A; /* AA text on white */
+  --teal-500: #17876F;
+  --teal-600: #0E6B5A;
   --teal-700: #0A5446;
   --teal-900: #06352C;
 
-  /* Amber ramp — companion: warmth, caution, pending states */
+  /* ---- Amber — companion: warmth, caution, PENDING/held signal ---- */
   --amber-50:  #FBF3E4;
   --amber-100: #F6E3C1;
   --amber-300: #EEC279;
-  --amber-500: #E8A33D; /* fill; pair with ink text */
-  --amber-600: #B0792A; /* large text on white */
-  --amber-700: #8A5B12; /* AA text on white */
+  --amber-500: #FFBE2C; /* the portal's attention/held signal (dots, question wash edge) */
+  --amber-600: #B0792A;
+  --amber-700: #B45309; /* AA caution text on white (portal draft/awaiting) */
+  --amber-800: #8A5B12;
   --amber-900: #5C3B0A;
 
-  /* Red — errors only, used sparingly */
+  /* ---- Red — destructive only, used sparingly ---- */
   --red-50:  #FBEAE5;
-  --red-500: #C2452D; /* AA large on white */
-  --red-700: #8F2F1D; /* AA text on white */
+  --red-500: #C2452D;
+  --red-700: #B91C1C; /* destructive action fill + hover text (portal) */
+  --red-800: #8F2F1D;
 
-  /* Semantic — text */
-  --text-display: var(--black);
-  --text-body: var(--ink-900);
-  --text-muted: var(--ink-500);
-  --text-faint: var(--ink-400);
+  /* ---- Semantic — text ---- */
+  --text-display: var(--ink-900);
+  --text-body: var(--ink-900);        /* #1A1B1D */
+  --text-secondary: var(--ink-700);   /* #3A3C3E */
+  --text-nav: var(--ink-600);         /* #55585B */
+  /* RE-GRADED 31 Jul: --ink-500 (3.34:1) and --ink-400 (2.63:1) both failed AA as TEXT.
+     The ink ramp is UNCHANGED — it is still right for borders, dots, meter tracks and marks.
+     These two semantic aliases now carry their own values, so every small run of quiet text
+     in the system clears 4.5:1 with no markup changing.
+     Ladder on white: ink-900 17.2 → ink-700 11.1 → ink-600 7.2 → muted 5.7 → faint 4.8. */
+  --text-muted: #63676A;              /* 5.71:1 — was var(--ink-500), 3.34:1 */
+  --text-faint: #676B6E; /* 4.58:1 on --ink-100, the DARKEST common text background — calibrate against that, never white (31 Jul) */
+  --text-ghost: var(--ink-300);       /* #B4B7B9 — ghost actions at rest */
   --text-on-dark: var(--white);
   --text-muted-on-dark: var(--ink-300);
   --text-brand: var(--green-700);
@@ -72,43 +87,71 @@
   --text-brand-on-dark: var(--green-500);
   --text-on-green: var(--black);
 
-  /* Semantic — surfaces (Engine: light platform on warm gray) */
+  /* ---- Semantic — surfaces ---- */
   --surface-page: var(--white);
-  --surface-app: var(--ink-50);          /* platform canvas */
-  --surface-sunken: var(--ink-100);
+  --surface-app: #F2F3F2;             /* platform canvas base (under the gradient) */
+  --surface-sunken: var(--ink-50);    /* inset fields/tiles */
   --surface-card: var(--white);
-  --surface-dark: var(--black);
+  --surface-dark: #14201A;            /* green-tinted near-black (logo-on-dark, dark tiles) */
   --surface-dark-raised: var(--ink-900);
   --surface-brand: var(--green-500);
   --surface-brand-tint: var(--green-50);
 
-  /* Semantic — borders */
-  --border-subtle: var(--ink-100);
-  --border-strong: var(--ink-200);
+  /* ---- Semantic — borders / hairlines (portal leans on hairlines over shadow) ---- */
+  --hairline: rgba(23, 24, 26, 0.05);      /* separators inside cards */
+  --hairline-strong: rgba(23, 24, 26, 0.08);
+  --border-subtle: var(--hairline);
+  --border-strong: var(--hairline-strong);
   --border-focus: var(--green-600);
+  --canvas-glow-green: #DFF4E9; /* the canvas's top-left green bloom (doctrine canvas gradient) */
+  --canvas-glow-warm: #EDEEE8;  /* the canvas's bottom-right warm bloom */
+  --chart-grid: #EEF0EE; /* horizontal chart grid lines — the ONLY grid rule Chart Kit draws (added 31 Jul; was a 43-use literal) */
+  --ring-hairline: rgba(23, 24, 26, 0.05); /* the 0.5px card ring, paired with --shadow-card */
 
-  /* Semantic — actions (Engine: black-filled primary; green = hero CTA only) */
-  --action-primary: var(--ink-950);
-  --action-primary-hover: var(--ink-700);
+  /* ---- Semantic — actions ---- */
+  --action-primary: var(--ink-800);        /* #17181A ink fill */
+  --action-primary-hover: var(--ink-750);  /* #2C2D30 */
   --on-action-primary: var(--white);
-  --action-brand: var(--green-500);
+  --action-brand: var(--green-500);        /* hero CTA only — black label */
   --action-brand-hover: var(--green-400);
   --on-action-brand: var(--black);
+  --action-danger: var(--red-700);         /* #B91C1C destructive fill / hover text */
+  --action-ghost-rest: var(--ink-300);     /* ghost glyphs at rest */
+  --action-ghost-hover: var(--ink-900);
 
-  /* Semantic — statuses */
+  /* ---- Semantic — statuses (dot + wash pairs) ---- */
+  --status-positive: var(--green-500);     /* live/approved dot */
   --status-positive-text: var(--green-800);
   --status-positive-bg: var(--green-50);
   --status-info-text: var(--teal-600);
   --status-info-bg: var(--teal-50);
+  --status-caution: var(--amber-500);      /* held/pending dot #FFBE2C */
   --status-caution-text: var(--amber-700);
   --status-caution-bg: var(--amber-50);
   --status-negative-text: var(--red-700);
   --status-negative-bg: var(--red-50);
+  --status-neutral: var(--ink-300);        /* scheduled/queued/revising dot */
 
-  /* Semantic — data series order */
-  --data-1: var(--green-500);  /* on dark */
-  --data-1-on-light: var(--green-600);
+  /* ---- Semantic — data series order ---- */
+  --data-1: var(--green-500);              /* on dark */
+  --data-1-on-light: var(--green-600);     /* #00A352 */
   --data-2: var(--teal-500);
   --data-3: var(--amber-500);
   --data-4: var(--ink-400);
+
+  /* ==== GLASS ENGINE — platform theme layer ==== */
+  /* Canvas: base + two faint radial washes (green top-left, warm olive bottom-right). */
+  --canvas-wash: radial-gradient(at 8% 0%, #DFF4E9 0%, transparent 42%),
+                 radial-gradient(at 95% 100%, #EDEEE8 0%, transparent 45%);
+  --canvas: var(--canvas-wash), var(--surface-app);
+
+  /* The ONE glass object per screen — the sidebar. */
+  --glass-fill: rgba(255, 255, 255, 0.5);
+  --glass-blur: blur(36px) saturate(1.5);
+  --glass-inset-ring: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+
+  /* Row hover tints (real CSS, never runtime): on canvas vs on white. */
+  --hover-on-canvas: rgba(255, 255, 255, 0.55);
+  --hover-on-white: rgba(23, 24, 26, 0.025);
+  --selected-pill: rgba(255, 255, 255, 0.95); /* active nav / list pill */
 }

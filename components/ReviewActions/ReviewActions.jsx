@@ -2,7 +2,7 @@
    Rule: quiet at rest (ghost ink-400 glyphs), tone only on hover, collapse to a
    status chip once decided. Filled buttons are NEVER used for repeated row actions. */
 const hvReviewCss = `
-.hv-iconbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:none;border-radius:var(--radius-sm);color:var(--ink-400);cursor:pointer;transition:background-color var(--duration-fast) var(--ease-out),color var(--duration-fast) var(--ease-out);flex:none}
+.hv-iconbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:none;border-radius:var(--radius-sm);color:var(--ink-400);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out),color var(--duration-fast) var(--ease-out);flex:none}
 .hv-iconbtn:hover:not(:disabled){background:var(--ink-100);color:var(--ink-700)}
 .hv-iconbtn:disabled{opacity:.4;cursor:not-allowed}
 .hv-iconbtn:focus-visible{outline:2px solid var(--border-focus);outline-offset:1px}

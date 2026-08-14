@@ -6,7 +6,7 @@
      ('difficulty' semantics). semantics 'score' flips it (high = good). */
 const hvMetricCss = `
 .hv-metric{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-sans);line-height:1;white-space:nowrap}
-.hv-metric--chip{border:1px solid var(--border-subtle);background:var(--surface-card);border-radius:var(--radius-sm);padding:5px 8px}
+.hv-metric--chip{box-shadow:inset 0 0 0 1px var(--border-subtle);background:var(--surface-card);border-radius:var(--radius-sm);padding:5px 8px}
 .hv-metric__label{font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint)}
 .hv-metric__value{font-family:var(--font-mono);font-size:11.5px;font-weight:500;color:var(--ink-900);font-variant-numeric:tabular-nums}
 .hv-meter{display:inline-flex;align-items:center;gap:6px;line-height:1;white-space:nowrap}

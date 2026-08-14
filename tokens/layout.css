@@ -1,33 +1,63 @@
-/* Hivory layout tokens — "Engine" direction.
-   Radius 8–10 default, structured spacing on a 4px grid,
-   borders over shadows on the platform (shadows stay whisper-quiet). */
+/* Hivory layout tokens — v4 "Glass Engine".
+   Radii run larger than the old Engine (cards 14, panels 16); the platform leans on
+   hairlines + whisper shadows, with ONE elevated card per screen. Motion is quick and
+   eased; only tint/≤2px translate on hover, a 200ms fade on screen switch. */
 :root {
-  /* Radii */
-  --radius-sm: 6px;    /* inputs, badges, small chips */
-  --radius-md: 8px;    /* buttons, controls */
-  --radius-lg: 10px;   /* cards, panels */
-  --radius-xl: 14px;   /* modals, large surfaces */
-  --radius-pill: 999px;
+  /* ---- Radii ---- */
+  --radius-sm: 8px;     /* inputs, badges, small chips */
+  --radius-md: 9px;     /* nav items, row pills */
+  --radius-lg: 12px;    /* tiles, small cards */
+  --radius-control: 10px; /* buttons, inputs — the rounded rectangle (Apple-calm) */
+  --radius-xl: 14px;    /* cards */
+  --radius-2xl: 16px;   /* panels, sidebar, artifact pane, modal */
+  --radius-pill: 999px; /* buttons, status chips */
 
-  /* Spacing — 4px grid */
+  /* ---- Spacing — 4px grid ---- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 20px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Shadows — quiet; platform leans on borders instead */
-  --shadow-card: 0 1px 2px rgba(13, 13, 13, 0.05);
-  --shadow-raised: 0 1px 3px rgba(13, 13, 13, 0.07), 0 4px 14px rgba(13, 13, 13, 0.06);
-  --shadow-overlay: 0 4px 10px rgba(13, 13, 13, 0.08), 0 16px 40px rgba(13, 13, 13, 0.12);
+  /* ---- Shadows — quiet, green-tinted ink; borders do most of the work ---- */
+  /* rest card: whisper shadow + 0.5px hairline ring */
+  --shadow-card: 0 1px 2px rgba(20, 40, 30, 0.05), 0 0 0 0.5px rgba(23, 24, 26, 0.05);
+  /* raised: active nav pill / selected list row */
+  --shadow-raised: 0 1px 3px rgba(20, 40, 30, 0.1), 0 0 0 0.5px rgba(23, 24, 26, 0.04);
+  /* elevated: the single priority card per screen (the thing needing the user) */
+  --shadow-elevated: 0 10px 28px -10px rgba(20, 40, 30, 0.16), 0 0 0 0.5px rgba(23, 24, 26, 0.05);
+  /* overlay: modals on the ink scrim */
+  --shadow-overlay: 0 24px 60px rgba(20, 40, 30, 0.3), 0 0 0 0.5px rgba(23, 24, 26, 0.08);
+  /* glass: the sidebar's inner light ring (pair with --glass-fill + --glass-blur) */
+  --shadow-glass-ring: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 
-  /* Motion (matches the Meaning production app) */
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1); /* @kind other */
-  --duration-fast: 120ms; /* @kind other */
-  --duration-slow: 240ms; /* @kind other */
+  /* Scrim behind modals */
+  --scrim: rgba(23, 24, 26, 0.28);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);   /* @kind other — the one house curve */
+  --duration-fast: 120ms;    /* @kind other — press / quick feedback */
+  --duration-soft: 180ms;    /* @kind other — the DEFAULT: soft easing for state changes (settle, never snap) */
+  --duration-modal: 140ms;   /* @kind other — confirm/modal fade */
+  --duration-screen: 200ms;  /* @kind other — screen-switch fade (the only entrance) */
+  --duration-slow: 240ms;    /* @kind other — larger reveals */
+  --duration-spinner: 1.15s; /* @kind other — dual-hex spinner cycle */
+  --duration-pulse: 1.6s;    /* @kind other — running/live text pulse */
+  --duration-gentle: 340ms;  /* @kind other — arrivals/departures (toast, stack reflow): long soft glide */
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other — the glide curve: fast start, long velvet settle */
+
+  /* SOFT-MOTION DOCTRINE (binding): every state change — hover, focus, selected, appear — eases
+     softly on --ease-out at --duration-soft (180ms); things settle, never snap. Hover and press are
+     expressed as TINT, FILL, RING or BRIGHTNESS — never as displacement. Nothing lifts, rises or
+     nudges on hover: the cursor already says where you are, and a moving target is a worse one.
+     Movement is reserved for things that genuinely travel (a gliding selection pill, an arriving
+     toast), never for feedback. */
+  --transition-soft: var(--duration-soft) var(--ease-out);
+  --hover-lift: 0px; /* RETIRED 31 Jul — kept so the bundle resolves; never reintroduce a lift */
 }
