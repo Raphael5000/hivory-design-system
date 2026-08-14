@@ -1,0 +1,52 @@
+<!-- @dsCard group="Components" viewport="700x900" name="Transcript" subtitle="Read-only conversation record — bubble vs plain speakers, inert artifact cards, honest N-of-M truncation, one way out" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Transcript, Card } = window.HivoryDesignSystem_354905;
+
+const msgs = [
+  { from: 'you', text: 'Can we get something out about the compostable switch? The anniversary is next week.' },
+  { from: 'engine',
+    text: 'A year is the right hook — I’ll lead on the margin cost rather than the sustainability claim, since that’s the part competitors can’t copy.',
+    steps: '4 steps · 41s',
+    artifact: { title: 'Refill loyalty — LinkedIn thread', outcome: 'Approved 24 Jul · published 25 Jul, 14:00' } },
+  { from: 'you', text: 'Softer on the last line — we don’t need the call to action.' },
+  { from: 'engine', text: 'Done — it ends on the number now. Held for you again.' }
+];
+
+const label = (t) => e('div', { style: { fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' } }, t);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '18px', display: 'grid', gap: '20px' } },
+    e(Card, null,
+      e(Transcript, { title: 'Refill launch — social', when: '24 Jul', messages: msgs, sessionHref: '#' })
+    ),
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', alignItems: 'start' } },
+      e(Card, null,
+        label('Truncated — honest'),
+        e(Transcript, { title: 'Refill launch — social', when: '24 Jul', messages: msgs, limit: 2, total: 8, sessionHref: '#' })
+      ),
+      e('div', { style: { display: 'grid', gap: '20px' } },
+        e(Card, null,
+          label('Loading — skeleton, never a spinner'),
+          e(Transcript, { title: 'Refill launch — social', when: '24 Jul', loading: true })
+        ),
+        e(Card, null,
+          label('Empty — the absence is the provenance'),
+          e(Transcript, { title: 'Weekly digest — occurrence', when: '11 Aug', messages: [],
+            emptyText: 'No request — this ran on the weekly rule', emptyHref: '#', emptyLinkLabel: 'Open the rule ›' })
+        )
+      )
+    )
+  )
+);
+</script>
+</body></html>

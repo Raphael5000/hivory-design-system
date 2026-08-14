@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x1440" name="SignIn" subtitle="The gate — partner plate + disciplined form; four gates, ink verb, in-place recovery, glass frame with opaque fields" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--canvas);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { SignIn } = window.HivoryDesignSystem_354905;
+const logo = '../../assets/logo/hivory/green-white.svg';
+const cap = (t) => e('div', { style: { padding: '20px 0 8px', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-faint)' } }, t);
+const links = [
+  { label: 'Lorem ipsum', onClick: (ev) => ev.preventDefault() },
+  { label: 'Dolor sit', onClick: (ev) => ev.preventDefault() },
+  { label: 'Amet consectetur', onClick: (ev) => ev.preventDefault() }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '0 20px 20px' } },
+    cap('Magic-link gate with providers — plate collapsed to its mobile band at this width'),
+    e(SignIn, {
+      logoSrc: logo, logoAlt: 'Hivory',
+      line: 'Lorem ipsum dolor sit amet consectetur.',
+      sub: 'Adipiscing elit sed do eiusmod tempor incididunt ut labore.',
+      links,
+      gate: 'magic',
+      providers: [{ id: 'google', label: 'Continue with Google' }, { id: 'github', label: 'Continue with GitHub' }],
+      subtitle: 'Lorem ipsum dolor sit amet consectetur adipiscing.'
+    }),
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' } },
+      e('div', null,
+        cap('Password gate — error state'),
+        e(SignIn, {
+          plate: false, gate: 'password', defaultEmail: 'name@company.com',
+          error: 'We couldn’t sign you in with those details. Check them and try again, or ask your admin for access.'
+        })
+      ),
+      e('div', null,
+        cap('Key gate — signing in (session note mandatory)'),
+        e(SignIn, { plate: false, gate: 'key', busy: true })
+      ),
+      e('div', null,
+        cap('Recovery resolved in place — confirmation'),
+        e(SignIn, { plate: false, gate: 'password', initialView: 'sent' })
+      ),
+      e('div', null,
+        cap('Glass frame on the canvas — fields stay opaque'),
+        e(SignIn, { plate: false, glass: true, gate: 'magic', subtitle: 'Lorem ipsum dolor sit amet consectetur.' })
+      )
+    )
+  )
+);
+</script>
+</body></html>

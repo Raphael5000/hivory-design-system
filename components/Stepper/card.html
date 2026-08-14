@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Stepper" subtitle="Sequential section nav — glass rail with gliding pill, green done-checks, and the mobile bar form" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 20px; display: flex; gap: 34px; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 20px; flex: 1; min-width: 0; }
+  .cap { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+  .blk { display: flex; flex-direction: column; gap: 8px; }
+  .hint { font-size: 11.5px; line-height: 1.55; color: var(--text-secondary); max-width: 340px; }
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Stepper, Button } = window.HivoryDesignSystem_354905;
+
+const STEPS = ['Overview', 'What we deliver', 'Timeline', 'Cost', 'Scope & terms', 'Accept & sign'];
+
+function Demo() {
+  const [at, setAt] = React.useState(2);
+  const [reached, setReached] = React.useState(2);
+  const go = (i) => { setAt(i); setReached((r) => Math.max(r, i)); };
+  const move = (d) => go(Math.min(STEPS.length - 1, Math.max(0, at + d)));
+  return e('div', { className: 'wrap' },
+    e('div', { className: 'blk' },
+      e('span', { className: 'cap' }, 'rail · done / now / ahead · click or arrow-key'),
+      e(Stepper, {
+        steps: STEPS, at, reached, onStep: go,
+        colophon: 'Prepared by Hivory · Valid to 30 Sep'
+      })
+    ),
+    e('div', { className: 'col' },
+      e('div', { className: 'blk' },
+        e('span', { className: 'cap' }, 'bar variant · below 720px'),
+        e(Stepper, { steps: STEPS, at, variant: 'bar' })
+      ),
+      e('div', { className: 'blk' },
+        e('span', { className: 'cap' }, 'bar · last step'),
+        e(Stepper, { steps: STEPS, at: STEPS.length - 1, variant: 'bar' })
+      ),
+      e('div', { style: { display: 'flex', gap: '8px' } },
+        e(Button, { variant: 'outline', size: 'sm', onClick: () => move(-1) }, '‹ Back'),
+        e(Button, { variant: 'primary', size: 'sm', onClick: () => move(1) }, 'Continue ›')
+      ),
+      e('div', { className: 'hint' },
+        'Steps you have reached are clickable; steps ahead are disabled — visible and counted, but a stepper never lets you skip to an end you have not earned. The pill is one object that glides; aria-current="step" travels with it.')
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(e(Demo));
+</script>
+</body></html>

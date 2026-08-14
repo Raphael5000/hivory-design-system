@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Topbar" subtitle="52px glass identity bar floating on the canvas — live sync, caution pill, reseller root and loading states" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--canvas);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Topbar } = window.HivoryDesignSystem_354905;
+const logo = '../../assets/logo/hivory/black-green.svg';
+const cap = (t) => e('div', { style: { padding: '12px 12px 0', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-faint)' } }, t);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { paddingBottom: '20px' } },
+    cap('Live'),
+    e(Topbar, {
+      logoSrc: logo, logoAlt: 'Hivory', client: 'Pure Good Foods', crumb: 'Campaigns',
+      sync: { status: 'live', label: 'Synced 12 minutes ago' },
+      onSearch: () => {}, account: { name: 'Mari Keller' }
+    }),
+    cap('Sync failed — the line degrades to a caution pill, never disappears'),
+    e(Topbar, {
+      logoSrc: logo, logoAlt: 'Hivory', client: 'Pure Good Foods', crumb: 'Campaigns',
+      sync: { status: 'stale', label: 'Sync failed' },
+      onSearch: () => {}, account: { name: 'Mari Keller' }
+    }),
+    cap('Reseller root — nothing selected, said by omission'),
+    e(Topbar, {
+      logoSrc: logo, logoAlt: 'Hivory', client: 'All clients',
+      onSearch: () => {}, account: { name: 'Mari Keller' }
+    }),
+    cap('Loading — identity never waits for data'),
+    e(Topbar, {
+      logoSrc: logo, logoAlt: 'Hivory', loading: true,
+      onSearch: () => {}, account: { name: 'Mari Keller' }
+    })
+  )
+);
+</script>
+</body></html>

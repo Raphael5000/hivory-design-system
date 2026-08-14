@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x300" name="SplitButton" subtitle="Publishing verb in two segments — main fires the default, chevron opens alternatives upward" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { SplitButton } = window.HivoryDesignSystem_354905;
+const alternatives = [
+  { id: 'now', label: 'Publish now' },
+  { id: 'slot', label: 'Best slot — 4 Aug 09:00', sub: 'Your top-performing slot' },
+  { id: 'pick', label: 'Pick a date & time…' }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '160px 20px 20px', display: 'flex', flexDirection: 'column', gap: '12px' } },
+    e('div', { style: { display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' } },
+      // Brand — one per view, hero moment only
+      e(SplitButton, { variant: 'brand', items: alternatives, chevronLabel: 'Choose when to accept' }, 'Sign & accept'),
+      // Primary md, menu open upward (a split button lives in a footer)
+      e(SplitButton, { items: alternatives, defaultOpen: true, chevronLabel: 'Choose when to publish' }, 'Approve & publish')
+    ),
+    e('div', { style: { display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' } },
+      // sm — dense rows only
+      e(SplitButton, { size: 'sm', items: alternatives, chevronLabel: 'Choose when to publish' }, 'Approve & publish'),
+      // Disabled — BOTH segments, never one; the menu cannot open
+      e(SplitButton, { disabled: true, items: alternatives, chevronLabel: 'Choose when to publish' }, 'Approve & publish'),
+      // Loading — spinner in the glyph slot, chevron disabled mid-flight
+      e(SplitButton, { loading: true, items: alternatives, chevronLabel: 'Choose when to publish' }, 'Approve & publish'),
+      // Empty items — renders as a plain pill Button (a split with a one-row menu lies about the choice)
+      e(SplitButton, { items: [] }, 'Approve & publish')
+    )
+  )
+);
+</script>
+</body></html>

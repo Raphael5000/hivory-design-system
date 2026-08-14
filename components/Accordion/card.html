@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Accordion" subtitle="A table row that opens — one card, ranked rows, chevron rotates 90°, open is not selected" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { Accordion } = window.HivoryDesignSystem_354905;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' } },
+    // Ranked list, first row open: green head meter, --ink-300 sub meters, staggered rise
+    e(Accordion, {
+      defaultOpen: ['blog'],
+      items: [
+        { id: 'blog', label: 'Blog posts', count: '412 views', value: 412, rows: [
+          { label: 'How the audit works', count: 186 },
+          { label: 'Pricing that reads itself', count: 124 },
+          { label: 'The quiet ledger', count: 68 },
+          { label: 'Archive pages', count: 0 }
+        ] },
+        { id: 'linkedin', label: 'LinkedIn', count: '268 views', value: 268, rows: [
+          { label: 'Founder updates', count: 141 },
+          { label: 'Case study teasers', count: 92 },
+          { label: 'Reposts', count: 35 }
+        ] },
+        // Open row with nothing beneath — says so in one plain sentence
+        { id: 'email', label: 'Email digest', count: '97 views', value: 97, rows: [], emptyNote: 'No sends this period — the next digest goes out Friday.' },
+        { id: 'pipeline', label: 'Pipeline', count: '12 views', value: 12, rows: [
+          { label: 'Proposal follow-ups', count: 12 }
+        ] }
+      ]
+    }),
+    // Loading: real labels stay, counts and meters are skeletons at the same row height
+    e(Accordion, {
+      loading: true,
+      items: [
+        { id: 'a', label: 'Blog posts' },
+        { id: 'b', label: 'LinkedIn' }
+      ]
+    }),
+    // Empty accordion: one line naming what will appear
+    e(Accordion, { items: [], emptyText: 'Channels appear here once the first campaign ships.' })
+  )
+);
+</script>
+</body></html>

@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="700x480" name="ImageSlot" subtitle="Droppable image placeholder — empty brief, filled + Replace hover, contain for artwork, shapes, loading shimmer" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-card);font-family:var(--font-sans)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { ImageSlot } = window.HivoryDesignSystem_354905;
+// Sample photo as an inline SVG data URI — stock photography is never a placeholder.
+const photo = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="252">' +
+  '<rect width="480" height="252" fill="hsl(150,30%,86%)"/>' +
+  '<circle cx="360" cy="60" r="110" fill="hsl(151,42%,72%)"/>' +
+  '<circle cx="90" cy="230" r="90" fill="hsl(84,28%,78%)"/>' +
+  '<circle cx="240" cy="140" r="46" fill="hsl(160,25%,62%)"/>' +
+  '</svg>'
+);
+const cap = (t) => e('div', { style: { marginTop: '8px', fontSize: '11px', color: 'var(--text-muted)' } }, t);
+const box = (ratio, child) => e('div', { style: { aspectRatio: ratio } }, child);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { style: { padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' } },
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1.91fr 1fr', gap: '20px', alignItems: 'start' } },
+      e('div', null,
+        box('1.91 / 1', e(ImageSlot, { id: 'card-post', placeholder: 'Post image · 1200 × 627' })),
+        cap('Empty — the placeholder is a brief, drop any image on it')
+      ),
+      e('div', null,
+        box('1.91 / 1.048', e(ImageSlot, { id: 'card-filled', src: photo, credit: 'Studio North' })),
+        cap('Filled — radius 10, hover shows Replace')
+      )
+    ),
+    e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', alignItems: 'start' } },
+      e('div', null,
+        box('1 / 1', e(ImageSlot, { id: 'card-round', shape: 'rounded', radius: 14, placeholder: 'Team' })),
+        cap('rounded')
+      ),
+      e('div', null,
+        e('div', { style: { width: '88px', height: '88px' } }, e(ImageSlot, { id: 'card-circle', shape: 'circle', placeholder: 'avatar' })),
+        cap('circle')
+      ),
+      e('div', null,
+        box('1 / 1', e(ImageSlot, { id: 'card-logo', fit: 'contain', src: '../../assets/logo/hivory/black-green.svg', placeholder: 'Primary lockup' })),
+        cap('contain — never cropped')
+      ),
+      e('div', null,
+        box('1 / 1', e(ImageSlot, { id: 'card-loading', loading: true, placeholder: 'Packaging' })),
+        cap('loading — holds its size')
+      )
+    )
+  )
+);
+</script>
+</body></html>
