@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+    .panel { animation: panelIn var(--duration-soft) var(--ease-out); }
+    .ghostbtn { appearance: none; border: none; background: none; padding: 0; font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: color var(--duration-soft) var(--ease-out); }
+    .ghostbtn:hover { color: var(--text-body); }
+    .splitL { appearance: none; border: none; height: 27px; padding: 0 13px; border-radius: 999px 0 0 999px; background: var(--action-primary); color: var(--white); font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out); }
+    .splitL:hover { background: var(--ink-800); }
+    .splitR { appearance: none; border: none; height: 27px; padding: 0 8px 0 7px; border-radius: 0 999px 999px 0; background: var(--action-primary); color: rgba(255,255,255,0.8); font-family: var(--font-sans); cursor: pointer; box-shadow: inset 1px 0 0 rgba(255,255,255,0.22); transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out); }
+    .splitR:hover { background: var(--ink-800); color: var(--white); }
+    .menu { position: absolute; bottom: calc(100% + 8px); right: 0; width: 240px; background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-overlay); padding: 5px; box-sizing: border-box; transform-origin: bottom right;
+      opacity: 0; transform: translateY(6px) scale(0.985); pointer-events: none;
+      transition: opacity var(--duration-soft) var(--ease-out), transform var(--duration-soft) var(--ease-out); }
+    .menu.open { opacity: 1; transform: none; pointer-events: auto; }
+    .mi { display: flex; flex-direction: column; justify-content: center; min-height: 32px; box-sizing: border-box; border-radius: 8px; padding: 0 10px; cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .mi.two { padding: 7px 10px; }
+    .mi:hover { background: var(--hover-on-white); }
+    .mi .t { font-size: 12.5px; color: var(--text-body); display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .mi .s { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; }
+    .sdot { width: 6px; height: 6px; border-radius: 999px; flex-shrink: 0; }
+    .bodyrow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid rgba(23,24,26,0.05); }
+    .bodyrow .n { font-size: 12px; font-weight: 600; color: var(--green-700); font-variant-numeric: tabular-nums; }
+    .bodyrow .d { font-size: var(--text-sm); line-height: 1.5; color: var(--text-secondary); }
+    .apanel { position: relative; max-width: 440px; width: 100%; margin: 0 auto; border-radius: 16px; background: var(--surface-card); box-shadow: var(--shadow-overlay); transition: max-width var(--duration-gentle) var(--ease-glide); }
+    .apanel.exp { max-width: 100%; }
+    .binner { max-width: none; margin: 0 auto; transition: max-width var(--duration-gentle) var(--ease-glide); }
+    .exp .binner, .exp .bfoot { max-width: 680px; margin: 0 auto; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .seg { appearance: none; border: none; height: 27px; padding: 0 13px; border-radius: 999px; background: transparent; font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .seg:hover { color: var(--text-body); }
+    .seg.on { background: var(--surface-card); color: var(--text-body); box-shadow: 0 1px 2px rgba(20,40,30,0.08), 0 0 0 0.5px rgba(23,24,26,0.07); }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Pattern · Artifact panel</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 14ch;">One frame, seven bodies.</h1>
+    <p style="margin: 20px 0 0; max-width: 640px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Everything the engine makes is reviewed in the same slide-out: header, status strip, one of seven bodies, and a decision bar whose verbs name the real consequence. Approve the post below and watch the strip flip.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 48px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--surface-dark);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--teal-100);"></div>
+      </div>
+      <div class="apanel {{ expCls }}">
+        <!-- header -->
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--hairline);">
+          <span style="flex: 1; font-size: 12.5px; font-weight: 650;">Refill loyalty — LinkedIn thread</span>
+          <button class="ghostbtn" onClick="{{ toggleExpand }}" title="{{ expTitle }}" style="display: inline-flex;"><i class="ti {{ expIcon }}" style="font-size: 14px;"></i></button>
+          <span class="ghostbtn" title="Close" style="display: inline-flex;"><i class="ti ti-x" style="font-size: 14px;"></i></span>
+        </div>
+        <!-- status strip -->
+        <div class="panel" key="{{ stripKey }}" style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: {{ stripBg }}; border-bottom: 1px solid var(--hairline);">
+          <span class="sdot" style="background: {{ stripDot }};"></span>
+          <span style="flex: 1; font-size: 11.5px; color: var(--text-secondary);">{{ stripText }}</span>
+          <span class="ghostbtn" style="font-size: 11px;">Work queue ›</span>
+        </div>
+        <!-- body: art/post -->
+        <div style="padding: 16px;">
+          <div class="binner">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 34px; height: 34px; border-radius: 8px; background: var(--ink-900); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">PG</span>
+            <span style="min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Pure Good</span><span style="display: block; font-size: 10.5px; color: var(--text-muted);">4,120 followers · now · 🌐</span></span>
+          </div>
+          <div style="margin-top: 10px; font-size: 12.5px; line-height: 1.55; color: var(--text-body);">A year ago we switched every product line to compostable packaging. Here's what nobody tells you. 🧵</div>
+          <div style="margin-top: 10px; aspect-ratio: 1.91 / 1; border-radius: 10px; background: var(--ink-50); display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--text-faint);">1200 × 627 · from the July shoot</div>
+          <div style="display: flex; gap: 18px; margin-top: 10px; font-size: 10.5px; color: var(--text-ghost);"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span><span style="margin-left: auto;">Preview — reactions appear once live</span></div>
+          </div>
+        </div>
+        <!-- decision bar -->
+        <div style="padding: 11px 16px; border-top: 1px solid var(--hairline);">
+        <div class="bfoot" style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 10.5px; color: var(--text-faint);">Writer · draft 2</span>
+          <span style="flex: 1;"></span>
+          <sc-if value="{{ held }}" hint-placeholder-val="{{ true }}">
+            <span style="position: relative; display: inline-flex;">
+              <button class="ghostbtn" onClick="{{ toggleAsk }}">Request changes</button>
+              <span class="menu {{ askCls }}" style="width: 250px; right: auto; left: -60px; padding: 12px 14px;">
+                <span style="display: block; font-size: 12px; font-weight: 650; color: var(--text-body);">To the Writer</span>
+                <textarea onChange="{{ onAskText }}" placeholder="Anything else you’d like to add?" style="width: 100%; min-height: 48px; border: none; outline: none; resize: none; font-family: var(--font-sans); font-size: 12px; line-height: 1.55; color: var(--text-body); caret-color: var(--green-500); background: transparent; margin-top: 8px; padding: 0; box-sizing: border-box;"></textarea>
+                <span style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 6px;">
+                  <button class="ghostbtn" onClick="{{ askCancel }}" style="font-size: 11.5px; font-weight: 400; color: var(--text-faint);">Cancel</button>
+                  <button onClick="{{ askSend }}" style="appearance: none; border: none; height: 25px; padding: 0 12px; border-radius: 999px; background: var(--action-primary); color: var(--white); font-family: var(--font-sans); font-size: 11px; font-weight: 600; cursor: pointer;">Send</button>
+                </span>
+              </span>
+            </span>
+            <span style="position: relative; display: inline-flex;">
+              <button class="splitL" onClick="{{ approveDefault }}">Approve &amp; publish</button>
+              <button class="splitR" onClick="{{ toggleMenu }}" style="display: inline-flex; align-items: center;"><i class="ti ti-chevron-up" style="font-size: 11px;"></i></button>
+              <span class="menu {{ menuCls }}">
+                <span class="mi" onClick="{{ pickNow }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="t">Publish now</span></span>
+                <span class="mi two" onClick="{{ pickBest }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="t">Best slot<span style="font-size: 9px; font-weight: 700; letter-spacing: 0.04em; color: var(--green-700);">RECOMMENDED</span></span><span class="s">Tuesday 09:00 — your top-performing slot</span></span>
+                <span class="mi" onClick="{{ pickDate }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="t">Pick a date &amp; time…</span></span>
+              </span>
+            </span>
+          </sc-if>
+          <sc-if value="{{ revising }}" hint-placeholder-val="{{ false }}">
+            <span class="panel" style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Sent to the Writer — revising, will re-hold</span>
+            <button class="ghostbtn" onClick="{{ reset }}" style="font-size: 11px;">Reset demo</button>
+          </sc-if>
+          <sc-if value="{{ approved }}" hint-placeholder-val="{{ false }}">
+            <span class="panel" style="font-size: 12px; font-weight: 600; color: var(--green-700);">✓ Added to the Work queue — {{ schedule }}</span>
+            <button class="ghostbtn" onClick="{{ reset }}" style="font-size: 11px;">Reset demo</button>
+          </sc-if>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 10px; font-size: var(--text-meta); color: var(--text-faint);">The split button is the publishing verb: the main segment takes the default schedule; the chevron opens the schedule menu above. Request changes never fires blind — it opens the ask popover first. Approval flips the strip and points to the Work queue. Try ⤢ — the same panel grows in place on <span style="font-family: var(--font-mono);">--ease-glide</span>, the body centering at 680; Esc walks back. There is no separate full-screen sheet.</div>
+
+    <!-- TWO MODES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Two modes</div><h2 class="sect-h">The body never knows the mode.</h2></div>
+    <p style="margin: 20px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The same artifact is reviewed in the console and shown in a proposal. One frame serves both: the mode swaps the <b style="font-weight: 650;">header-right</b>, the <b style="font-weight: 650;">status strip</b> and the <b style="font-weight: 650;">footer</b> — and nothing else. Body markup, geometry and type are identical, so a body written once renders in every surface.</p>
+
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+      <span style="display: inline-flex; padding: 3px; border-radius: 999px; background: var(--ink-50); gap: 2px;">
+        <button class="seg {{ segRevCls }}" onClick="{{ setReview }}">Review · console</button>
+        <button class="seg {{ segReadCls }}" onClick="{{ setRead }}">Read · proposal</button>
+      </span>
+      <span style="font-size: 11.5px; color: var(--text-faint);">{{ modeNote }}</span>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 28px; align-items: flex-start;">
+      <div style="width: 440px; flex-shrink: 0; border-radius: 16px; background: var(--surface-card); box-shadow: var(--shadow-overlay); overflow: hidden;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--hairline);">
+          <sc-if value="{{ isRead }}" hint-placeholder-val="{{ false }}">
+            <span class="panel" style="width: 26px; height: 26px; border-radius: 8px; background: var(--ink-50); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#3A3C3E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.4" y="3.2" width="11.2" height="9.6" rx="2"></rect><path d="M2.4 6.4h11.2"></path></svg></span>
+          </sc-if>
+          <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Refill loyalty — LinkedIn thread</span>
+            <sc-if value="{{ isRead }}" hint-placeholder-val="{{ false }}"><span class="panel" style="display: block; font-size: 10.5px; color: var(--text-muted);">Social · one of 12 posts a month</span></sc-if>
+          </span>
+          <sc-if value="{{ isReview }}" hint-placeholder-val="{{ true }}">
+            <span class="panel ghostbtn" style="display: inline-flex;"><i class="ti ti-arrows-diagonal" style="font-size: 14px;"></i></span>
+            <span class="ghostbtn" style="display: inline-flex;"><i class="ti ti-x" style="font-size: 14px;"></i></span>
+          </sc-if>
+          <sc-if value="{{ isRead }}" hint-placeholder-val="{{ false }}">
+            <span class="panel" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex-shrink: 0;">1 / 3</span>
+          </sc-if>
+        </div>
+        <sc-if value="{{ isReview }}" hint-placeholder-val="{{ true }}">
+          <div class="panel" style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--hairline);">
+            <span class="sdot" style="background: var(--amber-500);"></span>
+            <span style="flex: 1; font-size: 11.5px; color: var(--text-secondary);">Held for review · publishes to LinkedIn on approval</span>
+            <span class="ghostbtn" style="font-size: 11px;">Work queue ›</span>
+          </div>
+        </sc-if>
+        <div style="padding: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 34px; height: 34px; border-radius: 8px; background: var(--ink-900); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">PG</span>
+            <span style="min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Pure Good</span><span style="display: block; font-size: 10.5px; color: var(--text-muted);">4,120 followers · now · 🌐</span></span>
+          </div>
+          <div style="margin-top: 10px; font-size: 12.5px; line-height: 1.55; color: var(--text-body);">A year ago we switched every product line to compostable packaging. Here's what nobody tells you. 🧵</div>
+          <div style="margin-top: 10px; aspect-ratio: 1.91 / 1; border-radius: 10px; background: var(--ink-50); display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--text-faint);">1200 × 627 · from the July shoot</div>
+          <div style="display: flex; gap: 18px; margin-top: 10px; font-size: 10.5px; color: var(--text-ghost);"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span><span style="margin-left: auto;">Preview — reactions appear once live</span></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-top: 1px solid var(--hairline);">
+          <sc-if value="{{ isReview }}" hint-placeholder-val="{{ true }}">
+            <span class="panel" style="font-size: 10.5px; color: var(--text-faint);">Writer · draft 2</span>
+            <span style="flex: 1;"></span>
+            <span class="ghostbtn">Request changes</span>
+            <span style="display: inline-flex; height: 27px; padding: 0 13px; border-radius: 999px; background: var(--action-primary); color: var(--white); font-size: 11.5px; font-weight: 600; align-items: center;">Approve &amp; publish</span>
+          </sc-if>
+          <sc-if value="{{ isRead }}" hint-placeholder-val="{{ false }}">
+            <span class="panel" style="font-size: 10.5px; color: var(--text-faint);">Engine · made for this proposal</span>
+            <span style="flex: 1;"></span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--green-700);">Held for you on signing</span>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">What the mode changes</div>
+        <div style="margin-top: 12px;">
+          <div class="bodyrow"><span class="n" style="color: var(--text-body); font-weight: 650;">Header right</span><span class="d"><b style="font-weight: 650;">Review</b> — ⤢ expand + ✕ close, because the panel is a workspace. <b style="font-weight: 650;">Read</b> — a leading glyph tile, a sub line naming the kind of work, and a mono position counter, because the artifact is one of a set being shown.</span></div>
+          <div class="bodyrow"><span class="n" style="color: var(--text-body); font-weight: 650;">Status strip</span><span class="d"><b style="font-weight: 650;">Review only.</b> The strip reports live job state; a proposal artifact has no job yet, so there is no state to report and no strip to draw.</span></div>
+          <div class="bodyrow" style="border-bottom: none;"><span class="n" style="color: var(--text-body); font-weight: 650;">Footer</span><span class="d"><b style="font-weight: 650;">Review</b> — the decision bar: owner meta left, verbs right. <b style="font-weight: 650;">Read</b> — the provenance bar: origin left, the promise right ("Held for you on signing"). Same 11px rhythm, no buttons.</span></div>
+        </div>
+        <div style="margin-top: 20px; font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">What it never changes</div>
+        <div style="margin-top: 10px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Panel geometry and radius · body padding · every type size inside the body · the payload contract. A body is authored once against its typed payload and is mode-blind — read mode simply mounts it with edit affordances off: no hover "+", no tracked changes, no image-slot drop, no cycler arrows. Nothing in the body may branch on mode. If a surface needs different content, it needs a different payload — not a different body.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 34px; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 10px 26px;">
+      <div class="bodyrow"><span class="n">review</span><span class="d">Chat panel · expanded viewer · Work queue row · anywhere a job is decided. Editable, stateful, verbs present.</span></div>
+      <div class="bodyrow"><span class="n">read</span><span class="d">Proposal "What we deliver" stage · Performance outcome chains · anything shown to someone who cannot act on it. Same body, no chrome, no verbs.</span></div>
+      <div class="bodyrow" style="border-bottom: none;"><span class="n">retype rule</span><span class="d"><span style="font-family: var(--font-mono);">art/page</span> summarises a <i>change</i> — it needs a prior state to diff, which a proposal has not got. A page shown before any site exists is the page itself, so it is <span style="font-family: var(--font-mono);">art/visual</span> with a browser-chrome media frame. Never add a preview to <span style="font-family: var(--font-mono);">art/page</span> to make read mode work.</span></div>
+    </div>
+
+    <!-- THE SEVEN BODIES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The seven bodies</div><h2 class="sect-h">Typed payloads, never free-form.</h2></div>
+    <div style="margin-top: 34px; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 10px 26px;">
+      <div class="bodyrow"><span class="n">art/post</span><span class="d">Social content as the platform's own card — avatar, handle line, text, media. Approve &amp; release.</span></div>
+      <div class="bodyrow"><span class="n">art/article</span><span class="d">A reading page where everything is directly editable — click and type, no editor chrome; clicking away commits a TRACKED CHANGE (struck deletions, green-wash insertions, "Your change" + Keep / Undo). Hover shows one quiet "+" to add blocks. Approve &amp; publish.</span></div>
+      <div class="bodyrow"><span class="n">art/page</span><span class="d">Website work: plain-language summary of changes + a quiet tally (+14 −9 · lines changed · 2 files) — never code, never a preview. Committing plays the deploy theater: dual-hex spinner, Build · Deploy · Verify phase rail, then the Live arrival with the URL pill. Commit to staging · Commit &amp; publish.</span></div>
+      <div class="bodyrow"><span class="n">art/visual</span><span class="d">Media frame with a variant cycler ‹ 2 / 4 ›. Use this · Request changes.</span></div>
+      <div class="bodyrow"><span class="n">art/sequence</span><span class="d">Outbound as numbered steps — audience block, merge-field chips, "replies pause the sequence". Approve &amp; send.</span></div>
+      <div class="bodyrow"><span class="n">art/plan</span><span class="d">Job list rows with an outcome line. Adjust · Approve plan.</span></div>
+      <div class="bodyrow" style="border-bottom: none;"><span class="n">art/doc + rule</span><span class="d">Reports render as Markdown Kit files; a standing job's rule shows cadence, runs, and origin. Unrecognised payloads degrade to art/doc — never broken, never free-form HTML.</span></div>
+    </div>
+
+    <!-- FRAME SPEC -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The frame</div><h2 class="sect-h">Same chrome, everywhere.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Status strip</div>
+        <div style="margin-top: 10px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Directly under the header: state dot (amber held · gray revising · green approved/live) + one plain-language line — "state · destination on approval" — and the Work queue link. The strip is the only home for state prose; "draft 2 — includes your edits" inside the body is banned. Footer meta carries content facts only.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Panel → Expand</div>
+        <div style="margin-top: 10px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The panel is clamp(320px, 42vw, 460px) beside the chat — one shared width formula so the chat yields exactly panel + gutter; under 1100px it overlays instead of squeezing. The expand glyph grows the same panel in place to full width (prose at 680, post cards at 552, media at 440) ⤢ — the universal viewer for every artifact, opened from anywhere, never navigation. Esc walks back: expanded → panel → chat. Switching screens closes it.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 14px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Verbs name the real consequence — publish, deploy, send. No change verb fires blind — Request changes opens the ask popover ("Anything else you’d like to add?") before anything is sent. Every approval confirms "✓ Added to the Work queue — schedule", raises a toast, and writes memory. Secondary actions go ghost; one filled verb per bar. New formats map to one of the seven — extending the taxonomy is a design decision.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 14px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Agents emitting UI — payloads only, rendered through the kit. "Release" or "Submit" as a verb. State prose inside the body. Two filled buttons in one footer. A separate full-screen sheet — the panel IS the viewer.</div></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Pattern · Artifact panel · composed from: <span style="font-family: var(--font-mono);">Card, Menu, Button, Badge strip, Markdown Kit</span> · doctrine: Portal Design Language §Artifact Kit</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { approved: false, menuOpen: false, schedule: '', expanded: false, asking: false, askText: '', revising: false, mode: 'review' };
+  componentDidMount() {
+    this._away = (e) => { if (!e.target.closest || !e.target.closest('.menu, .splitR, .ghostbtn')) this.setState({ menuOpen: false, asking: false }); };
+    this._esc = (e) => {
+      if (e.key !== 'Escape') return;
+      if (this.state.menuOpen || this.state.asking) this.setState({ menuOpen: false, asking: false });
+      else if (this.state.expanded) this.setState({ expanded: false });
+    };
+    document.addEventListener('mousedown', this._away);
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._away); window.removeEventListener('keydown', this._esc); }
+  approve(schedule) { this.setState({ approved: true, menuOpen: false, schedule }); }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      keyActivate: this.keyActivate,
+      isReview: s.mode === 'review', isRead: s.mode === 'read',
+      segRevCls: s.mode === 'review' ? 'on' : '', segReadCls: s.mode === 'read' ? 'on' : '',
+      setReview: () => this.setState({ mode: 'review' }), setRead: () => this.setState({ mode: 'read' }),
+      modeNote: s.mode === 'review' ? 'Watch the body — it does not move.' : 'Same body, same pixels. Only the chrome changed.',
+      held: !s.approved && !s.revising, approved: s.approved, revising: s.revising, schedule: s.schedule,
+      stripKey: s.approved ? 'ok' : s.revising ? 'rev' : 'held',
+      stripDot: s.approved ? 'var(--green-500)' : s.revising ? '#9DA0A3' : 'var(--amber-500)',
+      stripBg: s.approved ? 'var(--status-positive-bg)' : 'transparent',
+      stripText: s.approved ? 'In the Work queue · LinkedIn — ' + s.schedule : s.revising ? 'Revising — applying your notes · will re-hold for your review' : 'Held for review · publishes to LinkedIn on approval',
+      askCls: s.asking ? 'open' : '',
+      toggleAsk: (e) => { e.stopPropagation(); this.setState((p) => ({ asking: !p.asking, menuOpen: false })); },
+      onAskText: (e) => this.setState({ askText: e.target.value }),
+      askCancel: (e) => { e.stopPropagation(); this.setState({ asking: false, askText: '' }); },
+      askSend: (e) => { e.stopPropagation(); this.setState({ asking: false, askText: '', revising: true }); },
+      menuCls: s.menuOpen ? 'open' : '',
+      expCls: s.expanded ? 'exp' : '',
+      expIcon: s.expanded ? 'ti-arrows-diagonal-minimize-2' : 'ti-arrows-diagonal',
+      expTitle: s.expanded ? 'Collapse' : 'Expand',
+      toggleExpand: () => this.setState((p) => ({ expanded: !p.expanded })),
+      toggleMenu: (e) => { e.stopPropagation(); this.setState((p) => ({ menuOpen: !p.menuOpen })); },
+      approveDefault: () => this.approve('Tue 09:00'),
+      pickNow: () => this.approve('now'),
+      pickBest: () => this.approve('Tue 09:00'),
+      pickDate: () => this.approve('31 Jul, 09:00'),
+      reset: () => this.setState({ approved: false, schedule: '', revising: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

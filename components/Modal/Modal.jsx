@@ -4,7 +4,7 @@ const hvModalCss = `
 .hv-modal{background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);width:100%;font-family:var(--font-sans);box-sizing:border-box}
 .hv-modal__head{padding:18px 20px 0}
 .hv-modal__title{margin:0;font-size:15.5px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-950)}
-.hv-modal__desc{margin:5px 0 0;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
+.hv-modal__desc{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
 .hv-modal__body{padding:16px 20px}
 .hv-modal__foot{display:flex;justify-content:flex-end;gap:8px;padding:0 20px 18px}
 `;

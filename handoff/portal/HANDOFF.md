@@ -1,5 +1,11 @@
 # Portal alignment handoff — hivory-client-portal
 
+> **⚠ SUPERSEDED (2026-08-14).** This runbook targets DS v1 ("Engine"); the system is now
+> **v4.1 "Glass Engine"** (see `CHANGELOG.md`). Do not apply these values. The client-portal
+> migration has its own current bundle (`design_handoff_whoyou_admin`); consumers should import
+> `tokens/` from this repo, diff `tokens/tokens.json` between versions, and run
+> `scripts/drift-test.mjs` in CI. Kept for the record of the v1 contract mapping.
+
 Urgent realignment of `Raphael5000/hivory-client-portal` to Hivory Design System v1 ("Engine").
 The portal already uses the shadcn CSS-variable contract, so **everything below happens in
 `src/app/globals.css` — zero component changes.**

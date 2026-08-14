@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .menu { background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-overlay); padding: 5px; box-sizing: border-box; transform-origin: top center;
+      opacity: 0; transform: translateY(-6px) scale(0.985); pointer-events: none;
+      transition: opacity var(--duration-soft) var(--ease-out), transform var(--duration-soft) var(--ease-out); }
+    .menu.open { opacity: 1; transform: none; pointer-events: auto; }
+    .mi { height: 32px; border-radius: 8px; padding: 0 10px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-body); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .mi:hover { background: var(--hover-on-white); }
+    .mi .sc { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); }
+    .mi.danger { color: var(--action-danger); }
+    .mi.danger:hover { background: var(--status-negative-bg); }
+    .msep { height: 1px; background: var(--hairline); margin: 5px 6px; }
+    .trig { height: 38px; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; border: none; border-radius: var(--radius-pill); font-family: var(--font-sans); font-size: 14px; font-weight: var(--weight-semibold); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Menu</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">One click away.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Row actions and the schedule chooser. It doesn't just appear — it settles in: a soft fade with a 6px rise on the house curve, growing from the trigger. Click to feel it.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; border-radius: var(--radius-2xl); background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 64px 44px 150px; display: flex; gap: 56px; justify-content: center; align-items: flex-start;">
+      <div style="position: relative;">
+        <button class="trig" onClick="{{ toggleA }}" style="background: var(--action-primary); color: var(--white);">Row actions</button>
+        <div class="menu {{ aCls }}" style="position: absolute; top: 46px; left: 0; width: 210px;">
+          <div class="mi">Open<span class="sc">↵</span></div>
+          <div class="mi">Rename<span class="sc">R</span></div>
+          <div class="mi">Duplicate<span class="sc">⌘D</span></div>
+          <div class="msep"></div>
+          <div class="mi danger">Delete<span class="sc" style="color: currentColor; opacity: 0.5;">⌫</span></div>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <button class="trig" onClick="{{ toggleB }}" style="background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.14); color: var(--text-body);">Schedule <span style="color: var(--text-faint);">▾</span></button>
+        <div class="menu {{ bCls }}" style="position: absolute; top: 46px; left: 0; width: 250px;">
+          <div class="mi">Publish now</div>
+          <div style="border-radius: 8px; padding: 7px 10px; cursor: pointer;"><div style="font-size: 13px; color: var(--text-body); display: flex; align-items: center; gap: 8px;">Best slot<span style="font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--green-700);">RECOMMENDED</span></div><div style="font-size: 11px; color: var(--text-muted); margin-top: 3px;">Tuesday 09:00 — your top slot</div></div>
+          <div class="mi">Pick a date &amp; time…</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Opens on <span style="font-family: var(--font-mono);">--duration-soft</span> (180ms) — fade + 6px rise + a hair of scale, origin at the trigger. No slide, no bounce. Esc or click-away closes it.</div>
+
+    <!-- ITEM STATES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Item states</div><h2 class="sect-h">Rest to danger.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 14px;">
+        <div class="mi">Rest</div>
+        <div class="mi" style="background: var(--hover-on-white);">Hover — ink 2.5% tint</div>
+        <div class="mi danger" style="background: var(--status-negative-bg);">Delete — danger hover</div>
+        <div class="mi" style="color: var(--text-ghost); pointer-events: none;">Disabled</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Anatomy</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Card radius 12, 5px inner padding, 32px items, mono shortcut hints right-aligned. Destructive actions sit below a hairline separator, tinted red only on hover.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Fade + rise from the trigger, 180ms. Destructive below a separator. Verb labels, mono shortcuts. Close on Esc or click-away — with the same soft fade out.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Slide, bounce, or spring it open. Snap in with no transition. Mix delete with safe actions. Nest submenus deeper than one level.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">14 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-overlay</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-50</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-900</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-faint</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--red-700</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--status-negative-bg</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--border-subtle</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-sm</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-xl</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Motion</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-fast</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ease-out</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-mono</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from the component’s own stylesheet, not from this page — anything else on this page is spec-page chrome.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Row menu (actions on an object) · schedule menu (opens ABOVE its trigger, for publishing verbs) · with a danger zone below a separator. Destructive items always sit last, after a separator, never inline among neutral ones.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Floating card at --radius-xl on --shadow-overlay, 5px padding, rows 12.5px in --ink-900.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Row takes --ink-50; the wash is the full row width, not the label.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Pressed</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">brightness(0.94) from motion-base.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">motion-base ring on the row. Arrow keys move focus; Esc closes and returns focus to the trigger.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Selected</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">A check glyph in the marker column — never a filled row, which reads as hover.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Disabled</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Row at opacity .45, still announced, still in the DOM. A menu that hides unavailable actions teaches nothing.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Loading <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a menu opens with its items known. An async menu shows its trigger as loading instead.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">A single --text-faint line saying why there is nothing (“No other agents available”). Never an empty floating card.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Each row is a verb phrase naming its consequence, sentence case, two to four words. Order is repair → neutral → destructive, matching the colophon. A row that opens a confirmation still reads as the verb (“Delete template”) — the modal carries the warning, not the menu. No icons unless every row has one.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Menu · tokens listed in full above</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { a: true, b: false };
+  componentDidMount() {
+    this._away = (e) => { if (!e.target.closest || !e.target.closest('.menu, .trig')) this.setState({ a: false, b: false }); };
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ a: false, b: false }); };
+    document.addEventListener('mousedown', this._away);
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._away); window.removeEventListener('keydown', this._esc); }
+  renderVals() {
+    return {
+      toggleA: (e) => { e.stopPropagation(); this.setState((s) => ({ a: !s.a, b: false })); },
+      toggleB: (e) => { e.stopPropagation(); this.setState((s) => ({ b: !s.b, a: false })); },
+      aCls: this.state.a ? 'open' : '',
+      bCls: this.state.b ? 'open' : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

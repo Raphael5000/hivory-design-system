@@ -14,7 +14,8 @@ import { join, extname } from 'node:path';
 
 const ROOTS = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const SRC = ROOTS.length ? ROOTS : ['src'];
-const EXT = new Set(['.css', '.scss', '.ts', '.tsx', '.js', '.jsx', '.vue', '.svelte']);
+// .html added for this repo: guideline cards and component cards are HTML specimens.
+const EXT = new Set(['.css', '.scss', '.ts', '.tsx', '.js', '.jsx', '.vue', '.svelte', '.html']);
 
 // ─── the system's values ──────────────────────────────────────────────────────
 const LADDER = [0, 3, 8, 12, 20, 34, 64, 104];
@@ -28,7 +29,14 @@ const EXEMPT_PATH = [
   /tokens?\//i,              // the token files ARE where raw values live
   /\.test\./, /__tests__/,
   /node_modules/, /dist\//, /build\//, /\.next\//,
-  /vendor\//, /generated\//
+  /vendor\//, /generated\//,
+  // repo-specific (added at v4.1):
+  /^specs\//,                // frozen spec documentation from the design host — pages QUOTE
+                             //   values as content (the WhoYou audit lists drifted hexes on
+                             //   purpose); a line scanner cannot tell doc text from CSS
+  /support\.js$/,            // generated dc-runtime ("do not edit" header)
+  /templates\/email-audit\// // standalone audit harness depicting foreign email surfaces —
+                             //   mocks keep the measurements of the thing they depict
 ];
 /** Inline escape hatch: `/* drift-ok: reason *​/` on the same line. */
 const INLINE_OK = /drift-ok/;

@@ -9,7 +9,7 @@ const hvMenuCss = `
 .hv-menu__item:disabled{color:var(--text-faint);cursor:not-allowed}
 .hv-menu__item--danger{color:var(--red-700)}
 .hv-menu__item--danger:hover:not(:disabled){background:var(--status-negative-bg)}
-.hv-menu__sep{height:1px;background:var(--border-subtle);margin:5px 4px}
+.hv-menu__sep{height:1px;background:var(--border-subtle);margin:5px 4px} /* drift-ok: menu-interior inset matches the panel's 5px padding — control interior, not rhythm */
 .hv-menu__hint{margin-left:auto;font-size:11.5px;color:var(--text-faint);font-family:var(--font-mono)}
 `;
 function hvEnsureMenuCss() {

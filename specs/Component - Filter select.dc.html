@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .menu { background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-overlay); padding: 5px; box-sizing: border-box; transform-origin: top center;
+      opacity: 0; transform: translateY(-6px) scale(0.985); pointer-events: none;
+      transition: opacity var(--duration-soft) var(--ease-out), transform var(--duration-soft) var(--ease-out); }
+    .menu.open { opacity: 1; transform: none; pointer-events: auto; }
+    .fsrow { height: 32px; border-radius: 8px; padding: 0 10px; display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--text-body); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .fsrow:hover { background: var(--hover-on-white); }
+    .fsbox { width: 15px; height: 15px; border-radius: 4px; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px rgba(23,24,26,0.16); flex-shrink: 0; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .fsrow.on .fsbox { background: var(--action-primary); box-shadow: none; }
+    .fsdot { margin-left: auto; width: 6px; height: 6px; border-radius: 999px; flex-shrink: 0; }
+    .fstrig { height: 28px; padding: 0 10px 0 13px; border: none; border-radius: var(--radius-pill); background: var(--surface-card); color: var(--text-secondary); box-shadow: var(--shadow-card); display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 12px; font-weight: 550; cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out); }
+    .fstrig:hover { color: var(--text-body); }
+    .fstrig.active { background: var(--action-primary); color: var(--white); box-shadow: none; }
+    .msep { height: 1px; background: var(--hairline); margin: 5px 6px; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Filter Select</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">Narrow without noise.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The multiselect dropdown for filtering ledgers and tables. One quiet pill per dimension — never a row of option chips. Selections tally into the trigger; the list stays open while you pick. Click to feel it.</p>
+
+    <div style="margin-top: 64px; border-radius: var(--radius-2xl); background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 64px 44px 190px; display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+      <div style="position: relative;">
+        <button class="fstrig {{ aTrig }}" onClick="{{ toggleA }}">{{ aLabel }}<svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><path d="m4 6.5 4 4 4-4"></path></svg></button>
+        <div class="menu {{ aCls }}" style="position: absolute; top: 36px; right: 0; width: 190px;">
+          <sc-for list="{{ aOpts }}" as="o" hint-placeholder-count="3">
+            <div class="fsrow {{ o.cls }}" onClick="{{ o.go }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="fsbox"><sc-if value="{{ o.on }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if></span>{{ o.label }}<span class="fsdot" style="background: {{ o.dot }};"></span></div>
+          </sc-for>
+          <sc-if value="{{ aAny }}" hint-placeholder-val="{{ false }}">
+            <div class="msep"></div>
+            <div class="fsrow" style="color: var(--text-muted);" onClick="{{ aClear }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">Clear</div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <button class="fstrig {{ bTrig }}" onClick="{{ toggleB }}">{{ bLabel }}<svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><path d="m4 6.5 4 4 4-4"></path></svg></button>
+        <div class="menu {{ bCls }}" style="position: absolute; top: 36px; right: 0; width: 190px;">
+          <sc-for list="{{ bOpts }}" as="o" hint-placeholder-count="5">
+            <div class="fsrow {{ o.cls }}" onClick="{{ o.go }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="fsbox"><sc-if value="{{ o.on }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if></span>{{ o.label }}</div>
+          </sc-for>
+          <sc-if value="{{ bAny }}" hint-placeholder-val="{{ false }}">
+            <div class="msep"></div>
+            <div class="fsrow" style="color: var(--text-muted);" onClick="{{ bClear }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">Clear</div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Menu chrome is the DS Menu (<span style="font-family: var(--font-mono);">--shadow-overlay</span>, fade + 6px rise on <span style="font-family: var(--font-mono);">--duration-soft</span>). Picking keeps it open — multiselect never closes on a check. Esc or click-away closes.</div>
+
+    <div style="margin-top: 104px;"><div class="sect-eye">States</div><h2 class="sect-h">Rest to active.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+        <span class="fstrig">Status<svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><path d="m4 6.5 4 4 4-4"></path></svg></span>
+        <span class="fstrig" style="color: var(--text-body);">Hover</span>
+        <span class="fstrig active">Status · 2<svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><path d="m4 6.5 4 4 4-4"></path></svg></span>
+        <span class="fstrig" style="color: var(--text-ghost); pointer-events: none;">Disabled</span>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Anatomy</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Trigger: 26–28px pill, label + chevron; active = ink fill with the count in the label ("Status · 2") — never a badge stuck on top. Menu: DS Menu chrome, 32px checkbox rows (15px box, radius 4, ink fill + white check), optional status tone dot right-aligned, "Clear" ghost row below a hairline once anything is picked.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">One trigger per dimension (Status, Channel), right of the search field. Tally selections into the trigger label. Keep the menu open across picks. Pair with an "N of M" count + ✕ reset beside the search. Ink checks — green stays a signal, not a control.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Lay options out as a row of pills — over ~3 options that's noise, use this instead. Close the menu on every check. Use green fills for checked states. Stack more than three filter dimensions on one ledger.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">14 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-overlay</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--hover-on-white</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--white</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-muted</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-ghost</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--action-primary</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--border-focus</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-pill</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-xl</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--hairline</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Motion</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-soft</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ease-out</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from the component’s own stylesheet, not from this page — anything else on this page is spec-page chrome.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">One Filter Select per dimension (Status · Channel), placed right of the search field. Never a row of option pills — that spends the whole width on choices nobody has made yet.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Quiet pill trigger at --radius-pill with a chevron; the panel is Menu chrome at --radius-xl on --shadow-overlay.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Trigger takes --hover-on-white; rows take --ink-50.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Pressed</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">brightness(0.94) from motion-base.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">motion-base ring on the trigger and on each checkbox row. Space toggles without closing the panel.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Selected</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Active filter = --action-primary fill on the trigger reading “Name · N”. The panel STAYS OPEN across picks — closing after each one makes multi-select unusable.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a dimension with nothing to filter is not rendered.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Loading <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">options are known before the trigger appears.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">A --text-faint row saying no options match, plus the Clear row. The Clear row is always present once anything is picked.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">The trigger says the dimension, not the selection, until something is picked: “Status” then “Status · 2”. Rows are the values as the client reads them elsewhere in the product — identical wording to the Badge and the section header. “Clear”, never “Reset” or “Remove all”.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Filter Select · tokens listed in full above · used by: Work queue</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { a: true, b: false, aSel: { progress: 1 }, bSel: {} };
+  componentDidMount() {
+    this._away = (e) => { if (!e.target.closest || !e.target.closest('.menu, .fstrig')) this.setState({ a: false, b: false }); };
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ a: false, b: false }); };
+    document.addEventListener('mousedown', this._away);
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._away); window.removeEventListener('keydown', this._esc); }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    const mk = (key, name, opts) => {
+      const sel = s[key + 'Sel']; const n = Object.keys(sel).length;
+      return {
+      keyActivate: this.keyActivate,
+        [key + 'Label']: n ? name + ' · ' + n : name,
+        [key + 'Trig']: n ? 'active' : '',
+        [key + 'Cls']: s[key] ? 'open' : '',
+        [key + 'Any']: n > 0,
+        [key + 'Clear']: () => this.setState({ [key + 'Sel']: {} }),
+        [key + 'Opts']: opts.map((o) => ({ label: o.label, dot: o.dot || 'transparent', on: !!sel[o.k], cls: sel[o.k] ? 'on' : '',
+          go: () => this.setState((p) => { const g = { ...p[key + 'Sel'] }; if (g[o.k]) delete g[o.k]; else g[o.k] = 1; return { [key + 'Sel']: g }; }) }))
+      };
+    };
+    return {
+      toggleA: (e) => { e.stopPropagation(); this.setState((p) => ({ a: !p.a, b: false })); },
+      toggleB: (e) => { e.stopPropagation(); this.setState((p) => ({ b: !p.b, a: false })); },
+      ...mk('a', 'Status', [{ k: 'review', label: 'For review', dot: 'var(--amber-500)' }, { k: 'progress', label: 'In progress', dot: 'var(--green-500)' }, { k: 'done', label: 'Completed', dot: '#C6C8C6' }]),
+      ...mk('b', 'Channel', [{ k: 'Blog', label: 'Blog' }, { k: 'LinkedIn', label: 'LinkedIn' }, { k: 'Website', label: 'Website' }, { k: 'Pipeline', label: 'Pipeline' }, { k: 'Email', label: 'Email' }])
+    };
+  }
+}
+</script>
+</body>
+</html>

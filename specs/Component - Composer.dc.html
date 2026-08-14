@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+    .panel { animation: panelIn var(--duration-soft) var(--ease-out); }
+    .ta { width: 100%; border: none; outline: none; resize: none; font-family: var(--font-sans); font-size: 14.5px; line-height: 1.5; color: var(--text-body); caret-color: var(--green-600); background: transparent; box-sizing: border-box; padding: 0; overflow: hidden; position: relative; z-index: 1; }
+    .card { border-radius: 18px; background: var(--surface-card); box-shadow: 0 18px 44px -14px rgba(20,40,30,0.22), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 20px 20px 16px; transition: box-shadow var(--duration-gentle) var(--ease-glide); }
+    .card.lit { box-shadow: 0 26px 60px -16px rgba(20,40,30,0.3), 0 0 0 4px rgba(0,238,127,0.13), 0 0 0 0.5px rgba(23,24,26,0.05); }
+    .phwrap { position: relative; }
+    @keyframes phIn { from { opacity: 0; } to { opacity: 1; } }
+    .ph { position: absolute; inset: 0; pointer-events: none; font-size: 14.5px; line-height: 1.5; color: var(--text-faint); animation: phIn var(--duration-gentle) var(--ease-out); }
+    .send { height: 30px; padding: 0 16px; border: none; border-radius: var(--radius-pill); background: var(--action-primary); color: var(--white); font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; white-space: nowrap; cursor: pointer; opacity: 0.45; transition: background var(--duration-gentle) var(--ease-glide), color var(--duration-gentle) var(--ease-glide), opacity var(--duration-gentle) var(--ease-glide); }
+    .send:hover { background: var(--ink-800); }
+    .send.ready { opacity: 1; background: var(--green-500); color: #08130B; }
+    .send.ready:hover { background: var(--green-500); box-shadow: 0 6px 18px -6px rgba(0,238,127,0.55); }
+    .gico { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text-muted); cursor: pointer; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out); }
+    .gico:hover { background: rgba(23,24,26,0.05); color: var(--text-body); }
+    .rchip { height: 28px; padding: 0 13px; border-radius: var(--radius-pill); background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.07); font-size: 12px; font-weight: 500; color: var(--text-nav); display: inline-flex; align-items: center; cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out); }
+    .rchip:hover { background: var(--hover-on-white); color: var(--text-body); }
+    .achip { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: var(--ink-50); font-size: 11px; font-weight: 550; color: var(--text-secondary); white-space: nowrap; flex-shrink: 0; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Composer</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">The front door.</h1>
+    <p style="margin: 20px 0 0; max-width: 640px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The whole product starts here: you ask, the engine goes to work. A white card — not a field — with a green caret, one paperclip, and a Send that waits at half strength until you've said something. Type below.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--surface-dark);"></div>
+      </div>
+      <div style="position: relative; max-width: 560px; margin: 0 auto;">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div class="panel">
+          <div class="card {{ litCls }}">
+            <div class="phwrap">
+              <sc-if value="{{ showPh }}" hint-placeholder-val="{{ true }}"><span class="ph" key="{{ ph }}">{{ ph }}</span></sc-if>
+              <textarea class="ta" value="{{ t }}" onChange="{{ onT }}" onKeyDown="{{ onKey }}" onFocus="{{ onFoc }}" onBlur="{{ onBlur }}" style="min-height: 56px;"></textarea>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
+              <span class="gico" title="Attach" onClick="{{ attach }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><i class="ti ti-paperclip" style="font-size: 15px;"></i></span>
+              <sc-if value="{{ att }}" hint-placeholder-val="{{ false }}">
+                <span class="achip panel"><i class="ti ti-file-text" style="font-size: 12px;"></i>{{ att }}<i class="ti ti-x" style="font-size: 10px; cursor: pointer; color: var(--text-faint);" onClick="{{ unattach }}"></i></span>
+              </sc-if>
+              <span style="flex: 1;"></span>
+              <button class="send {{ sendCls }}" onClick="{{ sendGo }}">Send</button>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 20px;">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+              <span class="rchip" onClick="{{ c.pick }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">{{ c.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div class="panel" style="border-radius: 18px; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34); padding: 20px 24px;">
+            <div style="display: flex; justify-content: flex-end;"><span style="max-width: 78%; background: rgba(23,24,26,0.055); border-radius: 16px 16px 5px 16px; padding: 10px 14px; font-size: 13px; line-height: 1.5;">{{ sentText }}</span></div>
+            <div style="display: flex; align-items: center; gap: 9px; margin-top: 20px;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.2" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z" opacity="0.55"></path></svg>
+              <span style="font-size: 13px; color: var(--text-secondary); animation: panelIn var(--duration-pulse) ease-in-out infinite alternate;">Thinking — reading memory…</span>
+            </div>
+            <div style="margin-top: 20px; text-align: center;"><button class="rchip" onClick="{{ reset }}" style="height: 26px;">Reset demo</button></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Enter sends, Shift+Enter breaks a line. Focus blooms the card — a soft green halo on <span style="font-family: var(--font-mono);">--ease-glide</span>. The empty composer rotates real asks. And Send <em>ripens</em>: ink at 45% until the ask exists, then it settles into green-500 — the screen's one brand CTA.</div>
+
+    <!-- TWO HOMES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">One voice, two homes.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Home — the ask</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Centered, radius 18, the screen's one elevated card. 14.5px text on a 56px starting height, request chips beneath offering starts — "Plan a campaign", never commands. Sending routes the ask and opens the session.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Chat — pinned below</div>
+        <div style="margin-top: 12px; border-radius: 14px; background: var(--surface-app); padding: 10px 12px; display: flex; align-items: center; gap: 8px;">
+          <span class="gico" style="width: 24px; height: 24px;"><i class="ti ti-paperclip" style="font-size: 13px;"></i></span>
+          <span style="flex: 1; font-size: 13px; color: var(--text-faint);">Reply to the Writer…</span>
+          <span class="send" style="height: 26px; padding: 0 13px; font-size: 11.5px; opacity: 0.45;">Send</span>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The same card compressed to a pill, pinned to the session's bottom edge. Grows from 22px to 140px, then scrolls. One composer per screen, always.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Green caret, always — it's the engine's tell. Gate Send with opacity, never disable it. One short placeholder naming real outcomes. Attachments as chips inside the card, read before anything else. Auto-grow, then scroll at 140px.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Formatting toolbars, mic or emoji buttons — it's an ask, not a document. Borders or inset fields — the card is the input. Placeholder essays. Two composers on one screen. A Send arrow-icon button — the verb is spelled out.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">13 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-card</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-faint</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-800</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--action-brand</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-500</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-600</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-2xl</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-pill</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Motion</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-gentle</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ease-glide</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-soft</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from the component’s own stylesheet, not from this page — anything else on this page is spec-page chrome.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Home composer (rotating example placeholder, brand CTA) · in-session composer (pinned bottom, same card edge as the content column). Attachment chips sit inside the card and ride the sent bubble as a document chip.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">White pill card at --radius-2xl on --shadow-card, textarea 22px growing to 140px max, Send at 45% ink opacity while empty.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Attach and Send lighten their ink at --duration-soft.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Pressed</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">brightness(0.94) from motion-base.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Focus BLOOMS the card — a soft green halo ring over --duration-gentle. This is the one place a halo is legal, because the composer is the screen’s subject, not a field in a form.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Selected <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;"></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">the composer is never disabled. A session that cannot take input says so in the thread and the composer explains why.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Loading</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">While the engine works the composer stays live so the next ask can be typed; the THREAD shows the thinking line.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">The empty Home composer rotates real example asks as its ghost placeholder on a 3.4s cycle — never “Type a message…”.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">The placeholder is a real ask in the client’s own words, first person, no ellipsis-as-decoration: “Write next month’s posts about the refill launch”. Send never says “Send” in the label — it is a glyph. Attachment chips say where the file will end up (“will be filed in Knowledge”), because filing is a consequence the client should see before sending.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Composer · tokens listed in full above · doctrine: Portal Design Language §Chat composer</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { t: '', sent: false, sentText: '', att: null, phi: 0, foc: false };
+  componentDidMount() { this._ph = setInterval(() => this.setState((s) => ({ phi: s.phi + 1 })), 3400); }
+  componentWillUnmount() { clearInterval(this._ph); }
+  grow(el) { if (!el) return; el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 140) + 'px'; }
+  send() {
+    const txt = this.state.t.trim();
+    if (!txt) return;
+    this.setState({ sent: true, sentText: txt + (this.state.att ? ' · ' + this.state.att + ' attached' : '') });
+  }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      keyActivate: this.keyActivate,
+      t: s.t, notSent: !s.sent, sent: s.sent, sentText: s.sentText, att: s.att,
+      onT: (e) => { this.grow(e.target); this.setState({ t: e.target.value }); },
+      onKey: (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); this.send(); } },
+      onFoc: () => this.setState({ foc: true }),
+      onBlur: () => this.setState({ foc: false }),
+      litCls: s.foc ? 'lit' : '',
+      sendGo: () => this.send(),
+      sendCls: s.t.trim() ? 'ready' : '',
+      showPh: !s.t,
+      ph: [
+        'A landing page, a blog post, a campaign — anything',
+        'Get us ranking for “sustainable corporate gifts”',
+        'Turn the board deck into a launch plan',
+        'Warm up 40 cold retail leads',
+        'Rewrite the homepage to lead with proof'
+      ][s.phi % 5],
+      attach: () => this.setState({ att: 'q2-board-deck.pdf' }),
+      unattach: () => this.setState({ att: null }),
+      chips: ['Plan a campaign', 'Change the website', 'Draft a post', 'Warm up the pipeline'].map((label) => ({
+        label, pick: () => this.setState({ t: (s.t ? s.t + ' ' : '') + label + ': ' })
+      })),
+      reset: () => this.setState({ sent: false, t: '', att: null, sentText: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

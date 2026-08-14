@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .scrim { position: fixed; inset: 0; background: var(--scrim); opacity: 0; pointer-events: none; transition: opacity var(--duration-modal) var(--ease-out); z-index: 50; }
+    .scrim.open { opacity: 1; pointer-events: auto; }
+    .modal { position: fixed; top: 50%; left: 50%; width: 380px; max-width: calc(100vw - 32px); box-sizing: border-box; background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-overlay); padding: 22px 24px 20px; z-index: 60;
+      opacity: 0; pointer-events: none; transform: translate(-50%, -48%) scale(0.98);
+      transition: opacity var(--duration-modal) var(--ease-out), transform var(--duration-modal) var(--ease-out); }
+    .modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+    .btn { height: 38px; padding: 0 19px; border: none; border-radius: var(--radius-pill); font-family: var(--font-sans); font-size: 14px; font-weight: var(--weight-semibold); cursor: pointer; transition: background var(--duration-soft) var(--ease-out), filter var(--duration-soft) var(--ease-out); }
+    .btn:active { filter: brightness(0.94); }
+    .b-outline { background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.14); color: var(--text-body); }
+    .b-outline:hover { background: var(--hover-on-white); }
+    .b-danger { background: var(--action-danger); color: var(--white); }
+    .b-danger:hover { filter: brightness(1.08); }
+    .b-danger-outline { background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.14); color: var(--action-danger); }
+    .b-danger-outline:hover { background: var(--status-negative-bg); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Modal</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">Are you sure?</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The one place we stop the user — a double confirmation, never an inline warning or a browser dialog. The title is a question, the body is one plain sentence of consequence, and the verb button names the real outcome.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; border-radius: var(--radius-2xl); background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 80px; display: flex; justify-content: center;">
+      <button class="btn b-danger-outline" onClick="{{ open }}" style="height: 44px; padding: 0 26px; font-size: 15px;">Delete template</button>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Fades in over a 28% ink scrim (140ms), the panel settling from 98%. Scrim-click, Cancel or Esc all dismiss.</div>
+
+    <!-- ANATOMY + GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy &amp; guidelines</div><h2 class="sect-h">The one interruption.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Anatomy</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">380px panel, radius 16, on a 28% ink scrim. Title = verb + object + "?" (15/650). One consequence sentence (12.5, secondary). Footer right-aligned: Cancel (outline) then the verb — red fill when destructive, ink otherwise.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Use it for anything but a real double-confirm. Stack modals. Use a browser alert. Write vague titles ("Are you sure?") or bury the consequence.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">6 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-overlay</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-950</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-muted</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-xl</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The bundle component carries <b style="font-weight: 650;">no motion tokens and no scrim</b>, though the confirmation doctrine specifies a 140ms fade over a 28% ink scrim — the behaviour this page demonstrates lives in the page, not in the component. It should consume <b style="font-weight: 650;">--duration-modal</b>, <b style="font-weight: 650;">--ease-out</b> and <b style="font-weight: 650;">--scrim</b>, and radius should be <b style="font-weight: 650;">--radius-2xl</b> (16) to match the specimen. Logged as the widest DS-versus-doctrine gap found in this pass.</div>
+    </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Confirmation only. One panel width (380), one scrim, one footer shape: Cancel (outline) then the verb (danger fill if destructive, ink otherwise). There is no large modal, no multi-step modal and no modal that scrolls — those are screens.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">380px panel at --radius-2xl on --surface-card, over a --scrim at 28% ink. Fades in over --duration-modal with the panel settling from 98%.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Hover <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">the panel is a surface; its footer buttons carry hover.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Pressed <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">belongs to the footer buttons.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Focus moves INTO the panel on open and is trapped there; Esc closes and returns it to the trigger. The first focus stop is Cancel, never the destructive verb.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Selected <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;"></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a modal is either open or absent. A disabled modal is a screen that should not have interrupted.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Loading</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">After the verb is pressed the verb button loads in place; the panel does not close until the work resolves or fails.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Empty <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a modal with nothing to say must not open.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Title is the verb plus its object plus a question mark: “Delete this template?”. One sentence of consequence in plain language, present tense, saying what happens and what survives: “Its extracted facts are withdrawn from memory. The original file stays stored.” The confirm button repeats the title’s verb — never “Yes”, never “OK”. Never ask a question the user cannot answer from the panel alone.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Modal · tokens listed in full above</div>
+
+  </div>
+
+  <div class="scrim {{ openCls }}" onClick="{{ close }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"></div>
+  <div class="modal {{ openCls }}">
+    <div style="font-size: 15px; font-weight: var(--weight-strong); letter-spacing: -0.012em;">Delete this template?</div>
+    <p style="margin: 8px 0 0; font-size: 12.5px; line-height: var(--leading-normal); color: var(--text-nav); text-wrap: pretty;">Its reference photos and generated samples are removed. Images you dropped into your library stay.</p>
+    <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
+      <button class="btn b-outline" onClick="{{ close }}">Cancel</button>
+      <button class="btn b-danger" onClick="{{ close }}">Delete</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: true };
+  componentDidMount() { this._esc = (e) => { if (e.key === 'Escape') this.setState({ open: false }); }; window.addEventListener('keydown', this._esc); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    return {
+      keyActivate: this.keyActivate,
+      openCls: this.state.open ? 'open' : '',
+      open: () => this.setState({ open: true }),
+      close: () => this.setState({ open: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

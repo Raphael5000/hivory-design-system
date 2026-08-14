@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    @keyframes nodePulse { 0% { box-shadow: 0 0 0 0 rgba(0,163,82,0.35); } 70% { box-shadow: 0 0 0 7px rgba(0,163,82,0); } 100% { box-shadow: 0 0 0 0 rgba(0,163,82,0); } }
+    @keyframes hexCW { to { transform: rotate(360deg); } }
+    @keyframes hexCCW { to { transform: rotate(-360deg); } }
+
+    .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .h2 { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .row { display: grid; grid-template-columns: 148px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .row:last-child { border-bottom: none; }
+    .row .n { font-size: 12.5px; font-weight: 650; color: var(--text-body); }
+    .row .d { font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+    .num { font-variant-numeric: tabular-nums; }
+    .stage { border-radius: var(--radius-2xl); background: var(--canvas-wash); padding: 34px; display: flex; justify-content: center; }
+    .btn { appearance: none; border: none; height: 26px; padding: 0 13px; border-radius: var(--radius-pill); background: var(--surface-card); box-shadow: inset 0 0 0 1px var(--border-strong); font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-body); cursor: pointer; transition: box-shadow var(--transition-soft); }
+    .btn:hover { box-shadow: inset 0 0 0 1px rgba(23,24,26,0.26); }
+
+    /* ── the rail ── */
+    .rail { display: flex; }
+    .ph { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 78px; }
+    .ph .link { position: absolute; top: 7px; left: -31px; width: 62px; height: 2px; border-radius: var(--radius-pill); transition: background var(--duration-slow) var(--ease-out); }
+    .ph .node { position: relative; width: 16px; height: 16px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; justify-content: center; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .ph .lb { font-size: 11.5px; text-align: center; transition: color var(--duration-soft) var(--ease-out), font-weight var(--duration-soft) var(--ease-out); }
+    .core { width: 5px; height: 5px; border-radius: var(--radius-pill); background: var(--white); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 64px 48px 104px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="eye">Component · Step timeline</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">A machine reporting on itself.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Three or four named phases, one of them happening now. It is the visible half of a job the client has already approved — so it offers nothing to click, and its only duty is to be honest about where the work has got to.</p>
+
+    <!-- ═══ LIVE ═══ -->
+    <div style="margin-top: 64px;"><div class="eye">Specimen</div><h2 class="h2">Watch it run.</h2></div>
+    <div class="stage" style="margin-top: 20px;">
+      <div style="width: 420px; display: flex; flex-direction: column; align-items: center; padding: 12px 0 4px;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 30px; height: 34px; position: relative;">
+          <span data-motion="essential" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; animation: hexCW var(--duration-spinner) steps(6) infinite;"><svg width="26" height="30" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.15" stroke-linejoin="round"><path d="M8 2.1 12.9 4.95v5.7L8 13.5 3.1 10.65V4.95Z"></path></svg></span>
+          <span data-motion="essential" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.5; animation: hexCCW var(--duration-spinner) steps(6) infinite;"><svg width="26" height="30" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.15" stroke-linejoin="round"><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z"></path></svg></span>
+        </div>
+        <div aria-live="polite" style="margin-top: 12px; font-size: 15px; font-weight: 650; letter-spacing: -0.015em;">{{ label }}</div>
+        <div class="num" style="margin-top: 3px; font-size: 15px; font-weight: 600; color: var(--ink-600);">{{ elapsed }}</div>
+        <div class="rail" aria-hidden="true" style="margin-top: 20px;">
+          <sc-for list="{{ phases }}" as="p" hint-placeholder-count="3">
+            <div class="ph">
+              <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ false }}"><span class="link" style="background: {{ p.linkBg }};"></span></sc-if>
+              <span class="node" data-motion="{{ p.motion }}" style="background: {{ p.bg }}; box-shadow: {{ p.ring }}; animation: {{ p.anim }};">
+                <sc-if value="{{ p.isDone }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--white)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if>
+                <sc-if value="{{ p.isActive }}" hint-placeholder-val="{{ true }}"><span class="core"></span></sc-if>
+              </span>
+              <span class="lb" style="color: {{ p.color }}; font-weight: {{ p.weight }};">{{ p.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <button class="btn" onClick="{{ restart }}" style="margin-top: 34px;">Run it again</button>
+      </div>
+    </div>
+
+    <!-- ═══ ANATOMY ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Anatomy</div><h2 class="h2">Four parts, in this order.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">The mark, turning</span><span class="d">The dual-hex spinner at <span class="num">--duration-spinner</span> in six-step gear clicks — the brand's own activity primitive, never a generic ring. It says <i>something is happening</i> before any word is read.</span></div>
+      <div class="row"><span class="n">Phase label</span><span class="d">15px/650, present participle, and it MORPHS as phases pass — Building → Deploying to staging → Verifying. This line carries the meaning and it is the only part announced to a screen reader.</span></div>
+      <div class="row"><span class="n">Elapsed</span><span class="d">Tabular figures at <span class="num">--ink-600</span>, counting up. Never a percentage and never an estimate: a made-up ETA that slips is worse than an honest clock.</span></div>
+      <div class="row"><span class="n">The rail</span><span class="d">78px per phase, 16px nodes, a 2px connector between. Done = green fill + white check. Active = green fill + 5px white core + radiating <span class="num">nodePulse</span>. Upcoming = white with a 1.5px ink ring. Connectors tint green as phases pass. Labels warm to ink and 650 as they are reached.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">The rail is<br>decorative</span><span class="d"><span class="num">aria-hidden</span>, always. It is a PICTURE of the label above it — announcing both would read the same information twice, once as prose and once as a list of nodes. The label carries <span class="num">aria-live="polite"</span> so each phase change is spoken exactly once.</span></div>
+    </div>
+
+    <!-- ═══ NOT A STEPPER ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The distinction</div><h2 class="h2">Not a Stepper.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">They look alike and behave oppositely. Choosing wrongly gives a client a control that does nothing, or takes away one they needed.</p>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Who advances it</span><span class="d"><b style="font-weight: 650;">Stepper:</b> the person. <b style="font-weight: 650;">Step timeline:</b> the machine. Nothing the client does moves this rail, which is why no part of it is clickable or takes a tab stop.</span></div>
+      <div class="row"><span class="n">Can you go back</span><span class="d"><b style="font-weight: 650;">Stepper:</b> yes — everything behind you is yours. <b style="font-weight: 650;">Step timeline:</b> no. A build does not un-deploy, so a completed phase is history, not a destination.</span></div>
+      <div class="row"><span class="n">What it ends in</span><span class="d"><b style="font-weight: 650;">Stepper:</b> a decision. <b style="font-weight: 650;">Step timeline:</b> an arrival — the hex-check, "Live on staging", the URL as a pill. The timeline is replaced by its own outcome, and does not linger at 3 of 3.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Where it lives</span><span class="d"><b style="font-weight: 650;">Stepper:</b> the proposal's rail, permanently. <b style="font-weight: 650;">Step timeline:</b> inside an artifact body for the duration of a job, then gone. It is a state the panel passes through, never furniture.</span></div>
+    </div>
+
+    <!-- ═══ VARIANTS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Variants</div><h2 class="h2">Running, arrived, failed.</h2></div>
+    <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+
+      <div class="card" style="padding: 26px 24px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Running</div>
+        <div class="rail" aria-hidden="true" style="margin-top: 20px; transform: scale(0.86); transform-origin: left center;">
+          <div class="ph"><span class="node" style="background: var(--green-600);"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--white)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></span><span class="lb" style="color: var(--ink-900); font-weight: 550;">Build</span></div>
+          <div class="ph"><span class="link" style="background: var(--green-600);"></span><span class="node" data-motion="essential" style="background: var(--green-600); animation: nodePulse var(--duration-pulse) var(--ease-out) infinite;"><span class="core"></span></span><span class="lb" style="color: var(--ink-900); font-weight: 650;">Deploy</span></div>
+          <div class="ph"><span class="link" style="background: var(--ink-200);"></span><span class="node" style="background: var(--white); box-shadow: inset 0 0 0 1.5px var(--ink-200);"></span><span class="lb" style="color: var(--text-muted); font-weight: 550;">Verify</span></div>
+        </div>
+        <div style="margin-top: 20px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">The default. One active phase, ever — a rail with two pulsing nodes is a bug in the caller, not a busier job.</div>
+      </div>
+
+      <div class="card" style="padding: 26px 24px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Arrived</div>
+        <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px;">
+          <span style="width: 34px; height: 39px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="30" height="34" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M6 8.2 7.5 9.7 10.2 6.4" stroke-width="1.7" stroke-linecap="round"></path></svg></span>
+          <span style="min-width: 0;"><span style="display: block; font-size: 14px; font-weight: 650; letter-spacing: -0.015em;">Live on staging</span><span class="num" style="display: block; margin-top: 3px; font-size: 11.5px; color: var(--text-muted);">Built and verified in 41s</span></span>
+        </div>
+        <div style="margin-top: 20px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">The rail is REPLACED, not completed. Leaving three green checks on screen makes the client hunt for the result; the arrival states it.</div>
+      </div>
+
+      <div class="card" style="padding: 26px 24px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Failed</div>
+        <div class="rail" aria-hidden="true" style="margin-top: 20px; transform: scale(0.86); transform-origin: left center;">
+          <div class="ph"><span class="node" style="background: var(--green-600);"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--white)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></span><span class="lb" style="color: var(--ink-900); font-weight: 550;">Build</span></div>
+          <div class="ph"><span class="link" style="background: var(--green-600);"></span><span class="node" style="background: var(--red-700);"><i class="ti ti-x" style="font-size: 9px; color: var(--white);"></i></span><span class="lb" style="color: var(--red-700); font-weight: 650;">Deploy</span></div>
+          <div class="ph"><span class="link" style="background: var(--ink-200);"></span><span class="node" style="background: var(--white); box-shadow: inset 0 0 0 1.5px var(--ink-200);"></span><span class="lb" style="color: var(--text-muted); font-weight: 550;">Verify</span></div>
+        </div>
+        <div style="margin-top: 20px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">The rail STOPS where it broke — the failed node goes red, later phases stay hollow. It never rewinds to zero: which phase failed is the most useful thing on screen.</div>
+      </div>
+    </div>
+
+    <!-- ═══ STATES ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The eight states</div><h2 class="h2">Most do not apply, and that is the point.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Rest</span><span class="d">There is no rest. A step timeline exists only while a job runs; if it is on screen, something is happening. An idle rail means the caller forgot to unmount it.</span></div>
+      <div class="row"><span class="n">Hover</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> Nothing here responds to a pointer, so nothing may hint that it would.</span></div>
+      <div class="row"><span class="n">Pressed</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> No control, no press. The only button in the vicinity is the artifact footer's, and it belongs to the panel.</span></div>
+      <div class="row"><span class="n">Focus</span><span class="d"><b style="font-weight: 650;">Does not apply — deliberately.</b> The rail takes no tab stop, because a focus stop that cannot be actioned promises an affordance that is not there. The live label is how the keyboard user receives it.</span></div>
+      <div class="row"><span class="n">Selected</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> The active phase is not a selection — nobody chose it. It is where the machine happens to be.</span></div>
+      <div class="row"><span class="n">Disabled</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> Upcoming phases look quiet but are not disabled: they are facts about the future, not controls withheld.</span></div>
+      <div class="row"><span class="n">Loading</span><span class="d">Loading IS this component. There is no skeleton — a placeholder for a progress display is a progress display. Before the first phase resolves, show the mark and the first label; never an empty rail.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Empty</span><span class="d">Fewer than three phases is not a timeline — use the Spinner and a label. More than four and the phases are too granular for a client: "Verify" is one phase, not four checks.</span></div>
+    </div>
+
+    <!-- ═══ LAWS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Content &amp; laws</div><h2 class="h2">Say the phase, not the percentage.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Phase names are<br>one word</span><span class="d">Build · Deploy · Verify. Read · Extract · File. A phase whose name needs a clause is two phases, or a step the client should not have been shown.</span></div>
+      <div class="row"><span class="n">Never a percentage</span><span class="d">A bar at 60% is a claim about the remaining 40% that nobody can honour. Named phases and an honest clock say the same thing without lying — and when a phase stalls, the label can say so.</span></div>
+      <div class="row"><span class="n">The label is<br>present tense</span><span class="d">"Deploying to staging", not "Deploy" or "Deployed". The rail carries the noun; the line carries the verb, and the tense is what makes it feel live rather than logged.</span></div>
+      <div class="row"><span class="n">One active node</span><span class="d">The pulse means <i>this is where the work is</i>. Two pulses mean the caller is guessing. Phases are sequential by definition — parallel work is two jobs.</span></div>
+      <div class="row"><span class="n">Essential motion</span><span class="d">The spinner and the node pulse are marked <span class="num">data-motion="essential"</span>: under reduced motion they calm to 2.4s rather than stopping. Freezing them would delete the only signal that the job is alive, leaving a still picture indistinguishable from a stalled one.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">It is not a log</span><span class="d">No step counts, no timestamps per phase, no expandable detail. The chat's steps disclosure is where "what did it actually do" lives; this is a progress display, and adding history to it turns a calm moment into a console.</span></div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Morph the label as phases pass. Count elapsed time up in tabular figures. Replace the whole thing with its outcome. Stop the rail where it failed and say which phase. Keep the phase count at three, four at most.</div></div>
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">A percentage or an ETA. A generic spinner in place of the mark. Clickable phases. Two active nodes. Leaving a finished rail on screen. Per-phase timestamps. Announcing the rail as well as the label. Technical phase names borrowed from the pipeline.</div></div>
+    </div>
+
+    <!-- ═══ TOKENS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Tokens used</div><h2 class="h2">Every value, named.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Colour</span><span class="d"><span class="num">--green-600</span> done + active nodes and passed connectors · <span class="num">--white</span> node core, check and upcoming fill · <span class="num">--ink-200</span> upcoming ring and unpassed connectors · <span class="num">--red-700</span> the failed node · <span class="num">--ink-900</span> reached labels · <span class="num">--text-muted</span> upcoming labels · <span class="num">--ink-600</span> the clock.</span></div>
+      <div class="row"><span class="n">Motion</span><span class="d"><span class="num">--duration-spinner</span> the mark's cycle · <span class="num">--duration-pulse</span> the node pulse · <span class="num">--duration-soft</span> node and label settle · <span class="num">--duration-slow</span> connector tint, because a line filling wants to be seen · <span class="num">--ease-out</span> throughout.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Geometry</span><span class="d"><span class="num">--radius-pill</span> nodes and connectors. Phase column 78px, node 16px, core 5px, connector 62×2px at top 7px. Rhythm from the ladder: 8 node→label, 12 mark→label, 20 clock→rail.</span></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Step timeline · used by <a href="Product - Console.dc.html">Console</a> (art/page deploy theater) · pairs with <a href="Component - Stepper.dc.html">Stepper</a> and <a href="Component - Spinner.dc.html">Spinner</a> · doctrine: Portal Design Language §Artifact Kit</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { t: 0 };
+  componentDidMount() { this.tick = setInterval(() => this.setState((s) => ({ t: s.t + 1 })), 1000); }
+  componentWillUnmount() { clearInterval(this.tick); }
+  renderVals() {
+    const NAMES = ['Build', 'Deploy', 'Verify'];
+    const t = this.state.t;
+    const idx = t < 4 ? 0 : t < 8 ? 1 : t < 12 ? 2 : 3;
+    const done = idx > 2;
+    const label = done ? 'Live on staging' : ['Building', 'Deploying to staging', 'Verifying'][idx];
+    return {
+      label,
+      elapsed: (done ? 12 : t) + 's',
+      restart: () => this.setState({ t: 0 }),
+      phases: NAMES.map((n, i) => {
+        const isDone = i < idx, isActive = i === idx && !done;
+        const reached = i <= idx;
+        return {
+          label: n, hasLink: i > 0,
+          linkBg: i <= idx ? 'var(--green-600)' : 'var(--ink-200)',
+          bg: reached ? 'var(--green-600)' : 'var(--white)',
+          ring: reached ? 'none' : 'inset 0 0 0 1.5px var(--ink-200)',
+          anim: isActive ? 'nodePulse var(--duration-pulse) var(--ease-out) infinite' : 'none',
+          motion: isActive ? 'essential' : 'none',
+          isDone: isDone || done, isActive,
+          color: reached ? 'var(--ink-900)' : 'var(--text-muted)',
+          weight: isActive ? '650' : '550'
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

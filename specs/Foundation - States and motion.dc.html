@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+      .fsSpin, .fsPulse {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    @keyframes fsSpin { to { transform: rotate(360deg); } }
+    @keyframes fsPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes fsShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .fsSpin { animation: fsSpin var(--duration-spinner) linear infinite; }
+    .fsPulse { animation: fsPulse var(--duration-pulse) var(--ease-out) infinite; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .btn { height: 26px; padding: 0 14px; display: inline-flex; align-items: center; gap: 7px; border-radius: var(--radius-pill); font-size: var(--text-label); font-weight: var(--weight-semibold); white-space: nowrap; }
+    .row { height: 30px; border-radius: var(--radius-md); padding: 0 11px; display: flex; align-items: center; font-size: var(--text-row); color: var(--text-nav); }
+    .fld { height: 34px; border-radius: var(--radius-control); display: flex; align-items: center; padding: 0 11px; font-size: var(--text-row); background: var(--surface-card); }
+    .lawrow { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .lawrow:last-child { border-bottom: none; }
+    .lawrow .n { font-size: var(--text-meta); font-weight: var(--weight-strong); color: var(--text-body); }
+    .lawrow .d { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty; }
+    .tok { border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1.5px rgba(0,163,82,0.35); padding: 13px 14px; }
+    .tok .v { font-size: var(--text-lg); font-weight: 550; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .tok .k { margin-top: 3px; font-family: var(--font-mono); font-size: 10px; color: var(--green-700); }
+    .tok .u { margin-top: 8px; font-size: var(--text-meta); line-height: 1.45; color: var(--text-muted); }
+    .demo { width: 220px; height: 30px; border-radius: var(--radius-md); background: var(--hover-on-white); transition: background var(--transition-soft); }
+    .demo:hover { background: var(--ink-100); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Foundation · States &amp; motion</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">Things settle. Nothing lifts.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Every state change eases softly on one curve at one default duration. Movement is reserved for things that genuinely travel — a selection pill, an arriving toast — and never for feedback.</p>
+
+    <!-- MOTION TOKENS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Motion</div><h2 class="sect-h">Eight durations, two curves.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">There are no literal <span style="font-family: var(--font-mono);">ms</span> or <span style="font-family: var(--font-mono);">cubic-bezier</span> values anywhere in the system — 120 declarations were converted on 31 July. 150 and 160ms were in use in sixteen places and collapsed into <span style="font-family: var(--font-mono);">--duration-soft</span>: against 180 they are sub-perceptual, and a distinction nobody can see is entropy rather than craft.</p>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <sc-for list="{{ durations }}" as="d" hint-placeholder-count="8">
+          <div class="tok"><div class="v">{{ d.v }}</div><div class="k">{{ d.k }}</div><div class="u">{{ d.u }}</div></div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="tok" style="box-shadow: inset 0 0 0 1.5px var(--hairline-strong);"><div class="k" style="margin-top: 0; color: var(--text-body); font-size: 11.5px;">--ease-out</div><div class="u">cubic-bezier(0.2, 0.8, 0.2, 1) — the house curve. Every state change uses it.</div></div>
+        <div class="tok" style="box-shadow: inset 0 0 0 1.5px var(--hairline-strong);"><div class="k" style="margin-top: 0; color: var(--text-body); font-size: 11.5px;">--ease-glide</div><div class="u">cubic-bezier(0.22, 1, 0.36, 1) — fast start, long velvet settle. Only for things that travel.</div></div>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); display: flex; align-items: center; gap: 16px;">
+        <span style="font-size: var(--text-meta); color: var(--text-faint); width: 92px;">Try it</span>
+        <span class="demo"></span>
+        <span style="font-size: var(--text-meta); color: var(--text-faint);">Tint at 180ms — it settles, it never snaps.</span>
+      </div>
+    </div>
+
+    <!-- MOTION-BASE -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Focus, press &amp; reduced motion</div><h2 class="sect-h">The three rules in every file.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">These cannot be written inline — they are pseudo-class and media rules — so they live identically in all 39 surfaces as <span style="font-weight: var(--weight-strong);">motion-base</span>.</p>
+    <div class="card" style="margin-top: 20px; padding: 8px 28px 20px;">
+      <div class="lawrow"><span class="n">Focus ring</span><span class="d">2px <span style="color: var(--green-700);">--border-focus</span> outline at 2px offset, on <b style="font-weight: 650;">:focus-visible</b> only — so a mouse click never draws a ring but a Tab always does. Applied through <b style="font-weight: 650;">:where()</b> so it costs no specificity and any component can override it.</span></div>
+      <div class="lawrow"><span class="n">Nothing lifts</span><span class="d">Hover is <b style="font-weight: 650;">tint, fill or ring</b> — never displacement. No rise, no nudge, no scale: the cursor already says where you are, and a target that moves as you approach it is a worse target. <span style="color: var(--green-700);">--hover-lift</span> was retired on 31 July (held at 0 so the bundle still resolves).</span></div>
+      <div class="lawrow"><span class="n">Pressed</span><span class="d">One system-wide <b style="font-weight: 650;">brightness(0.94)</b> on :active. Chosen over a scale or an opacity shift because it works on a filled button, a ghost link and a tinted chip alike — and because inline styles beat stylesheet rules, so an opacity press would silently lose on every element that sets its own. Disabled controls opt out.</span></div>
+      <div class="lawrow"><span class="n">Reduced motion</span><span class="d">Transitions and entrances collapse to 1ms. But motion that <b style="font-weight: 650;">carries information</b> — spinners, pulse dots, the queue's running word, skeleton shimmer — keeps looping at a calmed 2.4s. Removing it would delete the only signal that says work is in flight. Mark it <span style="color: var(--green-700);">data-motion="essential"</span>, or list the selector in the surface's reduced-motion block when the animation comes from a class.</span></div>
+      <div class="lawrow"><span class="n">Duration source</span><span class="d">Every transition takes its duration and easing from a token. 120ms is press-only: on 31 July sixteen <i>state</i> transitions across seven components were found easing at 120ms, which made hover snap where it should settle.</span></div>
+    </div>
+
+    <!-- THE EIGHT STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Every component provides all of them.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">Or declares which do not apply, with the reason. A silent omission is the bug this list exists to prevent — see the <a href="Foundation - Inventory.dc.html">inventory</a> for who complies.</p>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 22px 26px; align-items: center;">
+        <sc-for list="{{ buttons }}" as="b" hint-placeholder-count="8">
+          <span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+            <span class="btn" style="background: {{ b.bg }}; color: {{ b.fg }}; box-shadow: {{ b.ring }}; opacity: {{ b.op }}; filter: {{ b.filter }}; outline: {{ b.outline }}; outline-offset: 2px;">
+              <sc-if value="{{ b.spin }}" hint-placeholder-val="{{ false }}"><span class="fsSpin" style="width: 11px; height: 11px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.4); border-top: 1.5px solid var(--white); display: inline-block;"></span></sc-if>
+              {{ b.label }}
+            </span>
+            <span style="font-size: var(--text-meta); color: var(--text-muted);">{{ b.k }}</span>
+          </span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Nav / list row</div>
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 2px;">
+          <div class="row">Home</div>
+          <div class="row" style="background: var(--hover-on-white);">Work queue <span style="flex: 1;"></span><span style="font-size: var(--text-meta); color: var(--text-faint); font-variant-numeric: tabular-nums;">4</span></div>
+          <div class="row" style="background: var(--selected-pill); box-shadow: var(--shadow-raised); font-weight: var(--weight-semibold); color: var(--text-body);">Performance</div>
+          <div class="row" style="opacity: .45;">Design</div>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-meta); line-height: var(--leading-normal); color: var(--text-faint);">Rest · hover · selected · disabled. Selection is ONE white pill that glides on --ease-glide; rows never paint their own active fill.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Field</div>
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px;">
+          <div class="fld" style="box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--text-faint);">Placeholder</div>
+          <div class="fld" style="box-shadow: inset 0 0 0 1.5px var(--green-600);">Focused</div>
+          <div class="fld" style="box-shadow: inset 0 0 0 1.5px var(--red-500);">Error</div>
+          <div class="fld" style="background: var(--ink-50); box-shadow: inset 0 0 0 1px var(--hairline); color: var(--text-faint);">Disabled</div>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-meta); line-height: var(--leading-normal); color: var(--text-faint);">Focus is a green INSET ring, not a halo — motion-base owns the outline, and running both drew two rings on one field.</div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Activity</div><h2 class="sect-h">The motion that means something.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: flex; align-items: center; gap: 34px; flex-wrap: wrap;">
+        <span style="display: inline-flex; align-items: center; gap: 9px; font-size: var(--text-row); color: var(--text-secondary);"><span class="fsSpin" data-motion="essential" style="width: 15px; height: 15px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--ink-200); border-top: 1.5px solid var(--green-600); display: inline-block;"></span>Reading memory…</span>
+        <span class="fsPulse" data-motion="essential" style="display: inline-flex; align-items: center; gap: 7px; font-size: var(--text-row); font-weight: var(--weight-semibold); color: var(--green-700);"><span style="width: 6px; height: 6px; border-radius: 999px; background: var(--green-500);"></span>running</span>
+        <span style="display: inline-flex; gap: 6px;"><span style="width: 76px; height: 10px; border-radius: 5px; background: var(--ink-100);"></span><span style="width: 54px; height: 10px; border-radius: 5px; background: var(--ink-100);"></span></span>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Spinner for discrete in-flight work · PulseDot for ongoing aliveness · Skeleton for first paint. All three are marked <span style="font-family: var(--font-mono); color: var(--green-700);">data-motion="essential"</span>, so reduced motion calms them to 2.4s instead of stopping them — a frozen spinner tells the client nothing is happening when something is.</div>
+    </div>
+
+    <!-- KNOWN GAP -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Known gap · keyboard operability</div><h2 class="sect-h">A ring nothing can reach.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <span style="font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; color: var(--red-700); font-variant-numeric: tabular-nums;">277</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">clickable <b style="font-weight: 650;">div</b> and <b style="font-weight: 650;">span</b> elements across the system carry an onClick. <b style="font-weight: 650; color: var(--text-body);">None is keyboard-reachable</b> — no tabindex, no role, and therefore no focus ring however correct the rule above is.</span>
+      </div>
+      <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 760px; text-wrap: pretty;">Deliberately not patched by adding <b style="font-weight: 650;">tabindex</b> in bulk. A focus stop that Enter and Space cannot activate is worse than no focus stop: it promises an affordance the element does not have. Real repair is per component — the right element (<b style="font-weight: 650;">button</b> where it acts, <b style="font-weight: 650;">a</b> where it navigates), the right role, and a key handler in the logic class.</div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Take every duration and curve from a token. Express hover as tint, fill or ring. Keep informational motion running under reduced motion, calmed. Show focus only to the keyboard.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Lift, nudge or scale on hover. A literal ms value. 120ms on a state change. Bounce or spring. A spinner where a Skeleton belongs. Stacked thinking lines. A focus ring a mouse can trigger.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Foundation · States &amp; motion · governs every surface · pairs with <a href="Foundation - Rhythm.dc.html">Rhythm</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const D = [
+      ['--duration-fast', '120', 'Press feedback only. Never a state change.'],
+      ['--duration-modal', '140', 'Confirmation fade.'],
+      ['--duration-soft', '180', 'THE DEFAULT — every hover, focus, selected, appear.'],
+      ['--duration-screen', '200', 'Screen-switch fade: the only entrance.'],
+      ['--duration-slow', '240', 'Larger reveals; the gliding selection pill.'],
+      ['--duration-gentle', '340', 'Arrivals and departures — toast, stack reflow.'],
+      ['--duration-spinner', '1.15s', 'Dual-hex spinner cycle.'],
+      ['--duration-pulse', '1.6s', 'Running / live text pulse.']
+    ];
+    const INK = 'var(--action-primary)', W = 'var(--white)';
+    const B = [
+      { k: 'Rest', label: 'Approve', bg: INK, fg: W },
+      { k: 'Hover', label: 'Approve', bg: 'var(--action-primary-hover)', fg: W },
+      { k: 'Pressed', label: 'Approve', bg: INK, fg: W, filter: 'brightness(0.94)' },
+      { k: 'Focus', label: 'Approve', bg: INK, fg: W, outline: '2px solid var(--border-focus)' },
+      { k: 'Selected', label: 'n/a — a button acts and returns', bg: 'transparent', fg: 'var(--text-faint)', ring: 'inset 0 0 0 1px var(--hairline-strong)' },
+      { k: 'Disabled', label: 'Approve', bg: INK, fg: W, op: '0.45' },
+      { k: 'Loading', label: 'Approving', bg: INK, fg: W, spin: true },
+      { k: 'Empty', label: 'n/a — that is an IconButton', bg: 'transparent', fg: 'var(--text-faint)', ring: 'inset 0 0 0 1px var(--hairline-strong)' }
+    ];
+    return {
+      durations: D.map(([k, v, u]) => ({ k, v, u })),
+      buttons: B.map((b) => ({
+        k: b.k, label: b.label, bg: b.bg, fg: b.fg,
+        ring: b.ring || 'none', op: b.op || '1',
+        filter: b.filter || 'none', outline: b.outline || 'none',
+        spin: !!b.spin
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

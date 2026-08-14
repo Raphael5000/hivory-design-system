@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+      .pres::after {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .av { position: relative; border-radius: 999px; background: var(--ink-100); color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-weight: 650; flex-shrink: 0; box-sizing: border-box; }
+    .av24 { width: 24px; height: 24px; font-size: 9.5px; }
+    .av28 { width: 28px; height: 28px; font-size: 10.5px; }
+    .av34 { width: 34px; height: 34px; font-size: 12px; }
+    .av20 { width: 20px; height: 20px; font-size: 8.5px; }
+    .pres { position: absolute; right: -1px; bottom: -1px; width: 8px; height: 8px; border-radius: 999px; background: var(--green-500); box-shadow: 0 0 0 2px var(--surface-card); }
+    @keyframes hvPulse { from { transform: scale(0.45); opacity: 0.9; } to { transform: scale(1.7); opacity: 0; } }
+    .pres::after { content: ""; position: absolute; inset: -3px; border-radius: 999px; border: 1.5px solid var(--green-500); animation: hvPulse var(--duration-pulse) var(--ease-out) infinite; }
+    @media (prefers-reduced-motion: reduce) { .pres::after { animation: none; } }
+    .avg { display: flex; }
+    .avg .av { box-shadow: 0 0 0 2px var(--surface-card); }
+    .avg .av + .av { margin-left: -7px; }
+    .wsp { width: 28px; height: 28px; border-radius: 8px; background: var(--ink-900); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+    .tip { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: var(--surface-dark); color: var(--white); font-size: 11.5px; font-weight: 550; white-space: nowrap; padding: 6px 10px; border-radius: 8px; box-shadow: var(--shadow-overlay); opacity: 0; pointer-events: none; transition: opacity var(--duration-soft) var(--ease-out), transform var(--duration-soft) var(--ease-out); z-index: 2; }
+    .av:hover .tip { opacity: 1; transform: translateX(-50%); transition-delay: 0.35s; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Avatar</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">People, in ink.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Initials on a quiet ink wash — no rainbow avatars competing with the client's brand. People are circles; workspaces are the one dark tile. Rest on one below: it whispers its name.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 76px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--surface-dark);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--green-200);"></div>
+      </div>
+      <div style="position: relative; max-width: 480px; margin: 0 auto; border-radius: 18px; padding: 20px 24px; box-sizing: border-box; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="wsp">PG</span>
+          <div style="min-width: 0; flex: 1;">
+            <div style="font-size: 13.5px; font-weight: 650;">Q3 growth plan</div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 3px;">Reviewed by four people this week</div>
+          </div>
+          <div class="avg">
+            <span class="av av28">MV<span class="pres"></span><span class="tip">Mara Voss — online</span></span>
+            <span class="av av28">JL<span class="tip">Jonas Lee</span></span>
+            <span class="av av28">PN<span class="tip">Priya Natarajan</span></span>
+            <span class="av av28" style="background: var(--ink-50); color: var(--text-muted); font-size: 10px;">+2<span class="tip">Theo Rasmussen, Ada Kim</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Presence breathes on <span style="font-family: var(--font-mono);">--duration-pulse</span> (1.6s); names arrive as Tooltips — 350ms of intent, fade + 4px rise. The stack itself never moves.</div>
+
+    <!-- FORMS & SIZES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Forms &amp; sizes</div><h2 class="sect-h">Circles for people. One dark tile.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 26px; display: flex; align-items: center; justify-content: center; gap: 22px;">
+        <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 8px;"><span class="av av20">MV</span><span style="font-size: 10.5px; color: var(--text-faint);">20 meta</span></span>
+        <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 8px;"><span class="av av24">MV</span><span style="font-size: 10.5px; color: var(--text-faint);">24 rows</span></span>
+        <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 8px;"><span class="av av28">MV<span class="pres" style="animation: none;"></span></span><span style="font-size: 10.5px; color: var(--text-faint);">28 headers</span></span>
+        <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 8px;"><span class="av av34">MV</span><span style="font-size: 10.5px; color: var(--text-faint);">34 profile</span></span>
+        <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 8px;"><span class="wsp">PG</span><span style="font-size: 10.5px; color: var(--text-faint);">workspace</span></span>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">The spec</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Two initials at weight 650 on <span style="font-family: var(--font-mono); font-size: 12px;">--ink-100</span> — one wash for everyone, no per-person colors. Photos crop into the same circle. Presence is a 8px green dot with a 2px surface ring, bottom-right, breathing. The workspace tile is the single dark square (radius 8, ink-900) — brands, never people.</div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 26px; display: flex; align-items: center; justify-content: center;">
+        <div class="avg">
+          <span class="av av28">MV</span>
+          <span class="av av28">JL</span>
+          <span class="av av28">PN</span>
+          <span class="av av28">TR</span>
+          <span class="av av28" style="background: var(--ink-50); color: var(--text-muted); font-size: 10px;">+3</span>
+        </div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">The stack</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">7px overlap, each ringed 2px in the surface it sits on. Four faces at most, then the +N chip on <span style="font-family: var(--font-mono); font-size: 12px;">--ink-50</span> — hover it for the rest. Most recent actor leads.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Two initials, first + last. Tooltip the full name on hover and focus. Presence only where "online now" matters — and only one breathing dot per view. Ring color matches the surface underneath.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Per-person background colors — the palette belongs to the client's brand. Dark circles for people (dark is the workspace's alone). Stacks past +N. Green rings, badges, or status glyphs on the avatar itself — presence is the one dot.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">7 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-100</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-50</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-700</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-muted</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--white</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-600</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The presence dot is <b style="font-weight: 650;">--green-600</b>, not green-500: every FUNCTIONAL inline mark is green-600, and green-500 is reserved for brand moments and signal fills. This page previously claimed green-500.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Person (round) · company (--radius-sm) · with presence dot · AvatarGroup (overlapping stack). Sizes follow the row that holds them — 20px in tables, 28px in list rows, 32–44px in headers.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Initials in --ink-700 on --ink-50 at 999px. Company avatars square off to --radius-sm; people stay round — shape carries the kind.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Hover <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">an avatar is an identity, not a control. Hover belongs to the row containing it.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Pressed <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">not interactive on its own; a linked avatar inherits brightness(0.94) from its wrapper.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Focus <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">never takes a tab stop of its own. Focus lands on the row or link around it.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Selected <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">selection is the containing row’s state, never the face’s.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">identity has no disabled state. A deactivated member is said in the row copy, never by greying the face.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Loading</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Skeleton circle at the same diameter. Never initials of a guessed name — a wrong face is worse than no face.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">No name yet: a hairline ring on --surface-card, no glyph. Never a silhouette icon and never a question mark.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Initials are one or two letters, uppercase, taken from the display name as given — never derived from an email local part, which produces initials the person does not recognise. Two letters for people; up to three for a company with a known abbreviation. AvatarGroup shows at most four faces then “+N” in --ink-500, and that number is never a link. The presence dot is never captioned — if the state needs words it is a Badge.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Avatar · tokens listed in full above</div>
+</div>
+</x-dc>
+</body>
+</html>

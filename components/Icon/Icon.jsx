@@ -23,7 +23,7 @@ const HIVORY_ICON_PATHS = {
   globe: <g><circle cx="8" cy="8" r="5.75"/><path d="M2.25 8h11.5M8 2.25c2.4 2 2.4 9.5 0 11.5M8 2.25c-2.4 2-2.4 9.5 0 11.5"/></g>,
   upload: <g><path d="M8 10.5V3M5 5.5 8 2.5l3 3M3 13.5h10"/></g>,
   calendar: <g><rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 7h11M5.5 1.75V4M10.5 1.75V4"/></g>,
-  settings: <g><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/><circle cx="10" cy="4.5" r="1.6" fill="var(--surface-card, #fff)"/><circle cx="5.5" cy="8" r="1.6" fill="var(--surface-card, #fff)"/><circle cx="8.5" cy="11.5" r="1.6" fill="var(--surface-card, #fff)"/></g>,
+  settings: <g><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/><circle cx="10" cy="4.5" r="1.6" fill="var(--surface-card)"/><circle cx="5.5" cy="8" r="1.6" fill="var(--surface-card)"/><circle cx="8.5" cy="11.5" r="1.6" fill="var(--surface-card)"/></g>,
   doc: <g><path d="M4 2h5l3 3v9H4V2Z"/><path d="M9 2v3h3"/></g>,
   search: <g><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 13.5 13.5"/></g>,
   mail: <g><rect x="2" y="3.5" width="12" height="9.5" rx="1.5"/><path d="M2.5 4.5 8 9l5.5-4.5"/></g>,

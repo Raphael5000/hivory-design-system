@@ -1,0 +1,35 @@
+<!-- @dsCard group="Spacing" viewport="700x300" subtitle="Seven geometric rungs — 3 · 8 · 12 · 20 · 34 · 64 · 104" name="Rhythm" -->
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-card); font-family: var(--font-sans); color: var(--text-body); padding: 16px 18px 14px; }
+  .eye { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); }
+  .ladder { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .rung { display: grid; grid-template-columns: 30px 62px 216px 1fr; align-items: center; column-gap: 10px; }
+  .px { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--text-muted); text-align: right; }
+  .name { font-size: 11px; font-weight: 600; color: var(--ink-950); }
+  .bar { display: inline-block; vertical-align: middle; height: 9px; border-radius: 2px; background: var(--green-500); }
+  .job { font-size: 10.5px; color: var(--text-muted); }
+  .laws { margin-top: 12px; padding-top: 10px; box-shadow: 0 -1px 0 var(--hairline-strong); display: flex; flex-direction: column; gap: 3px; }
+  .laws div { font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+  .laws b { color: var(--ink-950); font-weight: 600; }
+</style>
+</head><body>
+  <span class="eye">The ladder · each rung ≈1.6× the last, each with one job</span>
+  <div class="ladder">
+    <div class="rung"><span class="px">3</span><span class="name">Bond</span><span><span class="bar" style="width: 6px;"></span></span><span class="job">a value and the label naming it</span></div>
+    <div class="rung"><span class="px">8</span><span class="name">Pair</span><span><span class="bar" style="width: 16px;"></span></span><span class="job">glyph and text · title and subtitle</span></div>
+    <div class="rung"><span class="px">12</span><span class="name">Sibling</span><span><span class="bar" style="width: 24px;"></span></span><span class="job">one row from the next · heading from its paragraph</span></div>
+    <div class="rung"><span class="px">20</span><span class="name">Block</span><span><span class="bar" style="width: 40px;"></span></span><span class="job">one block from the next · default card grid gap</span></div>
+    <div class="rung"><span class="px">34</span><span class="name">Group</span><span><span class="bar" style="width: 68px;"></span></span><span class="job">a run of blocks from the next run</span></div>
+    <div class="rung"><span class="px">64</span><span class="name">Section</span><span><span class="bar" style="width: 128px;"></span></span><span class="job">one section from the next</span></div>
+    <div class="rung"><span class="px">104</span><span class="name">Chapter</span><span><span class="bar" style="width: 208px;"></span></span><span class="job">one page-level region from the next</span></div>
+  </div>
+  <div class="laws">
+    <div><b>Eyebrow, heading, lede are one unit</b> — all 12 apart, then 34 to the first block.</div>
+    <div><b>Section gaps are asymmetric:</b> 64 above a heading, 12 below.</div>
+    <div><b>Gaps grow up the tree;</b> the 4px grid keeps control interiors.</div>
+  </div>
+</body></html>

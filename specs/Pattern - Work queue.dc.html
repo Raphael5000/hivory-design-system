@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+      .qword.run {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+    .panel { animation: panelIn var(--duration-soft) var(--ease-out); }
+    .qrow { display: grid; grid-template-columns: 46px minmax(0, 1fr) 104px 88px; gap: 12px; align-items: center; padding: 12px 16px; border-top: 1px solid rgba(23,24,26,0.05); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .qrow:hover { background: var(--hover-on-white); }
+    .qhead { display: grid; grid-template-columns: 46px minmax(0, 1fr) 104px 88px; gap: 12px; padding: 12px 16px 10px; border-bottom: 1px solid rgba(23,24,26,0.08); }
+    .qhead span { font-size: 12px; font-weight: 500; color: var(--text-muted); }
+    .qsect { padding: 16px 16px 5px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; color: var(--text-faint); }
+    .qtime { font-size: 12px; color: var(--text-nav); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .qtitle { font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .qword { font-size: 12px; font-weight: 500; color: var(--text-faint); white-space: nowrap; }
+    .qword.run { color: var(--green-700); font-weight: 600; animation: breathe var(--duration-pulse) ease-in-out infinite; }
+    .cchip { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: var(--radius-pill); background: rgba(23,24,26,0.05); color: var(--text-nav); font-size: 11.5px; font-weight: 600; white-space: nowrap; justify-self: start; }
+    .cchip i { font-size: 12px; }
+    .rev { appearance: none; background: transparent; border: none; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.16); height: 25px; padding: 0 12px; border-radius: var(--radius-pill); font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-body); cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out); }
+    .rev:hover { background: var(--hover-on-white); }
+    .chip { appearance: none; border: none; height: 24px; padding: 0 11px; border-radius: var(--radius-pill); background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.07); font-family: var(--font-sans); font-size: 11px; font-weight: 550; color: var(--text-secondary); cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .chip:hover { background: var(--hover-on-white); }
+    .chip.on { background: var(--action-primary); color: var(--white); box-shadow: none; }
+    .fsmenu { position: absolute; top: calc(100% + 6px); right: 0; width: 188px; background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-overlay); padding: 5px; box-sizing: border-box; transform-origin: top right; z-index: 30;
+      opacity: 0; transform: translateY(-6px) scale(0.985); pointer-events: none;
+      transition: opacity var(--duration-soft) var(--ease-out), transform var(--duration-soft) var(--ease-out); }
+    .fsmenu.open { opacity: 1; transform: none; pointer-events: auto; }
+    .fsrow { height: 30px; border-radius: 8px; padding: 0 10px; display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--text-body); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .fsrow:hover { background: var(--hover-on-white); }
+    .fsbox { width: 15px; height: 15px; border-radius: 4px; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px rgba(23,24,26,0.16); flex-shrink: 0; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .fsrow.on .fsbox { background: var(--action-primary); box-shadow: none; }
+    .fstrig { height: 26px; padding: 0 9px 0 12px; border: none; border-radius: var(--radius-pill); background: var(--surface-card); color: var(--text-secondary); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09); display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-sans); font-size: 11.5px; font-weight: 550; cursor: pointer; white-space: nowrap; transition: background var(--duration-soft) var(--ease-out), color var(--duration-soft) var(--ease-out); }
+    .fstrig:hover { color: var(--text-body); }
+    .fstrig.active { background: var(--action-primary); color: var(--white); box-shadow: none; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Pattern · Queue table</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 14ch;">Three questions, one table.</h1>
+    <p style="margin: 20px 0 0; max-width: 640px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">What needs you, what's moving, what shipped — one quiet grid answers all three. State lives in a 2px edge line, channels in a glyph, and there is no sort control: state → time is the sort.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 48px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--surface-dark);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--amber-100);"></div>
+      </div>
+      <div style="position: relative; max-width: 620px; margin: 0 auto; border-radius: 18px; padding: 18px 20px; box-sizing: border-box; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34);">
+        <div style="border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); overflow: hidden;">
+          <div class="qhead"><span>Time</span><span>Job</span><span>Channel</span><span style="text-align: right;">Status</span></div>
+          <div class="qsect" style="padding-top: 12px;">FOR YOUR REVIEW</div>
+          <div class="qrow" style="box-shadow: inset 2px 0 0 var(--amber-500);">
+            <span class="qtime">09:00</span>
+            <span class="qtitle">Refill loyalty — LinkedIn thread</span>
+            <span class="cchip"><i class="ti ti-brand-linkedin"></i>LinkedIn</span>
+            <span style="display: flex; justify-content: flex-end;"><button class="rev">Review</button></span>
+          </div>
+          <div class="qsect">IN PROGRESS</div>
+          <div class="qrow" style="box-shadow: inset 2px 0 0 var(--green-500);">
+            <span class="qtime">now</span>
+            <span class="qtitle">Draft “The hidden cost of greenwashed suppliers”</span>
+            <span class="cchip"><i class="ti ti-article"></i>Blog</span>
+            <span style="display: flex; justify-content: flex-end;"><span class="qword run">running</span></span>
+          </div>
+          <div class="qrow">
+            <span class="qtime">31 Jul<br /><span style="font-size: 11px; color: var(--text-faint);">09:00</span></span>
+            <span class="qtitle">Founder note — Q3 numbers</span>
+            <span class="cchip"><i class="ti ti-brand-linkedin"></i>LinkedIn</span>
+            <span></span>
+          </div>
+          <div class="qsect">COMPLETED</div>
+          <div class="qrow" style="margin-bottom: 8px;">
+            <span class="qtime">24 Jul</span>
+            <span class="qtitle">Health &amp; wellness chains — outreach</span>
+            <span class="cchip"><i class="ti ti-filter"></i>Pipeline</span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">One header row, groups as sections inside — never separate cards. The 2px edge line is the only state ink: amber needs you, green is running now (“running” breathes — the table's only animated text).</div>
+
+    <!-- GRAMMAR -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The grammar</div><h2 class="sect-h">Rows that earn their ink.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Time · Job · Channel · Status</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Sentence-case 12/500 headers — no shouting caps in the header row; the caps register belongs to the state sections. Single-line 13.5/500 titles, stacked tabular time (today a clock, other days a date), the quiet Channel chip, and a Status slot that holds one thing or nothing: the Review verb, or a word that adds real information.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">No dots, no agent, no provenance</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Dots spent a column saying what the section already says — the 2px edge line carries state for free. The agent never mattered to the client. And the “from session” link lives inside the opened job, where the question actually gets asked.</div>
+      </div>
+    </div>
+
+    <!-- FILTERING -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Filtering</div><h2 class="sect-h">One quiet row. No sort control.</h2></div>
+    <div style="margin-top: 34px; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 20px 26px 14px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i class="ti ti-search" style="font-size: 13px; color: var(--text-faint);"></i>
+        <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Filter jobs" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: inherit; font-size: 12.5px; color: var(--text-body);" />
+        <sc-if value="{{ filterActive }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 11px; color: var(--text-faint); white-space: nowrap; font-variant-numeric: tabular-nums;">{{ countLabel }}</span>
+          <span onClick="{{ clearFilter }}" style="display: flex; color: var(--text-ghost); cursor: pointer;" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><i class="ti ti-x" style="font-size: 12px;"></i></span>
+        </sc-if>
+        <div style="display: flex; gap: 6px; margin-left: 6px;">
+          <sc-for list="{{ selects }}" as="fs" hint-placeholder-count="2">
+            <div style="position: relative;">
+              <button class="fstrig {{ fs.trigCls }}" onClick="{{ fs.toggle }}">{{ fs.label }}<svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><path d="m4 6.5 4 4 4-4"></path></svg></button>
+              <div class="fsmenu {{ fs.cls }}">
+                <sc-for list="{{ fs.opts }}" as="o" hint-placeholder-count="4">
+                  <div class="fsrow {{ o.cls }}" onClick="{{ o.go }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}"><span class="fsbox"><sc-if value="{{ o.on }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if></span>{{ o.label }}<sc-if value="{{ o.dot }}" hint-placeholder-val="{{ false }}"><span style="margin-left: auto; width: 6px; height: 6px; border-radius: 999px; background: {{ o.dot }}; flex-shrink: 0;"></span></sc-if></div>
+                </sc-for>
+                <sc-if value="{{ fs.any }}" hint-placeholder-val="{{ false }}">
+                  <div style="height: 1px; background: var(--hairline); margin: 3px 6px;"></div>
+                  <div class="fsrow" style="color: var(--text-muted);" onClick="{{ fs.clear }}" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">Clear</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="height: 1px; background: var(--hairline); margin: 12px -26px 0; opacity: 0.7;"></div>
+      <div class="panel" key="{{ fkey }}">
+        <sc-for list="{{ rows }}" as="j" hint-placeholder-count="4">
+          <div class="qrow" style="padding: 11px 4px; grid-template-columns: 46px minmax(0, 1fr) 104px;">
+            <span class="qtime">{{ j.t1 }}</span>
+            <span class="qtitle">{{ j.title }}</span>
+            <span class="cchip"><i class="ti {{ j.icon }}"></i>{{ j.chan }}</span>
+          </div>
+        </sc-for>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 22px 0 14px; text-align: center;"><div style="font-size: 13px; font-weight: 600;">Nothing matches</div><div style="font-size: 11.5px; color: var(--text-muted); margin-top: 3px;">Clear the filter to see the whole queue.</div></div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Search glyph · borderless input · live “n of total” + ✕ · one Filter Select per dimension (Status · Channel) — multiselect dropdowns, never a row of option pills. Filtering keeps only matching sections. A sorter is banned — state → time is the sort.</div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">One table card, sections inside — consistency beats elevation. Edge lines only where state demands attention. Rows open their job in place; the queue stays behind the panel. Archive completed work behind “View all — N ›” past 100 rows.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">State dots or per-group cards. Colored channel pills — the glyph differentiates. Option pills strewn across the header — filters live in Filter Selects. An agent column. Outcome metrics in Completed. Sort controls, or a weekday posing as a date.</div></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Pattern · Queue table · composed from: <span style="font-family: var(--font-mono);">Table, Channel chip, Filter Select, Button</span> · doctrine: Portal Design Language §Queue table (27 Jul)</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { q: '', sel: { status: {}, chan: {} }, menu: null };
+  componentDidMount() {
+    this._away = (e) => { if (!e.target.closest || !e.target.closest('.fsmenu, .fstrig')) this.setState({ menu: null }); };
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ menu: null }); };
+    document.addEventListener('mousedown', this._away);
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._away); window.removeEventListener('keydown', this._esc); }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    const IC = { LinkedIn: 'ti-brand-linkedin', Blog: 'ti-article', Website: 'ti-world', Pipeline: 'ti-filter', Email: 'ti-mail' };
+    const JOBS = [
+      { t1: '09:00', title: 'Refill loyalty — LinkedIn thread', chan: 'LinkedIn', st: 'review' },
+      { t1: 'now', title: 'Compostable packaging — one year on', chan: 'Blog', st: 'progress' },
+      { t1: '31 Jul', title: 'Founder note — Q3 numbers', chan: 'LinkedIn', st: 'progress' },
+      { t1: 'Mon', title: 'Weekly digest', chan: 'Email', st: 'progress' },
+      { t1: '24 Jul', title: 'Health & wellness chains — outreach', chan: 'Pipeline', st: 'done' },
+      { t1: '22 Jul', title: 'Homepage hero — seasonal swap', chan: 'Website', st: 'done' }
+    ].map((j) => ({ ...j, icon: IC[j.chan] }));
+    const ql = s.q.trim().toLowerCase();
+    const selStat = Object.keys(s.sel.status), selChan = Object.keys(s.sel.chan);
+    const rows = JOBS.filter((j) => (!selStat.length || selStat.indexOf(j.st) > -1) && (!selChan.length || selChan.indexOf(j.chan) > -1) && (!ql || j.title.toLowerCase().includes(ql)));
+    const filterActive = !!(ql || selStat.length || selChan.length);
+    const mkSel = (key, name, opts) => { const sel = s.sel[key]; const n = Object.keys(sel).length; return {
+      keyActivate: this.keyActivate,
+      label: n ? name + ' · ' + n : name,
+      trigCls: n ? 'active' : '', cls: s.menu === key ? 'open' : '', any: n > 0,
+      toggle: (e) => { e.stopPropagation(); this.setState((p) => ({ menu: p.menu === key ? null : key })); },
+      clear: () => this.setState((p) => ({ sel: { ...p.sel, [key]: {} } })),
+      opts: opts.map((o) => ({ label: o.label, dot: o.dot || false, on: !!sel[o.k], cls: sel[o.k] ? 'on' : '',
+        go: () => this.setState((p) => { const g = { ...p.sel[key] }; if (g[o.k]) delete g[o.k]; else g[o.k] = 1; return { sel: { ...p.sel, [key]: g } }; }) }))
+    }; };
+    return {
+      q: s.q, onQ: (e) => this.setState({ q: e.target.value }),
+      filterActive, countLabel: rows.length + ' of ' + JOBS.length,
+      clearFilter: () => this.setState({ q: '', sel: { status: {}, chan: {} } }),
+      selects: [
+        mkSel('status', 'Status', [{ k: 'review', label: 'For review', dot: 'var(--amber-500)' }, { k: 'progress', label: 'In progress', dot: 'var(--green-500)' }, { k: 'done', label: 'Completed', dot: '#C6C8C6' }]),
+        mkSel('chan', 'Channel', [{ k: 'Blog', label: 'Blog' }, { k: 'LinkedIn', label: 'LinkedIn' }, { k: 'Website', label: 'Website' }, { k: 'Pipeline', label: 'Pipeline' }, { k: 'Email', label: 'Email' }])
+      ],
+      rows, noResults: rows.length === 0,
+      fkey: ql + '|' + selStat.join(',') + '|' + selChan.join(',')
+    };
+  }
+}
+</script>
+</body>
+</html>

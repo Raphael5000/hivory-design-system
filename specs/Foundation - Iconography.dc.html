@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+      .sp .ra,
+      .sp .rb {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .icell { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 4px; border-radius: 10px; cursor: default; transition: background var(--duration-soft) var(--ease-out); }
+    .icell:hover { background: var(--hover-on-white); }
+    .icell i { font-size: 18px; color: var(--text-muted); transition: color var(--duration-soft) var(--ease-out); }
+    .icell:hover i { color: var(--ink-950); }
+    .icell .n { font-size: 10px; color: var(--text-faint); }
+    @keyframes hvSpin { to { transform: rotate(360deg); } }
+    @keyframes hvSpinRev { to { transform: rotate(-360deg); } }
+    .sp .ra, .sp .rb { transform-origin: center; transform-box: fill-box; }
+    .sp .ra { animation: hvSpin var(--duration-spinner) linear infinite; }
+    .sp .rb { animation: hvSpinRev var(--duration-spinner) linear infinite; }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Foundation · Iconography</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 14ch;">One line, everywhere.</h1>
+    <p style="margin: 20px 0 0; max-width: 640px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Tabler is the system set — outline only, round caps, drawn on a 24 grid and worn at 14, 16, or 18. Icons speak in the ink ladder and never in green. The hexagon stays ours.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 52px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--surface-dark);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--amber-100);"></div>
+      </div>
+      <div style="position: relative; max-width: 640px; margin: 0 auto; border-radius: 18px; padding: 18px 22px; box-sizing: border-box; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34);">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr);">
+          <span class="icell"><i class="ti ti-search"></i><span class="n">search</span></span>
+          <span class="icell"><i class="ti ti-x"></i><span class="n">x</span></span>
+          <span class="icell"><i class="ti ti-arrows-diagonal"></i><span class="n">arrows-diagonal</span></span>
+          <span class="icell"><i class="ti ti-chevron-up"></i><span class="n">chevron-up</span></span>
+          <span class="icell"><i class="ti ti-check"></i><span class="n">check</span></span>
+          <span class="icell"><i class="ti ti-arrow-right"></i><span class="n">arrow-right</span></span>
+          <span class="icell"><i class="ti ti-clock"></i><span class="n">clock</span></span>
+          <span class="icell"><i class="ti ti-calendar"></i><span class="n">calendar</span></span>
+          <span class="icell"><i class="ti ti-world"></i><span class="n">world</span></span>
+          <span class="icell"><i class="ti ti-mail"></i><span class="n">mail</span></span>
+          <span class="icell"><i class="ti ti-users"></i><span class="n">users</span></span>
+          <span class="icell"><i class="ti ti-bell"></i><span class="n">bell</span></span>
+          <span class="icell"><i class="ti ti-file-text"></i><span class="n">file-text</span></span>
+          <span class="icell"><i class="ti ti-upload"></i><span class="n">upload</span></span>
+          <span class="icell"><i class="ti ti-layout-dashboard"></i><span class="n">layout-dashboard</span></span>
+          <span class="icell"><i class="ti ti-chart-bar"></i><span class="n">chart-bar</span></span>
+          <span class="icell"><i class="ti ti-adjustments-horizontal"></i><span class="n">adjustments</span></span>
+          <span class="icell"><i class="ti ti-sparkles"></i><span class="n">sparkles</span></span>
+          <span class="icell"><i class="ti ti-paperclip"></i><span class="n">paperclip</span></span>
+          <span class="icell"><i class="ti ti-refresh"></i><span class="n">refresh</span></span>
+          <span class="icell"><i class="ti ti-trash"></i><span class="n">trash</span></span>
+          <span class="icell"><i class="ti ti-pencil"></i><span class="n">pencil</span></span>
+          <span class="icell"><i class="ti ti-player-pause"></i><span class="n">player-pause</span></span>
+          <span class="icell"><i class="ti ti-logout"></i><span class="n">logout</span></span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">The working set — hover a glyph: rest is <span style="font-family: var(--font-mono);">text-muted</span>, active settles to <span style="font-family: var(--font-mono);">ink-950</span> on the house curve. One concept, one glyph, recorded as picks land.</div>
+
+    <!-- SCOPE -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Scope</div><h2 class="sect-h">Platform only.</h2></div>
+    <div style="margin-top: 20px; border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px; max-width: 820px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">
+      Tabler governs the console, the proposal portal and every component page. It does <b style="font-weight: 650; color: var(--text-body);">not</b> govern the marketing site or the <a href="Kit - Marketing.dc.html">Marketing kit</a> — those carry their own editorial glyphs at the site's own weight, drawn to sit beside Martel rather than beside 13px rows. A Tabler icon on hivory.io is the same category error as a serif heading in the Work queue.
+      <div style="margin-top: 16px; padding: 14px 16px; border-radius: var(--radius-lg); background: var(--ink-50);">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-600);">Permanently exempt</div>
+        <div style="margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--ink-700);">The <a href="Kit - Mock.dc.html">Mock Kit</a>'s bodies — their glyphs imitate the surface they depict, so a Tabler icon there would break the fidelity the kit exists for. And the brand marks: the dual-hex Spinner, the hex agent mark, the Hivory lockup. Everything else in the platform is Tabler, and a hand-drawn stroke SVG on a platform surface is debt.</div>
+      </div>
+      <div class="row"><span class="n">The house checkmark</span><span class="d">The 9–11px check inside pills, nodes and steppers (<span style="font-family: var(--font-mono);">M3 8.5 6.5 12 13 4.5</span>) stays hand-drawn. Tabler’s <span style="font-family: var(--font-mono);">ti-check</span> is optically heavier at that size and is only used at 14px and above — so the small check is a drawn glyph by design, not debt.</span></div>
+      <div class="row"><span class="n">Chart geometry</span><span class="d">Series lines, area fills, sparklines and meter tracks are DATA, not icons. They are drawn from values and have no Tabler equivalent by definition.</span></div>
+
+    </div>
+
+    <!-- RULES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Rules</div><h2 class="sect-h">Worn quietly, in ink.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Sizes &amp; color</div>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 26px;">
+          <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px;"><i class="ti ti-bell" style="font-size: 14px; color: var(--text-muted);"></i><span style="font-size: 10px; color: var(--text-faint);">14 dense</span></span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px;"><i class="ti ti-bell" style="font-size: 16px; color: var(--text-muted);"></i><span style="font-size: 10px; color: var(--text-faint);">16 default</span></span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px;"><i class="ti ti-bell" style="font-size: 18px; color: var(--text-muted);"></i><span style="font-size: 10px; color: var(--text-faint);">18 roomy</span></span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px;"><i class="ti ti-bell" style="font-size: 16px; color: var(--ink-950);"></i><span style="font-size: 10px; color: var(--text-faint);">active</span></span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px;"><i class="ti ti-bell" style="font-size: 16px; color: var(--ink-200);"></i><span style="font-size: 10px; color: var(--text-faint);">disabled</span></span>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Sized by font-size, colored by the ink ladder, transitioned on <span style="font-family: var(--font-mono); font-size: 12px;">--duration-soft</span>. An icon is never green — green belongs to signals, not symbols.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">The brand exceptions</div>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 26px;">
+          <svg class="sp" width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.3" stroke-linejoin="round"><g class="ra"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path></g><g class="rb" opacity="0.5"><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z"></path></g></svg>
+          <svg width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="var(--text-muted)" stroke-width="1.3" stroke-linejoin="round"><path d="M8 2.5 12.76 5.25v5.5L8 13.5 3.24 10.75v-5.5Z"></path><path d="M6.2 7.2v1.6M9.8 7.2v1.6" stroke-linecap="round"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.15" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z" opacity="0.55"></path></svg>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Three glyphs stay hand-drawn and are never replaced by Tabler: the dual-hex Spinner, the hex agent, and the Hivory mark itself. The hexagon is the brand's signature — Tabler covers everything else.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">One concept, one glyph — record the pick so it never drifts. Outline style only. Pair icon-only controls with a Tooltip and an aria-label. 14px in the sidebar and dense rows, 16 as the default.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Filled or duotone variants. Green icons, badge dots baked into glyphs, or emoji as icons. Text characters posing as icons (✕ ▲ ⤢) — every glyph comes from the set. Mixing Tabler with leftover hand-drawn strokes on the same surface.</div></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Foundation · Iconography · Tabler (MIT) via <span style="font-family: var(--font-mono);">tokens/fonts.css</span> · usage: <span style="font-family: var(--font-mono);">&lt;i class="ti ti-search"&gt;</span></div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

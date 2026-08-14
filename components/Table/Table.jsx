@@ -21,7 +21,7 @@ const hvTableCss = `
 .hv-table .hv-table__num{text-align:right;font-family:var(--font-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
 .hv-table th.hv-table__num{font-family:var(--font-sans);font-size:11.5px;font-variant-numeric:normal}
 .hv-table .hv-table__strong{font-weight:500;color:var(--ink-950)}
-.hv-dtable{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden}
+.hv-dtable{background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-card);overflow:hidden}
 .hv-dtable__head{padding:12px 18px;border-bottom:1px solid var(--border-subtle)}
 .hv-dtable__title{margin:0;font-size:13px;font-weight:600;color:var(--ink-950)}
 `;

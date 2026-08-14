@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <script src="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/_ds_bundle.js"></script>
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+    .eyelabel { font-size: var(--text-meta); font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    /* the signature line — the one place a script face is legal */
+    .sigline { padding: 0 4px 10px; border-bottom: 1px solid var(--ink-200); min-height: 44px; display: flex; align-items: flex-end; }
+    .sigink { font-style: italic; font-weight: 300; font-size: 27px; letter-spacing: 0.01em; line-height: 1.1; }
+    .summary { padding: 6px 20px; }
+    .srow { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05); }
+    .srow:last-child { border-bottom: none; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Signature block</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 16ch;">The only screen with legal weight.</h1>
+    <p style="margin: 12px 0 0; max-width: 680px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Type-to-sign: the name becomes the signature as it is typed. Everything here is deliberately slower and plainer than the rest of the system, because this is the one place a client commits money and the one place a mistaken click cannot be undone.</p>
+
+    <!-- SPECIMEN -->
+    <div class="card" style="margin-top: 34px; padding: 34px 36px;">
+      <div style="max-width: 480px;">
+        <div class="card summary" style="box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09); border-radius: var(--radius-xl);">
+          <div class="srow"><span style="font-size: var(--text-sm); color: var(--text-muted);">Package</span><span style="font-size: var(--text-row); font-weight: var(--weight-semibold);">Full engine · $8,500/mo</span></div>
+          <div class="srow"><span style="font-size: var(--text-sm); color: var(--text-muted);">Start</span><span style="font-size: var(--text-row); font-weight: var(--weight-semibold);">Monday 3 August 2026</span></div>
+          <div class="srow"><span style="font-size: var(--text-sm); color: var(--text-muted);">Your partner</span><span style="font-size: var(--text-row); font-weight: var(--weight-semibold);">Dan Cohen, Hivory</span></div>
+        </div>
+
+        <div class="eyelabel" style="margin-top: 34px;">Signature</div>
+        <div style="margin-top: 12px; max-width: 340px;">
+          <x-import component-from-global-scope="HivoryDesignSystem_354905.Input" placeholder="Full legal name" value="{{ name }}" on-change="{{ onName }}" hint-size="100%,34px"></x-import>
+        </div>
+        <div class="sigline" style="margin-top: 20px;"><span class="sigink" style="color: {{ sigColor }};">{{ sigPreview }}</span></div>
+        <div style="margin-top: 8px; font-size: var(--text-meta); color: var(--text-faint);">Signature — drawn from your typed name</div>
+
+        <div style="margin-top: 20px;">
+          <x-import component-from-global-scope="HivoryDesignSystem_354905.Checkbox" label="I'm authorized to sign for Pure Good" checked="{{ auth }}" on-change="{{ toggleAuth }}" hint-size="280px,20px"></x-import>
+        </div>
+
+        <div style="margin-top: 34px;">
+          <x-import component-from-global-scope="HivoryDesignSystem_354905.Button" variant="brand" size="lg" disabled="{{ blocked }}" on-click="{{ sign }}" hint-size="260px,40px">{{ ctaLabel }}</x-import>
+        </div>
+        <div style="margin-top: 8px; font-size: var(--text-meta); color: var(--text-faint);">{{ ctaNote }}</div>
+      </div>
+    </div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">Five parts, in one order.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="5">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- THE SIGNATURE LINE -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The signature line</div><h2 class="sect-h">The one script face in the system.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 34px;">
+        <div>
+          <div class="sigline"><span class="sigink" style="color: var(--ink-900);">Maya Osei</span></div>
+          <div style="margin-top: 8px; font-size: var(--text-meta); color: var(--text-faint);">Signed — 27px italic 300, --ink-900</div>
+        </div>
+        <div>
+          <div class="sigline"><span class="sigink" style="color: transparent;">placeholder</span></div>
+          <div style="margin-top: 8px; font-size: var(--text-meta); color: var(--text-faint);">Empty — the rule holds its height, nothing hints</div>
+        </div>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 780px; text-wrap: pretty;">Italic 300 at 27px on a 1px --ink-200 rule. It is not a script webfont and never should be: a fake handwriting face makes a typed name pretend to be ink, which is exactly the wrong claim on a document with legal weight. The italic says <i>this stands for your signature</i> without imitating one. The line keeps its 44px height when empty — a rule that grows as you type would move the button under your cursor.</div>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Blocked is the important one.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- ACCESSIBILITY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Accessibility</div><h2 class="sect-h">Stricter than everything else.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 780px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Three tab stops in reading order: name, authorisation, sign. The CTA is a real <b style="font-weight: 650;">button</b> carrying <span style="font-family: var(--font-mono);">disabled</span>, so a screen reader announces it as unavailable rather than the client discovering it by pressing. The signature preview is <span style="font-family: var(--font-mono);">aria-hidden</span> — it repeats the field above it, and hearing your own name twice is noise. <b style="font-weight: 650;">No motion on the signature itself:</b> nothing fades or draws in as it renders, because animating a legal mark implies a ceremony that has not happened yet. Every word here clears 4.5:1, and the same block printed in the document holds --ink-600 or darker at every size.</div>
+
+    <!-- CONTENT -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Content rules</div><h2 class="sect-h">Say the consequence, then remove the fear.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 780px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">The CTA names what is being agreed and what it costs — <b style="font-weight: 650;">“Sign &amp; accept — Full engine”</b>, never “Submit”, “Confirm” or “Get started”. Directly beneath it, one line removing the fear the button creates: <b style="font-weight: 650;">“Signing starts onboarding — no payment is taken today.”</b> The authorisation checkbox is a positive first-person statement naming the company. The field label is <b style="font-weight: 650;">“Full legal name”</b>, not “Name” — the word <i>legal</i> is doing real work. After signing, the receipt states who signed, when, what and at what price, in one line, in past tense.</div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Restate the deal directly above the signature, so nothing needs scrolling back. Keep the CTA disabled until both name and authorisation exist. Offer the printable document beside the button. Give a receipt the moment it is signed.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A handwriting webfont. Motion on the signature. A confirmation modal after it — the checkbox already was the confirmation, and a second gate reads as doubt. Terms hidden behind a link on this screen. Any word that hides the commitment.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Signature block · closes <a href="Product - Proposal.dc.html">the proposal portal</a> · printed form in <a href="Product - Proposal document.dc.html">the document</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { name: '', auth: false, signed: false };
+  renderVals() {
+    const s = this.state;
+    const ready = s.name.trim().length > 1 && s.auth;
+    return {
+      name: s.name, auth: s.auth, blocked: !ready || s.signed,
+      sigPreview: s.name.trim() || 'placeholder',
+      sigColor: s.name.trim() ? 'var(--ink-900)' : 'transparent',
+      ctaLabel: s.signed ? 'Signed \u00b7 Full engine' : 'Sign & accept \u2014 Full engine',
+      ctaNote: s.signed
+        ? '\u2713 Signed by ' + s.name.trim() + ' \u00b7 31 Jul 2026 \u00b7 Full engine \u00b7 $8,500/mo'
+        : 'Signing starts onboarding \u2014 no payment is taken today.',
+      onName: (e) => this.setState({ name: e.target.value }),
+      toggleAuth: () => this.setState((p) => ({ auth: !p.auth })),
+      sign: () => { if (ready) this.setState({ signed: true }); },
+      anatomy: [
+        { k: 'Summary', v: 'The deal restated \u2014 package and price, start date, who prepared it. Directly above the signature so nothing needs scrolling back. Label left in --text-sm muted, value right at --text-row/600.' },
+        { k: 'Name field', v: 'The DS Input at 340px, labelled \u201cFull legal name\u201d. One field: no separate first and last, no title, no company \u2014 the company is already named in the checkbox.' },
+        { k: 'Signature line', v: '44px minimum over a 1px --ink-200 rule, the typed name rendered at 27px italic 300. Height is fixed whether empty or filled.' },
+        { k: 'Authorisation', v: 'The DS Checkbox. A positive first-person statement naming the company \u2014 this IS the confirmation step, which is why no modal follows.' },
+        { k: 'The act', v: 'Button variant=brand size=lg \u2014 the single brand-green fill in the whole proposal, disabled until name and authorisation both exist, with one plain line beneath removing the fear it creates.' }
+      ],
+      states: [
+        ['Rest', 'Empty field, unchecked box, disabled CTA. The signature rule is drawn and empty \u2014 the shape of what is about to happen.'],
+        ['Hover', 'Only the CTA and the checkbox respond. The signature line is not a control and never lights up.'],
+        ['Pressed', 'brightness(0.94) on the CTA from motion-base. The signature itself never reacts to the press.'],
+        ['Focus', 'Three stops in reading order \u2014 name, authorisation, sign. The green Input ring, then the checkbox ring, then the CTA outline.'],
+        ['Selected', 'n/a \u2014 nothing here is selected; the checkbox is checked and the field has a value.'],
+        ['Disabled', 'THE state that matters. The CTA is disabled until a name of more than one character AND the authorisation exist. It is visible and announced as unavailable, never hidden \u2014 the client must see what completing the form will let them do.'],
+        ['Loading', 'After the press the CTA holds its width and takes the Spinner; the field and checkbox go read-only so nothing can change mid-commit.'],
+        ['Empty', 'n/a \u2014 the empty state IS rest. A signature block with nothing to sign must not render.']
+      ].map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

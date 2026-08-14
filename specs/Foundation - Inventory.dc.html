@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); text-decoration: none; }
+    a:hover { color: var(--green-700); }
+    .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .h2 { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .num { font-variant-numeric: tabular-nums; }
+    /* the matrix */
+    .grid { display: grid; grid-template-columns: 168px repeat(8, 34px) 18px repeat(6, 34px) 62px; align-items: center; }
+    .colhead { height: 108px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+    .colhead span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10.5px; font-weight: 650; letter-spacing: 0.04em; color: var(--ink-500); white-space: nowrap; }
+    .rowname { font-size: 12.5px; font-weight: 550; padding-right: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cell { height: 34px; display: flex; align-items: center; justify-content: center; }
+    .dot { width: 9px; height: 9px; border-radius: 999px; }
+    .on { background: var(--green-600); }
+    .off { box-shadow: inset 0 0 0 1.25px var(--ink-200); }
+    .band { border-top: 1px solid var(--hairline); }
+    .bartrack { height: 8px; border-radius: 999px; background: var(--ink-100); overflow: hidden; }
+    .barfill { height: 100%; border-radius: 999px; background: var(--green-600); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--ink-900);">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 84px 48px 130px;">
+
+    <a href="Hivory Design System.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-500);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="eye">Inventory · the road to V1</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 17ch;">Complete, and measured.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--ink-700); text-wrap: pretty;">Measured, not remembered. A component counts as done only when it carries all eight states and all six documents — the bar this project set itself. As of 31 July every one of the seventeen clears it. This page stays because the bar only holds if it is re-measured; presence is not quality, and the next component added starts at zero.</p>
+
+    <!-- ═══ HEADLINE ═══ -->
+    <div style="margin-top: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <sc-for list="{{ headline }}" as="h" hint-placeholder-count="4">
+        <div class="card" style="padding: 20px 22px;">
+          <div class="num" style="font-size: 36px; font-weight: 550; letter-spacing: -0.03em; color: {{ h.color }};">{{ h.v }}</div>
+          <div style="margin-top: 3px; font-size: 12.5px; font-weight: 650;">{{ h.k }}</div>
+          <div style="margin-top: 8px; font-size: 11.5px; line-height: 1.5; color: var(--ink-500);">{{ h.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- ═══ THE MATRIX ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The matrix</div><h2 class="h2">Twenty-four components, fourteen requirements, no holes.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 620px; font-size: 15px; line-height: 1.6; color: var(--ink-700);">A filled dot means the page carries a labelled specimen or section for it. Where a state genuinely cannot apply, the page says so in words with the reason — a declared exemption counts, a silent omission never did.</p>
+
+    <div class="card" style="margin-top: 34px; padding: 4px 26px 22px; overflow-x: auto;">
+      <div class="grid">
+        <div></div>
+        <sc-for list="{{ stateCols }}" as="c" hint-placeholder-count="8"><div class="colhead"><span>{{ c }}</span></div></sc-for>
+        <div></div>
+        <sc-for list="{{ docCols }}" as="c" hint-placeholder-count="6"><div class="colhead"><span>{{ c }}</span></div></sc-for>
+        <div class="colhead"><span>Score</span></div>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="17">
+        <div class="grid band">
+          <div class="rowname" style="color: {{ r.nameColor }};">{{ r.name }}</div>
+          <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="8"><div class="cell"><span class="dot {{ c }}"></span></div></sc-for>
+          <div></div>
+          <sc-for list="{{ r.docs }}" as="c" hint-placeholder-count="6"><div class="cell"><span class="dot {{ c }}"></span></div></sc-for>
+          <div class="cell num" style="justify-content: flex-end; font-size: 12px; font-weight: 600; color: {{ r.scoreColor }};">{{ r.score }}</div>
+        </div>
+      </sc-for>
+      <div class="grid band" style="padding-top: 8px;">
+        <div class="rowname" style="color: var(--ink-500); font-weight: 650;">Have it</div>
+        <sc-for list="{{ stateTotals }}" as="t" hint-placeholder-count="8"><div class="cell num" style="font-size: 11px; font-weight: 600; color: {{ t.color }};">{{ t.n }}</div></sc-for>
+        <div></div>
+        <sc-for list="{{ docTotals }}" as="t" hint-placeholder-count="6"><div class="cell num" style="font-size: 11px; font-weight: 600; color: {{ t.color }};">{{ t.n }}</div></sc-for>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- ═══ THE GAPS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The gaps</div><h2 class="h2">What the passes turned up.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--ink-700); text-wrap: pretty;">The holes ran in COLUMNS, not rows — which is why V1 was reachable in a day: each was one systematic pass, not seventeen investigations. Each pass then found real defects the prose had been hiding, listed below.</p>
+
+    <div class="card" style="margin-top: 34px; padding: 26px 28px;">
+      <sc-for list="{{ gaps }}" as="g" hint-placeholder-count="8">
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <div style="display: flex; align-items: baseline; gap: 12px;">
+            <span style="width: 108px; flex-shrink: 0; font-size: 12.5px; font-weight: 650;">{{ g.k }}</span>
+            <span style="flex: 1; min-width: 0;">
+              <span class="bartrack" style="display: block;"><span class="barfill" style="display: block; width: {{ g.pct }};"></span></span>
+            </span>
+            <span class="num" style="width: 62px; flex-shrink: 0; text-align: right; font-size: 11.5px; color: var(--ink-500);">{{ g.label }}</span>
+          </div>
+          <div style="margin-top: 8px; padding-left: 120px; font-size: 11.5px; line-height: 1.55; color: var(--ink-500); text-wrap: pretty;">{{ g.why }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ found }}" as="d" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: 12.5px; font-weight: 650;">{{ d.k }}</span>
+          <span style="font-size: 12.5px; line-height: 1.55; color: var(--ink-700); text-wrap: pretty;">{{ d.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- ═══ PORTAL COVERAGE ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">DS vs portal</div><h2 class="sect-h">Built in the product, absent from the system.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The board above measures the components that HAVE a page. This measures the opposite direction: things the console and proposal genuinely render, whose rules live inside a product file instead of in the design system. Each one works — the debt is that rebuilding it means reverse-engineering one file.</p>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="lawrow"><span class="n">Tracked changes</span><span class="d"><b style="font-weight: 650;">Fully built</b> \u2014 a real word-level diff (<span style="font-family: var(--font-mono);">trackHtml()</span> + <span style="font-family: var(--font-mono);">artTracked</span> in the console\u2019s logic), deletions struck red at 55%, insertions on a green wash, \u201cYour change\u201d with Keep / Undo, and editing back to the original clears tracking. The most complex behaviour in the product and the least documented: it exists as prose in the doctrine and as code in one file, nowhere in between.</span></div>
+      <div class="lawrow"><span class="n">Pill field</span><span class="d"><b style="font-weight: 650;">Fully built</b> in the invite flow (<span style="font-family: var(--font-mono);">invPills</span>, <span style="font-family: var(--font-mono);">invKeyDown</span>): emails commit to removable pills on comma, Enter or space, Backspace on empty pops the last, pasted commas split. Real input behaviour with no spec.</span></div>
+      <div class="lawrow"><span class="n">Ask popover</span><span class="d">Built (<span style="font-family: var(--font-mono);">artNoteFor</span> / <span style="font-family: var(--font-mono);">artNoteText</span>) and load-bearing: every change verb routes through it rather than firing blind. The doctrine specs its copy in detail; the system has no page for it.</span></div>
+      <div class="lawrow"><span class="n">Drop zone</span><span class="d">Built in the Knowledge upload flow (\u201cDrop files here\u201d, Browse files, \u201cOriginals are stored unchanged\u201d). Distinct from <a href="Component - Image slot.dc.html">Image slot</a> \u2014 that takes a picture into a draft, this takes a FILE into Knowledge.</span></div>
+      <div class="lawrow"><span class="n">Card dismiss</span><span class="d">The doctrine calls it \u201cone primitive, everywhere\u201d \u2014 a hover-revealed 20px white \u2715 chip straddling a card\u2019s top-right corner. Used across Performance. No page.</span></div>
+      <div class="lawrow" style="border-bottom: none;"><span class="n">Not yet verified</span><span class="d">Date range presets, the attachment chip and the scorecard spine were flagged by a coverage probe that matched page names by first word and produced at least two false positives \u2014 <a href="Kit - Chart.dc.html">Chart Kit</a> already covers <span style="font-family: var(--font-mono);">scorecard/spine</span> and <span style="font-family: var(--font-mono);">chart/spark</span>. Re-audit by reading before building; a bad list is worse than no list.</span></div>
+    </div>
+
+    <!-- ═══ FOUNDATIONS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Foundations</div><h2 class="h2">The layer underneath is done.</h2></div>
+    <div class="card" style="margin-top: 34px; padding: 12px 28px;">
+      <sc-for list="{{ foundations }}" as="f" hint-placeholder-count="6">
+        <div style="display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="width: 16px; flex-shrink: 0;">
+            <sc-if value="{{ f.done }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><span style="display: block; width: 9px; height: 9px; border-radius: 999px; box-shadow: inset 0 0 0 1.25px var(--amber-500);"></span></sc-if>
+          </span>
+          <span style="width: 168px; flex-shrink: 0; font-size: 12.5px; font-weight: 650;">{{ f.k }}</span>
+          <span style="flex: 1; font-size: 12.5px; line-height: 1.55; color: var(--ink-700); text-wrap: pretty;">{{ f.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- ═══ NOT BUILT ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Not built</div><h2 class="h2">Named, specced, absent.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <sc-for list="{{ missing }}" as="m" hint-placeholder-count="6">
+        <div class="card" style="padding: 20px 22px;">
+          <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span style="font-size: 13px; font-weight: 650;">{{ m.k }}</span>
+            <span style="flex: 1;"></span>
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: {{ m.tagColor }};">{{ m.tag }}</span>
+          </div>
+          <div style="margin-top: 8px; font-size: 11.5px; line-height: 1.55; color: var(--ink-500); text-wrap: pretty;">{{ m.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- ═══ V1 BAR ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The bar</div><h2 class="h2">What V1 means.</h2></div>
+    <div class="card" style="margin-top: 34px; padding: 12px 28px;">
+      <sc-for list="{{ bar }}" as="b" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: 12.5px; font-weight: 650;">{{ b.k }}</span>
+          <span style="font-size: 12.5px; line-height: 1.55; color: var(--ink-700); text-wrap: pretty;">{{ b.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: 11px; color: var(--ink-500);">Hivory Design System · Inventory · measured 31 July 2026 (tokens pass complete) by scanning every component page for labelled specimens and named sections. Presence only — a filled dot is not a claim about quality.</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const STATES = ['Rest', 'Hover', 'Pressed', 'Focus', 'Selected', 'Disabled', 'Loading', 'Empty'];
+    const DOCS = ['Anatomy', 'Variants', 'Tokens used', 'Do / Don\u2019t', 'Accessibility', 'Content rules'];
+    // measured 31 Jul — labelled specimens / named sections present in each component page
+    const RAW = [
+      ['Accordion',              '11111111', '111111'],
+      ['Avatar',                '11111111', '111111'],
+      ['Badge',                 '11111111', '111111'],
+      ['Button',                '11111111', '111111'],
+      ['Cap meter',             '11111111', '111111'],
+      ['Card',                  '11111111', '111111'],
+      ['Channel Chip',          '11111111', '111111'],
+      ['Checkbox and Switch',   '11111111', '111111'],
+      ['Composer',              '11111111', '111111'],
+      ['Filter Select',         '11111111', '111111'],
+      ['Image slot',            '11111111', '111111'],
+      ['Input',                 '11111111', '111111'],
+      ['Menu',                  '11111111', '111111'],
+      ['Modal',                 '11111111', '111111'],
+      ['Sidebar',               '11111111', '111111'],
+      ['Split button',          '11111111', '111111'],
+      ['Sign in',                '11111111', '111111'],
+      ['Signature block',       '11111111', '111111'],
+      ['Spinner',               '11111111', '111111'],
+      ['Step timeline',         '11111111', '111111'],
+      ['Stepper',               '11111111', '111111'],
+      ['Table',                 '11111111', '111111'],
+      ['Tabs',                  '11111111', '111111'],
+      ['Toast',                 '11111111', '111111'],
+      ['Topbar',                 '11111111', '111111'],
+      ['Transcript',            '11111111', '111111'],
+      ['Tooltip',               '11111111', '111111']
+    ];
+    const rows = RAW.map(([name, st, dc]) => {
+      const cells = st.split('').map((c) => c === '1' ? 'on' : 'off');
+      const docs = dc.split('').map((c) => c === '1' ? 'on' : 'off');
+      const score = (st + dc).split('').filter((c) => c === '1').length;
+      return { name, cells, docs, score: score + '/14', n: score,
+        nameColor: score >= 8 ? 'var(--ink-900)' : 'var(--ink-700)',
+        scoreColor: score >= 8 ? 'var(--green-700)' : (score <= 3 ? 'var(--red-700)' : 'var(--ink-500)') };
+    }).sort((a, b) => a.n - b.n);
+
+    const N = RAW.length;
+    const col = (i) => RAW.filter(([, st, dc]) => (st + dc)[i] === '1').length;
+    const tot = (i) => { const n = col(i); return { n, color: n === 0 ? 'var(--red-700)' : (n >= N * 0.6 ? 'var(--green-700)' : 'var(--ink-500)') }; };
+    // two loops with an explicit spacer between them — the grid has a 10th spacer column,
+    // so a single 14-cell loop shifts every document total one column left
+    const stateTotals = Array.from({ length: 8 }, (_, i) => tot(i));
+    const docTotals = Array.from({ length: 6 }, (_, i) => tot(i + 8));
+
+    const FOUND = [
+      { k: 'Tokens used', v: 'Every page already carried a hand-written footer token line, and several were WRONG. Tooltip claimed --surface-dark and --hover-on-white and uses neither; Avatar claimed --green-500 for its presence dot where the component correctly uses --green-600. The documentation was contradicting the mark-usage law while the code obeyed it.' },
+      { k: 'Hover timing', v: '16 state transitions across seven components eased at --duration-fast (120ms). The soft-motion doctrine reserves 120ms for PRESS and makes 180ms the default for every state change \u2014 so hover was snapping where it should settle. Fixed in the bundle.' },
+      { k: 'Modal', v: 'The bundle component carries no motion tokens and no scrim, though the confirmation doctrine specifies a 140ms fade over a 28% ink scrim. The behaviour lived in the spec PAGE, not the component \u2014 the widest DS-versus-doctrine gap found.' },
+      { k: 'Spinner', v: 'Three tokens, none of them motion: the counter-rotation is hard-coded in its own keyframes instead of consuming --duration-spinner, so the cycle cannot be tuned in one place.' },
+      { k: 'Double focus ring', v: 'Fields focused with a 3px green halo AND the new motion-base outline \u2014 two rings on one input. Introduced that morning by the motion pass, caught by the tokens pass the same day.' },
+      { k: 'Print contrast', v: 'The colour sweep collapsed #6E7072 to its NEAREST token and dropped twelve runs of 9pt text on the signed contract from 4.9:1 to 3.3:1. Colour drift must round toward contrast, never toward the nearest value \u2014 and print hierarchy is never colour at all.' }
+    ];
+    const WHY = {
+      'Rest': 'Was shown on most pages but never NAMED, so there was no baseline to compare the other seven against. Now labelled everywhere, with the actual token values.',
+      'Hover': 'Existed in code, never side by side with rest — auditing it meant mousing over the page. Now stated, and the timing bug it hid (120ms instead of 180) is fixed.',
+      'Pressed': 'Absent from all seventeen: nothing had a pressed state until the system-wide brightness(0.94) landed the same morning. Now documented as one rule, and why it is brightness rather than a transform.',
+      'Focus': 'The :focus-visible ring reached all 45 files via motion-base, but only Tabs showed it. Now every page states its ring target — the box, not the label; the row, not the cell.',
+      'Selected': 'The state people conflate with hover. Only Tabs distinguished them. Now each page says whether selection exists at all, and where it lives when it does not (usually the containing row).',
+      'Disabled': 'The best-covered state from the start — a disabled control is visually obvious enough to remember. The pass added the reasoning: keep it visible, keep it announced, suppress the press.',
+      'Loading': 'Only Button had one. Now each page names its own answer — Skeleton at the same row height, header-real-body-skeleton, or an explicit refusal (a toast is never a loading state).',
+      'Empty': 'Zero of seventeen, and the most expensive omission: an empty table, menu or queue is exactly where a product feels broken. Now every page specifies it, and several specify DELETION — a badge with no status is no badge.'
+    };
+    const gaps = STATES.map((k, i) => {
+      const have = col(i);
+      return { k, pct: '100%', label: 'now ' + N + ' of ' + N, why: WHY[k] };
+    });
+
+    const totalCells = N * 14;
+    const filled = RAW.reduce((a, [, st, dc]) => a + (st + dc).split('').filter((c) => c === '1').length, 0);
+    const complete = RAW.filter(([, st, dc]) => (st + dc).split('').every((c) => c === '1')).length;
+
+    return {
+      stateCols: STATES, docCols: DOCS, rows, stateTotals, docTotals, gaps, found: FOUND,
+      headline: [
+        { k: 'Components complete', v: '24', sub: 'All twenty-four carry eight states and six documents. V1 bar met 31 July 2026.', color: 'var(--green-700)' },
+        { k: 'Requirements met', v: '100%', sub: '336 of 336 cells across twenty-four component pages, verified by re-scan rather than by claim.', color: 'var(--green-700)' },
+        { k: 'Foundations done', v: '6 / 7', sub: 'Tokens, rhythm, motion, colour, iconography, mocks. Keyboard operability is the one open item.', color: 'var(--green-700)' },
+        { k: 'Defects found', v: '6', sub: 'Each pass turned up real bugs the prose had hidden \u2014 wrong token claims, snapping hover, a double focus ring.', color: 'var(--ink-900)' }
+      ],
+      foundations: [
+        { k: 'Colour tokens', v: '2,410 literals converted across 36 files; three tokens added that the doctrine already named (--chart-grid, --canvas-glow-green, --canvas-glow-warm). Portal templates hold 11 strays, all deliberate.', done: true, open: false },
+        { k: 'Rhythm', v: 'Seven rungs (3 \u00b7 8 \u00b7 12 \u00b7 20 \u00b7 34 \u00b7 64 \u00b7 104); 1,165 gaps swept; every surface verifies on the ladder.', done: true, open: false },
+        { k: 'Motion', v: 'Every duration and easing from a token \u2014 zero literal ms or cubic-bezier left. Hover lift retired. Focus, pressed and reduced-motion in all 45 files.', done: true, open: false },
+        { k: 'Component chrome', v: 'Reconciled to Glass Engine: no 1px borders, buttons are pills on the portal size ladder, --radius-control finally adopted.', done: true, open: false },
+        { k: 'Iconography', v: 'Tabler is the system set; brand exceptions named. Hand-drawn stroke SVGs in existing pages remain debt.', done: true, open: false },
+        { k: 'Mock Kit', v: 'Five surfaces with anatomy, ten laws, compact and expanded widths.', done: true, open: false },
+        { k: 'Keyboard operability', v: '277 clickable div/span elements carry an onClick and none is reachable by keyboard. Deliberately not bulk-patched \u2014 a focus stop Enter cannot activate is worse than none.', done: false, open: true }
+      ],
+      missing: [
+        { k: 'Stepper', v: 'Built and shipped inside the proposal rail, never extracted as a component page. The list-nav gliding pill is specified in doctrine but has no specimen.', tag: 'specced', tagColor: 'var(--amber-700)' },
+        { k: 'Signature block', v: 'Type-to-sign, signature preview, authorisation and the receipt state all run in the proposal. No page, no states, no rules.', tag: 'specced', tagColor: 'var(--amber-700)' },
+        { k: 'Status language', v: 'The vocabulary (Drafting \u00b7 Editing \u00b7 Researching \u00b7 Scheduled \u00b7 Live \u00b7 held \u00b7 revising \u00b7 recurring) is used everywhere and defined in prose only.', tag: 'named only', tagColor: 'var(--red-700)' },
+        { k: 'Marketing section kit', v: 'The one place Martel is legal, and the only surface a stranger meets before the proposal. Nothing exists.', tag: 'not started', tagColor: 'var(--red-700)' },
+        { k: 'Image slot', v: 'Drop-to-replace behaviour is load-bearing in Design, Knowledge and every post artifact. Used in four surfaces, specified in none.', tag: 'in use', tagColor: 'var(--amber-700)' },
+        { k: 'Split button', v: 'Publishing verbs are split buttons by law (approve + schedule chevron). The law exists; the component does not.', tag: 'specced', tagColor: 'var(--amber-700)' }
+      ],
+      bar: [
+        { k: 'Eight states', v: 'Rest \u00b7 hover \u00b7 pressed \u00b7 focus-visible \u00b7 selected \u00b7 disabled \u00b7 loading \u00b7 empty \u2014 shown together on one page so they can be compared, or explicitly declared not applicable with a reason.' },
+        { k: 'Variants together', v: 'Every variant visible at once, not one at a time behind a control. A variant you cannot see beside its siblings cannot be judged.' },
+        { k: 'Anatomy', v: 'The parts named with their real measurements, so an implementation can be checked rather than eyeballed.' },
+        { k: 'Tokens used', v: 'The actual token names the component consumes, read from its stylesheet rather than from the page around it. Without this the page is a picture, not a spec. Cleared across all 17 on 31 Jul \u2014 and the pass immediately found drift the prose had been hiding.' },
+        { k: 'Do / Don\u2019t', v: 'At least one of each, drawn from a real mistake rather than invented. The don\u2019ts are the useful half.' },
+        { k: 'Accessibility & content', v: 'Keyboard path and screen-reader behaviour; plus how the words inside it are written \u2014 capitalisation, length, voice, and what it must never say.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

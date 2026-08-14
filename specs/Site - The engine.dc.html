@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    /* ── motion-base (system, do not localise) ─────────────────────────── */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="link"]):focus-visible {
+      outline: 2px solid var(--mk-accent);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"]):active { filter: brightness(0.94); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+      .rv { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── marketing tokens, read from Raphael5000/Hivory@main globals.css ── */
+    :root {
+      --mk-bg: #FAFAF8; --mk-bg-subtle: #F4F3F0; --mk-bg-muted: #EDECEA;
+      --mk-surface: #FFFFFF; --mk-fg: #1A1A1A; --mk-fg-muted: #6B6B6B; --mk-fg-subtle: #9A9A9A;
+      --mk-border: #E5E4E1; --mk-border-strong: #D1D0CC; --mk-secondary: #F0EDE8;
+      --mk-accent: #00EE7F; --mk-accent-hover: #00D470; --mk-accent-muted: rgba(0,238,127,0.12);
+      --mk-serif: "Martel", Georgia, "Times New Roman", serif;
+      --mk-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --mk-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body { margin: 0; background: var(--mk-bg); color: var(--mk-fg); font-family: var(--mk-sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+    @keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .rv { opacity: 0; transform: translateY(30px); transition: opacity 700ms var(--mk-reveal), transform 700ms var(--mk-reveal); }
+    .rv.in { opacity: 1; transform: none; }
+
+    .serif { font-family: var(--mk-serif); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; margin: 0; }
+    .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mk-fg-muted); }
+    .rule { height: 1px; width: 96px; background: var(--mk-accent); transform-origin: left; }
+    .lede { font-size: 17px; line-height: 1.65; color: var(--mk-fg-muted); }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+    .sec { padding: 112px 0; }
+    .plate { border-radius: 14px; background: var(--mk-surface); box-shadow: 0 20px 25px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04); overflow: hidden; }
+    .steplink { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .steplink span.l { display: inline-block; font-size: 20px; font-weight: 500; color: #fff; transition: transform 300ms var(--mk-ease); }
+    .steplink:hover span.l { transform: translateX(8px); }
+    .kindrow { display: grid; grid-template-columns: 1.1fr 2fr auto; gap: 24px; align-items: center; padding: 30px 0; border-bottom: 1px solid rgba(229,228,225,0.6); transition: background 300ms var(--mk-ease), border-color 300ms var(--mk-ease); }
+    .kindrow:hover { background: rgba(255,255,255,0.55); border-color: var(--mk-accent); }
+    .kindrow .go { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; opacity: 0; transform: translateX(-8px); transition: opacity 300ms var(--mk-ease), transform 300ms var(--mk-ease); white-space: nowrap; }
+    .kindrow:hover .go { opacity: 1; transform: none; }
+    .hdrbtn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--mk-border); background: var(--mk-surface); font-size: 12px; font-weight: 500; transition: box-shadow 300ms var(--mk-ease), color 300ms var(--mk-ease); }
+    .hdrbtn:hover { box-shadow: inset 0 0 0 1px var(--mk-fg); }
+    @media (max-width: 860px) {
+      .wrap { padding: 0 24px; }
+      .sec { padding: 72px 0; }
+      .two { grid-template-columns: 1fr !important; gap: 34px !important; }
+      .kindrow { grid-template-columns: 1fr; gap: 10px; }
+      .kindrow .go { opacity: 1; transform: none; }
+      .hero-h { font-size: 40px !important; }
+    }
+  </style>
+</helmet>
+<div data-screen-label="The engine">
+
+  <!-- HEADER -->
+  <header style="position: sticky; top: 0; z-index: 50; padding: 24px 0; background: rgba(250,250,248,0.8); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="#" class="hdrbtn"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4h12M2 8h12M2 12h12"></path></svg>Menu</a>
+      <a href="#" style="display: inline-flex; align-items: center; gap: 9px;">
+        <svg width="22" height="25" viewBox="0 0 16 16" fill="none" stroke="var(--mk-accent)" stroke-width="1.1" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z" opacity="0.55"></path></svg>
+        <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em;">Hivory</span>
+      </a>
+      <a href="#" class="hdrbtn"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg>Get in touch</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="padding: 96px 0 80px;">
+    <div class="wrap">
+      <div class="eyebrow" style="animation: fadeInUp 0.6s var(--mk-ease) both;">The engine</div>
+      <h1 class="serif hero-h" style="margin-top: 20px; font-size: 64px; max-width: 17ch; animation: fadeInUp 0.8s 0.15s var(--mk-ease) both;">Your growth team, running every week.</h1>
+      <p class="lede" style="margin: 28px 0 0; max-width: 54ch; font-size: 19px; animation: fadeInUp 0.8s 0.3s var(--mk-ease) both;">An engine that reads your business, drafts the work, and holds it for you. You approve. It ships. About thirty minutes of your week.</p>
+      <div class="rule" style="margin-top: 40px; animation: growLine 1s 0.5s var(--mk-ease) both;"></div>
+    </div>
+  </section>
+
+  <!-- THE LOOP -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="rv" ref="{{ rv1 }}">
+        <div class="eyebrow">How it works</div>
+        <h2 class="serif" style="margin-top: 20px; font-size: 44px; max-width: 16ch;">Four steps, every week.</h2>
+      </div>
+      <div class="rv" ref="{{ rv2 }}" style="margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+        <sc-for list="{{ loop }}" as="l" hint-placeholder-count="4">
+          <div>
+            <div style="font-family: var(--mk-serif); font-size: 15px; color: var(--mk-accent);">{{ l.n }}</div>
+            <div style="margin-top: 14px; height: 1px; background: var(--mk-border);"></div>
+            <div class="serif" style="margin-top: 20px; font-size: 24px;">{{ l.t }}</div>
+            <p style="margin: 12px 0 0; font-size: 14.5px; line-height: 1.65; color: var(--mk-fg-muted);">{{ l.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT PLATE — the work, held for review -->
+  <section class="sec" style="background: var(--mk-bg-subtle);">
+    <div class="wrap">
+      <div class="rv two" ref="{{ rv3 }}" style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+        <div>
+          <div class="eyebrow">What arrives</div>
+          <h2 class="serif" style="margin-top: 20px; font-size: 40px; max-width: 15ch;">The real thing, not a report about it.</h2>
+          <p class="lede" style="margin: 24px 0 0; max-width: 44ch;">Work comes to you as the finished object — the post as it will appear, the page as it will publish, the message as it will send. You read it the way its audience will.</p>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 7px; margin-top: 40px; font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--mk-accent); padding-bottom: 3px;">See the work we make <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+        </div>
+        <div class="plate">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-bottom: 1px solid var(--mk-border);">
+            <span style="width: 26px; height: 26px; border-radius: 8px; background: var(--mk-bg-muted); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="var(--mk-fg-muted)" stroke-width="1.4" stroke-linecap="round"><rect x="2.4" y="3.2" width="11.2" height="9.6" rx="2"></rect><path d="M2.4 6.4h11.2"></path></svg></span>
+            <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 600;">Refill loyalty — LinkedIn post</span><span style="display: block; font-size: 10.5px; color: var(--mk-fg-subtle);">Social · held for your review</span></span>
+          </div>
+          <div style="padding: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 34px; height: 34px; border-radius: 8px; background: #2A2622; color: #F7F2EA; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">PG</span>
+              <span style="min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 600;">Pure Good</span><span style="display: block; font-size: 10.5px; color: var(--mk-fg-subtle);">4,120 followers · now</span></span>
+            </div>
+            <div style="margin-top: 12px; font-size: 12.5px; line-height: 1.6; color: var(--mk-fg);">A year ago we moved every product line to compostable packaging. It cost us 14% in margin for two quarters. Here's what nobody tells you about the third.</div>
+            <div style="margin-top: 12px; aspect-ratio: 1.91 / 1; border-radius: 8px; background: #EDE7DC;"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-top: 1px solid var(--mk-border);">
+            <span style="font-size: 10.5px; color: var(--mk-fg-subtle);">Writer · draft 2</span><span style="flex: 1;"></span>
+            <span style="font-size: 11.5px; font-weight: 500; color: var(--mk-fg-muted);">Request changes</span>
+            <span style="display: inline-flex; align-items: center; height: 27px; padding: 0 13px; border-radius: 999px; background: var(--mk-fg); color: #fff; font-size: 11.5px; font-weight: 600;">Approve &amp; publish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT MAKES -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="rv" ref="{{ rv4 }}">
+        <div class="eyebrow">What it makes</div>
+        <h2 class="serif" style="margin-top: 20px; font-size: 44px; max-width: 14ch;">Four surfaces, one engine.</h2>
+      </div>
+      <div class="rv" ref="{{ rv5 }}" style="margin-top: 56px; border-top: 1px solid var(--mk-border);">
+        <sc-for list="{{ kinds }}" as="k" hint-placeholder-count="4">
+          <a class="kindrow" href="#">
+            <span class="serif" style="font-size: 26px;">{{ k.t }}</span>
+            <span style="font-size: 14.5px; line-height: 1.65; color: var(--mk-fg-muted);">{{ k.d }}</span>
+            <span class="go">{{ k.cta }} <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="sec" style="background: var(--mk-bg-subtle);">
+    <div class="wrap">
+      <div class="rv two" ref="{{ rv6 }}" style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+        <div class="plate" style="padding: 34px 36px;">
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mk-fg-subtle);">Pure Good · 90 days</div>
+          <div style="margin-top: 26px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px;">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+              <div>
+                <div style="font-family: var(--mk-serif); font-size: 38px; letter-spacing: -0.03em; line-height: 1; color: var(--mk-fg);">{{ s.v }}</div>
+                <div style="margin-top: 8px; font-size: 12.5px; line-height: 1.5; color: var(--mk-fg-muted);">{{ s.k }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--mk-border); font-size: 11.5px; color: var(--mk-fg-subtle);">Measured from their own analytics and CRM — never ours.</div>
+        </div>
+        <div>
+          <div class="eyebrow">Proof</div>
+          <h2 class="serif" style="margin-top: 20px; font-size: 40px; max-width: 15ch;">Numbers from your accounts, not our dashboard.</h2>
+          <p class="lede" style="margin: 24px 0 0; max-width: 44ch;">Every figure the engine reports comes from a source you connected and can check. When something is not working, the report says so — that is the only way the good numbers mean anything.</p>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 7px; margin-top: 40px; font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--mk-accent); padding-bottom: 3px;">Read the case study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section style="position: relative; background: linear-gradient(135deg, #1d2a22 0%, #14201a 60%, #0f1712 100%); overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.35);"></div>
+    <div class="wrap" style="position: relative; padding-top: 112px; padding-bottom: 112px;">
+      <div class="two" style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+        <h2 class="serif" style="font-size: 48px; color: #fff; max-width: 12ch;">How can we help?</h2>
+        <div style="display: flex; flex-direction: column;">
+          <a class="steplink" href="#"><span class="l">Work with us</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+          <a class="steplink" href="#"><span class="l">See a proposal</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+          <a class="steplink" href="#" style="border-bottom: none;"><span class="l">Say hello</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid var(--mk-border); padding: 32px 0;">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <span style="font-size: 12px; color: var(--mk-fg-subtle);">© 2026 Hivory</span>
+      <span style="display: flex; gap: 16px;">
+        <a href="#" style="font-size: 12px; color: var(--mk-fg-subtle);">Privacy Policy</a>
+        <a href="#" style="font-size: 12px; color: var(--mk-fg-subtle);">LinkedIn</a>
+      </span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const els = Object.values(this._rv || {}).filter(Boolean);
+    if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        this._io.unobserve(en.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    els.forEach((e, i) => { e.style.transitionDelay = (i % 2) * 60 + 'ms'; this._io.observe(e); });
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  renderVals() {
+    this._rv = this._rv || {};
+    const ref = (k) => (el) => { if (el) this._rv[k] = el; };
+    return {
+      rv1: ref('a'), rv2: ref('b'), rv3: ref('c'), rv4: ref('d'), rv5: ref('e'), rv6: ref('f'),
+      loop: [
+        { n: '01', t: 'You ask', d: 'A goal in plain words \u2014 or nothing at all. The engine already read your site, your numbers and your market.' },
+        { n: '02', t: 'It proposes', d: 'Drafts arrive as the finished object, not a description of one. Everything is held for you.' },
+        { n: '03', t: 'You approve', d: 'Read it, change it in your own words, or send it back. Nothing ships without you.' },
+        { n: '04', t: 'It ships', d: 'Published, sent, deployed \u2014 then measured against the goal you set.' }
+      ],
+      kinds: [
+        { t: 'Website', d: 'Landing pages, product pages and the conversion work that follows \u2014 deployed to staging first, live on your word.', cta: 'See a page' },
+        { t: 'Content', d: 'Long-form articles, social posts and newsletters written in your voice, from what the engine knows about your business.', cta: 'See a post' },
+        { t: 'Outbound', d: 'Enriched buyer lists and messages written one at a time from real evidence \u2014 every send and reply logged to your CRM.', cta: 'See a sequence' },
+        { t: 'Brand', d: 'Your identity held consistent across everything the engine makes, and learned from every choice you approve.', cta: 'See the kit' }
+      ],
+      stats: [
+        { v: '31%', k: 'repeat-order growth in two quarters' },
+        { v: '118', k: 'retail buyers enriched and contacted' },
+        { v: '4\u00d7', k: 'publishing rhythm, same headcount' },
+        { v: '30 min', k: 'of their week spent approving' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,43 +1,89 @@
-<!-- @dsCard group="Spacing" viewport="700x230" subtitle="Engine: radius 8–10, 4px spacing grid, whisper-quiet shadows, 120ms ease" name="Radii · spacing · shadows" -->
+<!-- @dsCard group="Spacing" viewport="700x400" subtitle="Radii sm 8 → 2xl 16 + pill · seven-rung rhythm ladder 3→104 · pill buttons 26/33/40" name="Radii · spacing · shadows" -->
 <!DOCTYPE html>
-<html><head><link rel="stylesheet" href="../styles.css">
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
-  body { margin: 0; background: var(--surface-app); font-family: var(--font-body); }
-  .wrap { padding: 16px; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 12px; }
-  .panel { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px 16px; }
-  .lbl { font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .radii { display: flex; gap: 10px; align-items: flex-end; }
-  .radii div { background: var(--surface-sunken); border: 1px solid var(--border-strong); width: 52px; height: 52px; display: flex; align-items: flex-end; justify-content: center; font-family: var(--font-mono); font-size: 8.5px; color: var(--text-muted); padding-bottom: 4px; box-sizing: border-box; }
-  .spaces { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
-  .spaces span { background: var(--green-500); width: 14px; display: inline-block; border-radius: 2px; }
-  .shadows { display: flex; gap: 12px; }
-  .shadows div { background: var(--white); border-radius: var(--radius-md); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 8.5px; color: var(--text-muted); }
+  body { margin: 0; background: var(--surface-app); font-family: var(--font-body); color: var(--text-body); }
+  .wrap { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .cols-a { display: grid; grid-template-columns: 2.3fr 1fr; gap: 12px; }
+  .cols-b { display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; }
+  .panel { background: var(--surface-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); padding: 14px 16px; box-sizing: border-box; }
+  .lbl { font-size: 9.5px; font-weight: var(--weight-semibold); color: var(--text-muted); display: block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+
+  .radii { display: flex; gap: 10px; align-items: flex-start; }
+  .radii .r { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .radii .box { background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--border-strong); width: 44px; height: 44px; box-sizing: border-box; }
+  .radii .cap { font-size: 9px; color: var(--text-muted); text-align: center; line-height: 1.4; font-variant-numeric: tabular-nums; }
+  .radii .cap em { font-style: normal; color: var(--text-faint); font-size: 8px; display: block; }
+
+  .shadows { display: flex; gap: 10px; }
+  .shadows .s { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .shadows .tile { background: var(--white); border-radius: var(--radius-md); width: 44px; height: 44px; }
+  .shadows .cap { font-size: 9px; color: var(--text-muted); }
+
+  .ladder { display: flex; flex-direction: column; gap: 8px; }
+  .rung { display: flex; align-items: center; gap: 8px; }
+  .rung .n { width: 26px; flex: none; text-align: right; font-size: 10.5px; font-weight: var(--weight-semibold); color: var(--ink-950); font-variant-numeric: tabular-nums; }
+  .rung .bar { height: 10px; flex: none; background: var(--green-500); }
+  .rung .name { font-size: 10px; font-weight: var(--weight-semibold); color: var(--ink-950); }
+  .rung .job { font-size: 9.5px; color: var(--text-muted); }
+
+  .btns { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .brow { display: flex; align-items: center; gap: 8px; }
+  .btn { display: inline-flex; align-items: center; background: var(--action-primary); color: var(--on-action-primary); border-radius: var(--radius-pill); font-weight: var(--weight-semibold); }
+  .btn.sm { height: 26px; padding: 0 12px; font-size: 11.5px; }
+  .btn.md { height: 33px; padding: 0 14px; font-size: 12.5px; }
+  .btn.lg { height: 40px; padding: 0 16px; font-size: 13.5px; }
+  .bcap { font-size: 9.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .note { font-size: 10.5px; color: var(--text-muted); line-height: 1.5; }
+  .note b { color: var(--ink-950); font-weight: var(--weight-semibold); }
 </style></head>
 <body>
-  <div class="wrap">
+<div class="wrap">
+  <div class="cols-a">
     <div class="panel">
       <span class="lbl">Radii</span>
       <div class="radii">
-        <div style="border-radius: var(--radius-sm);">6</div>
-        <div style="border-radius: var(--radius-md);">8</div>
-        <div style="border-radius: var(--radius-lg);">10</div>
-        <div style="border-radius: var(--radius-xl);">14</div>
-        <div style="border-radius: var(--radius-pill); width: 64px; height: 36px;">pill</div>
-      </div>
-    </div>
-    <div class="panel">
-      <span class="lbl">Spacing · 4px grid</span>
-      <div class="spaces">
-        <span style="height: 4px;"></span><span style="height: 8px;"></span><span style="height: 12px;"></span><span style="height: 16px;"></span><span style="height: 20px;"></span><span style="height: 24px;"></span><span style="height: 32px;"></span><span style="height: 40px;"></span><span style="height: 48px;"></span><span style="height: 64px;"></span>
+        <div class="r"><div class="box" style="border-radius: var(--radius-sm);"></div><span class="cap">sm · 8</span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-md);"></div><span class="cap">md · 9</span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-control);"></div><span class="cap">control · 10<em>buttons · inputs</em></span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-lg);"></div><span class="cap">lg · 12</span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-xl);"></div><span class="cap">xl · 14<em>cards</em></span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-2xl);"></div><span class="cap">2xl · 16<em>panels</em></span></div>
+        <div class="r"><div class="box" style="border-radius: var(--radius-pill); width: 60px; height: 33px;"></div><span class="cap">pill · 999</span></div>
       </div>
     </div>
     <div class="panel">
       <span class="lbl">Shadows</span>
       <div class="shadows">
-        <div style="box-shadow: var(--shadow-card);">card</div>
-        <div style="box-shadow: var(--shadow-raised);">raised</div>
-        <div style="box-shadow: var(--shadow-overlay);">overlay</div>
+        <div class="s"><div class="tile" style="box-shadow: var(--shadow-card);"></div><span class="cap">card</span></div>
+        <div class="s"><div class="tile" style="box-shadow: var(--shadow-raised);"></div><span class="cap">raised</span></div>
+        <div class="s"><div class="tile" style="box-shadow: var(--shadow-elevated);"></div><span class="cap">elevated ×1</span></div>
       </div>
     </div>
   </div>
+  <div class="cols-b">
+    <div class="panel">
+      <span class="lbl">Vertical rhythm — the seven-rung ladder</span>
+      <div class="ladder">
+        <div class="rung"><span class="n">3</span><span class="bar" style="width: 3px;"></span><span class="name">Bond</span><span class="job">a value ↔ the label naming it</span></div>
+        <div class="rung"><span class="n">8</span><span class="bar" style="width: 8px;"></span><span class="name">Pair</span><span class="job">glyph ↔ text · title ↔ subtitle</span></div>
+        <div class="rung"><span class="n">12</span><span class="bar" style="width: 12px;"></span><span class="name">Sibling</span><span class="job">row ↔ row · heading ↔ paragraph</span></div>
+        <div class="rung"><span class="n">20</span><span class="bar" style="width: 20px;"></span><span class="name">Block</span><span class="job">block ↔ block · card grid gap</span></div>
+        <div class="rung"><span class="n">34</span><span class="bar" style="width: 34px;"></span><span class="name">Group</span><span class="job">run of blocks ↔ the next run</span></div>
+        <div class="rung"><span class="n">64</span><span class="bar" style="width: 64px;"></span><span class="name">Section</span><span class="job">section ↔ section</span></div>
+        <div class="rung"><span class="n">104</span><span class="bar" style="width: 104px;"></span><span class="name">Chapter</span><span class="job">page-level regions</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="lbl">Buttons — one control, three sizes</span>
+      <div class="btns">
+        <div class="brow"><span class="btn sm">Button</span><span class="bcap">sm · 26</span></div>
+        <div class="brow"><span class="btn md">Button</span><span class="bcap">md · 33</span></div>
+        <div class="brow"><span class="btn lg">Button</span><span class="bcap">lg · 40</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note" style="margin: 0;"><b>The 4px grid governs control interiors only</b> — padding, heights, insets, icon boxes. Vertical rhythm runs on the ladder: each rung ≈1.6× the last, each with one job. Never nudge 1–2px — the cause is a wrong rung one level up.</p>
+</div>
 </body></html>

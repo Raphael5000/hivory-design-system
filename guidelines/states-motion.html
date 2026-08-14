@@ -1,0 +1,41 @@
+<!-- @dsCard group="Spacing" viewport="700x300" subtitle="Eight states, soft motion — everything settles at 180ms, nothing displaces" name="States & motion" -->
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-card); font-family: var(--font-sans); color: var(--text-body); padding: 16px 18px 14px; }
+  .eye { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); }
+  .states { margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .st { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; border-radius: var(--radius-pill); background: var(--action-primary); color: var(--white); font-size: var(--text-label); font-weight: 500; white-space: nowrap; }
+  .btn.ghost { background: transparent; color: var(--text-faint); box-shadow: inset 0 0 0 1px var(--hairline-strong); }
+  .k { font-size: 9.5px; color: var(--text-muted); line-height: 1.35; }
+  .k i { font-style: normal; color: var(--text-faint); display: block; }
+  .spin { width: 11px; height: 11px; border-radius: var(--radius-pill); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--white) 40%, transparent); border-top: 1.5px solid var(--white); box-sizing: border-box; animation: smSpin var(--duration-spinner) linear infinite; }
+  @keyframes smSpin { to { rotate: 360deg; } }
+  .facts { margin-top: 20px; padding-top: 10px; box-shadow: 0 -1px 0 var(--hairline-strong); display: flex; flex-direction: column; gap: 3px; }
+  .facts div { font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+  .facts b { color: var(--ink-950); font-weight: 600; }
+  .facts .tok { font-variant-numeric: tabular-nums; color: var(--ink-950); font-weight: 600; }
+</style>
+</head><body>
+  <span class="eye">The eight states — every component provides all of them, or declares why not</span>
+  <div class="states">
+    <span class="st"><span class="btn">Approve</span><span class="k">Rest</span></span>
+    <span class="st"><span class="btn" style="background: var(--action-primary-hover);">Approve</span><span class="k">Hover</span></span>
+    <span class="st"><span class="btn" style="filter: brightness(0.94);">Approve</span><span class="k">Pressed</span></span>
+    <span class="st"><span class="btn" style="outline: 2px solid var(--border-focus); outline-offset: 2px;">Approve</span><span class="k">Focus</span></span>
+    <span class="st"><span class="btn ghost">n/a</span><span class="k">Selected<i>acts &amp; returns</i></span></span>
+    <span class="st"><span class="btn" style="opacity: 0.45;">Approve</span><span class="k">Disabled</span></span>
+    <span class="st"><span class="btn"><span class="spin"></span>Approving</span><span class="k">Loading</span></span>
+    <span class="st"><span class="btn ghost">n/a</span><span class="k">Empty<i>that's an IconButton</i></span></span>
+  </div>
+  <div class="facts">
+    <div><span class="tok">--duration-soft</span> 180ms — the default for every state change; things settle, never snap.</div>
+    <div><span class="tok">--duration-fast</span> 120ms — press only, never a state change.</div>
+    <div><b>Press is</b> filter: brightness(0.94) — not opacity, not transform.</div>
+    <div><b>Hover is tint, fill or ring — never movement.</b> <span class="tok">--hover-lift</span> is retired at 0px.</div>
+    <div><b>Reduced motion calms loops to 2.4s</b> via data-motion="essential" — it never freezes them.</div>
+  </div>
+</body></html>

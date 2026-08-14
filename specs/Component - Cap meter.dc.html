@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .h2 { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .row { display: grid; grid-template-columns: 148px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .row:last-child { border-bottom: none; }
+    .row .n { font-size: 12.5px; font-weight: 650; color: var(--text-body); }
+    .row .d { font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+    .num { font-variant-numeric: tabular-nums; }
+    .stage { border-radius: var(--radius-2xl); background: var(--canvas-wash); padding: 34px; display: flex; justify-content: center; }
+    .btn { appearance: none; border: none; height: 26px; padding: 0 13px; border-radius: var(--radius-pill); background: var(--surface-card); box-shadow: inset 0 0 0 1px var(--border-strong); font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-body); cursor: pointer; transition: box-shadow var(--transition-soft); }
+    .btn:hover { box-shadow: inset 0 0 0 1px rgba(23,24,26,0.26); }
+    .btn.on { background: var(--action-primary); color: var(--on-action-primary); box-shadow: none; }
+
+    /* ── the meter ── */
+    .cap { display: grid; grid-template-columns: 110px 1fr 72px; gap: 16px; align-items: center; }
+    .cap .lb { font-size: 12.5px; color: var(--text-body); }
+    .cap .track { position: relative; height: 8px; border-radius: var(--radius-pill); background: var(--ink-100); overflow: hidden; }
+    .cap .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: var(--radius-pill); transition: width var(--duration-slow) var(--ease-glide), background var(--duration-soft) var(--ease-out); }
+    .cap .val { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
+    .capnote { margin-top: 8px; font-size: 11.5px; line-height: 1.55; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 64px 48px 104px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="eye">Component · Cap meter</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">What you bought, and what's left of it.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">An allowance against its ceiling — twelve posts a month, a hundred and twenty buyers. It reports a fact the client agreed to, so it never scolds and never sells: reaching a cap you paid for is the plan working, not a problem.</p>
+
+    <!-- ═══ LIVE ═══ -->
+    <div style="margin-top: 64px;"><div class="eye">Specimen</div><h2 class="h2">Four points on one scale.</h2></div>
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 8px;">
+      <sc-for list="{{ stops }}" as="s" hint-placeholder-count="4">
+        <button class="btn {{ s.cls }}" onClick="{{ s.go }}">{{ s.label }}</button>
+      </sc-for>
+      <span style="margin-left: 8px; font-size: 11.5px; color: var(--text-muted);">{{ note }}</span>
+    </div>
+    <div class="stage" style="margin-top: 20px;">
+      <div style="width: 460px;">
+        <div class="cap">
+          <span class="lb">Social posts</span>
+          <span class="track"><span class="fill" style="width: {{ pct }}; background: {{ fill }};"></span></span>
+          <span class="val" style="color: {{ valColor }}; font-weight: {{ valWeight }};">{{ value }}</span>
+        </div>
+        <div class="capnote" style="color: {{ noteColor }};">{{ capNote }}</div>
+      </div>
+    </div>
+
+    <!-- ═══ ANATOMY ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Anatomy</div><h2 class="h2">A Chart Kit hbar that knows its ceiling.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Geometry</span><span class="d">Borrowed wholesale from <a href="Kit - Chart.dc.html">chart/hbar</a>: 110px label column, 8px rounded track, tabular value right. No new measurements — an allowance is a category comparison where one of the categories is the limit.</span></div>
+      <div class="row"><span class="n">The track IS<br>the allowance</span><span class="d">Full width means the cap, always. This is the one difference from an hbar: an hbar's track is scaled to the largest row, so a full bar just means "the biggest". Here a full bar means "all of it", and that must be true at a glance without reading the number.</span></div>
+      <div class="row"><span class="n">Value</span><span class="d"><span class="num">8 of 12</span> — used, then the ceiling, in tabular figures. Never a bare number, never a percentage: the client bought twelve posts, not 67%.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">The note</span><span class="d">One plain line beneath, and it only appears at or past the cap. Under the cap there is nothing to say, and a reassuring line where none is needed teaches the client to stop reading the ones that matter.</span></div>
+    </div>
+
+    <!-- ═══ TONE ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The tone ladder</div><h2 class="h2">Amber at the cap. Never red.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The obvious design turns the bar red when it fills. That would be wrong, and the reason is worth stating plainly: <b style="font-weight: 650;">the client paid for exactly this much.</b> Using all of it is the engagement working as sold. Red in this system means something failed and needs repair — spending it on a plan running to plan makes every real failure quieter.</p>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--green-600);"></span>Under</span></span><span class="d"><span class="num">--green-600</span>. The default and the overwhelming majority of the time. No note, no chip, no attention drawn — a meter under its cap is a fact, not an event.</span></div>
+      <div class="row"><span class="n"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--amber-500);"></span>At the cap</span></span><span class="d"><span class="num">--amber-500</span> and one line saying what happens next ("Next month's twelve start on 1 Aug"). Amber in this system means <i>this needs your attention</i>, which is exactly right: nothing is broken, but the client should know the tap is closed until the period turns.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--amber-500);"></span><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--ink-300);"></span>Over</span></span><span class="d">Still amber — <b style="font-weight: 650;">and still not red</b>. The overage is drawn as a hatched ink segment sitting past the amber fill, so the eye reads "beyond the line" rather than "danger". The note becomes the important part: how much over, and whether it is billed or absorbed. An overage is a commercial fact; the meter states it and the invoice settles it.</span></div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div class="cap" style="grid-template-columns: 1fr 60px; gap: 12px;">
+          <span class="track"><span class="fill" style="width: 58%; background: var(--green-600);"></span></span>
+          <span class="val" style="color: var(--text-secondary);">7 of 12</span>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Under — green, silent. Seven of twelve is not news.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div class="cap" style="grid-template-columns: 1fr 60px; gap: 12px;">
+          <span class="track"><span class="fill" style="width: 100%; background: var(--amber-500);"></span></span>
+          <span class="val" style="color: var(--ink-900); font-weight: 650;">12 of 12</span>
+        </div>
+        <div class="capnote" style="color: var(--status-caution-text);">Next month's twelve start on 1 Aug.</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">At the cap — amber, and the note says when it reopens.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div class="cap" style="grid-template-columns: 1fr 60px; gap: 12px;">
+          <span class="track"><span class="fill" style="width: 78%; background: var(--amber-500);"></span><span style="position: absolute; left: 78%; top: 0; bottom: 0; right: 0; background: repeating-linear-gradient(135deg, var(--ink-300) 0 2px, transparent 2px 5px);"></span></span>
+          <span class="val" style="color: var(--ink-900); font-weight: 650;">15 of 12</span>
+        </div>
+        <div class="capnote" style="color: var(--status-caution-text);">Three past the plan — billed at the agreed rate.</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Over — the hatch reads "beyond the line", not "error".</div>
+      </div>
+    </div>
+
+    <!-- ═══ STATES ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The eight states</div><h2 class="h2">A reading, not a control.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Rest</span><span class="d">Green fill, no note, value in <span class="num">--text-secondary</span>. The state it is in almost always.</span></div>
+      <div class="row"><span class="n">Hover</span><span class="d">Where several meters sit as rows, the ROW tints <span class="num">--hover-on-white</span> and the meter itself does not change. A meter that lights up on hover implies it can be clicked.</span></div>
+      <div class="row"><span class="n">Pressed</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> Nothing to press. Changing an allowance is a request through the chat, per the standing-job doctrine — never a stepper, never a plus button on the meter.</span></div>
+      <div class="row"><span class="n">Focus</span><span class="d"><b style="font-weight: 650;">Does not apply</b> to the meter. If the containing row is a link to the jobs behind the number, the ROW takes the focus ring; the meter is part of its content.</span></div>
+      <div class="row"><span class="n">Selected</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> A meter is never one of a set you choose between.</span></div>
+      <div class="row"><span class="n">Disabled</span><span class="d">An allowance not included in the plan renders as an <span class="num">--ink-100</span> track with no fill and "Not in your plan" where the value sits — greyed, but still listed, so the client can see what exists. Never hidden: a missing row cannot be asked about.</span></div>
+      <div class="row"><span class="n">Loading</span><span class="d">Skeleton the track and the value at their exact heights; keep the label real, since it is known before the count is. Never animate a fill from zero as a loading device — a growing bar reads as a real number climbing.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Empty</span><span class="d">Zero used takes an empty track and <span class="num">0 of 12</span> — not an em-dash. Zero is a measurement here: the month has started and nothing has run yet, which is worth seeing. (Contrast with a table cell, where absence takes the dash.)</span></div>
+    </div>
+
+    <!-- ═══ LAWS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Content &amp; laws</div><h2 class="h2">State the fact. Sell nothing.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Never an upsell</span><span class="d">No "Upgrade to get more", no plan comparison, no chip at 80%. The console is the client's workspace, not a sales surface — and a meter that nags at eight of twelve makes the product feel metered rather than generous. If more is genuinely needed, the client asks and the Strategist answers.</span></div>
+      <div class="row"><span class="n">Count the unit<br>the client bought</span><span class="d">"12 of 12 posts", "118 of 120 buyers". Never credits, tokens, units or API calls — an invented currency is how a client loses track of what they are paying for.</span></div>
+      <div class="row"><span class="n">One period, named</span><span class="d">Every meter states its window once, in the note or the section head — never per row. A month and a quarter cannot share a group; if the plan mixes them, they are two groups.</span></div>
+      <div class="row"><span class="n">Four meters, at most</span><span class="d">Density doctrine: one meter column per table, and an allowance group is a table. Beyond four the client is reading a bill, not a plan.</span></div>
+      <div class="row"><span class="n">The bar and the<br>number must agree</span><span class="d">The fill is <span class="num">used / cap</span>, clamped at 100%, and the number is never rounded. A bar that looks full beside "11 of 12" costs the client trust in every other number on the page.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">No motion at rest</span><span class="d">The fill transitions on <span class="num">--duration-slow</span> when the value genuinely changes, and otherwise holds still. Nothing pulses, nothing counts up on mount — an allowance is not activity.</span></div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Say the unit the client recognises. Go amber only at the line, with one plain sentence about what happens next. Draw an overage as hatch beyond the fill. Keep the track's full width meaning the cap. Leave a meter under its cap completely silent.</div></div>
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Red at the cap. A percentage. A warning chip at 80%. An upgrade link. Credits or tokens. A plus or minus control. Hiding an allowance the plan excludes. Animating the fill on mount. More than four in one group.</div></div>
+    </div>
+
+    <!-- ═══ TOKENS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Tokens used</div><h2 class="h2">Every value, named.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Colour</span><span class="d"><span class="num">--green-600</span> under-cap fill · <span class="num">--amber-500</span> at and over the cap · <span class="num">--ink-300</span> the overage hatch · <span class="num">--ink-100</span> the track · <span class="num">--status-caution-text</span> the note · <span class="num">--text-secondary</span> the value at rest, <span class="num">--ink-900</span> at 650 once the cap is met · <span class="num">--hover-on-white</span> the containing row.</span></div>
+      <div class="row"><span class="n">Motion</span><span class="d"><span class="num">--duration-slow</span> + <span class="num">--ease-glide</span> on width when the value changes · <span class="num">--duration-soft</span> + <span class="num">--ease-out</span> on the tone crossing. No keyframes, nothing essential — this component has no animation to preserve under reduced motion.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Geometry</span><span class="d"><span class="num">--radius-pill</span> track and fill. Label column 110px, track 8px, value column 72px, grid gap 16 — all from chart/hbar. Note sits 8 below the meter (Pair), meters 12 apart in a group (Sibling).</span></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Cap meter · geometry from <a href="Kit - Chart.dc.html">Chart Kit</a> · pairs with <a href="Component - Table.dc.html">Table</a> and <a href="Component - Badge.dc.html">Badge</a> · doctrine: Portal Design Language §Density doctrine</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { i: 0 };
+  renderVals() {
+    const CAP = 12;
+    const POINTS = [
+      { label: 'Under', used: 7,  note: '' },
+      { label: 'Near',  used: 11, note: '' },
+      { label: 'At the cap', used: 12, note: "Next month's twelve start on 1 Aug." },
+      { label: 'Over', used: 15, note: 'Three past the plan — billed at the agreed rate.' }
+    ];
+    const i = this.state.i, p = POINTS[i];
+    const over = p.used > CAP, at = p.used === CAP;
+    const amber = at || over;
+    // the fill is used/cap clamped; an overage is drawn as hatch BEYOND the amber fill
+    const pct = over ? Math.round(CAP / p.used * 100) + '%' : Math.round(p.used / CAP * 100) + '%';
+    return {
+      pct,
+      fill: amber ? 'var(--amber-500)' : 'var(--green-600)',
+      value: p.used + ' of ' + CAP,
+      valColor: amber ? 'var(--ink-900)' : 'var(--text-secondary)',
+      valWeight: amber ? '650' : '400',
+      capNote: p.note,
+      noteColor: 'var(--status-caution-text)',
+      note: over ? 'The hatch sits past the fill — beyond the line, not broken.'
+          : at ? 'Amber, because the tap is closed until the period turns.'
+          : 'Silent. There is nothing to say about seven of twelve.',
+      stops: POINTS.map((s, n) => ({
+        label: s.label,
+        cls: n === i ? 'on' : '',
+        go: () => this.setState({ i: n })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

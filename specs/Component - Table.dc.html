@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .th { appearance: none; border: none; background: none; padding: 0; font-family: var(--font-sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: color var(--duration-soft) var(--ease-out); }
+    .th:hover { color: var(--text-secondary); }
+    .th.on { color: var(--text-body); }
+    .th:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; border-radius: 4px; }
+    .tr { display: grid; gap: 12px; align-items: center; padding: 10px 10px; margin: 0 -10px; border-radius: 9px; border-bottom: 1px solid rgba(23,24,26,0.05); transition: background var(--duration-soft) var(--ease-out); }
+    .tr:hover { background: var(--hover-on-white); }
+    .num { font-family: var(--font-mono); font-size: 12px; font-variant-numeric: tabular-nums; text-align: right; }
+    @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+    .panel { animation: panelIn var(--duration-soft) var(--ease-out); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Table</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">The quiet grid.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Hairlines, not boxes. Uppercase whisper headers, mono numerals flush right, and rows that answer hover with a tint. Sort the sources below — the grid crossfades, it never jumps.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 56px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; right: -60px; top: 30px; width: 320px; height: 260px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--surface-dark);"></div>
+      </div>
+      <div style="position: relative; max-width: 620px; margin: 0 auto; border-radius: 18px; padding: 20px 26px 14px; box-sizing: border-box; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34);">
+        <div style="font-size: 13.5px; font-weight: 650;">Sources · 30 days</div>
+        <div style="display: grid; grid-template-columns: 1fr 90px 110px 100px; gap: 12px; padding: 12px 0 7px; border-bottom: 1px solid rgba(23,24,26,0.08);">
+          <sc-for list="{{ cols }}" as="c" hint-placeholder-count="4">
+            <span style="text-align: {{ c.align }};"><button class="th {{ c.cls }}" onClick="{{ c.sort }}">{{ c.label }}<span style="font-size: 8px;">{{ c.arrow }}</span></button></span>
+          </sc-for>
+        </div>
+        <div class="panel" key="{{ skey }}">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+            <div class="tr" style="grid-template-columns: 1fr 90px 110px 100px;">
+              <span style="font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.source }}</span>
+              <span class="num">{{ r.sessions }}</span>
+              <span class="num">{{ r.conversions }}</span>
+              <span class="num" style="font-weight: 600;">{{ r.revenue }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Row hover tints on <span style="font-family: var(--font-mono);">--hover-on-white</span>; a sort crossfades the body in opacity only. Horizontal hairlines at 5%, header rule at 8% — never a vertical line.</div>
+
+    <!-- SPEC -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">Whisper headers, mono money.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">The spec</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Headers 10.5px caps at 8% tracking, faint ink. Body 13.5px; numerals in the system face at 12px, <span style="font-family: var(--font-mono); font-size: 12px;">tabular-nums</span>, right-aligned — one family across the platform. Rows breathe at 10px vertical padding. The sorted column carries full ink and an arrow; sorting is a header click, focusable and keyboard-fired.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Row states</div>
+        <div style="margin-top: 12px;">
+          <div class="tr" style="grid-template-columns: 1fr 90px;"><span style="font-size: 13.5px;">Rest</span><span class="num">1,204</span></div>
+          <div class="tr" style="grid-template-columns: 1fr 90px; background: var(--hover-on-white);"><span style="font-size: 13.5px;">Hover — 2.5% tint</span><span class="num">982</span></div>
+          <div class="tr" style="grid-template-columns: 1fr 90px; background: var(--selected-pill);"><span style="font-size: 13.5px; font-weight: 600;">Selected — pill wash</span><span class="num">647</span></div>
+          <div class="tr" style="grid-template-columns: 1fr 90px; border-bottom: none;"><span style="font-size: 13.5px; color: var(--text-ghost);">Disabled</span><span class="num" style="color: var(--text-ghost);">—</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 40px 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <div style="font-size: 13.5px; font-weight: 650;">No deliveries yet</div>
+        <div style="margin-top: 3px; font-size: 12.5px; color: var(--text-muted); max-width: 30ch;">Approved work lands here as it ships.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Empty &amp; loading</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Empty states speak in two lines — what this is, and what fills it. Never an illustration. First paint uses Skeleton rows in the same grid; in-flight refreshes keep the old rows and settle the new ones in with a crossfade.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Right-align every numeral, mono and tabular. One meter column per table, at most. Badges ride inside cells for status. Bulk actions live once in the header. Flush to the card edge when the table is the card.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Vertical rules or zebra stripes — the grid is alignment, not boxes. Center-aligned numbers. More than seven columns (disclose instead). Rows that move on hover — tint, never lift. Green header text.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">9 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-400</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-50</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-900</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-950</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--border-subtle</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Motion</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-fast</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ease-out</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-mono</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from the component’s own stylesheet, not from this page — anything else on this page is spec-page chrome.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Sortable header · with section heads (state groups inside one table, never separate cards) · with a meter column (one only). Cells accept nodes, so Badges and Channel Chips sit inline.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Uppercase header at 10.5/700, hairline rows, numerics right-aligned with tabular-nums. Rows 38–46px.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Row takes --hover-on-white. Only the row — cells never hover independently.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Pressed</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">brightness(0.94) from motion-base when the row is a link.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">motion-base ring on the row, not the cell. A row that opens something is one focus stop, not one per column.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Selected</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Clickable rows: --ink-50 fill, held while the panel it opened stays open, so the client can see what they are looking at.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a row is data. A record that cannot be acted on keeps its row and loses its verb.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Loading</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Header renders real; body becomes Skeleton rows at the SAME row height, so the table does not resize when data lands.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">One sentence in a full-width row saying what will appear and, if relevant, the action that fills it. Never a centred illustration and never “No results found” — say what was searched.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Headers are one or two words, sentence case, never “#” or an abbreviation the client has not seen elsewhere. Numeric columns are right-aligned and labelled with their unit in the header, not in every cell. Truncate honestly — “Showing 6 of 118”, never a silent cut. Empty cells use an em-dash, never “N/A” or “0”, because zero is a measurement and absence is not.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Table · tokens listed in full above</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { key: 'revenue', dir: -1 };
+  renderVals() {
+    const s = this.state;
+    const DATA = [
+      { source: 'Organic search', sessions: 18240, conversions: 412, revenue: 48200 },
+      { source: 'LinkedIn', sessions: 9120, conversions: 388, revenue: 61400 },
+      { source: 'Newsletter', sessions: 6480, conversions: 296, revenue: 32800 },
+      { source: 'Referral', sessions: 4210, conversions: 154, revenue: 21600 },
+      { source: 'Paid social', sessions: 11960, conversions: 142, revenue: 17900 }
+    ];
+    const fmt = (n) => n.toLocaleString('en-US');
+    const COLS = [
+      { key: 'source', label: 'Source', align: 'left' },
+      { key: 'sessions', label: 'Sessions', align: 'right' },
+      { key: 'conversions', label: 'Conversions', align: 'right' },
+      { key: 'revenue', label: 'Revenue', align: 'right' }
+    ];
+    const sorted = [...DATA].sort((a, b) => {
+      const va = a[s.key], vb = b[s.key];
+      return (typeof va === 'string' ? va.localeCompare(vb) : va - vb) * s.dir;
+    });
+    return {
+      cols: COLS.map((c) => ({
+        label: c.label, align: c.align,
+        cls: s.key === c.key ? 'on' : '',
+        arrow: s.key === c.key ? (s.dir === -1 ? '▼' : '▲') : '',
+        sort: () => this.setState(s.key === c.key ? { dir: -s.dir } : { key: c.key, dir: c.key === 'source' ? 1 : -1 })
+      })),
+      rows: sorted.map((r) => ({ source: r.source, sessions: fmt(r.sessions), conversions: fmt(r.conversions), revenue: '$' + fmt(r.revenue) })),
+      skey: s.key + s.dir
+    };
+  }
+}
+</script>
+</body>
+</html>

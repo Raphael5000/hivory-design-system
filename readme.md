@@ -1,116 +1,105 @@
-# Hivory Design System
+# Hivory Design System — v4.1 "Glass Engine"
 
-**Hivory — The engine for growth.** Hivory is an **AI-driven digital agency that achieves uncommon growth**. It is the parent brand; sub-products live under it. The first sub-product is **Meaning**.
+**Hivory — The engine for growth.** Hivory is an **AI-driven digital agency that achieves uncommon growth**. It is the parent brand; sub-products live under it (first: **Meaning**). This repo is the design system's source of truth: brand, tokens, components, guidelines, spec pages, and the drift test that keeps them honest.
 
-Built from scratch, brick by brick, with the user. Current scope: **brand (logo + icons), tokens, components, guidelines, one template (Dashboard)**. Marketing-layer components and the Meaning UI kit come next.
+Binding rules live in **`CLAUDE.md`** (rhythm, motion, colour, keyboard, surfaces, completeness bar). The full portal doctrine is **`docs/portal-design-language.md`**. Version history is **`CHANGELOG.md`**; the canonical version is `package.json` (`4.1.0`), and `tokens/tokens.json` is the diffable token record.
 
 ## Brand primary
 
-The Hivory logo (supplied by the user, `assets/logo/`) sets the primary color: **electric green `#00EE7F`** (`--green-500`). The mark is two overlapping rotated hexagonal outlines in green; the wordmark is set in black (on-light) or white (on-dark). The mark is *always* green — never recolor it except to pure black/white when sitting on green itself.
+The Hivory logo (`assets/logo/`) sets the primary color: **electric green `#00EE7F`** (`--green-500`). The mark is two overlapping rotated hexagonal outlines in green; the wordmark is black (on-light) or white (on-dark). The mark is *always* green — never recolor it except to pure black/white when sitting on green itself.
 
-## Direction: "Engine"
+## Direction: "Glass Engine"
 
-Chosen from a 3-way Linear↔Wealthsimple exploration — the 50/50 blend: **light, structured, quietly warm**. Linear's order, Wealthsimple's ease.
-- Light platform on warm gray (`--surface-app` #FAFAF9), white cards, borders over shadows
-- Black-filled primary actions; green only for hero CTA + live signals
-- Companions: **teal** (info/secondary data) + **amber** (warmth/caution) — see `tokens/colors.css`
-- Radius 8–10, 4px spacing grid, 120ms `cubic-bezier(0.2,0.8,0.2,1)` motion (`tokens/layout.css`)
-- Platform base type ~13.5px (= `--text-sm`), marketing roomier
-- Martel: marketing website ONLY (unchanged)
+The portal is canonical. Two layers:
 
-### Color logic (v2 — black & white platforms, contrast-graded green)
-- The platforms are **black & white first**: white pages with black type, black sections with white type. Neutrals are pure gray, no undertone.
-- `#00EE7F` (`--green-500`) is the **single signal color** and is a **fill, never text on white** (1.6:1 ✗). Text on green-500 is **always black** (13.5:1 ✓), never white.
-- Legible greens on white: `--green-700` #008347 for AA text/links (4.9:1), `--green-800` #005C32 for AAA/small text (8.2:1), `--green-600` only for large text/icons (3.3:1).
-- On black, green-500 runs at full intensity (12.6:1 ✓) — data highlights, metrics, the mark.
-- Default actions are black (`--action-primary`); electric green is reserved for the hero CTA (`--action-brand`, black label) and data signals.
+- **CORE** — brand-universal values: the green ramp, the cool ink ladder, companions (teal/amber), semantics.
+- **GLASS ENGINE** (platform theme) — the surface treatment the portal wears: a cool-grey canvas (`#F2F3F2`) with two faint radial washes, **one glass object per screen (the sidebar)** — glass is the frame, never the field — solid white cards over hairlines, **exactly one elevated card per screen** (the thing needing the user; `--shadow-elevated`). **No 1px borders anywhere** — hairlines and whisper shadows do the work. The canvas stays neutral on purpose: the client's brand is the hero; don't "premium up" the console's own colours.
+
+Radii: `sm 8 · md 9 · control 10 · lg 12 · xl 14` (cards) `· 2xl 16` (panels) `· pill 999`. Buttons are pills: **sm 26 · md 33 · lg 40** — one control, three sizes.
+
+## Colour logic (v4 — cool ladder, worst-case contrast)
+
+- Cool ink ladder `--ink-950 … --ink-50` (`#0D0D0D → #F6F6F3`) with role-graded steps: 900 body · 800 action fill · 750 action hover · 700 secondary · 600 nav · 500 muted labels · 400 faint · 300 ghost · 250 struck · 200/100 borders · 50 inset surfaces.
+- **Text contrast is measured against the darkest common background, never white**: `--ink-100` `#ECEDEA` is the worst case. `--text-muted` `#63676A` (4.86:1) · `--text-faint` `#676B6E` (4.58:1). When correcting a value, round toward contrast, never toward the nearest value.
+- `#00EE7F` (`--green-500`) is the **single signal** and a **fill, never text on white** (1.6:1 ✗). Text on green-500 is **always black** (13.5:1 ✓). Legible greens on white: `--green-700` `#008347` AA · `--green-800` `#005C32` AAA · `--green-600` `#00A352` large text/icons/functional marks only.
+- Green means signal — live dots, deltas, the mark, agent activity. Never decoration, never an icon color, never a count badge. Counts are quiet: tabular grey text or a neutral pill.
+- **Status colours never follow the brand.** Green done · amber needs-you · red failed, in every deployment. Brand answers *whose product*; status answers *what happened*.
 
 ## Typography
 
-Two brand families with a hard scope rule:
-- **Hanken Grotesk** (Google Fonts, OFL, variable 300–800) — the workhorse: ALL platform type and marketing body/H3+. Chosen 2026-06 to replace Söhne (Klim — unaffordable); closest free match to its temperament. Weights in use: 400/500/600. Platform runs a dense 13px base in the app shell; use `font-variant-numeric: tabular-nums` on data surfaces.
-- **Martel** (serif, Google Fonts 200/300/400) — `--font-marketing-display`. **MARKETING WEBSITE ONLY, and only H1 + H2.** Martel runs LIGHT: weight 200 for hero display (leading 1.02), 400 for standard H1/H2 (leading 1.4), italic 300 for single-word accents inside display headings. Never on the platform; never below H2.
-- **Geist Mono** (Google Fonts, OFL) — data, metrics, code (`--font-mono`). Replaced Söhne Mono.
+- **The system face** (`--font-sans`: SF/Segoe stack) — all platform UI. Dense scale: eyebrow 10 · meta 11 · label 11.5 · xs 12 · sm 12.5 · row 13 · **base 13.5** · lg 15 · data 20 · title 21 · file 23; display sizes 28/36/48/64 for marketing + hero moments. Fractional weights 550/650/680 carry titles.
+- **Hanken Grotesk** (`--font-brand`) — marketing and brand moments only.
+- **Martel** (`--font-marketing-display`) — marketing website ONLY, H1/H2 only, runs light (200/400, italic 300).
+- **Mono is retired.** `--font-mono` resolves to the system sans. Machine facts (metrics, timestamps, code) are marked by `font-variant-numeric: tabular-nums` + a quieter colour — never a second family.
 
-### Platform notes (from the Meaning repo, for future UI-kit work)
-- Meaning v2 app: shadcn-style semantic tokens, OKLCH neutrals hued 155, light primary `#00A352` / dark primary `#00EE7F`, ease `cubic-bezier(0.2, 0.8, 0.2, 1)`, 120ms transitions, 13px base, tabular-nums for data.
-- Buttons: ink-filled primary (not green), outline/ghost/subtle variants, green reserved for AI-action "brand" tint. Radius ~8px.
-- `design-handoff/` in that repo holds prior Meaning design-system tokens + chat/dashboard components — source of truth when we build the Meaning UI kit.
+## Rhythm — seven rungs, geometric
 
-## Sub-brands
+The 4px grid governs the **inside** of controls; vertical rhythm runs on `3 · 8 · 12 · 20 · 34 · 64 · 104` (Bond · Pair · Sibling · Block · Group · Section · Chapter), each ≈1.6× the last, each with one job. Eyebrow/heading/lede are one unit (12 apart, then 34 to the first block); section gaps are asymmetric (64 above a heading, 12 below); gaps grow up the tree; space is the only grouping device. See `CLAUDE.md` and `guidelines/rhythm.html`; full spec `specs/Foundation - Rhythm.dc.html`.
 
-Sub-brands share Hivory's mark, type and token vocabulary, and differ via a **theme scope** — a CSS attribute selector that overrides semantic tokens while inheriting everything else:
+## Motion
 
-- `tokens/brands/meaning.css` → `[data-brand="meaning"]` — apply with `<body data-brand="meaning">`.
-- Assets live in `assets/logo/<sub-brand>/`.
-
-### Meaning
-First sub-brand. **Meaning is an AI analyst for your marketing and sales activity** — it watches campaign and pipeline data and tells you what it means. Lockup = shared hex mark + "Meaning" wordmark; dark-surface-first. **TBD with user: whether Meaning gets its own accent color.**
-
-### Logo color variants (applies to ALL brand logos)
-Every lockup ships in exactly four colorways — never mix others:
-1. **black-green** — green mark, black wordmark · primary on light
-2. **green-white** — green mark, white wordmark · primary on dark
-3. **all-black** — mono on light
-4. **all-white** — mono on dark or on green
+Every duration and easing comes from a token — no literal `ms` or `cubic-bezier` anywhere. `--duration-soft` 180ms on `--ease-out` is **the default for every state change**; `--duration-fast` 120ms is **press-only**; 200ms is the only entrance. **Nothing displaces on hover** (`--hover-lift` retired at `0px`); hover is tint/fill/ring/brightness. Press is `filter: brightness(0.94)`. Reduced motion calms informational loops to 2.4s via `[data-motion="essential"]` — never freezes them.
 
 ## Iconography
 
-**Custom in-house set** (`components/Icon` — `<Icon name="…"/>`, 20 glyphs) — drawn on the brand's own grammar, the way Wealthsimple/Linear own theirs:
-- **Grammar:** 16px grid, 1.5px even stroke, round caps + joins, no fills, no duotone, no emoji. Diagonals prefer the hexagon's 60° family over generic 45°.
-- **Signature:** the mark's hexagon replaces the generic square/circle wherever an icon needs a container — dashboard's fourth tile, the agent's body.
-- **Sizes:** 14px dense UI (sidebar) · 16px default · 18px roomy. Color: `text-muted` rest, `ink-950` active/hover, `ink-200` disabled. **Never green.**
-- **Long-tail fallback in product code:** Phosphor (MIT — the free pack closest to this grammar). Any icon used often enough gets drawn into the custom set.
-- `SidebarIcon` mirrors 10 of these glyphs so Sidebar stays self-contained. Spec cards: `guidelines/iconography.html` + the Icon component card.
+**Tabler** (outline, MIT) is the platform icon set, loaded as a webfont via `tokens/fonts.css` (`<i class="ti ti-search">`), sized by `font-size`: 14 dense · 16 default · 18 roomy; `--text-muted` rest → `--ink-950` active → `--ink-200` disabled. **Never green. Outline only.**
 
-## Content fundamentals (draft — confirm with user)
+Permanent exemptions — do not "fix" these: **brand marks** (dual-hex spinner, hex agent mark, the lockup), **the house checkmark** at 9–11px inside pills and nodes, **chart geometry** (series, fills, sparklines, meter tracks). The in-house glyph set (`components/Icon`, 20 glyphs on the hexagon grammar) remains for those house uses; marketing surfaces don't use Tabler.
 
-- **Hivory (agency)** speaks as "we": confident, senior, outcome-led. Signature idea: *uncommon growth* — results that look like outliers. Short declarative sentences; say the number; zero hype-words ("synergy", "supercharge"), no emoji.
-  - e.g. "We engineer uncommon growth." / "Pipeline up 38% in one quarter."
-- **Meaning (product)** speaks to "you" about your data: an analyst's voice — plain-language findings, evidence attached. It *tells you what your marketing and sales activity means*, not just what happened.
-  - e.g. "Your CAC rose 12% — driven entirely by paid social. Here's the fix."
+## Sub-brands
+
+Sub-brands share Hivory's mark and token vocabulary and differ via a **theme scope**: `tokens/brands/meaning.css` → `[data-brand="meaning"]`. Assets in `assets/logo/<sub-brand>/`. Every lockup ships in exactly four colorways: black-green · green-white · all-black · all-white.
+
+**White label** (partner theming) swaps exactly three tokens — `--action-brand`, `--on-action-brand`, `--border-focus`. Status colours never follow the brand; `--on-action-brand` is measured, never chosen. Spec: `specs/Foundation - White label.dc.html`.
+
+### Meaning
+
+First sub-brand. **Meaning is an AI analyst for your marketing and sales activity.** Lockup = shared hex mark + "Meaning" wordmark; dark-surface-first. TBD with user: whether Meaning gets its own accent color.
+
+## Content fundamentals
+
+- **Hivory (agency)** speaks as "we": confident, senior, outcome-led. *Uncommon growth.* Short declarative sentences; say the number; zero hype-words, no emoji.
+- **Meaning (product)** speaks to "you" about your data: an analyst's voice — plain-language findings, evidence attached.
 
 ## Density doctrine
 
-**The system is dense so the product isn't.** Components carry maximum capability; any single view uses the minimum. Codified in `guidelines/density-doctrine.html`:
-- **Disclosure ladder:** glance (Badge, one number, PulseDot) → hover (Tooltip/ChartTooltip) → click (Modal/detail, all the MetricChips).
-- **Per-view budgets:** 1 brand-green CTA · ≤4 Stats per row · ≤3 MetricChips per item (rest behind +N) · 1 meter column per table · 1 chart per card · mono = data only.
-A consuming project that wants to show more should add a disclosure step, not a denser screen.
+**The system is dense so the product isn't.** 13px working type; air lives at the edges, not between rows. Disclosure ladder: glance (Badge, one number, PulseDot) → hover (Tooltip) → click (Modal/detail). Budgets per view: 1 brand-green CTA · ≤4 scorecards per row · ≤3 MetricChips per item · 1 meter column per table · 1 chart per card. `guidelines/density-doctrine.html`.
 
 ## Components
 
-Core set, all in Engine style under `components/<Name>/` (`.jsx` + `.d.ts` + card). Load via `_ds_bundle.js`; read from `window.HivoryDesignSystem_354905`.
-- **Button** — primary (ink fill) · brand (green-500, hero CTA — max one per view) · outline · ghost · danger; sm/md/lg
-- **Badge** — status chips: positive/info/caution/negative/neutral, optional dot
-- **Input / Select** — 34px field chrome, radius 8, green-600 focus ring, hint/error
-- **Card / Stat** — white surface, subtle border, quiet shadow, radius 10; Stat tiles render metrics in mono; `flush` for tables
-- **Table** — uppercase header, right-aligned mono numerals, hover rows; cells accept React nodes (Badges)
-- **Tabs** — quiet underline, ink active, count pill goes green when selected
-- **Avatar / AvatarGroup** — initials on ink-100, presence dot, overlapping +N stack
-- **Menu** — dropdown for row actions; danger zone below separator; mono shortcut hints
-- **Modal** — radius-14 panel on soft ink scrim; Esc/scrim close; footer action row
-- **Checkbox / Switch / Textarea** — form set complete; ink checked states (green stays reserved), Input chrome
-- **Tooltip** — ink chip on hover/focus, short labels only
-- **Toast / ToastStack** — dark ink notice, bottom-right, tone dots (presentational — app owns state)
-- **Skeleton / Separator** — shimmer placeholders (reduced-motion safe), 1px rules
-- **MetricChip / DifficultyMeter** — per-article/keyword micro-indicators (KD, volume, position, content score). DifficultyMeter: 4 rising bars on the 0–100 scale, low=green for difficulty, `semantics:'score'` flips it; auto status-token colors. MetricChip: uppercase micro-label + mono value; `variant:'chip'` standalone on cards, `variant:'bare'` inside Table cells; takes a meter or Icon as `icon`. Rule: in tables use bare meters/values (the column header is the label); outside tables use chips (the chip carries its own label).
-- **Spinner / PulseDot** — the activity primitives (critical: agents busy, syncs, API calls in flight). Spinner = two counter-rotating hexagon outlines echoing the dual-hex mark; tones brand/ink/on-dark, optional label, `calm` for long-running agent work. PulseDot = ambient radiating dot for ongoing presence ("3 agents running"). Rule of thumb: Spinner for discrete in-flight work, PulseDot for ongoing aliveness, Skeleton for first paint.
-- **ChartLegend / ChartTooltip** — the chart visual spec: series order `--data-1→4`, horizontal grid only (`ink-100`), no axis lines, 10px mono axis labels, ink tooltip with mono values. Green-600 for series on light, green-500 on dark.
-- **DateRangePicker** — preset rail (7d/30d/quarter/YTD/custom) + month calendar; ink range ends, green-50 span
-- **Dashboard widget pattern** (guidelines card) — Scorecard row → chart-in-Card → table-in-Card on the warm-gray app surface
-- **IconButton / ReviewActions** — repeated inline approve/reject. RULE: quiet ghost glyphs at rest (ink-400, no fill), tone appears on hover only (green/red tint), pair collapses to a tinted chip + Undo once decided. Bulk approval = one "Approve all" outline button in the header — never N filled buttons.
+### Importable (in `_ds_bundle.js` → `window.HivoryDesignSystem_354905`)
+
+Button · Badge · Input · Select · Card/Stat/Scorecard · Table · Tabs · Avatar/AvatarGroup · Menu · Modal · Checkbox/Switch/Textarea · Tooltip · Toast/ToastStack · Skeleton/Separator · MetricChip/DifficultyMeter · Spinner/PulseDot · ChartLegend/ChartTooltip · DateRangePicker · IconButton/ReviewActions · Sidebar/SidebarIcon — plus the v4.1 set: **SplitButton · ImageSlot · Stepper · SignatureBlock · SignIn · Topbar · Accordion · StepTimeline · CapMeter · Transcript · Gantt · FilterSelect**.
+
+Each lives at `components/<Name>/` as dependency-free `.jsx` (CSS-in-template-string, injected once) + `.d.ts` (design rules in JSDoc) + a `card.html` specimen. A component is **done** only when it carries the completeness bar: anatomy · variants together · all eight states (or a declared exemption in words) · motion · tokens used · do/don't · a11y · content rules — the spec pages under `specs/Component - *.dc.html` are the acceptance criteria.
+
+### Spec pages (`specs/`)
+
+45 pages with live specimens (need `specs/support.js`; open any page in a browser). They are documentation and acceptance criteria, **not production code**. `specs/Foundation - Inventory.dc.html` is the live coverage board.
+
+## Distribution — the contract with consumers
+
+The WhoYou portal drifted because it **copied** tokens and nothing announced that values changed. The contract now:
+
+1. **Consumers import `tokens/*.css` + `styles.css` from this repo** (pin a commit/tag); never copy values out.
+2. **`tokens/tokens.json` is the changelog**: diff it between versions to see exactly what changed. Regenerated from the CSS — never hand-edit.
+3. **`scripts/drift-test.mjs` goes in every consumer's CI** (`npm run drift` here): nine rules, each a real defect found by hand. Escape hatch: `/* drift-ok: reason */` with a reason.
+4. **Never rename an existing token.** Correct values or add new ones (`--hover-lift` is held at `0px` for exactly this reason; `--text-xl` and the tracking aliases live in the compat block of `tokens/typography.css`).
+5. Components ship as the browser bundle (`_ds_bundle.js`) + readable `.jsx` sources — not an npm package (deliberate, for now). The bundle header's `sourceHashes` are regenerated by the host tooling; after hand-edits to `.jsx` they go stale until the next regeneration.
 
 ## Index
+
 - `styles.css` — global entry; imports everything under `tokens/`
-- `tokens/colors.css` — green ramp, ink neutrals, semantic aliases
-- `tokens/typography.css` — families, scale, weights, leading, tracking
-- `tokens/layout.css` — radii, spacing, shadows, motion (Engine)
-- `tokens/fonts.css` — webfont imports (substitutes, see above)
-- `assets/logo/hivory/` & `assets/logo/meaning/` — each brand ships the same four lockups: `black-green.svg`, `green-white.svg`, `all-black.svg`, `all-white.svg` (+ Hivory `mark-green/black/white.svg`)
-- `tokens/brands/meaning.css` — Meaning theme scope
-- `guidelines/` — specimen cards for the Design System tab
+- `tokens/` — colors · typography · layout · fonts · `brands/meaning.css` · `tokens.json` (version record)
+- `CLAUDE.md` — binding repo rules · `docs/portal-design-language.md` — full doctrine · `CHANGELOG.md`
+- `scripts/drift-test.mjs` — `npm run drift`
+- `components/<Name>/` — `.jsx` + `.d.ts` + `card.html` · `_ds_bundle.js` + `_ds_manifest.json` — generated browser bundle + manifest
+- `guidelines/` — specimen cards (Brand · Colors · Type · Spacing · Components groups)
+- `specs/` — the 45 spec pages + `support.js`
+- `templates/dashboard` — the Dashboard template · `templates/email-audit` — email template audit harness
+- `handoff/portal/` — superseded v1 portal runbook (kept for the record)
+- `assets/logo/hivory/` & `assets/logo/meaning/` — four lockups per brand (+ Hivory `mark-*.svg`)
 
-- **Sidebar / SidebarIcon** — app rail matched to the portal's production Sidebar.tsx: 272px card surface (56 collapsed), workspace switcher chip, uppercase group headers with chevron expand, 13px items · 14px icons · radius 7, active = ink-50 fill + semibold + 2px ink left bar, green signal dot on collapsed sections holding the active page, status pills (e.g. "Review"), ghost footer rows
+## Deferred (deliberately)
 
-## Not yet built (intentionally)
-Sidebar/app shell · marketing section kit · status language card · UI kits · slides · templates · SKILL.md
+Mobile geometry (screens-locked milestone) · npm packaging · marketing section kit (hivory.io is its own language — warm ivory, Martel display, `--mk-*` tokens; see `specs/Kit - Marketing.dc.html`) · real screen-reader / second-browser passes (ARIA is reasoned, not tested).

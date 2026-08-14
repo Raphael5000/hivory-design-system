@@ -1,16 +1,17 @@
 <!-- @dsCard group="Brand" viewport="700x330" subtitle="Same four lockups as Hivory — shared mark, Meaning wordmark" name="Meaning logo" -->
 <!DOCTYPE html>
-<html><head><link rel="stylesheet" href="../styles.css">
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
-  body { margin: 0; background: var(--surface-page); }
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-body); }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
-  .cell { border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 130px; position: relative; }
+  .cell { border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; height: 130px; position: relative; }
   .cell img { height: 44px; width: auto; }
-  .tag { position: absolute; bottom: 8px; left: 12px; font-family: var(--font-mono); font-size: 9px; }
+  .on-light { background: var(--white); box-shadow: inset 0 0 0 1px var(--border-subtle); }
+  .tag { position: absolute; bottom: 8px; left: 12px; font-size: 9px; letter-spacing: 0.02em; }
 </style></head>
 <body>
   <div class="row">
-    <div class="cell" style="background: #FFFFFF; border: 1px solid var(--border-subtle);">
+    <div class="cell on-light">
       <img src="../assets/logo/meaning/black-green.svg" alt="Meaning — black and green">
       <span class="tag" style="color: var(--text-muted);">black-green · primary on light</span>
     </div>
@@ -18,7 +19,7 @@
       <img src="../assets/logo/meaning/green-white.svg" alt="Meaning — green and white">
       <span class="tag" style="color: var(--ink-400);">green-white · primary on dark</span>
     </div>
-    <div class="cell" style="background: #FFFFFF; border: 1px solid var(--border-subtle);">
+    <div class="cell on-light">
       <img src="../assets/logo/meaning/all-black.svg" alt="Meaning — all black">
       <span class="tag" style="color: var(--text-muted);">all-black · mono on light</span>
     </div>

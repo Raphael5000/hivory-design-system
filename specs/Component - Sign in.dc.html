@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    :where(button, a, input, [tabindex], [role="button"]):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+    :where(button, a, [role="button"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"]):active { filter: brightness(0.94); }
+    :where(button)[disabled] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+      [data-motion="essential"], .spin { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin var(--duration-spinner) linear infinite; }
+
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+    .seg { appearance: none; border: none; height: 28px; padding: 0 13px; border-radius: 999px; background: transparent; font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: background var(--transition-soft), color var(--transition-soft), box-shadow var(--transition-soft); }
+    .seg:hover { color: var(--text-body); }
+    .seg.on { background: var(--surface-card); color: var(--text-body); box-shadow: var(--shadow-raised); }
+
+    /* ══ THE SCREEN — split: the plate a partner owns, and the form ══ */
+    .screen { display: grid; grid-template-columns: 0.92fr 1fr; min-height: 660px; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-elevated); }
+
+    /* LEFT — dark plate, with a glass card floating on it */
+    /* plate-local values — no token equivalent, so declared once and themeable */
+    .plate { --plate-top: #1C2B22; --plate-mid: var(--surface-dark); --plate-btm: #0B120E; --plate-pill: #FFD98A;
+             position: relative; padding: 38px; display: flex; flex-direction: column; overflow: hidden;
+             background: linear-gradient(158deg, var(--plate-top) 0%, var(--plate-mid) 54%, var(--plate-btm) 100%); }
+    .plate .glow { position: absolute; width: 520px; height: 520px; left: -170px; top: -190px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(0,238,127,0.22) 0%, transparent 66%); }
+    .plate .dots { position: absolute; inset: 0; opacity: 0.6;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.10) 1px, transparent 0);
+      background-size: 24px 24px; mask-image: radial-gradient(at 20% 10%, #000 0%, transparent 74%); -webkit-mask-image: radial-gradient(at 20% 10%, #000 0%, transparent 74%); }
+    .plate .in { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .plate .lock { display: flex; align-items: center; gap: 10px; }
+    .plate .lock img { height: 20px; display: block; }
+    .plate .line { margin-top: auto; font-size: 28px; font-weight: 500; letter-spacing: -0.028em; line-height: 1.22; color: var(--white); max-width: 18ch; }
+    .plate .sub { margin-top: 16px; font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.58); max-width: 36ch; }
+    .plate .links { margin-top: 34px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .plate .links a { font-size: 11.5px; color: rgba(255,255,255,0.58); text-decoration: none; transition: color var(--transition-soft); }
+    .plate .links a:hover { color: var(--white); }
+    .plate .links .sep { width: 3px; height: 3px; border-radius: 999px; background: rgba(255,255,255,0.28); }
+
+
+    /* RIGHT — the form */
+    .form { background: var(--surface-card); padding: 38px; display: flex; align-items: center; justify-content: center; }
+    .formin { width: 100%; max-width: 340px; }
+    .h { margin: 0; font-size: 28px; font-weight: 650; letter-spacing: -0.028em; line-height: 1.15; }
+    .sub2 { margin: 10px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-600); }
+    .lblrow { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 7px; }
+    .lbl { font-size: 12px; font-weight: 600; color: var(--ink-700); }
+    .lnk { font-size: 11.5px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color var(--transition-soft); }
+    .lnk:hover { color: var(--ink-900); }
+    .fld { width: 100%; box-sizing: border-box; height: 42px; padding: 0 14px; border: none; border-radius: var(--radius-control);
+      background: var(--surface-card); box-shadow: inset 0 0 0 1px var(--border-strong); font-family: var(--font-sans);
+      font-size: 14px; color: var(--ink-900); caret-color: var(--green-500); outline: none; transition: box-shadow var(--transition-soft); }
+    .fld::placeholder { color: var(--text-faint); }
+    .fld:hover:not(:focus) { box-shadow: inset 0 0 0 1px var(--ink-300); }
+    .fld:focus { box-shadow: inset 0 0 0 1.5px var(--green-600), 0 0 0 4px rgba(0,163,82,0.13); }
+    .fld.bad { box-shadow: inset 0 0 0 1.5px var(--red-500); }
+    .err { display: flex; align-items: flex-start; gap: 7px; margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--red-700); }
+    .cta { width: 100%; height: 42px; border: none; border-radius: var(--radius-pill); background: var(--action-primary);
+      color: var(--on-action-primary); font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; letter-spacing: -0.005em;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 9px; transition: background var(--transition-soft); }
+    .cta:hover:not(:disabled) { background: var(--action-primary-hover); }
+    .cta:disabled { opacity: .4; cursor: not-allowed; }
+    .sso { width: 100%; height: 42px; border: none; border-radius: var(--radius-pill); background: var(--surface-card);
+      box-shadow: inset 0 0 0 1px var(--border-strong); font-family: var(--font-sans); font-size: 13.5px; font-weight: 550;
+      color: var(--ink-900); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      transition: box-shadow var(--transition-soft); }
+    .sso:hover { box-shadow: inset 0 0 0 1px var(--ink-300); }
+    .or { display: flex; align-items: center; gap: 14px; margin: 20px 0; }
+    .or span { font-size: 11.5px; color: var(--text-faint); }
+    .or i { flex: 1; height: 1px; background: var(--hairline-strong); }
+    .legal { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--hairline); display: flex; align-items: flex-start; gap: 8px; font-size: 11.5px; line-height: 1.55; color: var(--ink-600); }
+    /* ── Mobile: the plate becomes a header band, the form is the screen ── */
+    @media (max-width: 860px) {
+      .screen { grid-template-columns: 1fr; min-height: 0; }
+      .plate { padding: 24px 22px 22px; }
+      .plate .line { margin-top: 20px; font-size: 21px; max-width: 26ch; }
+      .plate .sub { display: none; }
+      .plate .links { display: none; }
+      .form { padding: 28px 22px 24px; }
+      .formin { max-width: none; }
+      .h { font-size: 24px; }
+      /* links reappear beneath the form, on the light surface */
+      .mlinks { display: flex !important; }
+    }
+    .mlinks { display: none; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--hairline); align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .mlinks a { font-size: 11.5px; color: var(--text-muted); text-decoration: none; }
+    .mlinks a:hover { color: var(--ink-900); }
+    .mlinks .sep { width: 3px; height: 3px; border-radius: 999px; background: var(--ink-300); }
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 550; color: var(--text-muted); text-decoration: none; transition: color var(--transition-soft); }
+    .back:hover { color: var(--ink-900); }
+    .sent { display: flex; align-items: flex-start; gap: 11px; padding: 16px 16px; border-radius: var(--radius-lg); background: var(--status-positive-bg); }
+    .sent .t { font-size: 13px; font-weight: 650; color: var(--green-800); }
+    .sent .b { margin-top: 5px; font-size: 12.5px; line-height: 1.55; color: var(--green-800); opacity: 0.85; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Sign in</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 16ch;">Their half, and the work's half.</h1>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The plate on the left is the one surface a partner completely owns — their mark, their dark, and one line they chose. The right half is the same disciplined form every console ships. A brand gets a stage instead of a tinted button.</p>
+
+    <div style="margin-top: 34px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="display: inline-flex; padding: 3px; border-radius: 999px; background: var(--ink-50); gap: 2px;">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="4"><button class="seg {{ m.cls }}" onClick="{{ m.pick }}">{{ m.label }}</button></sc-for>
+      </span>
+      <span style="font-size: 11.5px; color: var(--text-faint);">{{ note }}</span>
+    </div>
+
+    <!-- ══ SPECIMEN ══ -->
+    <div class="screen" style="margin-top: 20px;">
+      <div class="plate">
+        <span class="glow"></span><span class="dots"></span>
+        <div class="in">
+          <div class="lock">
+            <img src="assets/logo/hivory/green-white.svg" alt="Hivory" />
+          </div>
+
+          <div class="line">Lorem ipsum dolor sit amet consectetur.</div>
+          <div class="sub">Adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+          <div class="links">
+            <a href="#" onClick="{{ noop }}">Lorem ipsum</a>
+            <span class="sep"></span>
+            <a href="#" onClick="{{ noop }}">Dolor sit</a>
+            <span class="sep"></span>
+            <a href="#" onClick="{{ noop }}">Amet consectetur</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form">
+        <div class="formin">
+          <sc-if value="{{ isGate }}" hint-placeholder-val="{{ true }}">
+          <h2 class="h">Sign in</h2>
+          <p class="sub2">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+
+          <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 12px;">
+            <button class="sso" onClick="{{ noop }}">
+              <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.6 9.2c0-.6-.1-1.3-.2-1.8H9v3.5h4.8a4.1 4.1 0 0 1-1.8 2.7v2.2h2.9c1.7-1.6 2.7-3.9 2.7-6.6z"/><path fill="#34A853" d="M9 18c2.4 0 4.5-.8 6-2.2l-2.9-2.2c-.8.5-1.8.9-3.1.9-2.4 0-4.4-1.6-5.2-3.8H.9v2.3A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.8 10.7a5.4 5.4 0 0 1 0-3.4V5H.9a9 9 0 0 0 0 8l2.9-2.3z"/><path fill="#EA4335" d="M9 3.6c1.3 0 2.5.5 3.4 1.3l2.6-2.6A9 9 0 0 0 .9 5l2.9 2.3C4.6 5.2 6.6 3.6 9 3.6z"/></svg>
+              Continue with Google
+            </button>
+            <button class="sso" onClick="{{ noop }}">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="var(--ink-900)" aria-hidden="true"><path d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.77.4.08.55-.18.55-.4l-.01-1.42c-2.23.5-2.7-1.1-2.7-1.1-.36-.96-.89-1.21-.89-1.21-.73-.51.05-.5.05-.5.8.06 1.23.85 1.23.85.72 1.26 1.88.9 2.34.68.07-.53.28-.9.51-1.1-1.78-.21-3.65-.91-3.65-4.06 0-.9.31-1.63.82-2.2-.08-.21-.36-1.05.08-2.18 0 0 .67-.22 2.2.84a8.2 8.2 0 0 1 4 0c1.53-1.06 2.2-.84 2.2-.84.44 1.13.16 1.97.08 2.18.51.57.82 1.3.82 2.2 0 3.16-1.87 3.85-3.66 4.05.29.26.54.75.54 1.52l-.01 2.25c0 .22.14.48.55.4A8.21 8.21 0 0 0 16 8.2C16 3.67 12.42 0 8 0z"/></svg>
+              Continue with GitHub
+            </button>
+          </div>
+
+          <div class="or"><i></i><span>or</span><i></i></div>
+
+          <div>
+            <div class="lblrow">
+              <label class="lbl" for="gk">Work email</label>
+              <a class="lnk" href="#" onClick="{{ toRecover }}">Need access?</a>
+            </div>
+            <input id="gk" class="fld {{ badCls }}" type="email" placeholder="name@company.com" value="{{ val }}" onChange="{{ noop }}" aria-invalid="{{ invalid }}" aria-describedby="gerr" autoComplete="email" />
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <div class="err" id="gerr" role="alert">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="flex-shrink: 0; margin-top: 3px;"><circle cx="8" cy="8" r="6"></circle><path d="M8 5.2v3.4M8 10.6v.2"></path></svg>
+                <span>{{ errText }}</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <button class="cta" onClick="{{ submit }}" disabled="{{ blocked }}">
+              <sc-if value="{{ busy }}" hint-placeholder-val="{{ false }}"><span class="spin" data-motion="essential" style="width: 13px; height: 13px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.3); border-top: 1.5px solid var(--white); display: inline-block;"></span></sc-if>
+              {{ ctaLabel }}
+            </button>
+          </div>
+
+          <div class="legal">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 3px;"><rect x="3.5" y="7" width="9" height="6.5" rx="1.6"></rect><path d="M5.6 7V5a2.4 2.4 0 0 1 4.8 0v2"></path></svg>
+            <span>Held for this browser session only — never written to the device.</span>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isRecover }}" hint-placeholder-val="{{ false }}">
+            <a class="back" href="#" onClick="{{ toGate }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Back to sign in</a>
+            <h2 class="h" style="margin-top: 20px;">{{ recTitle }}</h2>
+            <p class="sub2">{{ recSub }}</p>
+            <sc-if value="{{ recForm }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top: 34px;">
+                <div class="lblrow"><label class="lbl" for="rk">Work email</label></div>
+                <input id="rk" class="fld" type="email" placeholder="name@company.com" onChange="{{ noop }}" autoComplete="email" />
+              </div>
+              <div style="margin-top: 20px;"><button class="cta" onClick="{{ toSent }}">{{ recCta }}</button></div>
+            </sc-if>
+            <sc-if value="{{ recDone }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 34px;" class="sent">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="var(--green-700)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+                <span><span class="t">Lorem ipsum dolor sit</span><span class="b">Consectetur adipiscing elit sed do eiusmod tempor, si nomen in indice est.</span></span>
+              </div>
+              <div style="margin-top: 20px; font-size: 12px; line-height: 1.55; color: var(--text-muted);">Ut labore et dolore magna? <a href="#" onClick="{{ toSent }}" style="color: var(--ink-900); font-weight: 550;">Aliqua enim</a></div>
+            </sc-if>
+          </sc-if>
+
+          <div class="mlinks">
+            <a href="#" onClick="{{ noop }}">Lorem ipsum</a>
+            <span class="sep"></span>
+            <a href="#" onClick="{{ noop }}">Dolor sit</a>
+            <span class="sep"></span>
+            <a href="#" onClick="{{ noop }}">Amet consectetur</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">Why a plate, not a card.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="7">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Error and loading are the job.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- VARIANTS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Variants</div><h2 class="sect-h">One frame, four gates.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ v.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ v.v }}</span></div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Below 860px the plate becomes a band above the form: mark and line survive, the sub line does not. The form column never narrows below 340px.</div>
+    </div>
+
+    <!-- LAWS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The laws</div><h2 class="sect-h">What keeps it calm.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ laws }}" as="l" hint-placeholder-count="7">
+        <div style="display: grid; grid-template-columns: 168px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ l.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ l.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Put providers above the field. Give the plate one line and let it breathe. Keep the form identical in every deployment. Autofocus the field. Let password managers fill it.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A screenshot or illustration on the plate. A brand-coloured CTA. A testimonial — nobody reads a quote while signing in. Errors that confirm an account exists. Attempt counters. Real client copy in the system.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Sign in · first of six gaps from the <a href="Audit - WhoYou admin portal.dc.html">portal audit</a> · the plate is where <a href="Foundation - White label.dc.html">white label</a> earns its keep</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:980}}">
+class Component extends DCLogic {
+  state = { mode: 0 };
+  renderVals() {
+    const MODES = [
+      { label: 'Rest', note: 'Providers first, field autofocused, verb disabled until something is typed.' },
+      { label: 'Typed', note: 'The verb enables on the first character \u2014 never on validity.' },
+      { label: 'Error', note: 'One message for every failure. It never reveals whether the account exists.' },
+      { label: 'Signing in', note: 'The verb holds its width; the field goes read-only so a double-click cannot send twice.' }
+    ];
+    const view = this.state.view || 'gate';
+    const i = this.state.mode;
+    const busy = i === 3, bad = i === 2, typed = i >= 1;
+    return {
+      modes: MODES.map((m, k) => ({ label: m.label, cls: k === i ? 'on' : '', pick: () => this.setState({ mode: k }) })),
+      note: MODES[i].note,
+      val: typed ? 'name@company.com' : '',
+      badCls: bad ? 'bad' : '',
+      invalid: bad ? 'true' : 'false',
+      hasError: bad,
+      errText: 'We couldn\u2019t sign you in with those details. Check them and try again, or ask your admin for access.',
+      busy, blocked: !typed || busy,
+      ctaLabel: busy ? 'Signing in' : 'Sign in',
+      isGate: view === 'gate',
+      isRecover: view !== 'gate',
+      recForm: view === 'recover',
+      recDone: view === 'sent',
+      recTitle: view === 'sent' ? 'Check your inbox' : 'Request access',
+      recSub: view === 'sent'
+        ? 'Lorem ipsum dolor sit amet consectetur adipiscing elit.'
+        : 'Lorem ipsum dolor sit amet \u2014 consectetur adipiscing elit sed do eiusmod tempor.',
+      recCta: 'Send request',
+      toRecover: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ view: 'recover' }); },
+      toSent: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ view: 'sent' }); },
+      toGate: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ view: 'gate' }); },
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      submit: () => this.setState({ mode: 3 }),
+      anatomy: [
+        { k: 'The plate', v: 'A dark gradient with a green bloom top-left and a dot grid masked to fade \u2014 depth without an image. It exists so a partner has somewhere to BE, which is what stops them wanting to colour the button.' },
+        { k: 'Lockup', v: 'The green-white logo at 20px, top-left, and nothing beside it. The mark IS the lockup \u2014 a product name next to it doubles the branding on the one screen that needs the least.' },
+        { k: 'The line', v: 'One sentence at 28px/500, tracking \u22120.028em, bottom-anchored above a quieter sub. The partner chooses it; it says what the console is FOR.' },
+        { k: 'Providers, then field', v: '42px controls on white in the right column. Providers above, hairline \u201cor\u201d, then the field with its help link on the label row.' },
+        { k: 'The verb', v: 'Full-width 42px INK pill. Not the brand colour \u2014 it is the only action present, so it needs no colour to be found, and spending the brand here leaves nothing for the one CTA inside the product that earns it.' },
+        { k: 'Session note', v: 'A hairline, then one plain fact about where the credential is kept. The only place this component explains itself.' },
+        { k: 'Recovery', v: 'The label-row link RESOLVES IN PLACE \u2014 the form column is replaced by the request view with a \u201cBack to sign in\u201d affordance, then by a confirmation. It never navigates away: a signed-out user who leaves this screen loses the only context they had.' },
+        { k: 'Utility links', v: 'Pinned to the BASE OF THE PLATE on desktop \u2014 privacy, terms, status. They belong to the partner\u2019s chrome, not to the act, so the form column stays nothing but sign-in. On mobile the plate collapses to a header band with no room beneath the line, so the links move BELOW the form on the light surface, centred. They never sit between the field and the verb.' }
+      ],
+      states: [
+        ['Rest', 'Providers and field ready, verb at 40%. Nothing on the plate moves.'],
+        ['Hover', 'Provider rings firm to ink-300; the verb darkens. The plate does not respond \u2014 it is scenery, not a control.'],
+        ['Pressed', 'brightness(0.94) from motion-base. No translate, even here where a push feels tempting.'],
+        ['Focus', 'Providers, field, verb, in that order. The field takes the green ring plus a 4px 13% halo \u2014 legal here for the same reason the composer\u2019s is: this field is the screen\u2019s subject.'],
+        ['Selected', 'n/a \u2014 nothing on this screen is selectable.'],
+        ['Disabled', 'The verb while the field is empty or in flight. Never a validity judgement, never hidden \u2014 a button that will not enable without saying why is a dead end.'],
+        ['Loading', 'THE state that gets skipped. The verb keeps its width, takes the Spinner and reads \u201cSigning in\u201d; field and providers go read-only. Without it an impatient double-click sends twice.'],
+        ['Empty', 'n/a \u2014 rest IS empty.']
+      ].map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      variants: [
+        { k: 'Email + password', v: 'Two stacked fields. \u201cForgot?\u201d sits right-aligned on the password label row \u2014 discoverable without competing with the verb below.' },
+        { k: 'Magic link', v: 'One email field, verb reads \u201cEmail me a link\u201d. On success the form column is REPLACED by a confirmation in the same frame \u2014 never a toast, because the user is about to leave for their inbox.' },
+        { k: 'Key', v: 'One password field for internal consoles and reseller admin. The session note is mandatory: a pasted key feels riskier than a password and the user deserves to know where it goes. The label link reads \u201cNeed access?\u201d, NOT \u201cForgot?\u201d \u2014 there is no self-serve recovery for a key, and offering one would promise a reset nobody can perform.' },
+        { k: 'SSO only', v: 'Providers, no field, no divider. The plate does more work here \u2014 with two buttons and nothing else, its line is what tells the user they are in the right place.' }
+      ],
+      laws: [
+        { k: 'The plate is a stage,<br>not a billboard', v: 'One line, one sub, one artifact. No screenshot, no illustration, no testimonial \u2014 nobody reads a quote while signing in, and a product shot is a promise made before access is granted.' },
+        { k: 'The plate holds words,<br>not widgets', v: 'A mark, one line, one sub \u2014 and nothing else. A product card here competes with the form for attention and makes a promise before access is granted; the console itself is the demo, one click later.' },
+        { k: 'The form stays boring', v: 'Identical in every deployment \u2014 same widths, same order, same words. All partner expression happens on the left, which is exactly why the right can be shared code.' },
+        { k: 'Providers before fields', v: 'The path most people take goes first. A field above two SSO buttons makes the majority scroll past their own answer.' },
+        { k: 'Recovery lives<br>in the same frame', v: 'Every path out of the form \u2014 forgotten password, request access, magic link sent \u2014 replaces the form COLUMN and keeps the plate. A separate /forgot page throws away the one screen the user understood, and a modal over a sign-in is a dialog on top of a dialog. The confirmation replaces the request; it is never a toast, because the user is leaving for their inbox.' },
+{ k: 'The link matches<br>the gate', v: 'Email + password gets \u201cForgot?\u201d on the password label row. Magic link and SSO get nothing \u2014 there is no password to forget. Key gets \u201cNeed access?\u201d, because recovery is a human issuing a new key, not a self-serve reset. Offering the wrong one promises something the backend cannot do.' },
+{ k: 'Errors never leak', v: 'One message for every failure. \u201cNo user with that email\u201d confirms a real address to an attacker. Say what to do next; never count attempts remaining.' },
+        { k: 'Ink verb, always', v: 'The CTA is never the brand colour, on any brand. It is the only action present \u2014 colour adds nothing and spends the one signal the product has.' },
+        { k: 'Placeholder copy<br>stays placeholder', v: 'Every string on this specimen is lorem. A DS page carrying real sentences gets copied into the next deployment by accident, and a plausible sentence is harder to notice than an obvious one \u2014 the system shows the shape, the product supplies the words.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

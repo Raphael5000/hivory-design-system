@@ -1,15 +1,16 @@
-<!-- @dsCard group="Colors" viewport="700x250" subtitle="Engine companions — teal (info/data) and amber (warmth/caution), tonal kin of the green" name="Companion colors" -->
+<!-- @dsCard group="Colors" viewport="700x270" subtitle="Engine companions — teal (info/data) and amber (needs-you); status colours never follow the brand" name="Companion colors" -->
 <!DOCTYPE html>
 <html><head><link rel="stylesheet" href="../styles.css">
 <style>
   body { margin: 0; background: var(--surface-page); font-family: var(--font-body); }
   .wrap { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
   .ramp { display: grid; grid-template-columns: 70px repeat(7, 1fr); gap: 6px; align-items: center; }
-  .name { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
-  .chip { height: 44px; border-radius: 8px; border: 1px solid var(--border-subtle); position: relative; }
-  .chip i { position: absolute; bottom: 4px; left: 6px; font-style: normal; font-family: var(--font-mono); font-size: 8.5px; }
-  .badges { display: flex; gap: 8px; padding-top: 4px; }
+  .name { font-size: 10px; color: var(--text-muted); }
+  .chip { height: 44px; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px var(--border-subtle); position: relative; }
+  .chip i { position: absolute; bottom: 4px; left: 6px; font-style: normal; font-size: 8.5px; font-variant-numeric: tabular-nums; }
+  .badges { display: flex; gap: 8px; align-items: center; padding-top: 4px; }
   .badge { font-size: 11.5px; font-weight: 550; border-radius: var(--radius-sm); padding: 4px 10px; }
+  .law { font-size: 10.5px; color: var(--text-muted); }
 </style></head>
 <body>
   <div class="wrap">
@@ -18,8 +19,8 @@
       <span class="chip" style="background: var(--teal-50);"></span>
       <span class="chip" style="background: var(--teal-100);"></span>
       <span class="chip" style="background: var(--teal-300);"></span>
-      <span class="chip" style="background: var(--teal-500);"><i style="color: #FFFFFF;">500</i></span>
-      <span class="chip" style="background: var(--teal-600);"><i style="color: #FFFFFF;">600</i></span>
+      <span class="chip" style="background: var(--teal-500);"><i style="color: var(--white);">500</i></span>
+      <span class="chip" style="background: var(--teal-600);"><i style="color: var(--white);">600</i></span>
       <span class="chip" style="background: var(--teal-700);"></span>
       <span class="chip" style="background: var(--teal-900);"></span>
     </div>
@@ -28,16 +29,17 @@
       <span class="chip" style="background: var(--amber-50);"></span>
       <span class="chip" style="background: var(--amber-100);"></span>
       <span class="chip" style="background: var(--amber-300);"></span>
-      <span class="chip" style="background: var(--amber-500);"><i style="color: #000000;">500</i></span>
-      <span class="chip" style="background: var(--amber-600);"><i style="color: #FFFFFF;">600</i></span>
+      <span class="chip" style="background: var(--amber-500);"><i style="color: var(--black);">500</i></span>
+      <span class="chip" style="background: var(--amber-600);"><i style="color: var(--white);">600</i></span>
       <span class="chip" style="background: var(--amber-700);"></span>
       <span class="chip" style="background: var(--amber-900);"></span>
     </div>
     <div class="badges">
       <span class="badge" style="color: var(--status-positive-text); background: var(--status-positive-bg);">Live</span>
       <span class="badge" style="color: var(--status-info-text); background: var(--status-info-bg);">Testing</span>
-      <span class="badge" style="color: var(--status-caution-text); background: var(--status-caution-bg);">Queued</span>
+      <span class="badge" style="color: var(--status-caution-text); background: var(--status-caution-bg);">Needs you</span>
       <span class="badge" style="color: var(--status-negative-text); background: var(--status-negative-bg);">Failed</span>
     </div>
+    <p class="law" style="margin: 0;">Status colours never follow the brand — green means done, amber means it needs you, red means it failed, in every deployment. Brand answers whose product this is; status answers what happened.</p>
   </div>
 </body></html>

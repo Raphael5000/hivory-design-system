@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .h2 { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .seg { appearance: none; border: none; height: 27px; padding: 0 13px; border-radius: 999px; background: transparent; font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: background var(--transition-soft), color var(--transition-soft), box-shadow var(--transition-soft); }
+    .seg:hover { color: var(--text-body); }
+    .seg.on { background: var(--surface-card); color: var(--text-body); box-shadow: var(--shadow-raised); }
+    .card { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .lawrow { display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(23,24,26,0.05); }
+    .lawrow:last-child { border-bottom: none; }
+    .lawrow .n { font-size: 12.5px; font-weight: 650; color: var(--text-body); }
+    .lawrow .d { font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+    .num { font-variant-numeric: tabular-nums; }
+    /* the ladder demo */
+    .rung { display: grid; grid-template-columns: 62px 1fr 128px; gap: 20px; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05); }
+    .rung:last-child { border-bottom: none; }
+    .swatch { height: 100%; min-height: 20px; border-radius: 3px; background: rgba(0,163,82,0.16); box-shadow: inset 0 0 0 1px rgba(0,163,82,0.28); }
+    /* specimen */
+    .spec { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-elevated); padding: 34px 36px; }
+    .spec.loose .r1 { margin-top: 3px; }
+    .spec.loose .r2 { margin-top: 8px; }
+    .spec.loose .r3 { margin-top: 12px; }
+    .spec.loose .r4 { margin-top: 20px; }
+    .spec.loose .r5 { margin-top: 34px; }
+    /* as-built: the one-offs actually found in the file */
+    .spec.built .r1 { margin-top: 2px; }
+    .spec.built .r2 { margin-top: 7px; }
+    .spec.built .r3 { margin-top: 14px; }
+    .spec.built .r4 { margin-top: 18px; }
+    .spec.built .r5 { margin-top: 26px; }
+    .tick { flex-shrink: 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 130px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="eye">Foundation · Rhythm</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 16ch;">Seven gaps. Each one means something.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Vertical space is how a screen says what belongs together. The 4px grid governs the inside of controls; it is the wrong instrument for rhythm, because at section scale it offers twenty indistinguishable options and the eye reads ratios, not increments.</p>
+
+    <!-- ═══ THE FINDING ═══ -->
+    <div style="margin-top: 64px;"><div class="eye">The finding</div><h2 class="h2">What we were actually shipping.</h2></div>
+    <p style="margin: 20px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">Measured across the console, the proposal and the Mock Kit — every <span style="font-weight: 650;">margin-top</span> and <span style="font-weight: 650;">gap</span> in use, by frequency:</p>
+
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: flex; align-items: baseline; gap: 10px;">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Gap values found</span>
+        <span class="num" style="font-size: var(--text-meta); color: var(--text-faint);">22 distinct values · every integer from 1 to 20 · 1,146 off-ladder margins across 39 files</span>
+      </div>
+      <div style="margin-top: 20px; display: flex; align-items: flex-end; gap: 3px; height: 92px;">
+        <sc-for list="{{ histogram }}" as="h" hint-placeholder-count="22">
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%;">
+            <span class="num" style="font-size: 9.5px; color: var(--text-faint);">{{ h.n }}</span>
+            <span style="width: 100%; height: {{ h.h }}; border-radius: 2px 2px 0 0; background: {{ h.bg }};"></span>
+            <span class="num" style="font-size: 9.5px; color: {{ h.lc }}; font-weight: {{ h.lw }};">{{ h.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--hairline); display: flex; gap: 26px;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--text-secondary);"><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--green-600);"></span>On the ladder</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--text-secondary);"><span style="width: 9px; height: 9px; border-radius: 2px; background: var(--ink-200);"></span>Improvised — 9, 7, 11, 13, 18, 22, 26…</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 22px 24px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Type held up</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Nine sizes carry about 95% of all text, and they match the tokens. Where a token existed, we used it. The only drift is display sizes — 15.5, 22, 26, 38, 42, 54 — chosen ad hoc because the scale stops at 21px and hero moments had nothing to reach for.</div>
+      </div>
+      <div class="card" style="padding: 22px 24px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Spacing did not</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">No token names a gap by its job, so every surface improvised — and the differences are sub-perceptual. Nobody can see 7 against 8, which is the tell: if a distinction cannot be seen, it is not carrying meaning, it is carrying entropy.</div>
+      </div>
+    </div>
+
+    <!-- ═══ THE LADDER ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The ladder</div><h2 class="h2">Geometric, not linear.</h2></div>
+    <p style="margin: 20px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">Seven rungs, each roughly 1.6× the last, each with exactly one job. If you are reaching for an eighth, the answer is a different rung — not a new number. The seventh was found, not designed: every component page in the system was already using 84–100 for page-level breaks, and no rung could say it.</p>
+
+    <div class="card" style="margin-top: 20px; padding: 8px 28px 12px;">
+      <div class="rung" style="border-bottom: 1px solid var(--hairline-strong); padding-bottom: 9px;">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Token</span>
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">What it separates</span>
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Absorbs</span>
+      </div>
+      <sc-for list="{{ rungs }}" as="r" hint-placeholder-count="7">
+        <div class="rung">
+          <span class="num" style="font-size: 15px; font-weight: 600; letter-spacing: -0.02em;">{{ r.px }}</span>
+          <span style="display: flex; align-items: center; gap: 16px;">
+            <span style="width: {{ r.px }}; flex-shrink: 0;" class="swatch"></span>
+            <span style="min-width: 0;">
+              <span style="display: block; font-size: 12.5px; font-weight: 650;">{{ r.name }}</span>
+              <span style="display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.5; color: var(--text-secondary);">{{ r.job }}</span>
+            </span>
+          </span>
+          <span class="num" style="font-size: 11px; color: var(--text-faint);">{{ r.absorbs }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 20px; align-items: flex-start;">
+      <div class="card" style="flex: 1; padding: 20px 22px;">
+        <div style="font-size: 12.5px; font-weight: 650;">Why 1.6×</div>
+        <div style="margin-top: 8px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Two gaps read as different only when the larger is about half again the smaller. Below that the eye reads them as the same gap applied inconsistently — which is worse than either value, because it looks like a mistake rather than a decision.</div>
+      </div>
+      <div class="card" style="flex: 1; padding: 20px 22px;">
+        <div style="font-size: 12.5px; font-weight: 650;">The 4px grid still governs</div>
+        <div style="margin-top: 8px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Inside controls — button padding, field height, icon insets, row height. There the increments are small, bounded and load-bearing. The ladder governs the space <i>between</i> things; the grid governs the space <i>within</i> them.</div>
+      </div>
+    </div>
+
+    <!-- ═══ SEEING IT ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Seeing it</div><h2 class="h2">The same block, both ways.</h2></div>
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px;">
+      <span style="display: inline-flex; padding: 3px; border-radius: 999px; background: var(--ink-50); gap: 2px;">
+        <button class="seg {{ segLadderCls }}" onClick="{{ setLadder }}">On the ladder</button>
+        <button class="seg {{ segBuiltCls }}" onClick="{{ setBuilt }}">As built today</button>
+      </span>
+      <span style="font-size: 11.5px; color: var(--text-faint);">{{ specNote }}</span>
+    </div>
+
+    <div class="spec {{ specCls }}" style="margin-top: 20px;">
+      <div class="eye" style="font-size: 10px; letter-spacing: 0.13em;">Overview</div>
+      <h3 class="r3" style="margin: 0; font-size: 27px; font-weight: 650; letter-spacing: -0.03em; line-height: 1.1;">A growth team that ships every week.</h3>
+      <p class="r3" style="margin: 0; max-width: 52ch; font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">Four surfaces running continuously — website, content, outbound and brand. The engine drafts, you approve, it ships. Nothing goes live without your say.</p>
+      <div class="r5" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+          <div>
+            <span class="num" style="display: block; font-size: 27px; font-weight: 550; letter-spacing: -0.025em;">{{ s.v }}</span>
+            <span class="r1" style="display: block; font-size: 12.5px; font-weight: 600;">{{ s.k }}</span>
+            <span class="r2" style="display: block; font-size: 11.5px; line-height: 1.5; color: var(--text-muted);">{{ s.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div class="r5" style="padding-top: 20px; border-top: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Your part</span>
+        <div class="r3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 34px;">
+          <sc-for list="{{ parts }}" as="p" hint-placeholder-count="4">
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+              <svg class="tick" width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="transform: translateY(1px);"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+              <span style="font-size: 13px; line-height: 1.5;">{{ p }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DISPLAY SCALE ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The gap in the type scale</div><h2 class="h2">Display sizes, named at last.</h2></div>
+    <p style="margin: 20px 0 0; max-width: 660px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The platform scale stops at 21px because the console has no hero moments. The proposal and marketing surfaces do, so they improvised — 22, 26, 34, 38, 42, 54, 66. Same ladder logic, four rungs, each about 1.35× the last.</p>
+
+    <div class="card" style="margin-top: 20px; padding: 10px 28px 16px;">
+      <sc-for list="{{ display }}" as="d" hint-placeholder-count="4">
+        <div style="display: grid; grid-template-columns: 96px 1fr 210px; gap: 20px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(23,24,26,0.05);">
+          <span class="num" style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">{{ d.px }}</span>
+          <span style="font-size: {{ d.px }}; font-weight: 650; letter-spacing: {{ d.track }}; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Uncommon growth</span>
+          <span style="font-size: 11.5px; line-height: 1.5; color: var(--text-secondary);">{{ d.use }}</span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 14px; font-size: 11.5px; line-height: 1.55; color: var(--text-faint);">Tracking tightens as size grows — that is not decoration. Default letter-spacing is set for reading sizes; at display sizes it reads as gaps between letters.</div>
+    </div>
+
+    <!-- ═══ LAWS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The laws</div><h2 class="h2">How to spend space.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="lawrow"><span class="n">Seven rungs, no others</span><span class="d">3 · 8 · 12 · 20 · 34 · 64 · 104. If a layout seems to want 26, it wants 20 or 34 — decide which side of the meaning it falls on. A seventh value is always a decision someone avoided making.</span></div>
+      <div class="lawrow"><span class="n">Space is the only<br>grouping device</span><span class="d">Before reaching for a rule, a card, a wash or a border to show that things belong together, spend a rung. Most boxes in a first draft are a spacing problem wearing a container. The Glass Engine has one elevated card per screen precisely because space does the rest.</span></div>
+      <div class="lawrow"><span class="n">Gaps get bigger going up</span><span class="d">A label sits 3 from its value, the pair sits 8 from the next pair, the group sits 20 from the next group. Never let a child gap equal or exceed its parent gap — that is what makes a block read as ambiguous, and it is the single most common rhythm bug.</span></div>
+      <div class="lawrow"><span class="n">Section gaps are<br>asymmetric</span><span class="d">A heading belongs to what follows it, not what precedes it: 64 above, 12 below. Equal space above and below a heading orphans it between two blocks.</span></div>
+      <div class="lawrow"><span class="n">Eyebrow, heading, lede<br>are one unit</span><span class="d">The eyebrow labels the heading and the lede explains it, so all three sit 12 apart regardless of the heading's size — 27px or 66px, the gap does not grow. Then 34 to the first block. Scaling that gap with the type is the reflex that makes big headings float.</span></div>
+      <div class="lawrow"><span class="n">The grid stays inside</span><span class="d">4px increments govern control interiors — padding, heights, insets, icon boxes. Never use the ladder for those, and never use the grid for vertical rhythm.</span></div>
+      <div class="lawrow"><span class="n">Drift rounds toward<br>contrast, not distance</span><span class="d">When a stray colour collapses onto the ladder it rounds to the <b style="font-weight: 650;">safer</b> token, never the numerically nearest one. Learned the hard way on 31 July: #6E7072 sits between <span style="font-family: var(--font-mono);">--ink-600</span> (Δ25) and <span style="font-family: var(--font-mono);">--ink-500</span> (Δ16), the nearest was chosen, and twelve runs of 9pt secondary text on the signed contract fell from 4.9:1 to 3.3:1 — failing AA on the one deliverable that prints and cannot be zoomed. Same reasoning as the rungs: 26 resolves to 20 or 34 by <i>meaning</i>, not by distance. For colour, meaning is legibility.</span></div>
+      <div class="lawrow"><span class="n">Quiet text has a floor</span><span class="d">Every text colour in the system clears 4.5:1 — including the quiet ones. <span style="font-family: var(--font-mono);">--text-muted</span> and <span style="font-family: var(--font-mono);">--text-faint</span> were re-graded on 31 July because they resolved to ink-500 (3.34:1) and ink-400 (2.63:1); they now carry their own values at 5.71 and 4.78. The ink ramp itself is unchanged — those steps are still right for borders, dots and meter tracks, which have no contrast requirement. Text ladder on white: 17.2 → 11.1 → 7.2 → 5.7 → 4.8.</span></div>
+      <div class="lawrow"><span class="n">Print rounds darker still</span><span class="d">Ink on paper has no backlight and no zoom, so <b style="font-weight: 650;">every</b> word in a document clears 4.5:1 — there is no exemption for labels, captions, footers or page numbers. Which means print hierarchy cannot be carried by <i>greying out</i> at all: it comes from size and weight, with tracking to quiet a label further. In the signed proposal all text sits at <span style="font-family: var(--font-mono);">--ink-600</span> or darker, and an 8pt/400 label reads as subordinate to an 11pt/600 value without spending a single point of contrast. First draft of this law carved out "labels whose words are already known" — that was a rationalisation of nine runs measuring 2.63:1, and the measurement settled it.</span></div>
+      <div class="lawrow"><span class="n">Mocks are exempt</span><span class="d">Anything imitating another surface — every body in the <a href="Kit - Mock.dc.html">Mock Kit</a> — keeps the measurements of the thing it depicts. A 44px avatar and a 38px record row are load-bearing fidelity, not our rhythm. The ladder governs Hivory's own chrome and stops at the mock's edge.</span></div>
+      <div class="lawrow"><span class="n">Print has its own ladder</span><span class="d">Documents are set in points against a fixed page, so they run a separate ladder — the px rungs do not convert. Set in the print spec, not here.</span></div>
+      <div class="lawrow"><span class="n">Measure caps hold</span><span class="d">Reading prose ≤ 52ch on light surfaces, ≤ 46ch for lede paragraphs, ≤ 62ch in documents. Width is rhythm too — a line that runs past its cap makes every gap around it look wrong.</span></div>
+      <div class="lawrow" style="border-bottom: none;"><span class="n">One family, tabular data</span><span class="d">Mono was retired on 27 July: <span style="font-weight: 650;">--font-mono</span> resolves to the system face. Machine facts are no longer marked by family — they are marked by <span style="font-weight: 650;">font-variant-numeric: tabular-nums</span> plus a quieter colour. Never reintroduce a second family to make data look like data.</span></div>
+    </div>
+
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Pick the rung by asking what the gap separates, not by how it looks. Let a section breathe at 64 even when it feels generous — the density lives inside the blocks, not between them. Use asymmetric heading space. Delete a container every time a rung can do its job.</div></div>
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Nudge a value by 1–2px to fix an optical problem — the cause is almost always a wrong rung one level up. Equal gaps at two nesting levels. A new display size for one headline. Borders standing in for space. Sub-perceptual distinctions of any kind: if you can't see it, it isn't doing anything.</div></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Foundation · Rhythm · governs: every platform and proposal surface · pairs with <a href="Kit - Mock.dc.html">Mock Kit</a> and <a href="Pattern - Artifact panel.dc.html">Pattern · Artifact panel</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;showAsBuilt&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { spec: null };
+  renderVals() {
+    const spec = this.state.spec === null ? (this.props.showAsBuilt ? 'built' : 'loose') : this.state.spec;
+    const LADDER = [3, 8, 12, 20, 34, 64];
+
+    const found = [[1,6],[2,5],[3,1],[4,3],[5,11],[6,22],[7,9],[8,45],[9,17],[10,41],[11,7],[12,43],[14,10],[16,13],[18,1],[20,2],[22,2],[24,4],[28,2],[34,3],[46,2],[64,1]];
+    const max = 45;
+
+    return {
+      histogram: found.map(([v, n]) => {
+        const on = LADDER.includes(v);
+        return {
+          v, n,
+          h: Math.max(3, Math.round(n / max * 62)) + 'px',
+          bg: on ? 'var(--green-600)' : 'var(--ink-200)',
+          lc: on ? 'var(--text-body)' : 'var(--text-faint)',
+          lw: on ? '650' : '400'
+        };
+      }),
+      rungs: [
+        { px: '3px', name: 'Bond', job: 'A value and the label that names it. The tightest legal gap — anything less is a typographic accident.', absorbs: '1 · 2 · 4 · 5' },
+        { px: '8px', name: 'Pair', job: 'A glyph and its text, a title and its subtitle, two lines that read as one thought.', absorbs: '6 · 7 · 9 · 10' },
+        { px: '12px', name: 'Sibling', job: 'One row from the next in a list. A heading from the paragraph it belongs to.', absorbs: '11 · 13 · 14' },
+        { px: '20px', name: 'Block', job: 'One self-contained block from the next inside a section. Also the default grid gap between cards.', absorbs: '16 · 18 · 22 · 24' },
+        { px: '34px', name: 'Group', job: 'A run of blocks from the next run. The widest gap that still reads as one section.', absorbs: '26 · 28 · 30 · 32' },
+        { px: '64px', name: 'Section', job: 'One section from the next. Sits above a heading, never below it.', absorbs: '48 · 52 · 56 · 60' },
+        { px: '104px', name: 'Chapter', job: 'One page-level region from the next — where a spec page changes subject. The only rung that may exceed a screen’s worth of quiet.', absorbs: '84 · 88 · 96 · 100' }
+      ],
+      stats: [
+        { v: '31%', k: 'repeat-order growth', sub: 'first two quarters, Pure Good' },
+        { v: '118', k: 'retail buyers enriched', sub: 'ranked against your profile' },
+        { v: '30 min', k: 'of your week', sub: 'approvals, nothing else' }
+      ],
+      parts: [
+        'Access to your site, CRM and social accounts',
+        'One 45-minute kickoff, then async',
+        'Approvals within two working days',
+        'A named decision-maker for brand'
+      ],
+      display: [
+        { px: '27px', track: '-0.03em', use: 'Section heading on a card. The proposal\u2019s workhorse.' },
+        { px: '36px', track: '-0.034em', use: 'Page heading. The largest size the console ever uses.' },
+        { px: '48px', track: '-0.04em', use: 'Proposal section opener \u2014 one per screen.' },
+        { px: '66px', track: '-0.045em', use: 'Hero. One per document, and only where there is room to land.' }
+      ],
+      specCls: spec,
+      segLadderCls: spec === 'loose' ? 'on' : '',
+      segBuiltCls: spec === 'built' ? 'on' : '',
+      specNote: spec === 'loose'
+        ? 'Rungs only: 3 \u00b7 8 \u00b7 12 \u00b7 20 \u00b7 34.'
+        : 'The real values from the file: 2 \u00b7 7 \u00b7 14 \u00b7 18 \u00b7 26 \u2014 each within 2px of a rung, and the groups stop separating.',
+      setLadder: () => this.setState({ spec: 'loose' }),
+      setBuilt: () => this.setState({ spec: 'built' })
+    };
+  }
+}
+</script>
+</body>
+</html>

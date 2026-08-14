@@ -70,7 +70,7 @@ export function Scorecard({ label, value, change, sentiment = 'up_is_good' }) {
   return (
     <div className="hv-card" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '0' }}>
       <span style={{ fontSize: '11px', fontWeight: 500, color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-data)', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '3px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
       {showChange ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
           <span style={{

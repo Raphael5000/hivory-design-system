@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+html,body{margin:0;background:var(--ink-50)}a{color:var(--green-800)}a:hover{color:var(--green-600)}
+@keyframes mdkIn{from{opacity:0;transform:translateY(7px);background:rgba(0,238,127,0.10)}to{opacity:1;transform:none;background:rgba(0,238,127,0)}}
+@keyframes mdkPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,238,127,0.35)}50%{box-shadow:0 0 0 5px rgba(0,238,127,0)}}
+.mdk-line .mdk-fix{opacity:0;transition:opacity 120ms cubic-bezier(0.2,0.8,0.2,1)}
+.mdk-line:hover .mdk-fix{opacity:1}
+.mdk-trow{transition:background 120ms cubic-bezier(0.2,0.8,0.2,1)}
+.mdk-trow:hover{background:rgba(23,24,26,0.02)}</style>
+</helmet>
+<div style="min-height: 100vh; background: var(--ink-50); font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink-900); padding: 52px 24px 80px;">
+<div style="max-width: 760px; margin: 0 auto;">
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#00EE7F" stroke-width="1.3" stroke-linejoin="round"><path d="M8 3 12.33 5.5v5L8 13 3.67 10.5v-5Z"></path><path d="M13 8l-2.5 4.33h-5L3 8l2.5-4.33h5Z" opacity="0.55"></path></svg>
+    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-500); white-space: nowrap;">HIVORY DESIGN SYSTEM · MARKDOWN KIT v2</span>
+  </div>
+  <h1 style="margin: 12px 0 0; font-size: 30px; font-weight: 700; letter-spacing: -0.025em;">The Markdown Kit</h1>
+  <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-600); max-width: 620px;">.md files are a platform primitive — every source, document and the memory itself IS one, and renders through exactly these pieces. The kit is judged on whole files, not fragments: two composed specimens below, then the vocabulary. Rules that never bend: reading measure 620 · body 13.5/1.7 · a fixed 20px marker column against a constant 6px gutter (the gutter, not the left edge, is what the eye reads) · exactly two heading levels per file · green marks structure and memory events only · every fact carries provenance · every line is editable, and an edit is a learning. Journeys: <a href="Paper - Knowledge journeys.dc.html">Connect &amp; Upload</a>.</p>
+
+  <div style="display: flex; align-items: center; gap: 10px; margin: 34px 0 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">the live file</span><span style="font-size: 11.5px; color: var(--ink-500);">a whole document rendered end-to-end — header · prose · facts · table · quote · figure · sequence · colophon. Hover a fact: the fix affordance is part of the medium.</span></div>
+  <div style="background: var(--white); border-radius: 16px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 40px 56px 44px;">
+    <div style="max-width: 620px;">
+      <div style="font-size: 23px; font-weight: 680; letter-spacing: -0.022em; line-height: 1.2;">Sustainability Report 2025</div>
+      <div style="margin-top: 8px; font-size: 12px; color: var(--ink-500);"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px;">sustainability-report-2025.md</span> · 18 facts · read 12 min ago</div>
+      <div style="height: 1px; background: rgba(23,24,26,0.06); margin: 20px 0 0;"></div>
+      <p style="margin: 20px 0 0; font-size: 13.5px; line-height: 1.7; color: var(--ink-700); text-wrap: pretty;">What the agent took from the 42-page report — <span style="font-weight: 600; color: var(--ink-900);">nothing else is stored</span>. Facts join the graph; see <a href="#" style="text-decoration: none;">memory.md</a> for where each one landed.</p>
+
+      <h3 style="margin: 34px 0 0; font-size: 14px; font-weight: 650; letter-spacing: -0.01em;">Facts extracted</h3>
+      <div class="mdk-line" style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700); text-wrap: pretty;">92% less packaging waste per order since the switch. <span style="color: var(--ink-400);">(p.4)</span></span><span class="mdk-fix" style="margin-left: 12px; font-size: 11px; line-height: 1.9; color: var(--ink-300); cursor: pointer; flex-shrink: 0;">fix</span></div>
+      <div class="mdk-line" style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700); text-wrap: pretty;">Unit costs rose 14% in Q1, fell below the old baseline by month eight. <span style="color: var(--ink-400);">(p.11)</span></span><span class="mdk-fix" style="margin-left: 12px; font-size: 11px; line-height: 1.9; color: var(--ink-300); cursor: pointer; flex-shrink: 0;">fix</span></div>
+      <div class="mdk-line" style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700); text-wrap: pretty;">Repeat rate on refill orders up 22%. <span style="color: var(--ink-400);">(p.19)</span></span><span class="mdk-fix" style="margin-left: 12px; font-size: 11px; line-height: 1.9; color: var(--ink-300); cursor: pointer; flex-shrink: 0;">fix</span></div>
+
+      <h3 style="margin: 34px 0 0; font-size: 14px; font-weight: 650; letter-spacing: -0.01em;">Packaging mix</h3>
+      <div style="margin: 12px 0 0 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 90px 64px; gap: 12px; padding-bottom: 7px; border-bottom: 1px solid rgba(23,24,26,0.08);"><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400);">MATERIAL</span><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400); text-align: right;">SHARE</span><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400); text-align: right;">Δ YOY</span></div>
+        <div class="mdk-trow" style="display: grid; grid-template-columns: 1fr 90px 64px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 13px;">Refill (glass)</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-variant-numeric: tabular-nums;">54%</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; color: var(--green-700); font-variant-numeric: tabular-nums;">+11</span></div>
+        <div class="mdk-trow" style="display: grid; grid-template-columns: 1fr 90px 64px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 13px;">Compostable pouch</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-variant-numeric: tabular-nums;">31%</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; color: var(--green-700); font-variant-numeric: tabular-nums;">+6</span></div>
+        <div class="mdk-trow" style="display: grid; grid-template-columns: 1fr 90px 64px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 13px;">Recycled card</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-variant-numeric: tabular-nums;">15%</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; color: var(--ink-400); font-variant-numeric: tabular-nums;">−17</span></div>
+        <div style="font-size: 11px; color: var(--ink-400); margin-top: 8px;">Table 2 · p.14</div>
+      </div>
+
+      <div style="border-left: 2px solid var(--green-500); padding: 2px 0 2px 14px; margin: 20px 0 0 20px;">
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--ink-600);">“We publish our supplier list because trust shouldn’t require faith.”</div>
+        <div style="font-size: 11.5px; color: var(--ink-400); margin-top: 3px;">CEO letter · p.2</div>
+      </div>
+
+      <div style="margin: 20px 0 0 20px;">
+        <div style="aspect-ratio: 16 / 7; border-radius: 10px; background: linear-gradient(140deg, #E9EFE9, #DFEAE2); display: flex; align-items: center; justify-content: center;"><span style="font-size: 11.5px; color: #7A8B7E;">Waste-per-order chart, extracted from p.11</span></div>
+        <div style="font-size: 11.5px; color: var(--ink-400); margin-top: 8px;">Fig. — Waste per order, 2023–25 · p.11</div>
+      </div>
+
+      <h3 style="margin: 34px 0 0; font-size: 14px; font-weight: 650; letter-spacing: -0.01em;">Rollout, in order</h3>
+      <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; line-height: 1.8; color: var(--ink-400); font-variant-numeric: tabular-nums;">1.</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Refill stations to 5 cities. <span style="color: var(--ink-400);">(p.17)</span></span></div>
+      <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; line-height: 1.8; color: var(--ink-400); font-variant-numeric: tabular-nums;">2.</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Supplier list goes public, updated quarterly. <span style="color: var(--ink-400);">(p.22)</span></span></div>
+      <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; line-height: 1.8; color: var(--ink-400); font-variant-numeric: tabular-nums;">3.</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Carbon-neutral by 2028. <span style="color: var(--ink-400);">(p.30)</span></span></div>
+
+      <div style="height: 1px; background: rgba(23,24,26,0.06); margin: 34px 0 0;"></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-top: 12px;">
+        <span style="font-size: 11.5px; color: var(--ink-400);">Uploaded 12 March · original stored unchanged</span>
+        <span style="flex: 1;"></span>
+        <span style="font-size: 11.5px; color: var(--ink-300); cursor: pointer; white-space: nowrap;">Download original</span>
+        <span style="font-size: 11.5px; color: var(--ink-300); cursor: pointer; white-space: nowrap;">Delete</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 10px; margin: 34px 0 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">the draft</span><span style="font-size: 11.5px; color: var(--ink-500);">the same grammar mid-generation — facts materialize with a green wash, ambiguity becomes a question, changes wait behind the draft bar. Nothing applies until approved.</span></div>
+  <div style="background: var(--white); border-radius: 16px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 40px 56px 36px;">
+    <div style="max-width: 620px;">
+      <div style="font-size: 23px; font-weight: 680; letter-spacing: -0.022em; line-height: 1.2;">Founder interview notes</div>
+      <div style="margin-top: 8px; font-size: 12px; color: var(--ink-500);"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px;">founder-interview.md</span> · <span style="color: var(--amber-700); font-weight: 600;">draft</span> · 9 facts · awaiting your review</div>
+      <div style="height: 1px; background: rgba(23,24,26,0.06); margin: 20px 0 0;"></div>
+      <div style="display: flex; align-items: baseline; margin-top: 20px; border-radius: 6px; animation: mdkIn var(--duration-gentle) var(--ease-out) both; animation-delay: 100ms;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Origin: a Copenhagen bulk-buy co-op that kept running out of refills. <span style="color: var(--ink-400);">(p.1)</span></span></div>
+      <div style="display: flex; align-items: baseline; margin-top: 8px; border-radius: 6px; animation: mdkIn var(--duration-gentle) var(--ease-out) both; animation-delay: 260ms;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Team is <span style="color: var(--ink-400); text-decoration: line-through;">12</span> <strong>16 people</strong> <span style="font-size: 10px; font-weight: 700; color: var(--green-800); background: rgba(0,238,127,0.16); border-radius: 999px; padding: 2px 7px; white-space: nowrap; display: inline-block; margin-left: 2px;">UPDATES MEMORY</span></span></div>
+      <div style="display: flex; align-items: baseline; margin-top: 8px; border-radius: 6px; animation: mdkIn var(--duration-gentle) var(--ease-out) both; animation-delay: 420ms;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="flex: 1; font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Next launch: the gifting line, September. <span style="color: var(--ink-400);">(p.3)</span></span></div>
+      <div style="border-radius: 10px; background: rgba(255,190,44,0.09); padding: 12px 14px; margin-top: 20px; animation: mdkIn var(--duration-gentle) var(--ease-out) both; animation-delay: 560ms;">
+        <div style="font-size: 13px; color: var(--ink-700);">Two “teams” mentioned — is 16 the whole company or just operations?</div>
+        <div style="display: flex; gap: 7px; margin-top: 8px;">
+          <span style="height: 24px; padding: 0 11px; border-radius: 999px; background: var(--ink-800); color: var(--white); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; cursor: pointer;">Whole company</span>
+          <span style="height: 24px; padding: 0 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; cursor: pointer;">Operations</span>
+          <span style="height: 24px; padding: 0 9px; font-size: 11px; color: var(--ink-500); display: inline-flex; align-items: center; cursor: pointer; white-space: nowrap;">Something else…</span>
+        </div>
+      </div>
+      <div style="border-left: 2px solid var(--green-500); padding: 2px 0 2px 14px; margin: 20px 0 0 20px; animation: mdkIn var(--duration-gentle) var(--ease-out) both; animation-delay: 700ms;">
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--ink-600);">“We’re not anti-plastic; we’re anti-waste.”</div>
+        <div style="font-size: 11.5px; color: var(--ink-400); margin-top: 3px;">Founder · p.2</div>
+      </div>
+      <div style="height: 1px; background: rgba(23,24,26,0.06); margin: 20px 0 0;"></div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
+        <span style="font-size: 12px; color: var(--ink-500);">9 facts · 1 update · 1 question open</span>
+        <span style="flex: 1;"></span>
+        <button style="height: 27px; padding: 0 13px; border: none; border-radius: 999px; background: var(--ink-800); color: var(--white); font-family: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer;">Add to memory</button>
+        <button style="height: 27px; padding: 0 12px; border: none; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); color: var(--ink-900); font-family: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer;">Discard</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin: 34px 0 0; font-size: 18px; font-weight: 680; letter-spacing: -0.015em;">The vocabulary</h2>
+  <p style="margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-600); max-width: 620px;">Every piece a file may contain. Nothing outside this list ever renders in a .md — agents emit typed content, the kit renders it.</p>
+
+  <div style="display: flex; flex-direction: column; gap: 22px; margin-top: 20px;">
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/file-header</span><span style="font-size: 11.5px; color: var(--ink-500);">every file starts identically: title 23/680 · ONE descriptor line (the filename lives in the descriptor) · hairline. Never a third heading level.</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="font-size: 23px; font-weight: 680; letter-spacing: -0.022em;">Memory</div>
+        <div style="margin-top: 8px; font-size: 12px; color: var(--ink-500);"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px;">memory.md</span> · updated after every decision · 41 entries</div>
+        <div style="height: 1px; background: rgba(23,24,26,0.06); margin-top: 20px;"></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/records</span><span style="font-size: 11.5px; color: var(--ink-500);">a plain white card of its own below the file: “Stored in the database”, then the fields as house pills behind quiet group labels. No subline, no counts, no rows, no verbs, no jargon.</span></div>
+      <div style="background: var(--white); border-radius: 16px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 28px 26px 32px;">
+        <div style="max-width: 620px;">
+          <div style="font-size: 15px; font-weight: 650; letter-spacing: -0.01em;">Stored in the database</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
+            <div style="display: flex; align-items: flex-start; gap: 16px;"><div style="width: 110px; flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--ink-500); line-height: 22px;">Deals</div><div style="flex: 1; display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Stage</span><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Amount</span><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Close date</span></div></div>
+            <div style="display: flex; align-items: flex-start; gap: 16px;"><div style="width: 110px; flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--ink-500); line-height: 22px;">Contacts</div><div style="flex: 1; display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Email</span><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Company</span></div></div>
+            <div style="display: flex; align-items: flex-start; gap: 16px;"><div style="width: 110px; flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--ink-500); line-height: 22px;">Engagement</div><div style="flex: 1; display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Type</span><span style="display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 999px; background: rgba(23,24,26,0.05); font-size: 11.5px; font-weight: 600; color: var(--ink-600); white-space: nowrap;">Timestamp</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size: 11px; color: var(--ink-400); margin-top: 8px; max-width: 620px; padding: 0 4px;">Its own card, 12px below the file pane — console chrome, not file content: never prints, exports or enters memory. Wrong number → fix the fact in Knowledge, or reauthorize the source.</div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/headings</span><span style="font-size: 11.5px; color: var(--ink-500);">H1 is the file title, once; H2 sections carry the body; H3/H4 are rare. Never deeper.</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="font-size: 23px; font-weight: 680; letter-spacing: -0.022em;">H1 · File title <span style="font-size: 11px; font-weight: 500; color: var(--ink-400); letter-spacing: 0;">23/680 · once, in md/file-header</span></div>
+        <div style="margin-top: 20px; font-size: 14px; font-weight: 650; letter-spacing: -0.01em;">H2 · Section <span style="font-size: 11px; font-weight: 500; color: var(--ink-400);">14/650 · 28px above, 0 below</span></div>
+        <div style="margin-top: 12px; font-size: 13px; font-weight: 600;">H3 · Subsection <span style="font-size: 11px; font-weight: 500; color: var(--ink-400);">13/600 · 20px above</span></div>
+        <div style="margin-top: 12px; font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-500);">H4 · LABEL <span style="letter-spacing: 0; font-weight: 500; color: var(--ink-400);">10.5/650 caps · rare, for grouped runs</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/list · md/ol · md/task</span><span style="font-size: 11.5px; color: var(--ink-500);">plain bullets are ink (green dash is reserved for facts) · ordered = mono numerals · tasks for plans inside docs</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="display: flex; align-items: baseline;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--ink-300);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Plain list item — no provenance, ink dash.</span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 8px; margin-left: 20px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--ink-200);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Nested one marker column. Two levels max.</span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 12px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; line-height: 1.6; color: var(--ink-400);">1.</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Ordered item — mono numeral, gray. For sequences: plans, steps, rankings.</span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 12px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; display: inline-flex; justify-content: flex-end; overflow: hidden;"><span style="display: block; width: 13px; height: 13px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px rgba(23,24,26,0.2);"></span></span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Open task — plans embedded in a doc.</span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; display: inline-flex; justify-content: flex-end; overflow: hidden;"><span style="width: 13px; height: 13px; border-radius: 4px; background: var(--ink-800); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 9px;">✓</span></span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-400); text-decoration: line-through;">Done task — struck, faint.</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/fact · md/updated</span><span style="font-size: 11.5px; color: var(--ink-500);">green dash · statement · provenance in parentheses, always. A fact that changes memory shows old struck → new bold + badge, before it applies.</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="display: flex; align-items: baseline;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Supplier stories outperform everything else 2.3× on engagement. <span style="color: var(--ink-400);">(engine analysis · Jul)</span></span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Refill stations in <span style="color: var(--ink-400); text-decoration: line-through;">3</span> <strong>5 cities</strong> <span style="font-size: 10px; font-weight: 700; color: var(--green-800); background: rgba(0,238,127,0.16); border-radius: 999px; padding: 2px 7px; white-space: nowrap; display: inline-block; margin-left: 2px;">UPDATES MEMORY</span></span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/question</span><span style="font-size: 11.5px; color: var(--ink-500);">ambiguity becomes a question with answer pills — the only amber element in the kit; the engine never guesses</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="max-width: 620px; border-radius: 10px; background: rgba(255,190,44,0.09); padding: 11px 14px;">
+          <div style="font-size: 13px; color: var(--ink-700);">Two pipelines found — which should the engine treat as primary?</div>
+          <div style="display: flex; gap: 7px; margin-top: 8px;">
+            <span style="height: 24px; padding: 0 11px; border-radius: 999px; background: var(--ink-800); color: var(--white); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; cursor: pointer;">Sales</span>
+            <span style="height: 24px; padding: 0 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; cursor: pointer;">Partnerships</span>
+            <span style="height: 24px; padding: 0 9px; font-size: 11px; color: var(--ink-500); display: inline-flex; align-items: center; cursor: pointer; white-space: nowrap;">Something else…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/quote · md/figure</span><span style="font-size: 11.5px; color: var(--ink-500);">usable client language: 2px green rule, attribution with page · extracted images: radius 10, caption 11.5 with page ref. Both indent to the text edge.</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="max-width: 620px; border-left: 2px solid var(--green-500); padding: 2px 0 2px 14px; margin-left: 20px;">
+          <div style="font-size: 13.5px; line-height: 1.6; color: var(--ink-600);">“We publish our supplier list because trust shouldn’t require faith.”</div>
+          <div style="font-size: 11.5px; color: var(--ink-400); margin-top: 3px;">CEO letter · Sustainability Report 2025, p.2</div>
+        </div>
+        <div style="max-width: 600px; margin: 20px 0 0 20px;">
+          <div style="aspect-ratio: 16 / 7; border-radius: 10px; background: linear-gradient(140deg, #E9EFE9, #DFEAE2); display: flex; align-items: center; justify-content: center;"><span style="font-size: 11.5px; color: #7A8B7E;">Packaging waste chart, extracted from p.11</span></div>
+          <div style="font-size: 11.5px; color: var(--ink-400); margin-top: 8px;">Fig. — Waste per order, 2023–25 · p.11</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/table · md/code · md/link · md/emphasis</span><span style="font-size: 11.5px; color: var(--ink-500);">tables: uppercase 10.5 header, hairline rows, mono numerals right, sourced caption · inline code in system-face chips · links green-700, hover green-600 · bold = 600 ink, no italics</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="max-width: 620px;">
+          <div style="display: grid; grid-template-columns: 1fr 90px 70px; gap: 12px; padding-bottom: 7px; border-bottom: 1px solid rgba(23,24,26,0.08); font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400);"><span>CHANNEL</span><span style="text-align: right;">SESSIONS</span><span style="text-align: right;">Δ</span></div>
+          <div class="mdk-trow" style="display: grid; grid-template-columns: 1fr 90px 70px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05); font-size: 13px;"><span>Organic</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-variant-numeric: tabular-nums;">11.1K</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; color: var(--green-700); font-variant-numeric: tabular-nums;">+16%</span></div>
+          <div class="mdk-trow" style="display: grid; grid-template-columns: 1fr 90px 70px; gap: 12px; padding: 8px 0; font-size: 13px;"><span>LinkedIn</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-variant-numeric: tabular-nums;">3.4K</span><span style="text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; color: var(--green-700); font-variant-numeric: tabular-nums;">+9%</span></div>
+          <div style="margin-top: 12px; font-size: 13.5px; color: var(--ink-700);">Tracked via <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; background: rgba(23,24,26,0.05); border-radius: 5px; padding: 1px 6px;">utm_source=engine</span> on every link — the <span style="font-weight: 600; color: var(--ink-900);">refill finder</span> is the top-converting action; see <a href="#" style="text-decoration: none;">/sustainability</a>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/entry · md/edit</span><span style="font-size: 11.5px; color: var(--ink-500);">memory is append-only: + mark, statement, source, newest first · hover any fact → quiet “fix” → the line simply becomes editable: a green caret, nothing else. An edit is a learning.</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 22px 26px;">
+        <div style="display: flex; align-items: baseline;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600); font-weight: 600;">+</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Primary pipeline: Sales. <span style="color: var(--ink-400);">(you · today)</span></span></div>
+        <div style="display: flex; align-items: baseline; margin-top: 8px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600); font-weight: 600;">+</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700);">Carbon-neutral target moved to 2028. <span style="color: var(--ink-400);">(Sustainability Report 2025)</span></span></div>
+        <div class="mdk-line" style="display: flex; align-items: baseline; max-width: 620px; margin-top: 20px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-700); flex: 1;">Core buyer: sustainability-led ops managers, 30–45.</span><span class="mdk-fix" style="font-size: 11px; line-height: 1.9; color: var(--ink-300); cursor: pointer;">fix</span></div>
+        <div style="display: flex; align-items: baseline; max-width: 620px; margin-top: 12px;"><span style="width: 20px; flex-shrink: 0; box-sizing: border-box; padding-right: 6px; text-align: right; font-size: 13.5px; line-height: 1.6; color: var(--green-600);">–</span><span style="font-size: 13.5px; line-height: 1.6; color: var(--ink-900);">Core buyer: sustainability-led ops managers, 28–45<span style="display: inline-block; width: 1.5px; height: 13px; background: var(--green-600); margin-left: 1px; transform: translateY(2px);"></span></span></div>
+        <div style="font-size: 11px; color: var(--ink-400); margin-top: 8px;">On save: memory gains “+ corrected by you · today” — the edit is itself a learning.</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">md/draft-bar · md/colophon</span><span style="font-size: 11.5px; color: var(--ink-500);">drafts end in one decision bar · live files end in one lifecycle line + quiet actions, order: repair → neutral → destructive</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 18px 26px;">
+        <div style="display: flex; align-items: center; gap: 8px; max-width: 620px;">
+          <span style="font-size: 12px; color: var(--ink-500);">18 facts · 1 update · 1 question open</span>
+          <span style="flex: 1;"></span>
+          <button style="height: 27px; padding: 0 13px; border: none; border-radius: 999px; background: var(--ink-800); color: var(--white); white-space: nowrap; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Add to memory</button>
+          <button style="height: 27px; padding: 0 12px; border: none; border-radius: 999px; background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); white-space: nowrap; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Discard</button>
+        </div>
+        <div style="height: 1px; background: rgba(23,24,26,0.06); margin: 20px 0 0; max-width: 620px;"></div>
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-top: 12px; max-width: 620px;">
+          <span style="font-size: 11.5px; color: var(--ink-400);">Sync failed 2 h ago — agents are using last-known data</span>
+          <span style="flex: 1;"></span>
+          <span style="font-size: 11.5px; font-weight: 600; color: var(--amber-700); cursor: pointer; white-space: nowrap;">Reauthorize</span>
+          <span style="font-size: 11.5px; color: var(--ink-300); cursor: pointer; white-space: nowrap;">Disconnect</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 34px; padding: 16px 20px; background: var(--ink-800); border-radius: 14px; color: var(--white); font-size: 12.5px; line-height: 1.6;">
+    <span style="color: var(--green-500); font-weight: 700;">Kit law:</span> a file is either <strong>live</strong> (header, facts, entries — read &amp; fix) or a <strong>draft</strong> (adds md/updated, md/question, md/draft-bar — nothing applies until approved). No third state, no other components. Agents never emit UI — they emit typed content; the kit renders it. Nothing enters memory without being shown; ambiguity becomes a question; every fix is a learning.
+  </div>
+
+</div>
+</div>
+</x-dc>
+</body>
+</html>

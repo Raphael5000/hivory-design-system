@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+
+    /* ── the component ── */
+    .rail { width: 224px; border-radius: var(--radius-2xl); background: var(--glass-fill); -webkit-backdrop-filter: blur(36px) saturate(1.5); backdrop-filter: blur(36px) saturate(1.5); box-shadow: var(--shadow-glass-ring); padding: 12px 10px; box-sizing: border-box; }
+    .railhead { font-size: var(--text-eyebrow); font-weight: 650; letter-spacing: var(--tracking-eyebrow); color: var(--ink-400); padding: 6px 9px 8px; }
+    .steps { position: relative; display: flex; flex-direction: column; gap: 3px; }
+    .pill { position: absolute; left: 0; right: 0; height: 32px; border-radius: var(--radius-md); background: var(--selected-pill); box-shadow: var(--shadow-raised); transition: top var(--duration-slow) var(--ease-glide), opacity var(--duration-soft) var(--ease-out); pointer-events: none; }
+    .step { position: relative; display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 9px; border-radius: var(--radius-md); cursor: pointer; font-size: var(--text-row); letter-spacing: -0.005em; color: var(--ink-600); transition: color var(--duration-soft) var(--ease-out); background: none; border: none; font-family: var(--font-sans); text-align: left; width: 100%; box-sizing: border-box; }
+    .step:hover:not(.on) { background: var(--hover-on-canvas); }
+    .step.on { color: var(--ink-900); font-weight: var(--weight-semibold); }
+    .step.ahead { color: var(--ink-400); cursor: default; }
+    .mark { width: 19px; height: 19px; border-radius: 999px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-variant-numeric: tabular-nums; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .mark.done { background: var(--green-50); }
+    .mark.now { background: var(--ink-900); color: var(--white); }
+    .mark.next { box-shadow: inset 0 0 0 1.5px var(--ink-200); color: var(--ink-400); }
+    /* horizontal — the mobile form */
+    .bar { display: flex; align-items: center; gap: 0; width: 100%; }
+    .barseg { flex: 1; height: 3px; border-radius: 999px; background: var(--ink-200); }
+    .barseg.done, .barseg.now { background: var(--green-600); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Stepper</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">How far in, and how far left.</h1>
+    <p style="margin: 12px 0 0; max-width: 680px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">A reading flow with an end. Unlike the rail — which is a set of places you can be — a stepper has an order, a completed half and a destination. It is the proposal's spine, and the only place in the system where progress is a promise.</p>
+
+    <!-- SPECIMEN -->
+    <div class="card" style="margin-top: 34px; padding: 34px 36px; display: flex; gap: 34px; align-items: flex-start;">
+      <div class="rail">
+        <div class="railhead">SECTIONS</div>
+        <div class="steps">
+          <div class="pill" style="top: {{ pillTop }}; opacity: {{ pillOpacity }};"></div>
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+            <button class="step {{ s.cls }}" onClick="{{ s.go }}" aria-current="{{ s.current }}">
+              <span class="mark {{ s.markCls }}">
+                <sc-if value="{{ s.done }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if>
+                <sc-if value="{{ s.notDone }}" hint-placeholder-val="{{ true }}">{{ s.num }}</sc-if>
+              </span>
+              <span style="flex: 1;">{{ s.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Try it</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Click a step, or Tab into the rail and press Enter. Steps you have reached are clickable; steps ahead are not — a stepper never lets you skip to an end you have not earned, because the sections build on each other.</div>
+        <div style="margin-top: 20px; display: flex; gap: 8px;">
+          <button onClick="{{ back }}" style="height: 26px; padding: 0 13px; border: none; border-radius: var(--radius-pill); background: transparent; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); font-family: var(--font-sans); font-size: var(--text-label); font-weight: var(--weight-semibold); color: var(--ink-900); cursor: pointer;">‹ Back</button>
+          <button onClick="{{ next }}" style="height: 26px; padding: 0 13px; border: none; border-radius: var(--radius-pill); background: var(--action-primary); color: var(--on-action-primary); font-family: var(--font-sans); font-size: var(--text-label); font-weight: var(--weight-semibold); cursor: pointer;">Continue ›</button>
+        </div>
+        <div style="margin-top: 20px; font-size: var(--text-meta); color: var(--text-faint);">{{ status }}</div>
+      </div>
+    </div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">One pill, three marks.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="6">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- MARKS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The marks</div><h2 class="sect-h">Three, told apart without colour alone.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: flex; gap: 44px; flex-wrap: wrap;">
+        <span style="display: flex; align-items: center; gap: 10px;"><span class="mark done"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></span><span style="font-size: var(--text-sm);"><b style="font-weight: 650;">Done</b> — green-50 fill, green-600 check</span></span>
+        <span style="display: flex; align-items: center; gap: 10px;"><span class="mark now">3</span><span style="font-size: var(--text-sm);"><b style="font-weight: 650;">Now</b> — ink-900 fill, white numeral</span></span>
+        <span style="display: flex; align-items: center; gap: 10px;"><span class="mark next">4</span><span style="font-size: var(--text-sm);"><b style="font-weight: 650;">Ahead</b> — hollow ink-200 ring, ink-400 numeral</span></span>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 760px; text-wrap: pretty;">A check replaces the numeral when a step is done — the SHAPE carries the state, so it survives greyscale and colour-blindness. Green appears here because completion is a signal, and this is the one component where green marks something the client did rather than something the engine is doing.</div>
+    </div>
+
+    <!-- VARIANTS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Variants</div><h2 class="sect-h">Vertical reads, horizontal reassures.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="max-width: 420px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">Progress bar</span>
+          <span style="font-size: var(--text-meta); color: var(--text-faint);">below 720px, replacing the rail</span>
+        </div>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 4px;">
+          <sc-for list="{{ bar }}" as="b" hint-placeholder-count="6"><span class="barseg {{ b.cls }}"></span></sc-for>
+        </div>
+        <div style="margin-top: 8px; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ currentLabel }}</span>
+          <span style="font-size: var(--text-meta); color: var(--text-faint); font-variant-numeric: tabular-nums;">{{ progress }}</span>
+        </div>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 760px; text-wrap: pretty;">On a phone the rail becomes segments plus the current section's name — you lose the ability to jump, which is the right trade: on a small screen the flow is linear anyway, and a 224px rail would eat a third of the width. The segment count still shows how much is left, which is the promise the stepper exists to make.</div>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Per step, not per component.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- TOKENS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Tokens used</div><h2 class="sect-h">The list-nav set, plus green for done.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ tokens }}" as="g" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">{{ g.role }}</span>
+          <span style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ g.list }}" as="tk" hint-placeholder-count="4"><span class="chip">{{ tk }}</span></sc-for></span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The gliding pill is the <b style="font-weight: 650;">list-nav primitive</b> shared with Sidebar — same <span style="font-family: var(--font-mono);">--selected-pill</span>, same <span style="font-family: var(--font-mono);">--duration-slow</span> on <span style="font-family: var(--font-mono);">--ease-glide</span>. A stepper is a list nav that happens to have an end.</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Content rules</div><h2 class="sect-h">Section names, not instructions.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 760px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Each step is the section's own name in sentence case — <b style="font-weight: 650;">Overview</b>, <b style="font-weight: 650;">What we deliver</b>, <b style="font-weight: 650;">Cost</b>, <b style="font-weight: 650;">Accept &amp; sign</b> — identical to the heading it scrolls to, so the reader never wonders whether they arrived. Never a verb phrase (“Review the cost”), never numbered in the label (the mark carries the number), never truncated with an ellipsis: if a step name does not fit at 224px it is too long a name for a section. Six steps is the practical ceiling; past that the document wants chapters, not steps.</div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Let the reader go back freely — everything behind them is theirs. Keep the pill as one object that glides. Match the step label to the section heading exactly. Show the count on mobile, where the rail cannot fit.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Let a step be skipped ahead. Connect the marks with a drawn line — the pill and the order already say it. Use a stepper for a rail (Sidebar) or for a form with one screen. Percentages: a stepper counts sections, and “67% complete” is a number nobody asked for.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Stepper · the spine of <a href="Product - Proposal.dc.html">the proposal portal</a> · shares the list-nav pill with <a href="Component - Sidebar.dc.html">Sidebar</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { at: 2, reached: 2 };
+  renderVals() {
+    const LABELS = ['Overview', 'What we deliver', 'Timeline', 'Cost', 'Scope & terms', 'Accept & sign'];
+    const s = this.state;
+    const steps = LABELS.map((label, i) => {
+      const done = i < s.at, now = i === s.at, ahead = i > s.reached;
+      return {
+        label, num: String(i + 1), done, notDone: !done,
+        cls: now ? 'on' : (ahead ? 'ahead' : ''),
+        markCls: done ? 'done' : (now ? 'now' : 'next'),
+        current: now ? 'step' : 'false',
+        go: () => { if (i <= s.reached) this.setState((p) => ({ at: i, reached: Math.max(p.reached, i) })); }
+      };
+    });
+    const move = (d) => this.setState((p) => {
+      const at = Math.min(LABELS.length - 1, Math.max(0, p.at + d));
+      return { at, reached: Math.max(p.reached, at) };
+    });
+    return {
+      steps,
+      pillTop: (s.at * 35) + 'px',
+      pillOpacity: '1',
+      status: 'Step ' + (s.at + 1) + ' of ' + LABELS.length + ' \u00b7 ' + LABELS[s.at] + (s.reached < LABELS.length - 1 ? ' \u00b7 steps ahead are not clickable yet' : ''),
+      currentLabel: LABELS[s.at],
+      progress: (s.at + 1) + ' of ' + LABELS.length,
+      bar: LABELS.map((_, i) => ({ cls: i < s.at ? 'done' : (i === s.at ? 'now' : '') })),
+      back: () => move(-1), next: () => move(1),
+      anatomy: [
+        { k: 'Rail', v: '224px glass card at --radius-2xl \u2014 the same surface as the console sidebar, because a prospect and a client should recognise the same product.' },
+        { k: 'Group header', v: 'One uppercase word at --text-eyebrow in --ink-400. A stepper has exactly one group; more than one means it is a rail.' },
+        { k: 'Step', v: 'h32 at --radius-md, 10px gap, --text-row. A real button element \u2014 one tab stop each, Enter and Space activate.' },
+        { k: 'Mark', v: '19px circle, 9.5px tabular numeral or a 9px check. Sits left, never right \u2014 the eye reads state before name.' },
+        { k: 'Pill', v: 'ONE --selected-pill that glides on --duration-slow / --ease-glide. Steps never paint their own active fill; the pill is the only thing that moves.' },
+        { k: 'Colophon', v: 'Who prepared the document and how long it is valid, pinned to the bottom of the rail \u2014 the facts a reader wants without leaving the flow.' }
+      ],
+      states: [
+        ['Rest', 'A reached step: --ink-600 label with a hollow or checked mark, no fill of its own.'],
+        ['Hover', 'A reached step takes --hover-on-canvas. A step ahead does not respond at all \u2014 hover must not promise a click that will not happen.'],
+        ['Pressed', 'brightness(0.94) from motion-base.'],
+        ['Focus', 'motion-base ring on the step. Arrow keys move within the rail, Tab leaves it \u2014 the list-nav contract.'],
+        ['Selected', 'The gliding pill plus --ink-900 at weight 600 and an ink-filled mark. aria-current="step" travels with it, which is what a screen reader announces.'],
+        ['Disabled', 'Steps ahead of the furthest reached: --ink-400, cursor default, not clickable \u2014 but still VISIBLE and still counted, because seeing what is coming is the point.'],
+        ['Loading', 'n/a \u2014 the stepper renders immediately with all labels. Navigation must never wait for content; the section it reveals may load.'],
+        ['Empty', 'n/a \u2014 a flow with one step is not a flow. Below two steps, use a heading.']
+      ].map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      tokens: [
+        { role: 'Surface', list: ['--glass-fill', '--shadow-glass-ring', '--selected-pill', '--shadow-raised', '--hover-on-canvas'] },
+        { role: 'Ink', list: ['--ink-200', '--ink-400', '--ink-600', '--ink-900', '--white'] },
+        { role: 'Signal', list: ['--green-50', '--green-600', '--border-focus'] },
+        { role: 'Geometry', list: ['--radius-2xl', '--radius-md'] },
+        { role: 'Motion', list: ['--duration-slow', '--ease-glide', '--duration-soft', '--ease-out'] },
+        { role: 'Type', list: ['--font-sans', '--text-row', '--text-eyebrow', '--weight-semibold', '--tracking-eyebrow'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

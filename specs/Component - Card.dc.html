@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .glass { background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 10px 34px -14px rgba(20,40,30,0.28); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Surface &amp; card</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">One canvas, one glass.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Every screen is one canvas, solid cards sitting directly on it, and a single glass object — the rail. Elevation means priority: exactly one raised card per screen. Never a card inside a card.</p>
+
+    <!-- FEATURED: glass over content -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-elevated); background: var(--canvas); height: 420px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: 320px; top: 40px; width: 400px; height: 160px; border-radius: 18px; background: var(--surface-dark);"></div>
+        <div style="position: absolute; left: 740px; top: 40px; width: 260px; height: 160px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; left: 320px; top: 220px; width: 300px; height: 160px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; left: 640px; top: 220px; width: 360px; height: 160px; border-radius: 18px; background: var(--teal-100);"></div>
+      </div>
+      <div class="glass" style="position: absolute; left: 28px; top: 28px; bottom: 28px; width: 250px; border-radius: 18px; padding: 18px 15px; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 0 5px;"><span style="width: 27px; height: 27px; border-radius: 8px; background: var(--ink-900); display: inline-flex; align-items: center; justify-content: center; color: var(--white); font-size: 10px; font-weight: 700;">PG</span><span style="font-size: 14px; font-weight: 650;">Pure Good</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 20px;">
+          <div style="height: 37px; border-radius: 10px; padding: 0 13px; display: flex; align-items: center; font-size: 14px; color: var(--text-nav);">Home</div>
+          <div style="height: 37px; border-radius: 10px; padding: 0 13px; display: flex; align-items: center; font-size: 14px; font-weight: 600; color: var(--text-body); background: var(--selected-pill); box-shadow: var(--shadow-raised);">Work queue</div>
+          <div style="height: 37px; border-radius: 10px; padding: 0 13px; display: flex; align-items: center; font-size: 14px; color: var(--text-nav);">Performance</div>
+          <div style="height: 37px; border-radius: 10px; padding: 0 13px; display: flex; align-items: center; font-size: 14px; color: var(--text-nav);">Design</div>
+        </div>
+      </div>
+      <div style="position: absolute; left: 320px; bottom: 34px; max-width: 380px;"><div style="font-size: 20px; font-weight: 650; letter-spacing: -0.02em;">The glass rail</div><div style="margin-top: 3px; font-size: 15px; color: var(--text-muted);">Translucent white, a 36px blur, an inner light ring — floating over the working canvas.</div></div>
+    </div>
+
+    <!-- SURFACE LADDER -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The surface ladder</div><h2 class="sect-h">Five levels of depth.</h2></div>
+    <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 20px;"><div style="width: 150px; height: 60px; border-radius: var(--radius-lg); background: var(--surface-app); box-shadow: inset 0 0 0 1px var(--hairline);"></div><div style="flex: 1;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Canvas</div><div style="font-size: var(--text-meta); color: var(--text-muted);">The warm-grey base with two faint radial washes. <span style="font-family: var(--font-mono);">--canvas</span></div></div></div>
+      <div style="display: flex; align-items: center; gap: 20px;"><div style="width: 150px; height: 60px; border-radius: var(--radius-lg); background: var(--ink-50); box-shadow: inset 0 0 0 1px var(--hairline);"></div><div style="flex: 1;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Sunken</div><div style="font-size: var(--text-meta); color: var(--text-muted);">Inset fields, tiles, logo wells. <span style="font-family: var(--font-mono);">--surface-sunken</span></div></div></div>
+      <div style="display: flex; align-items: center; gap: 20px;"><div style="width: 150px; height: 60px; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card);"></div><div style="flex: 1;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Card — rest</div><div style="font-size: var(--text-meta); color: var(--text-muted);">White, radius 14, hairline ring + whisper shadow. <span style="font-family: var(--font-mono);">--shadow-card</span></div></div></div>
+      <div style="display: flex; align-items: center; gap: 20px;"><div style="width: 150px; height: 60px; border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-elevated);"></div><div style="flex: 1;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Card — elevated <span style="font-weight: 400; color: var(--text-faint);">· one per screen</span></div><div style="font-size: var(--text-meta); color: var(--text-muted);">The one thing needing you. Radius 16, lifted shadow. <span style="font-family: var(--font-mono);">--shadow-elevated</span></div></div></div>
+      <div style="display: flex; align-items: center; gap: 20px;"><div style="width: 150px; height: 60px; border-radius: var(--radius-2xl); overflow: hidden; background: var(--surface-dark); position: relative;"><div style="position: absolute; left: 12px; top: 10px; width: 70px; height: 40px; border-radius: 8px; background: var(--green-300);"></div><div class="glass" style="position: absolute; inset: 8px; border-radius: 12px;"></div></div><div style="flex: 1;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Glass <span style="font-weight: 400; color: var(--text-faint);">· one object per screen</span></div><div style="font-size: var(--text-meta); color: var(--text-muted);">The rail. Translucent white, blur, inner ring. <span style="font-family: var(--font-mono);">--glass-*</span></div></div></div>
+    </div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Card anatomy</div><h2 class="sect-h">Inside a card.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: start;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); overflow: hidden;">
+        <div style="display: flex; align-items: baseline; gap: 8px; padding: 15px 20px;"><span style="font-size: var(--text-row); font-weight: var(--weight-strong);">Recent deliveries</span><span style="font-size: var(--text-meta); color: var(--text-faint);">4</span><span style="margin-left: auto; font-size: var(--text-meta); color: var(--text-brand); cursor: pointer;">View all ›</span></div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--hairline);"><span style="font-size: var(--text-row); font-weight: var(--weight-row); flex: 1;">Plastic-free post</span><span style="font-size: var(--text-meta); color: var(--text-faint);">shipped</span></div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--hairline);"><span style="font-size: var(--text-row); font-weight: var(--weight-row); flex: 1;">Supplier story</span><span style="font-size: var(--text-meta); color: var(--text-faint);">shipped</span></div>
+      </div>
+      <div style="font-size: var(--text-base); line-height: var(--leading-normal); color: var(--text-secondary);">Header inside the card (title · quiet count · action). Rows divided by <b style="font-weight: var(--weight-semibold);">hairlines</b>, not gaps. Padding lives at the card edge; air belongs at the edges, never between rows.</div>
+    </div>
+
+    <!-- PRINCIPLES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Principles</div><h2 class="sect-h">Two rules.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">One surface level</div><div style="margin-top: 8px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Cards sit on the canvas — never a card inside a card. Group with hairlines and inset wells instead.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Elevation = priority</div><div style="margin-top: 8px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Exactly one elevated card per screen — the thing needing the user. Everything else rests on the hairline + whisper shadow.</div></div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Solid cards on the canvas. One glass object (the rail) and one elevated card per screen. Divide with hairlines. Let the glass float over real content so its depth reads.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Cards nested in cards. Glass on more than one object, or over a blank background (it just looks murky). Heavy drop shadows. Two elevated cards competing.</div>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">6 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-card</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-950</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-muted</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-xl</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Six tokens is correct for a surface primitive. It carries no motion at all: a card never animates, only what sits inside it does.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Card (padded body) · Card flush (for tables, body padding removed) · Stat (metric tile with mono value and pinned delta). Elevation is not a variant — it is a per-screen budget of one.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">--surface-card at --radius-xl with --shadow-card: a whisper shadow and a 0.5px ring. Exactly one card per screen may use --shadow-elevated.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Hover <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a card is a surface, not a control. When the whole card is clickable the wash goes on its inner row and the card itself never moves.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Pressed <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">press feedback belongs to the control inside.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Focus <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">focus lands on the controls it contains, never the container.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Selected</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">A 2px --ink-900 ring replaces the hairline. Never a green fill and never a shadow change — elevation means priority here, not selection.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a surface has no disabled state; its contents do.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Loading</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">The header renders for real and the body becomes Skeleton lines, so the card does not change size when content lands. Never a spinner centred in a card.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">One sentence naming what will appear, plus the single action that fills it. Never an illustration and never the words “No data”.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Title is a two-to-four word noun phrase in sentence case — “Traffic sources”, never “Here are your traffic sources”. Subtitle is one clause and only when the title genuinely needs it. One action in the header, top-right; a second action means the card is doing two jobs.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Surface &amp; card · tokens listed in full above</div>
+</div>
+</x-dc>
+</body>
+</html>
