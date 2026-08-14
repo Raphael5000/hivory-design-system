@@ -2,14 +2,14 @@
 const hvTextareaCss = `
 .hv-tafield{display:flex;flex-direction:column;gap:6px;font-family:var(--font-sans)}
 .hv-tafield__label{font-size:12.5px;font-weight:500;color:var(--ink-700)}
-.hv-textarea{padding:9px 12px;font-size:13.5px;line-height:1.5;font-family:var(--font-sans);color:var(--ink-900);background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-md);outline:none;box-sizing:border-box;width:100%;resize:vertical;min-height:72px;transition:border-color var(--duration-fast) var(--ease-out),box-shadow var(--duration-fast) var(--ease-out)}
+.hv-textarea{padding:9px 12px;font-size:13.5px;line-height:1.5;font-family:var(--font-sans);color:var(--ink-900);background:var(--surface-card);border:none;border-radius:var(--radius-control);outline:none;box-sizing:border-box;width:100%;resize:vertical;min-height:72px;box-shadow:inset 0 0 0 1px var(--border-strong);caret-color:var(--green-500);transition:box-shadow var(--transition-soft)}
 .hv-textarea::placeholder{color:var(--text-faint)}
-.hv-textarea:hover:not(:disabled):not(:focus){border-color:var(--ink-300)}
-.hv-textarea:focus{border-color:var(--green-600);box-shadow:0 0 0 3px rgba(0,164,88,0.14)}
+.hv-textarea:hover:not(:disabled):not(:focus){box-shadow:inset 0 0 0 1px var(--ink-300);}
+.hv-textarea:focus{box-shadow:inset 0 0 0 1px var(--green-600);box-shadow:inset 0 0 0 1.5px var(--green-600)}
 .hv-textarea:disabled{background:var(--ink-50);color:var(--text-faint);cursor:not-allowed}
 .hv-tafield__hint{font-size:12px;color:var(--text-muted)}
 .hv-tafield__error{font-size:12px;color:var(--red-700);font-weight:500}
-.hv-textarea--error{border-color:var(--red-500)}
+.hv-textarea--error{box-shadow:inset 0 0 0 1px var(--red-500);}
 `;
 function hvEnsureTextareaCss() {
   if (typeof document === 'undefined' || document.getElementById('hv-textarea-css')) return;

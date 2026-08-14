@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .lawrow { display: grid; grid-template-columns: 168px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .lawrow:last-child { border-bottom: none; }
+    .lawrow .n { font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body); }
+    .lawrow .d { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+    .seg { appearance: none; border: none; height: 30px; padding: 0 14px; border-radius: 999px; background: transparent; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: background var(--transition-soft), color var(--transition-soft), box-shadow var(--transition-soft); display: inline-flex; align-items: center; gap: 8px; }
+    .seg:hover { color: var(--text-body); }
+    .seg.on { background: var(--surface-card); color: var(--text-body); box-shadow: var(--shadow-raised); }
+    .swatch { width: 11px; height: 11px; border-radius: 999px; flex-shrink: 0; }
+    pre.code { margin: 0; font-family: var(--font-mono); font-size: 11.5px; line-height: 1.7; color: var(--ink-700); background: var(--ink-50); border-radius: var(--radius-lg); padding: 18px 20px; overflow-x: auto; white-space: pre; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Foundation · White label</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">Three things change. Nothing else.</h1>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">A partner puts their mark, their icon and their signal colour on the console. The canvas, the ink, the geometry, the rhythm and the motion stay exactly as they are — because those are not Hivory's personality, they are the reason the product is legible.</p>
+
+    <!-- LIVE SWITCHER -->
+    <div style="margin-top: 34px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="display: inline-flex; padding: 3px; border-radius: 999px; background: var(--ink-50); gap: 2px;">
+        <sc-for list="{{ brands }}" as="b" hint-placeholder-count="4">
+          <button class="seg {{ b.cls }}" onClick="{{ b.pick }}"><span class="swatch" style="background: {{ b.signal }};"></span>{{ b.name }}</button>
+        </sc-for>
+      </span>
+      <span style="font-size: 11.5px; color: var(--text-faint);">{{ note }}</span>
+    </div>
+
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: grid; grid-template-columns: 232px 1fr; gap: 34px; align-items: start;">
+        <!-- rail -->
+        <div style="border-radius: var(--radius-2xl); background: var(--glass-fill); box-shadow: var(--shadow-glass-ring); padding: 14px 10px 12px;">
+          <div style="display: flex; align-items: center; gap: 9px; padding: 2px 8px 12px;">
+            <span style="width: 22px; height: 22px; border-radius: 6px; background: {{ signal }}; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="{{ onSignal }}" stroke-width="1.5" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path></svg>
+            </span>
+            <span style="min-width: 0;"><span style="display: block; font-size: 13.5px; font-weight: 680; letter-spacing: -0.015em;">{{ name }}</span><span style="display: block; font-size: 10px; color: var(--text-muted);">Client console</span></span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 9px; border-radius: 9px; background: var(--selected-pill); box-shadow: var(--shadow-raised); font-size: 12.5px; font-weight: 600;">Home</span>
+            <span style="display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 9px; font-size: 12.5px; color: var(--ink-600);">Work queue<span style="flex: 1;"></span><span style="width: 6px; height: 6px; border-radius: 999px; background: {{ signal }};"></span></span>
+            <span style="display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 9px; font-size: 12.5px; color: var(--ink-600);">Performance</span>
+            <span style="display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 9px; font-size: 12.5px; color: var(--ink-600);">Knowledge</span>
+          </div>
+        </div>
+        <!-- surface -->
+        <div>
+          <div style="font-size: 21px; font-weight: 680; letter-spacing: -0.02em;">Good morning, Maya</div>
+          <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
+            <span style="width: 6px; height: 6px; border-radius: 999px; background: {{ signal }};"></span>
+            <span style="font-size: 12px; color: var(--ink-500);">Since Monday — 4 jobs finished, 3 held for your review</span>
+          </div>
+          <div style="margin-top: 20px; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--hairline);">
+              <span style="font-size: 12.5px; font-weight: 650; flex: 1;">Refill loyalty — LinkedIn post</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 21px; padding: 0 9px; border-radius: 999px; background: var(--status-caution-bg); color: var(--status-caution-text); font-size: 11px; font-weight: 600;">Held for you</span>
+            </div>
+            <div style="padding: 14px; display: flex; align-items: center; gap: 12px;">
+              <span style="flex: 1; font-size: 12.5px; color: var(--text-secondary);">Draft 2 · publishes Thursday 09:00</span>
+              <span style="font-size: 11.5px; font-weight: 600; color: var(--text-muted);">Request changes</span>
+              <span style="display: inline-flex; align-items: center; height: 27px; padding: 0 13px; border-radius: 999px; background: {{ signal }}; color: {{ onSignal }}; font-size: 11.5px; font-weight: 650;">Approve &amp; publish</span>
+            </div>
+          </div>
+          <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px;">
+            <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--status-positive-text);">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>Deployed — staging is live
+            </span>
+            <span style="font-size: 12px; color: var(--status-negative-text);">1 source failed to sync</span>
+          </div>
+          <div style="margin-top: 12px; font-size: 11px; color: var(--text-faint);">Status colours never change with the brand — see below.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT SWAPS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The contract</div><h2 class="sect-h">What a partner supplies.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ swaps }}" as="s" hint-placeholder-count="3">
+        <div class="lawrow"><span class="n">{{ s.k }}</span><span class="d">{{ s.v }}</span></div>
+      </sc-for>
+    </div>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">The whole brand file</div>
+      <pre class="code" style="margin-top: 12px;">{{ code }}</pre>
+      <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Six declarations and two SVGs. If a brand file needs a seventh, the request is not a white label — it is a fork, and it should be refused.</div>
+    </div>
+
+    <!-- WHAT NEVER SWAPS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The refusals</div><h2 class="sect-h">What a partner cannot change.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="lawrow"><span class="n">Status colours</span><span class="d"><b style="font-weight: 650;">The one that surprises people.</b> Green means done, amber means it needs you, red means it failed — in every console, whatever the brand. A partner whose brand is red does not get red success states, and a partner whose brand is green does not get to make “held for you” green. Brand colour answers <i>whose product is this</i>; status colour answers <i>what happened</i>. Two different questions, and merging them costs the client the ability to scan.</span></div>
+      <div class="lawrow"><span class="n">The canvas and<br>the ink ladder</span><span class="d">The console is a neutral cool-grey surface on purpose — it is not where personality lives. Tinting the canvas to a partner's brand makes every artifact inside it fight the background, and the artifacts hold the END CLIENT's brand, which is the one that has to win.</span></div>
+      <div class="lawrow"><span class="n">Type</span><span class="d">The system face at 13px. A partner's marketing typeface belongs on their marketing; a console runs on the reader's own system font because that is what stays legible at row density on every machine.</span></div>
+      <div class="lawrow"><span class="n">Geometry, rhythm<br>and motion</span><span class="d">Radii, the seven-rung ladder, the 180ms settle, the no-lift rule. These are not decoration — they are what make the product feel like one thing. A partner changing them is not rebranding, they are redesigning.</span></div>
+      <div class="lawrow" style="border-bottom: none;"><span class="n">The mock interiors</span><span class="d">A LinkedIn post looks like a LinkedIn post regardless of who resells the console. Mocks carry the destination's anatomy and the end client's palette \u2014 never the partner's.</span></div>
+    </div>
+
+    <!-- THREE BRANDS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The hard part</div><h2 class="sect-h">Three brands on one screen.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">A white-labelled console shows three identities at once, and confusing them is the failure mode this whole page exists to prevent.</p>
+    <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <sc-for list="{{ three }}" as="t" hint-placeholder-count="3">
+        <div class="card" style="padding: 22px 24px;">
+          <div style="display: flex; align-items: center; gap: 9px;">
+            <span class="swatch" style="width: 13px; height: 13px; background: {{ t.dot }}; box-shadow: {{ t.ring }};"></span>
+            <span style="font-size: 13px; font-weight: 650;">{{ t.k }}</span>
+          </div>
+          <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ t.v }}</div>
+          <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">{{ t.where }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- CONTRAST -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Choosing the on-colour</div><h2 class="sect-h">Measured, never chosen.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <sc-for list="{{ contrast }}" as="c" hint-placeholder-count="4">
+          <span style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 33px; padding: 0 18px; border-radius: 999px; background: {{ c.bg }}; color: {{ c.fg }}; font-size: 12.5px; font-weight: 650;">Approve &amp; publish</span>
+            <span style="font-size: var(--text-meta); color: var(--text-muted);">{{ c.label }}</span>
+          </span>
+        </sc-for>
+      </div>
+      <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 780px; text-wrap: pretty;">A bright signal takes black; a deep one takes white. Pick whichever clears <b style="font-weight: 650;">4.5:1</b> against the fill and state it in the brand file as <span class="chip">--on-action-brand</span> — never inherit it and never guess. Hivory's own green is the reason this rule exists: <span class="chip">#00EE7F</span> reads at 13.5:1 with black and 1.6:1 with white, so the instinct to put white on a coloured button would fail on our own brand.</div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Keep the brand file to six declarations. Measure the on-colour. Supply the mark in the partner's own colour and a mono fallback. Test a partner theme against a client whose brand is a similar hue — that is where a white label breaks.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Brand-coloured status states. A tinted canvas. A partner typeface. Brand colour inside an artifact body. Two accents — a console has exactly one signal colour, and a partner with a primary and a secondary supplies the primary only.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Foundation · White label · extends the <span class="chip">[data-brand]</span> scope already used by <span class="chip">tokens/brands/meaning.css</span></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+/* WCAG 2.1 relative luminance + contrast ratio — this page must MEASURE, not transcribe */
+function lum(hex) {
+  const v = hex.replace('#', '');
+  const ch = [0, 2, 4].map((i) => {
+    const c = parseInt(v.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+}
+function ratio(a, b) {
+  const la = lum(a), lb = lum(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+class Component extends DCLogic {
+  state = { at: 0 };
+  renderVals() {
+    const BRANDS = [
+      { name: 'Hivory', slug: 'hivory', signal: '#00EE7F', on: '#000000', note: 'The default \u2014 a bright signal, so the label is black.' },
+      { name: 'Northbound', slug: 'northbound', signal: '#1D4ED8', on: '#FFFFFF', note: 'A deep blue \u2014 the label flips to white. Nothing else moved.' },
+      { name: 'Marlowe', slug: 'marlowe', signal: '#B4552D', on: '#FFFFFF', note: 'Warm clay. The canvas stayed cool grey on purpose.' },
+      { name: 'Sable', slug: 'sable', signal: '#E7C24A', on: '#000000', note: 'Amber-ish brand \u2014 and \u201cheld for you\u201d is STILL amber. Status never follows the brand.' }
+    ];
+    const b = BRANDS[this.state.at];
+    const code = '/* tokens/brands/' + b.slug + '.css */\n'
+      + '[data-brand="' + b.slug + '"] {\n'
+      + '  --brand-name:        "' + b.name + '";\n'
+      + '  --action-brand:      ' + b.signal + ';\n'
+      + '  --action-brand-hover:' + ' color-mix(in oklch, ' + b.signal + ' 88%, black);\n'
+      + '  --on-action-brand:   ' + b.on + ';   /* measured, not chosen */\n'
+      + '  --border-focus:      ' + b.signal + ';\n'
+      + '  --brand-mark:        url("/brands/' + b.slug + '/mark.svg");\n'
+      + '}';
+    return {
+      brands: BRANDS.map((x, i) => ({ name: x.name, signal: x.signal, cls: i === this.state.at ? 'on' : '', pick: () => this.setState({ at: i }) })),
+      name: b.name, signal: b.signal, onSignal: b.on, note: b.note, code,
+      swaps: [
+        { k: 'The mark', v: 'One SVG, in the partner\u2019s own colour, plus a mono fallback for dark surfaces. It replaces the hex everywhere the hex appears \u2014 rail lockup, empty states, the loading spinner\u2019s silhouette stays ours because it is a shape, not a logo.' },
+        { k: 'The wordmark', v: 'The partner\u2019s name as a string, not an image \u2014 <span class="chip">--brand-name</span>. It sets the rail lockup and every place the product names itself. An image wordmark cannot be read by a screen reader or reflowed at 56px collapsed width.' },
+        { k: 'The signal colour', v: 'One colour, plus its measured on-colour and a hover step. It drives <span class="chip">--action-brand</span>, the focus ring, live dots and the hero CTA \u2014 which is the entire footprint of green in the console today.' }
+      ],
+      three: [
+        { k: 'The partner', dot: b.signal, ring: 'none', v: 'Whose product this appears to be. Owns the mark, the name and the single signal colour.', where: 'Rail lockup \u00b7 hero CTA \u00b7 focus ring \u00b7 live dots' },
+        { k: 'The system', dot: 'var(--ink-200)', ring: 'inset 0 0 0 1px var(--hairline-strong)', v: 'Whose product this actually is. Owns the canvas, the ink, the geometry and every status colour \u2014 invisibly.', where: 'Everything structural, and never named on screen' },
+        { k: 'The end client', dot: '#2A2622', ring: 'none', v: 'Whose work is being reviewed. Owns the colour INSIDE every artifact \u2014 their landing page, their post, their palette from Design.', where: 'Mock interiors \u00b7 Design \u00b7 brand kit' }
+      ],
+      contrast: [
+        ['#00EE7F', '#000000', 'black'], ['#00EE7F', '#FFFFFF', 'white'],
+        ['#1D4ED8', '#FFFFFF', 'white'], ['#1D4ED8', '#000000', 'black']
+      ].map(([bg, fg, fgName]) => {
+        const r = ratio(bg, fg);
+        return { bg, fg, label: bg + ' + ' + fgName + ' \u00b7 ' + r.toFixed(1) + ':1 ' + (r >= 4.5 ? '\u2713' : '\u2717') };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

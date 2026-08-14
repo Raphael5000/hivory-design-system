@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <script src="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/_ds_bundle.js"></script>
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-700); text-decoration: none; }
+    a:hover { color: var(--green-800); }
+    @keyframes stepIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .stepbody { animation: stepIn var(--duration-gentle) var(--ease-out); }
+    input::placeholder { color: var(--text-faint); }
+
+    /* ── Responsive (decided 31 Jul: desktop mostly, phone must not break) ──
+       ≥1100 full · 720–1100 compact · <720 phone. The rail is the only thing
+       that changes shape: below 720 it becomes a top progress bar, because a
+       224px rail would eat a third of a phone's width. */
+    @media (max-width: 1100px) {
+      .propshell { padding-right: 0; }
+      .propbody { padding-left: 34px !important; padding-right: 34px !important; }
+    }
+    @media (max-width: 720px) {
+      .propshell { flex-direction: column; height: 100dvh; }
+      .proprail { width: auto !important; margin: 8px 8px 0 !important; padding: 10px 12px !important; flex-direction: row !important; align-items: center; gap: 12px; }
+      .proprail .railsections, .proprail .railfoot { display: none; }
+      .proprail .railbar { display: flex !important; }
+      .propmain { padding: 8px !important; }
+      .propbody { padding: 26px 20px 40px !important; max-width: none !important; }
+      .propstage { padding-left: 20px !important; padding-right: 20px !important; }
+      .propstage .propcard { width: 86vw !important; min-width: 86vw; }
+      .proppaddle { display: none !important; }
+      .propfoot { padding: 10px 16px !important; }
+      .prophero { font-size: 34px !important; }
+      .propgrid2 { grid-template-columns: 1fr !important; }
+      /* a mock keeps the measurements of the surface it depicts — never stack inside one */
+      .propcard .propgrid2 { grid-template-columns: 1fr 1fr 62px !important; }
+    }
+  </style>
+</helmet>
+<div class="propshell" style="display: flex; height: 100vh; overflow: hidden; font-family: var(--font-sans); color: var(--text-body); background: radial-gradient(at 8% 0%, var(--canvas-glow-green) 0%, transparent 42%), radial-gradient(at 95% 100%, var(--canvas-glow-warm) 0%, transparent 40%), var(--canvas);" data-screen-label="Proposal">
+  <aside class="proprail" style="width: 224px; flex-shrink: 0; margin: 12px 0 12px 12px; border-radius: 16px; background: rgba(255,255,255,0.5); backdrop-filter: blur(36px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7); display: flex; flex-direction: column; padding: 14px 10px 12px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 9px; padding: 2px 8px 4px;">
+      <svg width="19" height="22" viewBox="0 0 16 16" fill="none" stroke="#00EE7F" stroke-width="1.1" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M13.4 8l-2.7 4.68H5.3L2.6 8l2.7-4.68h5.4Z" opacity="0.55"></path></svg>
+      <div style="min-width: 0;"><div style="font-size: 13.5px; font-weight: 680; letter-spacing: -0.015em; line-height: 1.2;">Hivory</div><div style="font-size: 10px; color: var(--text-muted);">Growth proposal</div></div>
+    </div>
+    <div class="railsections" style="display: flex; align-items: center; gap: 6px; padding: 18px 10px 7px;">
+      <span style="font-size: 10px; font-weight: 650; letter-spacing: 0.1em; color: var(--ink-400);">SECTIONS</span>
+    </div>
+    <div class="railbar" style="display: none; flex: 1; min-width: 0; align-items: center; gap: 10px;">
+      <span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 3px;">
+        <sc-for list="{{ barSegs }}" as="b" hint-placeholder-count="6"><span style="flex: 1; height: 3px; border-radius: 999px; background: {{ b.bg }};"></span></sc-for>
+      </span>
+      <span style="flex-shrink: 0; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap;">{{ progressLabel }}</span>
+    </div>
+    <nav style="position: relative; display: flex; flex-direction: column; gap: 2px;">
+      <div style="position: absolute; left: 0; right: 0; top: {{ pillTop }}; height: 32px; border-radius: 9px; background: rgba(255,255,255,0.95); box-shadow: 0 1px 3px rgba(20,40,30,0.1), 0 0 0 0.5px rgba(23,24,26,0.04); transition: top var(--duration-slow) var(--ease-glide), opacity var(--duration-soft) var(--ease-out); opacity: {{ pillOpacity }}; pointer-events: none;"></div>
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="6">
+        <div onClick="{{ st.go }}" style="position: relative; display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 9px; border-radius: 9px; cursor: {{ st.cursor }}; transition: color var(--duration-soft) var(--ease-out);" style-hover="background: {{ st.hoverBg }};" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">
+          <span style="width: 19px; height: 19px; border-radius: 999px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: {{ st.mBg }}; box-shadow: {{ st.mRing }}; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out);">
+            <sc-if value="{{ st.done }}" hint-placeholder-val="{{ false }}"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg></sc-if>
+            <sc-if value="{{ st.notDone }}" hint-placeholder-val="{{ true }}"><span style="font-family: var(--font-mono); font-size: 9.5px; color: {{ st.numColor }};">{{ st.num }}</span></sc-if>
+          </span>
+          <span style="font-size: 13px; font-weight: {{ st.w }}; color: {{ st.color }}; letter-spacing: -0.005em;">{{ st.label }}</span>
+        </div>
+      </sc-for>
+    </nav>
+    <div style="flex: 1;"></div>
+    <div class="railfoot" style="padding: 10px 8px 2px; border-top: 1px solid rgba(23,24,26,0.07);">
+      <div style="font-size: 12px; font-weight: 600;">Maya Reyes · Pure Good</div>
+      <div style="margin-top: 3px; font-size: 10.5px; color: var(--text-muted); line-height: 1.5;">Prepared by Dan Cohen, Hivory<br />29 July 2026 · valid 30 days</div>
+    </div>
+  </aside>
+  <div class="propmain" style="flex: 1; min-width: 0; display: flex; flex-direction: column; padding: 12px; box-sizing: border-box;">
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; border-radius: 18px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.06), 0 24px 60px -30px rgba(20,40,30,0.18); overflow: hidden;">
+      <div style="flex: 1; overflow-y: auto; min-height: 0;">
+        <div class="stepbody propbody" key="{{ stepKey }}" style="max-width: {{ bodyMax }}; margin: 0 auto; padding: {{ bodyPad }}; box-sizing: border-box;">
+
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase;">Growth proposal · Pure Good</div>
+            <h1 class="prophero" style="margin: 12px 0 0; font-size: 42px; font-weight: var(--weight-display); letter-spacing: -0.035em; line-height: 1.04; text-wrap: pretty;">The whole deal, one page.</h1>
+            <p style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">Hivory runs your growth with an engine you approve. It already read your site and your numbers — the next section is real work it made for Pure Good, not a portfolio. Here's everything that matters:</p>
+            <div style="margin-top: 34px; border-top: 1px solid var(--hairline);">
+              <div style="display: flex; align-items: baseline; gap: 16px; padding: 15px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="width: 96px; flex-shrink: 0; font-size: 12px; color: var(--text-muted);">We deliver</span><span style="flex: 1; font-size: 13.5px; font-weight: 550; line-height: 1.5;">Your website, your content, and a sales pipeline — drafted by the engine, approved by you, shipped on your calendar.</span></div>
+              <div style="display: flex; align-items: baseline; gap: 16px; padding: 15px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="width: 96px; flex-shrink: 0; font-size: 12px; color: var(--text-muted);">It costs</span><span style="flex: 1; font-size: 13.5px; font-weight: 550;"><span style="font-family: var(--font-mono);">$8,500</span>/mo full engine · <span style="font-family: var(--font-mono);">$4,800</span>/mo content only · month-to-month, no lock-in.</span></div>
+              <div style="display: flex; align-items: baseline; gap: 16px; padding: 15px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="width: 96px; flex-shrink: 0; font-size: 12px; color: var(--text-muted);">It starts</span><span style="flex: 1; font-size: 13.5px; font-weight: 550;">Monday 3 August. First work in your review queue by week 2, publishing by week 3.</span></div>
+              <div style="display: flex; align-items: baseline; gap: 16px; padding: 15px 0;"><span style="width: 96px; flex-shrink: 0; font-size: 12px; color: var(--text-muted);">Your part</span><span style="flex: 1; font-size: 13.5px; font-weight: 550;">~30 minutes a week. Nothing ships without your approval.</span></div>
+            </div>
+            <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">6 sections · 4 min read · valid 30 days</div>
+          </sc-if>
+
+          <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+            <div style="position: relative;">
+              <div ref="{{ railRef }}" class="propstage" style="display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px calc(50% - 280px) 22px; align-items: stretch; scrollbar-width: none;">
+              <div class="propcard" style="scroll-snap-align: center; flex-shrink: 0; width: 560px; min-height: 470px; border-radius: 16px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09), 0 26px 60px -30px rgba(20,40,30,0.3); overflow: hidden; display: flex; flex-direction: column;">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--hairline);">
+                  <span style="width: 26px; height: 26px; border-radius: 8px; background: var(--ink-50); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#3A3C3E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5.6"></circle><path d="M2.4 8h11.2M8 2.4c1.8 1.6 1.8 9.6 0 11.2M8 2.4c-1.8 1.6-1.8 9.6 0 11.2"></path></svg></span>
+                  <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Refill landing page</span><span style="display: block; font-size: 10.5px; color: var(--text-muted);">Website · one new page, live on signing</span></span>
+                  <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex-shrink: 0;">1 / 3</span>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                  <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px 0 12px; height: 36px; border-bottom: 1px solid var(--hairline); background: var(--surface-sunken); flex-shrink: 0;">
+                    <span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--ink-200);"></span><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--ink-200);"></span><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--ink-200);"></span></span>
+                    <span style="flex: 1; min-width: 0; display: flex; justify-content: center;"><span style="display: inline-flex; align-items: center; gap: 6px; max-width: 100%; height: 21px; padding: 0 10px; border-radius: 999px; background: var(--surface-card); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.07);"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="var(--green-700)" stroke-width="1.7" style="flex-shrink: 0;"><rect x="3.5" y="7" width="9" height="6.5" rx="1.6"></rect><path d="M5.6 7V5a2.4 2.4 0 0 1 4.8 0v2"></path></svg><span style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">staging.puregood.co/refill</span></span></span>
+                    <a href="#" onClick="{{ noop }}" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: 999px; background: var(--surface-card); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.11); font-size: 10.5px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; transition: color var(--duration-modal) var(--ease-out), box-shadow var(--duration-modal) var(--ease-out);" style-hover="color: var(--text-body); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.22);">View website<svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.2h6.8V10M12.8 3.2 3.2 12.8"></path></svg></a>
+                  </div>
+                  <div style="flex: 1; position: relative; overflow: hidden;">
+                    <div style="width: 1000px; height: 700px; transform: scale(0.56); transform-origin: top left; overflow: hidden; background: #FAF6EE;">
+                      <div style="display: flex; align-items: center; gap: 34px; padding: 24px 44px; border-bottom: 1px solid rgba(42,38,34,0.07);">
+                        <span style="display: inline-flex; align-items: center; gap: 11px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #2A2622;"></span><span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #2A2622;">Pure Good</span></span>
+                        <span style="display: flex; gap: 28px; font-size: 16px; color: #6B6156;"><span>Refills</span><span>Our packaging</span><span>Stockists</span></span>
+                        <span style="flex: 1;"></span>
+                        <span style="display: inline-flex; align-items: center; height: 38px; padding: 0 20px; border-radius: 999px; background: #B4552D; color: #FAF6EE; font-size: 15px; font-weight: 600;">Start a plan</span>
+                      </div>
+                      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 46px; padding: 58px 44px 46px; align-items: center;">
+                        <div>
+                          <div style="font-size: 14px; font-weight: 700; letter-spacing: 0.16em; color: #B4552D; text-transform: uppercase;">The refill plan</div>
+                          <div style="margin-top: 20px; font-size: 54px; font-weight: 600; letter-spacing: -0.04em; line-height: 1.02; color: #2A2622; text-wrap: pretty;">Refills that pay for themselves.</div>
+                          <div style="margin-top: 20px; font-size: 19px; line-height: 1.6; color: #6B6156; max-width: 30ch;">Save 20% on every order and keep forty bottles a year out of landfill. Cancel whenever — most people don't.</div>
+                          <div style="margin-top: 34px; display: flex; align-items: center; gap: 22px;">
+                            <span style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #2A2622; color: #FAF6EE; font-size: 17px; font-weight: 600;">Start my refill plan</span>
+                            <span style="font-size: 17px; color: #6B6156;">From £14 a month</span>
+                          </div>
+                        </div>
+                        <div style="aspect-ratio: 1 / 1; border-radius: 16px; background: #EDE3D2; display: flex; align-items: flex-end; padding: 18px;"><span style="font-family: var(--font-mono); font-size: 13px; color: #9A9084;">1200 × 1200</span></div>
+                      </div>
+                      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(42,38,34,0.08); border-top: 1px solid rgba(42,38,34,0.08);">
+                        <div style="background: #FAF6EE; padding: 28px 34px;"><div style="font-family: var(--font-mono); font-size: 32px; font-weight: 500; color: #2A2622; letter-spacing: -0.02em;">31%</div><div style="margin-top: 7px; font-size: 16px; color: #6B6156;">repeat-order growth</div></div>
+                        <div style="background: #FAF6EE; padding: 28px 34px;"><div style="font-family: var(--font-mono); font-size: 32px; font-weight: 500; color: #2A2622; letter-spacing: -0.02em;">40</div><div style="margin-top: 7px; font-size: 16px; color: #6B6156;">bottles saved a year</div></div>
+                        <div style="background: #FAF6EE; padding: 28px 34px;"><div style="font-family: var(--font-mono); font-size: 32px; font-weight: 500; color: #2A2622; letter-spacing: -0.02em;">100%</div><div style="margin-top: 7px; font-size: 16px; color: #6B6156;">compostable</div></div>
+                      </div>
+                      <div style="padding: 54px 44px; font-size: 30px; font-weight: 600; letter-spacing: -0.03em; color: #2A2622;">What goes in the bottle</div>
+                    </div>
+                    <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 54px; background: linear-gradient(to bottom, rgba(250,246,238,0) 0%, #FAF6EE 82%); pointer-events: none;"></div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--hairline);">
+                  <span style="font-size: 10.5px; color: var(--text-faint);">Engine · made for this proposal</span><span style="flex: 1;"></span><span style="font-size: 11px; font-weight: 600; color: var(--green-700);">Yours on signing</span>
+                </div>
+              </div>
+              <div class="propcard" style="scroll-snap-align: center; flex-shrink: 0; width: 560px; min-height: 470px; border-radius: 16px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09), 0 26px 60px -30px rgba(20,40,30,0.3); overflow: hidden; display: flex; flex-direction: column;">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--hairline);">
+                  <span style="width: 26px; height: 26px; border-radius: 8px; background: var(--ink-50); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#3A3C3E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.8 2.2 7.2 8.8M13.8 2.2 9.6 13.8 7.2 8.8 2.2 6.4Z"></path></svg></span>
+                  <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Buyer outreach — Sasha Lin</span><span style="display: block; font-size: 10.5px; color: var(--text-muted);">Direct message · 1 of 118, each written from scratch</span></span>
+                  <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex-shrink: 0;">2 / 3</span>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                  <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--hairline);">
+                    <span style="width: 32px; height: 32px; border-radius: 999px; background: var(--ink-100); color: var(--ink-700); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;">SL</span>
+                    <span style="min-width: 0; flex: 1;">
+                      <span style="display: block; font-size: 12.5px; font-weight: 650;">Sasha Lin</span>
+                      <span style="display: block; font-size: 10.5px; color: var(--text-muted);">Head of Buying · Verde Market Group</span>
+                    </span>
+                    <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-faint);">1 / 118</span>
+                  </div>
+                  <div style="flex: 1; padding: 22px 20px 20px;">
+                    <div style="max-width: 92%; border-radius: 4px 16px 16px 16px; background: rgba(23,24,26,0.045); padding: 16px 18px; font-size: 13.5px; line-height: 1.65; color: var(--text-body);">Hi Sasha — saw Verde is doubling the zero-waste aisle this autumn.<br><br>Pure Good's refill line is running 31% repeat-order growth in fully compostable packaging, which fits that aisle's brief pretty exactly. Worth 15 minutes on the numbers?</div>
+                    <div style="margin-top: 15px; display: flex; gap: 7px; align-items: flex-start; font-size: 11px; line-height: 1.55; color: var(--text-faint);">
+                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" style="flex-shrink: 0; margin-top: 2px;"><circle cx="8" cy="8" r="6"></circle><path d="M8 7.4v3.6M8 5.2v.9" stroke-linecap="round"></path></svg>
+                      <span>Written from 90 days of public activity — the aisle expansion, her two posts on packaging, Verde's current range. None of the 118 are templated.</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--hairline);">
+                  <span style="font-size: 10.5px; color: var(--text-faint);">Engine · made for this proposal</span><span style="flex: 1;"></span><span style="font-size: 11px; font-weight: 600; color: var(--green-700);">Yours on signing</span>
+                </div>
+              </div>
+              <div class="propcard" style="scroll-snap-align: center; flex-shrink: 0; width: 560px; min-height: 470px; border-radius: 16px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09), 0 26px 60px -30px rgba(20,40,30,0.3); overflow: hidden; display: flex; flex-direction: column;">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--hairline);">
+                  <span style="width: 26px; height: 26px; border-radius: 8px; background: var(--ink-50); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#3A3C3E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h11M4.5 8h7M6.5 12h3"></path></svg></span>
+                  <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 650;">Enriched buyer list</span><span style="display: block; font-size: 10.5px; color: var(--text-muted);">Records · 118 retail buyers, logged to your CRM</span></span>
+                  <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); flex-shrink: 0;">3 / 3</span>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-bottom: 1px solid var(--hairline); background: var(--surface-sunken); flex-shrink: 0;">
+                    <span style="width: 5px; height: 5px; border-radius: 999px; background: var(--green-500);"></span>
+                    <span style="font-size: 11px; color: var(--text-secondary);">HubSpot</span>
+                    <span style="flex: 1;"></span>
+                    <span style="font-size: 10.5px; color: var(--text-faint);">Every send and reply logs back automatically</span>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: stretch;">
+                    <div style="width: 124px; flex-shrink: 0; padding: 10px 8px; border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 1px;">
+                      <span style="display: flex; align-items: center; gap: 8px; height: 29px; padding: 0 9px; border-radius: 7px; background: var(--ink-50); font-size: 12px; font-weight: 600;">Companies<span style="flex: 1;"></span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">118</span></span>
+                      <span style="display: flex; align-items: center; gap: 8px; height: 29px; padding: 0 9px; border-radius: 7px; font-size: 12px; color: var(--text-secondary);">People<span style="flex: 1;"></span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint);">214</span></span>
+                      <span style="display: flex; align-items: center; gap: 8px; height: 29px; padding: 0 9px; border-radius: 7px; font-size: 12px; color: var(--text-secondary);">Deals<span style="flex: 1;"></span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint);">—</span></span>
+                    </div>
+                    <div style="flex: 1; min-width: 0;">
+                      <div style="display: grid; grid-template-columns: 1fr 1fr 62px; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--hairline-strong);">
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.09em; color: var(--text-muted); text-transform: uppercase;">Company</span>
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.09em; color: var(--text-muted); text-transform: uppercase;">Buyer</span>
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.09em; color: var(--text-muted); text-transform: uppercase; text-align: right;">Fit</span>
+                      </div>
+                      <sc-for list="{{ leads }}" as="ld" hint-placeholder-count="6">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 62px; gap: 10px; padding: 0 14px; height: 38px; align-items: center; border-bottom: 1px solid rgba(23,24,26,0.05);">
+                          <span style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                            <span style="width: 20px; height: 20px; border-radius: 5px; background: var(--ink-100); color: var(--ink-600); display: inline-flex; align-items: center; justify-content: center; font-size: 8.5px; font-weight: 700; flex-shrink: 0;">{{ ld.mark }}</span>
+                            <span style="font-size: 12.5px; font-weight: 550; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ ld.co }}</span>
+                          </span>
+                          <span style="font-size: 12px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ ld.who }}</span>
+                          <span style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                            <span style="display: flex; align-items: flex-end; gap: 1.5px; height: 10px;">
+                              <span style="width: 2.5px; height: 4px; border-radius: 1px; background: {{ ld.b1 }};"></span>
+                              <span style="width: 2.5px; height: 6px; border-radius: 1px; background: {{ ld.b2 }};"></span>
+                              <span style="width: 2.5px; height: 8px; border-radius: 1px; background: {{ ld.b3 }};"></span>
+                              <span style="width: 2.5px; height: 10px; border-radius: 1px; background: {{ ld.b4 }};"></span>
+                            </span>
+                            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums;">{{ ld.fit }}</span>
+                          </span>
+                        </div>
+                      </sc-for>
+                      <div style="padding: 10px 14px; font-size: 10.5px; color: var(--text-faint);">Showing 6 of 118 · ranked against your ideal customer profile</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--hairline);">
+                  <span style="font-size: 10.5px; color: var(--text-faint);">Engine · made for this proposal</span><span style="flex: 1;"></span><span style="font-size: 11px; font-weight: 600; color: var(--green-700);">Yours on signing</span>
+                </div>
+              </div>
+            </div>
+              <button class="proppaddle" onClick="{{ railPrev }}" style="position: absolute; left: 22px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 999px; border: none; background: rgba(255,255,255,0.92); box-shadow: 0 4px 14px rgba(20,40,30,0.16), 0 0 0 0.5px rgba(23,24,26,0.08); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--text-body); z-index: 5;" style-hover="background: var(--white);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg></button>
+              <button class="proppaddle" onClick="{{ railNext }}" style="position: absolute; right: 22px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 999px; border: none; background: rgba(255,255,255,0.92); box-shadow: 0 4px 14px rgba(20,40,30,0.16), 0 0 0 0.5px rgba(23,24,26,0.08); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--text-body); z-index: 5;" style-hover="background: var(--white);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 5 5-5 5"></path></svg></button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+            <h2 style="margin: 0; font-size: 27px; font-weight: 680; letter-spacing: -0.025em;">Cost. Two ways in.</h2>
+            <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">Both are month-to-month. Pick one now, change later — the engine carries everything over.</p>
+            <div class="propgrid2" style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <sc-for list="{{ packages }}" as="p" hint-placeholder-count="2">
+                <div onClick="{{ p.pick }}" style="border-radius: 14px; background: var(--surface-card); padding: 22px 22px 20px; cursor: pointer; box-shadow: {{ p.ring }}; transition: box-shadow var(--duration-modal) var(--ease-out);" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">
+                  <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 14px; font-weight: 650;">{{ p.name }}</span><sc-if value="{{ p.rec }}" hint-placeholder-val="{{ false }}"><span style="font-size: 9px; font-weight: 700; letter-spacing: 0.06em; color: var(--green-800); background: var(--green-50); padding: 2px 7px; border-radius: 999px;">RECOMMENDED</span></sc-if></div>
+                  <div style="margin-top: 12px; display: flex; align-items: baseline; gap: 5px;"><span style="font-family: var(--font-mono); font-size: 26px; font-weight: 550; letter-spacing: -0.02em;">{{ p.price }}</span><span style="font-size: 11.5px; color: var(--text-muted);">/ month</span></div>
+                  <div style="margin-top: 20px; border-top: 1px solid var(--hairline); padding-top: 6px;">
+                    <sc-for list="{{ p.feats }}" as="f" hint-placeholder-count="4">
+                      <div style="display: flex; align-items: baseline; gap: 8px; padding: 6px 0;"><svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transform: translateY(1px);"><path d="M3 8.5 6.5 12 13 4.5"></path></svg><span style="font-size: 12.5px; line-height: 1.5; color: var(--text-body);">{{ f }}</span></div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 12px; font-size: 11.5px; color: var(--text-faint);">First invoice after onboarding week · pause anytime · fees fixed for 12 months.</div>
+          </sc-if>
+
+          <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+            <h2 style="margin: 0; font-size: 27px; font-weight: 680; letter-spacing: -0.025em;">The first 60 days.</h2>
+            <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">Fast to first output — the engine starts reading the day you sign.</p>
+            <div style="margin-top: 34px; border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.08); padding: 16px 18px 10px;">
+              <div style="position: relative;">
+                <div style="position: absolute; inset: 0;">
+                  <sc-for list="{{ gridLines }}" as="gl" hint-placeholder-count="9"><span style="position: absolute; top: 0; bottom: 0; left: {{ gl.left }}; border-left: 1px solid {{ gl.c }};"></span></sc-for>
+                </div>
+                <div style="position: relative; height: 156px;">
+                  <sc-for list="{{ gbars }}" as="gb" hint-placeholder-count="4">
+                    <div onClick="{{ gb.go }}" style="position: absolute; height: 30px; border-radius: 8px; left: {{ gb.left }}; width: {{ gb.width }}; top: {{ gb.top }}; background: {{ gb.bg }}; box-shadow: {{ gb.shadow }}; display: flex; align-items: center; padding: 0 11px; box-sizing: border-box; cursor: pointer; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out);" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">
+                      <sc-if value="{{ gb.inLabel }}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; font-weight: 600; color: {{ gb.fg }}; white-space: nowrap;">{{ gb.label }}</span></sc-if>
+                    </div>
+                    <sc-if value="{{ gb.outLabel }}" hint-placeholder-val="{{ false }}">
+                      <span onClick="{{ gb.go }}" style="position: absolute; left: {{ gb.outLeft }}; top: {{ gb.labelTop }}; font-size: 11.5px; font-weight: {{ gb.outW }}; color: {{ gb.outColor }}; white-space: nowrap; cursor: pointer;" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">{{ gb.label }}</span>
+                    </sc-if>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="margin-top: 12px; border-top: 1px solid rgba(23,24,26,0.08); padding-top: 8px; display: grid; grid-template-columns: repeat(8, 1fr);">
+                <sc-for list="{{ ganttWeeks }}" as="w" hint-placeholder-count="8"><span style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-faint); text-align: center;">{{ w }}</span></sc-for>
+              </div>
+            </div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--text-faint);">A guideline, not a cage — we move faster when access and approvals come together quickly on your side.</div>
+            <div class="stepbody" key="{{ phaseKey }}" style="margin-top: 20px; border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.08); overflow: hidden;">
+              <div style="display: flex; align-items: baseline; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--hairline);">
+                <span style="font-size: 14.5px; font-weight: 650;">{{ selName }}</span>
+                <span style="flex: 1;"></span>
+                <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">{{ selRange }}</span>
+              </div>
+              <div style="padding: 16px 20px 18px;">
+                <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">{{ selDesc }}</p>
+                <div style="margin-top: 20px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--green-700); text-transform: uppercase;">Key deliverables</div>
+                <div class="propgrid2" style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <sc-for list="{{ selItems }}" as="d" hint-placeholder-count="4">
+                    <div style="display: flex; align-items: baseline; gap: 9px; border-radius: 9px; background: rgba(23,24,26,0.035); padding: 10px 12px;">
+                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transform: translateY(1px);"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+                      <span style="font-size: 12.5px; line-height: 1.5;">{{ d }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
+            <h2 style="margin: 0; font-size: 27px; font-weight: 680; letter-spacing: -0.025em;">Scope &amp; terms.</h2>
+            <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">The commitment in numbers, then the agreement in the words we'd use across a table. The full document arrives with your signature email.</p>
+            <div style="margin-top: 34px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase;">Scope of work</div>
+            <div style="margin-top: 12px; border-top: 1px solid var(--hairline);">
+              <sc-for list="{{ scopeRows }}" as="r" hint-placeholder-count="4">
+                <div style="display: flex; align-items: baseline; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05);">
+                  <div style="flex: 1; min-width: 0;"><div style="font-size: 13.5px; font-weight: 600;">{{ r.t }}</div><div style="margin-top: 3px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">{{ r.sub }}</div></div>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-nav); white-space: nowrap;">{{ r.vol }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 34px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase;">Terms</div>
+            <div style="margin-top: 8px;">
+              <sc-for list="{{ terms }}" as="t" hint-placeholder-count="5">
+                <div style="display: grid; grid-template-columns: 20px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="color: var(--green-700); font-weight: 700;">→</span><span style="font-size: 13.5px; line-height: 1.55;">{{ t }}</span></div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s6 }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ notSigned }}" hint-placeholder-val="{{ true }}">
+              <h2 style="margin: 0; font-size: 27px; font-weight: 680; letter-spacing: -0.025em;">Ready when you are.</h2>
+              <div style="margin-top: 34px; border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09); padding: 6px 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px; color: var(--text-muted);">Package</span><span style="font-size: 13px; font-weight: 600;">{{ pkgName }} · <span style="font-family: var(--font-mono);">{{ pkgPrice }}</span>/mo</span></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px; color: var(--text-muted);">Start</span><span style="font-size: 13px; font-weight: 600;">Monday 3 August 2026</span></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0;"><span style="font-size: 12.5px; color: var(--text-muted);">Your partner</span><span style="font-size: 13px; font-weight: 600;">Dan Cohen, Hivory</span></div>
+              </div>
+              <div style="margin-top: 34px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase;">Signature</div>
+              <div style="margin-top: 12px;">
+                <div style="max-width: 340px;">
+                  <x-import component-from-global-scope="HivoryDesignSystem_354905.Input" placeholder="Full legal name" on-change="{{ onSigName }}" hint-size="100%,34px"></x-import>
+                </div>
+                <div style="margin-top: 20px; padding: 0 4px 10px; border-bottom: 1px solid var(--ink-200); min-height: 40px; display: flex; align-items: flex-end;">
+                  <span style="font-style: italic; font-weight: 300; font-size: 27px; letter-spacing: 0.01em; color: {{ sigColor }};">{{ sigPreview }}</span>
+                </div>
+                <div style="margin-top: 8px; font-size: 10.5px; color: var(--text-faint);">Signature — drawn from your typed name</div>
+                <div style="margin-top: 20px;">
+                  <x-import component-from-global-scope="HivoryDesignSystem_354905.Checkbox" label="I'm authorized to sign for Pure Good" checked="{{ authOn }}" on-change="{{ toggleAuth }}" hint-size="260px,20px"></x-import>
+                </div>
+                <div style="margin-top: 34px;">
+                  <x-import component-from-global-scope="HivoryDesignSystem_354905.Button" variant="brand" size="lg" disabled="{{ signBlocked }}" on-click="{{ sign }}" hint-size="240px,40px">{{ signLabel }}</x-import>
+                </div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--text-faint);">Signing starts onboarding — no payment is taken today.</div>
+                <div style="margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--hairline); display: flex; align-items: center; gap: 14px;">
+                  <span style="flex: 1; min-width: 0;">
+                    <span style="display: block; font-size: 12.5px; font-weight: 600;">Rather read it on paper?</span>
+                    <span style="display: block; margin-top: 3px; font-size: 11.5px; color: var(--text-muted); line-height: 1.5;">The whole proposal as a five-page document — everything above, plus the terms in full and a signature block.</span>
+                  </span>
+                  <a href="Product - Proposal document.dc.html" target="_blank" rel="noopener" style="text-decoration: none; flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; height: 33px; padding: 0 15px; border-radius: 999px; background: var(--surface-card); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); font-size: 12.5px; font-weight: 600; color: var(--text-body); transition: box-shadow var(--duration-modal) var(--ease-out);" style-hover="box-shadow: inset 0 0 0 1px rgba(23,24,26,0.26);"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.4v8.2M4.8 7.4 8 10.6l3.2-3.2M2.8 13.2h10.4"></path></svg>Download PDF</a>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ signed }}" hint-placeholder-val="{{ false }}">
+              <div class="stepbody" style="padding: 40px 0 20px;">
+                <svg width="40" height="46" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="1" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M6 8.2 7.5 9.7 10.2 6.4" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                <h2 style="margin: 12px 0 0; font-size: 30px; font-weight: 680; letter-spacing: -0.025em;">Signed — welcome to Hivory.</h2>
+                <p style="margin: 12px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); max-width: 46ch; text-wrap: pretty;">Your console is being prepared. The invite lands at maya@puregood.co within the hour, and the engine starts reading your brand today — the first drafts will be held for your review.</p>
+                <div style="margin-top: 34px; font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">{{ receipt }}</div>
+                <div style="margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--hairline); display: flex; align-items: center; gap: 14px; max-width: 520px;">
+                  <span style="flex: 1; min-width: 0;">
+                    <span style="display: block; font-size: 12.5px; font-weight: 600;">Your countersigned agreement</span>
+                    <span style="display: block; margin-top: 3px; font-size: 11.5px; color: var(--text-muted); line-height: 1.5;">Five pages, signed by both sides. A copy is attached to your welcome email too.</span>
+                  </span>
+                  <a href="Product - Proposal document.dc.html" target="_blank" rel="noopener" style="text-decoration: none; flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; height: 33px; padding: 0 15px; border-radius: 999px; background: var(--surface-card); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13); font-size: 12.5px; font-weight: 600; color: var(--text-body); transition: box-shadow var(--duration-modal) var(--ease-out);" style-hover="box-shadow: inset 0 0 0 1px rgba(23,24,26,0.26);"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.4v8.2M4.8 7.4 8 10.6l3.2-3.2M2.8 13.2h10.4"></path></svg>Download PDF</a>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+
+        </div>
+      </div>
+      <sc-if value="{{ barVisible }}" hint-placeholder-val="{{ true }}">
+        <div class="propfoot" style="flex-shrink: 0; border-top: 1px solid var(--hairline); padding: 13px 24px; display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);">
+          <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="HivoryDesignSystem_354905.Button" variant="ghost" size="sm" on-click="{{ goBack }}" hint-size="72px,26px">‹ Back</x-import></sc-if>
+          <span style="flex: 1;"></span>
+          <span style="font-size: 10.5px; color: var(--text-faint); font-variant-numeric: tabular-nums;">{{ progressLabel }}</span>
+          <sc-if value="{{ canNext }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="HivoryDesignSystem_354905.Button" variant="primary" size="md" on-click="{{ goNext }}" hint-size="230px,33px">{{ nextLabel }}</x-import></sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { step: 0, maxVisited: 0, pkg: 1, sigName: '', auth: false, signed: false };
+  componentDidMount() {
+    this._key = (e) => {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowRight' && this.state.step < 5) this.goTo(this.state.step + 1);
+      if (e.key === 'ArrowLeft' && this.state.step > 0) this.goTo(this.state.step - 1);
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); }
+  goTo(i) { this.setState((p) => ({ step: i, maxVisited: Math.max(p.maxVisited, i) })); }
+  phases() {
+    return [
+      { t: 'Knowledge & onboarding', s: 1, e: 1, range: 'Week 1', sub: 'The engine reads your site, analytics and HubSpot; you review the brand kit and the first knowledge file. One 45-minute call — that\u2019s the whole lift on your side.', items: ['Brand kit approved by you', 'Knowledge file built from your site, analytics & HubSpot', 'Console access for your team', '45-minute kickoff call'] },
+      { t: 'First drafts, held', s: 2, e: 3, range: 'Weeks 2\u20133', sub: 'Articles, posts, the refill landing page and the outreach sequence arrive in your review queue. You edit and approve in place — your changes teach the engine.', items: ['4 articles drafted in your voice', '12 LinkedIn posts held for review', 'Refill landing page on staging', 'Outreach sequence for your sign-off'] },
+      { t: 'First publishes', s: 3, e: 4, range: 'Weeks 3\u20134', sub: 'Approved work ships on your calendar. Outreach warms up at low volume while replies calibrate the sequence.', items: ['Publishing calendar live', 'Outreach warm-up — low volume first', 'Every send & reply logged to HubSpot', 'Weekly digest starts'] },
+      { t: 'Steady state', s: 5, e: 8, range: 'Weeks 5\u20138 \u2192', sub: 'The loop runs: propose → approve → publish → report. You spend about 30 minutes a week, mostly saying yes or no.', items: ['Full cadence across all workstreams', 'Monthly performance report', 'Quarterly strategy session (full engine)', '~30 minutes a week from you'] }
+    ];
+  }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    const LABELS = ['Overview', 'What we deliver', 'Timeline', 'Cost', 'Scope & terms', 'Accept & sign'];
+    const PKGS = [
+      { name: 'Core engine', price: '$4,800', rec: false, feats: ['Content engine — 4 articles + 12 LinkedIn posts / mo', 'Your console — approve everything in one place', 'Performance view + weekly digest', 'Brand knowledge file, yours to keep'] },
+      { name: 'Full engine', price: '$8,500', rec: true, feats: ['Everything in Core engine', 'Site work — landing pages & seasonal swaps', 'Pipeline — outreach to retail buyers, logged to HubSpot', 'Quarterly strategy session with Dan'] }
+    ];
+    const steps = LABELS.map((label, i) => {
+      const done = s.signed ? true : i < s.step;
+      const current = !s.signed && i === s.step;
+      const visitable = i <= s.maxVisited;
+      return {
+      keyActivate: this.keyActivate,
+        label, num: String(i + 1), done, notDone: !done,
+        w: current ? 650 : 500,
+        color: current ? '#17181A' : (visitable ? 'var(--text-nav)' : '#9DA0A3'),
+        numColor: current ? '#fff' : (visitable ? 'var(--text-nav)' : '#B4B7B9'),
+        mBg: current ? '#17181A' : (done ? 'rgba(0,163,82,0.12)' : 'transparent'),
+        mRing: current || done ? 'none' : 'inset 0 0 0 1px rgba(23,24,26,0.16)',
+        hoverBg: visitable && !current ? 'rgba(255,255,255,0.55)' : 'transparent',
+        cursor: visitable && !current ? 'pointer' : 'default',
+        go: () => { if (visitable) this.goTo(i); }
+      };
+    });
+    const sigReady = s.sigName.trim().length > 1 && s.auth;
+    const pkg = PKGS[s.pkg];
+    return {
+      steps, stepKey: 'st' + s.step + (s.signed ? 'x' : ''),
+      pillTop: (s.step * 34) + 'px', pillOpacity: s.signed ? 0 : 1,
+      s1: s.step === 0, s2: s.step === 1, s3: s.step === 2, s4: s.step === 3, s5: s.step === 4, s6: s.step === 5,
+      progressLabel: (s.step + 1) + ' of 6',
+      barSegs: Array.from({ length: 6 }, (_, i) => ({ bg: i <= s.step ? 'var(--green-600)' : 'var(--ink-200)' })),
+      barVisible: !(s.step === 5),
+      canBack: s.step > 0, canNext: s.step < 5,
+      nextLabel: 'Continue — ' + LABELS[Math.min(s.step + 1, 5)],
+      goBack: () => this.goTo(s.step - 1),
+      goNext: () => this.goTo(s.step + 1),
+      scopeRows: [
+        { t: 'Content engine', sub: 'Blog + LinkedIn — drafted from your knowledge file, held for your approval', vol: '4 articles · 12 posts / mo' },
+        { t: 'Site work', sub: 'Landing pages and seasonal swaps, deployed to staging before anything goes live', vol: '2 pages / mo' },
+        { t: 'Pipeline', sub: 'Outreach to retail buyers — every send and reply logged back to HubSpot', vol: '1 sequence · ~120 contacts' },
+        { t: 'Performance', sub: 'Weekly digest + a monthly report in plain language, evidence attached', vol: 'ongoing' }
+      ],
+      leads: [
+        { mark: 'VM', co: 'Verde Market Group', who: 'Sasha Lin', fit: '94', n: 4 },
+        { mark: 'NW', co: 'Northbound Wellness', who: 'Priya Nair', fit: '91', n: 4 },
+        { mark: 'RC', co: 'The Refill Collective', who: 'Jonah Weiss', fit: '89', n: 3 },
+        { mark: 'CG', co: 'Coastal Grocer Co.', who: 'Elena Torres', fit: '86', n: 3 },
+        { mark: 'HH', co: 'Harvest & Hearth', who: 'Marcus Bell', fit: '84', n: 3 },
+        { mark: 'FD', co: 'Field Day Markets', who: 'Anna Okafor', fit: '82', n: 3 }
+      ].map((l) => Object.assign({}, l, {
+        b1: l.n >= 1 ? 'var(--green-600)' : 'var(--ink-200)',
+        b2: l.n >= 2 ? 'var(--green-600)' : 'var(--ink-200)',
+        b3: l.n >= 3 ? 'var(--green-600)' : 'var(--ink-200)',
+        b4: l.n >= 4 ? 'var(--green-600)' : 'var(--ink-200)'
+      })),
+      noop: (e) => { e.preventDefault(); },
+      railRef: (el) => { this._rail = el; },
+      railPrev: () => { if (this._rail) this._rail.scrollBy({ left: -584, behavior: 'smooth' }); },
+      railNext: () => { if (this._rail) this._rail.scrollBy({ left: 584, behavior: 'smooth' }); },
+      bodyMax: s.step === 1 ? 'none' : '640px',
+      bodyPad: s.step === 1 ? '30px 0 24px' : '76px 48px 90px',
+      packages: PKGS.map((p, i) => ({ ...p, pick: () => this.setState({ pkg: i }),
+        ring: s.pkg === i ? '0 0 0 2px var(--ink-900), 0 14px 34px -18px rgba(20,40,30,0.28)' : '0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09)' })),
+      ganttWeeks: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
+      gridLines: Array.from({ length: 9 }, (_, i) => ({ left: (i * 12.5) + '%', c: i % 4 === 0 ? 'rgba(23,24,26,0.12)' : 'rgba(23,24,26,0.05)' })),
+      gbars: (() => {
+        const P = this.phases();
+        return P.map((p, i) => {
+          const sel = i === (s.phase || 0);
+          const span = p.e - p.s + 1, inLabel = span >= 3;
+          const rowTop = (P.length - 1 - i) * 38 + 4;
+          return { label: p.t, sel, inLabel, outLabel: !inLabel,
+            left: ((p.s - 1) * 12.5) + '%', width: (span * 12.5) + '%',
+            top: rowTop + 'px', labelTop: (rowTop + 8) + 'px',
+            outLeft: 'calc(' + (p.e * 12.5) + '% + 10px)',
+            outW: sel ? 650 : 600, outColor: sel ? '#17181A' : 'var(--text-nav)',
+            bg: sel ? '#17181A' : 'rgba(23,24,26,0.07)',
+            fg: sel ? '#fff' : 'var(--text-nav)',
+            shadow: sel ? '0 8px 20px -6px rgba(20,40,30,0.35)' : 'none',
+            go: () => this.setState({ phase: i }) };
+        });
+      })(),
+      phaseKey: 'ph' + (s.phase || 0),
+      selName: this.phases()[s.phase || 0].t,
+      selRange: this.phases()[s.phase || 0].range,
+      selDesc: this.phases()[s.phase || 0].sub,
+      selItems: this.phases()[s.phase || 0].items,
+      terms: [
+        'Month-to-month. Cancel with 30 days\u2019 notice, no questions, no fees.',
+        'Everything we make is yours — content, pages, sequences, and the knowledge file itself.',
+        'Nothing client-facing ships without your approval. The console holds it until you decide.',
+        'Your data stays yours. We never train shared models on it or show it to anyone else.',
+        'Fees are fixed for 12 months from signature.'
+      ],
+      pkgName: pkg.name, pkgPrice: pkg.price,
+      notSigned: !s.signed, signed: s.signed,
+      onSigName: (e) => this.setState({ sigName: e.target.value }),
+      sigPreview: s.sigName.trim() || 'Your name appears here',
+      sigColor: s.sigName.trim() ? 'var(--text-body)' : 'var(--text-ghost)',
+
+      authOn: s.auth, toggleAuth: () => this.setState((p) => ({ auth: !p.auth })),
+
+      signBlocked: !sigReady, signLabel: 'Sign & accept — ' + pkg.name,
+      sign: () => { if (sigReady) this.setState({ signed: true }); },
+      receipt: 'Signed by ' + (s.sigName.trim() || 'Maya Reyes') + ' \u00b7 29 Jul 2026 \u00b7 ' + pkg.name + ' \u00b7 ' + pkg.price + '/mo'
+    };
+  }
+}
+</script>
+</body>
+</html>

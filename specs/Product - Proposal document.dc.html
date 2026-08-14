@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <script src="./doc-page.js"></script>
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    doc-page:not(:defined) { visibility: hidden; }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .page { font-family: var(--font-sans); color: var(--ink-900); box-sizing: border-box; padding: 0.82in 0.86in; display: flex; flex-direction: column; }
+    .eye { font-size: 8pt; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-700); }
+    .h2 { margin: 0; font-size: 21pt; font-weight: 650; letter-spacing: -0.028em; line-height: 1.08; }
+    .lede { margin: 9pt 0 0; font-size: 10.5pt; line-height: 1.55; color: var(--ink-700); max-width: 54ch; text-wrap: pretty; }
+    .rule { border-top: 1px solid rgba(23,24,26,0.13); }
+    .hair { border-bottom: 1px solid rgba(23,24,26,0.08); }
+    .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    .foot { margin-top: auto; padding-top: 14pt; border-top: 1px solid rgba(23,24,26,0.1); display: flex; align-items: baseline; gap: 10pt; font-size: 7.5pt; color: var(--ink-600); }
+    .foot .sp { flex: 1; }
+    .row { display: flex; align-items: baseline; gap: 14pt; padding: 9.5pt 0; border-bottom: 1px solid rgba(23,24,26,0.08); }
+    .row .t { font-size: 10.5pt; font-weight: 600; }
+    .row .s { margin-top: 2.5pt; font-size: 9pt; line-height: 1.5; color: var(--ink-600); }
+    .row .v { font-family: var(--font-mono); font-size: 8.5pt; color: var(--ink-700); white-space: nowrap; }
+    .tick { flex-shrink: 0; transform: translateY(1pt); }
+    .card { border-radius: 10pt; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.11); padding: 15pt 16pt; }
+    h3 { margin: 0; font-size: 11.5pt; font-weight: 650; letter-spacing: -0.015em; }
+  </style>
+</helmet>
+<doc-page size="letter">
+
+  <!-- ══ 1 · COVER ══ -->
+  <section class="page" data-screen-label="Cover" style="padding: 0.9in 0.86in 0.82in;">
+    <div style="display: flex; align-items: flex-start; gap: 12pt;">
+      <div style="flex: 1;">
+        <img src="assets/logo/hivory/black-green.svg" alt="Hivory" style="display: block; width: 108pt; height: auto;" />
+        <div style="margin-top: 5pt; font-size: 8.5pt; color: var(--ink-600);">The engine for growth</div>
+      </div>
+      <div style="text-align: right; white-space: nowrap; flex-shrink: 0;">
+        <div class="mono" style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">{{ docRef }}</div>
+        <div class="mono" style="margin-top: 2pt; font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">{{ issuedLabel }}</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.35in;">
+      <div class="eye">Growth proposal</div>
+      <h1 style="margin: 14pt 0 0; font-size: 40pt; font-weight: 650; letter-spacing: -0.042em; line-height: 1.0; max-width: 17ch;">{{ headline }}</h1>
+      <p style="margin: 16pt 0 0; font-size: 12pt; line-height: 1.5; color: var(--ink-700); max-width: 46ch; text-wrap: pretty;">Your website, your content and a sales pipeline — drafted by the engine, approved by you, shipped on your calendar. This document is the written record of that proposal.</p>
+    </div>
+
+    <div style="margin-top: 0.5in;" class="rule"></div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;">
+      <div style="padding: 13pt 0; border-bottom: 1px solid rgba(23,24,26,0.08);"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Prepared for</div><div style="margin-top: 4pt; font-size: 11pt; font-weight: 600;">{{ clientName }}</div><div style="margin-top: 2pt; font-size: 9pt; color: var(--ink-600);">{{ clientContact }}</div></div>
+      <div style="padding: 13pt 0 13pt 20pt; border-bottom: 1px solid rgba(23,24,26,0.08);"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Prepared by</div><div style="margin-top: 4pt; font-size: 11pt; font-weight: 600;">{{ partnerName }}</div><div style="margin-top: 2pt; font-size: 9pt; color: var(--ink-600);">Hivory · dan@hivory.io</div></div>
+      <div style="padding: 13pt 0; border-bottom: 1px solid rgba(23,24,26,0.08);"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Engagement</div><div style="margin-top: 4pt; font-size: 11pt; font-weight: 600;">{{ pkgName }}</div><div class="mono" style="margin-top: 2pt; font-size: 9pt; color: var(--ink-600);">{{ pkgPrice }} / month · month-to-month</div></div>
+      <div style="padding: 13pt 0 13pt 20pt; border-bottom: 1px solid rgba(23,24,26,0.08);"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Proposed start</div><div style="margin-top: 4pt; font-size: 11pt; font-weight: 600;">{{ startDate }}</div><div style="margin-top: 2pt; font-size: 9pt; color: var(--ink-600);">Valid 30 days from issue</div></div>
+    </div>
+
+    <div style="margin-top: 30pt; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14pt;">
+      <sc-for list="{{ contents }}" as="c" hint-placeholder-count="4">
+        <div><div class="mono" style="font-size: 8pt; color: var(--green-700);">{{ c.n }}</div><div style="margin-top: 5pt; font-size: 9.5pt; font-weight: 600; line-height: 1.35;">{{ c.t }}</div></div>
+      </sc-for>
+    </div>
+
+    <div class="foot"><span>{{ clientName }} · Growth proposal</span><span class="sp"></span><span class="mono">{{ docRef }}</span><span>1 / 5</span></div>
+  </section>
+
+  <!-- ══ 2 · WHAT WE DELIVER ══ -->
+  <section class="page" data-screen-label="What we deliver">
+    <div class="eye">01 · The engagement</div>
+    <h2 class="h2" style="margin-top: 9pt;">What we deliver.</h2>
+    <p class="lede">Four surfaces, running continuously. The engine drafts, you approve, it ships — nothing goes live without your say.</p>
+
+    <div style="margin-top: 22pt;" class="rule"></div>
+    <sc-for list="{{ scope }}" as="r" hint-placeholder-count="5">
+      <div class="row"><div style="flex: 1; min-width: 0;"><div class="t">{{ r.t }}</div><div class="s">{{ r.sub }}</div></div><span class="v">{{ r.vol }}</span></div>
+    </sc-for>
+
+    <div style="margin-top: 26pt;" class="eye">How the loop runs</div>
+    <div style="margin-top: 11pt; display: grid; grid-template-columns: repeat(4, 1fr); gap: 11pt;">
+      <sc-for list="{{ loop }}" as="l" hint-placeholder-count="4">
+        <div class="card" style="padding: 13pt 13pt 14pt;">
+          <div class="mono" style="font-size: 8pt; color: var(--green-700);">{{ l.n }}</div>
+          <div style="margin-top: 7pt; font-size: 10pt; font-weight: 650;">{{ l.t }}</div>
+          <div style="margin-top: 4pt; font-size: 8.5pt; line-height: 1.5; color: var(--ink-600);">{{ l.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top: 26pt;" class="eye">Your part</div>
+    <div style="margin-top: 10pt; display: grid; grid-template-columns: 1fr 1fr; gap: 9pt 22pt;">
+      <sc-for list="{{ yourPart }}" as="y" hint-placeholder-count="4">
+        <div style="display: flex; align-items: baseline; gap: 8pt;">
+          <svg class="tick" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+          <span style="font-size: 9.5pt; line-height: 1.5;">{{ y }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="foot"><span>{{ clientName }} · Growth proposal</span><span class="sp"></span><span class="mono">{{ docRef }}</span><span>2 / 5</span></div>
+  </section>
+
+  <!-- ══ 3 · TIMELINE ══ -->
+  <section class="page" data-screen-label="Timeline">
+    <div class="eye">02 · Schedule</div>
+    <h2 class="h2" style="margin-top: 9pt;">The first 60 days.</h2>
+    <p class="lede">Fast to first output — the engine starts reading the day you sign. A guideline, not a cage: we move faster when access and approvals come together quickly on your side.</p>
+
+    <div style="margin-top: 22pt; border-radius: 10pt; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.11); padding: 16pt 18pt 12pt;">
+      <div style="position: relative;">
+        <div style="position: absolute; inset: 0;">
+          <sc-for list="{{ grid }}" as="g" hint-placeholder-count="9"><span style="position: absolute; top: 0; bottom: 0; left: {{ g.left }}; border-left: 1px solid {{ g.c }};"></span></sc-for>
+        </div>
+        <div style="position: relative; height: 130pt;">
+          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="4">
+            <div style="position: absolute; height: 26pt; border-radius: 6pt; left: {{ b.left }}; width: {{ b.width }}; top: {{ b.top }}; background: {{ b.bg }}; box-sizing: border-box; display: flex; align-items: center; padding: 0 10pt;">
+              <span style="font-size: 9pt; font-weight: 600; color: {{ b.fg }}; white-space: nowrap;">{{ b.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="margin-top: 10pt; border-top: 1px solid rgba(23,24,26,0.1); padding-top: 7pt; display: grid; grid-template-columns: repeat(8, 1fr);">
+        <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="8"><span class="mono" style="font-size: 7.5pt; color: var(--ink-600); text-align: center;">{{ w }}</span></sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top: 18pt; display: grid; grid-template-columns: 1fr 1fr; gap: 13pt;">
+      <sc-for list="{{ phases }}" as="p" hint-placeholder-count="4">
+        <div class="card">
+          <div style="display: flex; align-items: baseline; gap: 9pt;"><h3>{{ p.name }}</h3><span class="sp" style="flex: 1;"></span><span class="mono" style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">{{ p.range }}</span></div>
+          <div style="margin-top: 7pt; font-size: 9pt; line-height: 1.55; color: var(--ink-600);">{{ p.desc }}</div>
+          <div style="margin-top: 10pt; display: flex; flex-direction: column; gap: 5pt;">
+            <sc-for list="{{ p.items }}" as="i" hint-placeholder-count="3">
+              <div style="display: flex; align-items: baseline; gap: 7pt;">
+                <svg class="tick" width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+                <span style="font-size: 9pt; line-height: 1.45;">{{ i }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="foot"><span>{{ clientName }} · Growth proposal</span><span class="sp"></span><span class="mono">{{ docRef }}</span><span>3 / 5</span></div>
+  </section>
+
+  <!-- ══ 4 · COST ══ -->
+  <section class="page" data-screen-label="Cost">
+    <div class="eye">03 · Investment</div>
+    <h2 class="h2" style="margin-top: 9pt;">Cost. Two ways in.</h2>
+    <p class="lede">Both are month-to-month. Pick one now, change later — the engine carries everything over. Fees are fixed for twelve months from signing.</p>
+
+    <div style="margin-top: 22pt; display: grid; grid-template-columns: 1fr 1fr; gap: 16pt;">
+      <sc-for list="{{ packages }}" as="p" hint-placeholder-count="2">
+        <div style="border-radius: 10pt; box-shadow: {{ p.ring }}; padding: 17pt 18pt 18pt;">
+          <div style="display: flex; align-items: center; gap: 8pt;">
+            <h3>{{ p.name }}</h3>
+            <sc-if value="{{ p.chosen }}" hint-placeholder-val="{{ false }}"><span style="font-size: 7pt; font-weight: 700; letter-spacing: 0.07em; color: var(--green-800); background: var(--green-50); padding: 2pt 6pt; border-radius: 999px;">SELECTED</span></sc-if>
+          </div>
+          <div style="margin-top: 10pt; display: flex; align-items: baseline; gap: 5pt;">
+            <span class="mono" style="font-size: 22pt; font-weight: 550; letter-spacing: -0.02em;">{{ p.price }}</span>
+            <span style="font-size: 9pt; color: var(--ink-600);">/ month</span>
+          </div>
+          <div style="margin-top: 13pt; padding-top: 9pt; border-top: 1px solid rgba(23,24,26,0.1); display: flex; flex-direction: column; gap: 6pt;">
+            <sc-for list="{{ p.feats }}" as="f" hint-placeholder-count="5">
+              <div style="display: flex; align-items: baseline; gap: 8pt;">
+                <svg class="tick" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
+                <span style="font-size: 9.5pt; line-height: 1.5;">{{ f }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top: 24pt;" class="eye">What it replaces</div>
+    <div style="margin-top: 11pt;" class="rule"></div>
+    <sc-for list="{{ compare }}" as="c" hint-placeholder-count="3">
+      <div class="row"><div style="flex: 1;"><div class="t">{{ c.t }}</div><div class="s">{{ c.sub }}</div></div><span class="v">{{ c.v }}</span></div>
+    </sc-for>
+
+    <div style="margin-top: 20pt; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14pt;">
+      <sc-for list="{{ billing }}" as="b" hint-placeholder-count="3">
+        <div><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">{{ b.k }}</div><div style="margin-top: 4pt; font-size: 9.5pt; font-weight: 600; line-height: 1.4;">{{ b.v }}</div></div>
+      </sc-for>
+    </div>
+
+    <div class="foot"><span>{{ clientName }} · Growth proposal</span><span class="sp"></span><span class="mono">{{ docRef }}</span><span>4 / 5</span></div>
+  </section>
+
+  <!-- ══ 5 · TERMS & SIGNATURE ══ -->
+  <section class="page" data-screen-label="Terms and signature">
+    <div class="eye">04 · Agreement</div>
+    <h2 class="h2" style="margin-top: 9pt;">Terms.</h2>
+    <p class="lede">The agreement in the words we'd use across a table.</p>
+
+    <div style="margin-top: 16pt;" class="rule"></div>
+    <sc-for list="{{ terms }}" as="t" hint-placeholder-count="6">
+      <div style="display: grid; grid-template-columns: 16pt 1fr; gap: 10pt; padding: 7.5pt 0; border-bottom: 1px solid rgba(23,24,26,0.08);"><span style="color: var(--green-700); font-weight: 700; font-size: 9.5pt;">→</span><span style="font-size: 9.5pt; line-height: 1.55;">{{ t }}</span></div>
+    </sc-for>
+
+    <div style="margin-top: 20pt;" class="eye">Acceptance</div>
+    <p style="margin: 9pt 0 0; font-size: 9.5pt; line-height: 1.55; color: var(--ink-700); max-width: 62ch;">By signing below, {{ clientName }} accepts the {{ pkgName }} engagement at {{ pkgPrice }} per month, starting {{ startDate }}, on the terms set out in this document.</p>
+
+    <div style="margin-top: 18pt; display: grid; grid-template-columns: 1fr 1fr; gap: 30pt;">
+      <div>
+        <div style="min-height: 44pt; display: flex; align-items: flex-end; padding-bottom: 6pt; border-bottom: 1px solid rgba(23,24,26,0.35);">
+          <span style="font-style: italic; font-weight: 300; font-size: 21pt; letter-spacing: 0.01em; color: {{ sigColor }};">{{ sigText }}</span>
+        </div>
+        <div style="margin-top: 7pt; font-size: 8.5pt; color: var(--ink-600);">Signed for {{ clientName }}</div>
+        <div style="margin-top: 12pt; display: flex; gap: 14pt;">
+          <div style="flex: 1;"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Name</div><div style="margin-top: 3pt; font-size: 9.5pt; font-weight: 600;">{{ signerLabel }}</div></div>
+          <div style="flex: 1;"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Date</div><div class="mono" style="margin-top: 3pt; font-size: 9.5pt;">{{ signedLabel }}</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="min-height: 44pt; display: flex; align-items: flex-end; padding-bottom: 6pt; border-bottom: 1px solid rgba(23,24,26,0.35);">
+          <span style="font-style: italic; font-weight: 300; font-size: 21pt; letter-spacing: 0.01em; color: var(--ink-900);">Dan Cohen</span>
+        </div>
+        <div style="margin-top: 7pt; font-size: 8.5pt; color: var(--ink-600);">Signed for Hivory</div>
+        <div style="margin-top: 12pt; display: flex; gap: 14pt;">
+          <div style="flex: 1;"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Name</div><div style="margin-top: 3pt; font-size: 9.5pt; font-weight: 600;">Dan Cohen</div></div>
+          <div style="flex: 1;"><div style="font-size: 8pt; letter-spacing: 0.04em; color: var(--ink-600);">Date</div><div class="mono" style="margin-top: 3pt; font-size: 9.5pt;">{{ issuedLabel }}</div></div>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ isSigned }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top: 14pt; display: flex; align-items: center; gap: 8pt;">
+        <svg width="12" height="14" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="1.2" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path><path d="M6 8.2 7.5 9.7 10.2 6.4" stroke-width="1.8" stroke-linecap="round"></path></svg>
+        <span style="font-size: 8.5pt; color: var(--green-800);">Accepted and countersigned · <span class="mono">{{ receipt }}</span></span>
+      </div>
+    </sc-if>
+
+    <div class="foot"><span>{{ clientName }} · Growth proposal</span><span class="sp"></span><span class="mono">{{ docRef }}</span><span>5 / 5</span></div>
+  </section>
+
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;clientName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pure Good&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;headline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Growth, engineered for Pure Good.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pkgName&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full engine&quot;,&quot;Content only&quot;],&quot;default&quot;:&quot;Full engine&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pkgPrice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;$8,500&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Monday 3 August 2026&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;signed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Signature&quot;},&quot;signerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Maya Osei&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Signature&quot;},&quot;signedDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;30 July 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Signature&quot;},&quot;docRef&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;HV-2607-PG&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;issuedDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;30 July 2026&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;clientContact&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;Maya Osei, Founder · maya@puregood.co&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;partnerName&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;Dan Cohen&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;receipt&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;HV-2607-PG · accepted 30 Jul 2026&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const clientName = p.clientName ?? 'Pure Good';
+    const pkgName = p.pkgName ?? 'Full engine';
+    const signer = p.signerName ?? '';
+    const isSigned = !!(p.signed && signer);
+    const G = 'var(--green-600)', GD = 'rgba(0,163,82,0.14)', I = 'rgba(23,24,26,0.10)';
+
+    const W = 8;
+    const pct = (n) => (n / W * 100).toFixed(3) + '%';
+    const BARS = [
+      { label: 'Onboarding & brand read', s: 0, e: 1.5, tone: 'solid' },
+      { label: 'Website & landing pages', s: 1, e: 4, tone: 'soft' },
+      { label: 'Content engine live', s: 2.5, e: 6, tone: 'soft' },
+      { label: 'Outbound pipeline', s: 4, e: 8, tone: 'solid' }
+    ];
+
+    return {
+      clientName, pkgName, isSigned,
+      headline: p.headline ?? 'Growth, engineered for Pure Good.',
+      clientContact: p.clientContact ?? 'Maya Osei, Founder · maya@puregood.co',
+      partnerName: p.partnerName ?? 'Dan Cohen',
+      pkgPrice: p.pkgPrice ?? '$8,500',
+      startDate: p.startDate ?? 'Monday 3 August 2026',
+      docRef: p.docRef ?? 'HV-2607-PG',
+      issuedLabel: p.issuedDate ?? '30 July 2026',
+      signerLabel: isSigned ? signer : '',
+      signedLabel: isSigned ? (p.signedDate ?? '30 July 2026') : '',
+      sigText: isSigned ? signer : '',
+      sigColor: isSigned ? '#1A1B1D' : 'transparent',
+      receipt: p.receipt ?? 'HV-2607-PG · accepted 30 Jul 2026',
+
+      contents: [
+        { n: '01', t: 'What we deliver' },
+        { n: '02', t: 'The first 60 days' },
+        { n: '03', t: 'Cost' },
+        { n: '04', t: 'Terms & acceptance' }
+      ],
+      scope: [
+        { t: 'Website', sub: 'Landing pages, product pages and ongoing conversion work on your live site', vol: 'continuous' },
+        { t: 'Content', sub: 'Long-form articles, social posts and newsletters, written in your voice', vol: '12 posts + 4 articles / mo' },
+        { t: 'Outbound', sub: 'Enriched buyer lists and personalised sequences across email and social', vol: '~120 buyers / mo' },
+        { t: 'Brand & design', sub: 'Identity kept consistent across everything the engine makes', vol: 'ongoing' },
+        { t: 'Performance', sub: 'Weekly digest and a monthly report in plain language, evidence attached', vol: 'ongoing' }
+      ],
+      loop: [
+        { n: '01', t: 'You ask', d: 'A goal in plain words, or nothing at all — the engine works from your brief.' },
+        { n: '02', t: 'It proposes', d: 'Drafts arrive as artifacts: the real thing, not a description of it.' },
+        { n: '03', t: 'You approve', d: 'Around thirty minutes a week. Nothing ships without it.' },
+        { n: '04', t: 'It ships', d: 'Published, sent, deployed — then measured in Performance.' }
+      ],
+      yourPart: [
+        'Access to your site, CRM and social accounts in week one',
+        'One 45-minute kickoff call, then async',
+        'Approvals within two working days to hold the schedule',
+        'A named decision-maker for brand and copy'
+      ],
+
+      weeks: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
+      grid: Array.from({ length: W + 1 }, (_, i) => ({ left: pct(i), c: i === 0 || i === W ? 'rgba(23,24,26,0.12)' : 'rgba(23,24,26,0.055)' })),
+      bars: BARS.map((b, i) => ({
+        label: b.label,
+        left: pct(b.s),
+        width: pct(b.e - b.s),
+        top: (i * 30) + 'pt',
+        bg: b.tone === 'solid' ? GD : I,
+        fg: b.tone === 'solid' ? '#005C32' : '#3A3C3E'
+      })),
+      phases: [
+        { name: 'Onboarding & brand read', range: 'Week 1', desc: 'The engine reads your site, your voice and your market, then writes it down as knowledge you can correct.', items: ['Brand identity captured in Design', 'Ideal customer profile agreed', 'Console access for your team'] },
+        { name: 'Website & landing pages', range: 'Weeks 2–4', desc: 'First pages drafted and deployed to staging for your approval before anything replaces live.', items: ['Refill landing page', 'Two product page rewrites', 'Conversion tracking in place'] },
+        { name: 'Content engine live', range: 'Weeks 3–6', desc: 'The publishing rhythm starts: social first, then long-form, all held for review.', items: ['12 social posts a month', 'First two long-form articles', 'Newsletter template set'] },
+        { name: 'Outbound pipeline', range: 'Weeks 4–8', desc: 'Buyer lists enriched and sequences written one at a time, logging every touch to your CRM.', items: ['118 retail buyers enriched', 'Personalised first touches', 'Replies routed to your inbox'] }
+      ],
+
+      packages: [
+        { name: 'Content only', price: '$4,800', chosen: pkgName === 'Content only', ring: pkgName === 'Content only' ? 'inset 0 0 0 1.5px var(--green-600)' : 'inset 0 0 0 1px rgba(23,24,26,0.11)', feats: ['12 social posts a month', '4 long-form articles a month', 'Newsletter and digest writing', 'Brand voice kept consistent', 'Weekly performance digest'] },
+        { name: 'Full engine', price: '$8,500', chosen: pkgName === 'Full engine', ring: pkgName === 'Full engine' ? 'inset 0 0 0 1.5px var(--green-600)' : 'inset 0 0 0 1px rgba(23,24,26,0.11)', feats: ['Everything in Content only', 'Website and landing page work', 'Outbound pipeline — ~120 buyers a month', 'CRM enrichment and logging', 'Monthly report with evidence'] }
+      ],
+      compare: [
+        { t: 'A content hire', sub: 'One writer, one channel, three months to ramp', v: '$5,500+/mo' },
+        { t: 'An agency retainer', sub: 'Six-month minimum, work you see at the end of the month', v: '$12,000+/mo' },
+        { t: 'This engagement', sub: 'Four surfaces, drafts in your queue weekly, cancel anytime', v: '$8,500/mo' }
+      ],
+      billing: [
+        { k: 'First invoice', v: 'After onboarding week' },
+        { k: 'Notice period', v: 'None — pause anytime' },
+        { k: 'Fees fixed', v: '12 months from signing' }
+      ],
+
+      terms: [
+        'Month-to-month. Either side may end the engagement with written notice; you pay only for the month in progress.',
+        'Nothing publishes, sends or deploys without your approval in the console. Approval is per artifact, not blanket.',
+        'You own everything the engine makes for you — copy, pages, designs, lists and the accounts they live in.',
+        'Your data stays yours. We process it to do the work and never train shared models on it or share it with other clients.',
+        'Fees are fixed for twelve months from signing. Volume changes are agreed in writing before they take effect.',
+        'We report honestly, including when something is not working. Performance figures come from your connected accounts, never from ours.'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

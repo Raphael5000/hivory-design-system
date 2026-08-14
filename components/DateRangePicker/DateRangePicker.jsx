@@ -1,13 +1,13 @@
 /* Hivory DateRangePicker — preset rail + month calendar. Ink range ends, green-50 span. */
 const hvDrpCss = `
 .hv-drp{position:relative;display:inline-block;font-family:var(--font-sans)}
-.hv-drp__trigger{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;font-size:13.5px;font-family:var(--font-sans);color:var(--ink-900);background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-md);cursor:pointer;transition:border-color var(--duration-fast) var(--ease-out)}
-.hv-drp__trigger:hover{border-color:var(--ink-300)}
+.hv-drp__trigger{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;font-size:13.5px;font-family:var(--font-sans);color:var(--ink-900);background:var(--surface-card);box-shadow:inset 0 0 0 1px var(--border-strong);border-radius:var(--radius-md);cursor:pointer;transition:box-shadow var(--duration-soft) var(--ease-out)}
+.hv-drp__trigger:hover{box-shadow:inset 0 0 0 1px var(--ink-300);}
 .hv-drp__trigger:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
 .hv-drp__chev{color:var(--ink-400);font-size:10px}
-.hv-drp__panel{position:absolute;top:calc(100% + 6px);left:0;display:flex;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-overlay);z-index:50;overflow:hidden}
+.hv-drp__panel{position:absolute;top:calc(100% + 6px);left:0;display:flex;background:var(--surface-card);border-radius:var(--radius-2xl);box-shadow:var(--shadow-overlay);z-index:50;overflow:hidden}
 .hv-drp__rail{display:flex;flex-direction:column;gap:2px;padding:8px;border-right:1px solid var(--border-subtle);min-width:128px}
-.hv-drp__preset{appearance:none;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;color:var(--ink-700);padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;white-space:nowrap;transition:background-color var(--duration-fast) var(--ease-out)}
+.hv-drp__preset{appearance:none;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;color:var(--ink-700);padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;white-space:nowrap;transition:background-color var(--duration-soft) var(--ease-out)}
 .hv-drp__preset:hover{background:var(--ink-50)}
 .hv-drp__preset--active{background:var(--ink-100);color:var(--ink-950);font-weight:500}
 .hv-drp__cal{padding:12px 14px}
@@ -17,7 +17,7 @@ const hvDrpCss = `
 .hv-drp__nav:hover{background:var(--ink-50);color:var(--ink-700)}
 .hv-drp__grid{display:grid;grid-template-columns:repeat(7,28px);gap:1px}
 .hv-drp__wd{font-size:10px;font-weight:500;letter-spacing:0.05em;color:var(--ink-400);text-align:center;padding:3px 0;text-transform:uppercase}
-.hv-drp__day{appearance:none;border:none;background:none;font-family:var(--font-sans);font-size:12px;color:var(--ink-900);width:28px;height:26px;border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-fast) var(--ease-out)}
+.hv-drp__day{appearance:none;border:none;background:none;font-family:var(--font-sans);font-size:12px;color:var(--ink-900);width:28px;height:26px;border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out)}
 .hv-drp__day:hover{background:var(--ink-100)}
 .hv-drp__day--in{background:var(--green-50);border-radius:0}
 .hv-drp__day--end{background:var(--ink-950);color:var(--white);font-weight:500}

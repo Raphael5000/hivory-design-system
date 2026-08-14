@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    :where(button, a, input, [tabindex], [role="button"]):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+    :where(button, a, [role="button"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"]):active { filter: brightness(0.94); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+      [data-motion="essential"] { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; font-variant-numeric: tabular-nums; }
+    .drow { display: grid; grid-template-columns: 156px 1fr 1fr 76px; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); align-items: baseline; }
+    .drow:last-child { border-bottom: none; }
+    .gaprow { display: grid; grid-template-columns: 180px 1fr 92px; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--hairline); align-items: baseline; }
+    .gaprow:last-child { border-bottom: none; }
+    .pill { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 999px; font-size: 10.5px; font-weight: 650; white-space: nowrap; }
+    .have { background: var(--status-positive-bg); color: var(--status-positive-text); }
+    .close { background: var(--status-caution-bg); color: var(--status-caution-text); }
+    .missing { background: var(--status-negative-bg); color: var(--status-negative-text); }
+    .lawrow { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .lawrow:last-child { border-bottom: none; }
+    .lawrow .n { font-size: var(--text-sm); font-weight: var(--weight-strong); }
+    .lawrow .d { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Audit · WhoYou admin portal</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 17ch;">Already ours, on an old copy.</h1>
+    <p style="margin: 12px 0 0; max-width: 720px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The portal is not a candidate for the design system — it is <b style="font-weight: 650;">running a fork of it</b>. Its <span class="chip">theme/colors.css</span> opens with “Hivory color tokens — v3 Engine”, and it already ships a WhoYou brand scope that independently arrived at the white-label rules written this morning. So the question is not whether the DS can apply. It is how far the copy has drifted, and what the portal needs that the DS does not yet have.</p>
+
+    <!-- HEADLINE -->
+    <div style="margin-top: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <sc-for list="{{ headline }}" as="h" hint-placeholder-count="4">
+        <div class="card" style="padding: 20px 22px;">
+          <div style="font-size: 36px; font-weight: 550; letter-spacing: -0.03em; color: {{ h.color }}; font-variant-numeric: tabular-nums;">{{ h.v }}</div>
+          <div style="margin-top: 3px; font-size: 12.5px; font-weight: 650;">{{ h.k }}</div>
+          <div style="margin-top: 8px; font-size: 11.5px; line-height: 1.5; color: var(--ink-500);">{{ h.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- TOKEN DRIFT -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Gap 1 · Token drift</div><h2 class="sect-h">v3 Engine vs v4 Glass Engine.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 720px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The copy predates the 24 July reconciliation, so the same token names hold different values. Nothing is broken — it just means the portal and the console cannot sit side by side and look like one product.</p>
+    <div class="card" style="margin-top: 20px; padding: 10px 26px 16px;">
+      <div class="drow" style="border-bottom: 1px solid var(--hairline-strong);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Token</span>
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Portal (v3)</span>
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">DS today (v4)</span>
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted); text-align: right;">Visible?</span>
+      </div>
+      <sc-for list="{{ drift }}" as="d" hint-placeholder-count="8">
+        <div class="drow">
+          <span class="chip">{{ d.token }}</span>
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="width: 13px; height: 13px; border-radius: 4px; background: {{ d.a }}; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.1); flex-shrink: 0;"></span>{{ d.aLabel }}</span>
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="width: 13px; height: 13px; border-radius: 4px; background: {{ d.b }}; box-shadow: inset 0 0 0 1px rgba(23,24,26,0.1); flex-shrink: 0;"></span>{{ d.bLabel }}</span>
+          <span style="text-align: right; font-size: 11px; font-weight: 600; color: {{ d.vColor }};">{{ d.visible }}</span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The ink ladder is the one that matters: the portal's neutrals lean <b style="font-weight: 650;">warm</b>, the console's lean <b style="font-weight: 650;">cool</b>. Every surface, border and muted label in the portal is therefore a different grey from ours — invisible alone, obvious side by side.</div>
+    </div>
+
+    <!-- DOCTRINE VIOLATIONS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Gap 2 · Doctrine</div><h2 class="sect-h">Rules the copy predates.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ doctrine }}" as="v" hint-placeholder-count="6">
+        <div class="lawrow"><span class="n">{{ v.k }}</span><span class="d">{{ v.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- COMPONENT COVERAGE -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Gap 3 · Components</div><h2 class="sect-h">What the portal needs.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 720px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">Read from its 201 stylesheet rules and the dashboard's seven views. Most of it we already own — the honest gaps are five components and one whole screen.</p>
+    <div class="card" style="margin-top: 20px; padding: 10px 26px 16px;">
+      <sc-for list="{{ coverage }}" as="c" hint-placeholder-count="18">
+        <div class="gaprow">
+          <span style="font-size: 12.5px; font-weight: 600;">{{ c.k }}</span>
+          <span style="font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); text-wrap: pretty;">{{ c.v }}</span>
+          <span style="text-align: right;"><span class="pill {{ c.cls }}">{{ c.status }}</span></span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- WHITE LABEL -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Gap 4 · White label</div><h2 class="sect-h">Right instinct, wrong lever.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 26px 28px;">
+      <div style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 780px; text-wrap: pretty;">
+        <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--green-800);">whoyou-theme.css</span> already applies a <span class="chip">[data-brand="whoyou"]</span> scope, keeps the ink neutrals, and — impressively — <b style="font-weight: 650; color: var(--text-body);">keeps a separate semantic green for success</b> so verification “resolved” does not become brand cyan. That is exactly the law the <a href="Foundation - White label.dc.html">White label</a> page landed on independently this morning, which is strong evidence the rule is correct.
+        <div style="margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-lg); background: var(--status-caution-bg);">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--status-caution-text);">The one real problem</div>
+          <div style="margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--amber-900);">It rebrands by <b style="font-weight: 650;">overwriting the whole <span style="font-family: var(--font-mono);">--green-*</span> ramp with cyan</b>. After that, <span style="font-family: var(--font-mono);">--green-500</span> is not green, and every rule reading it lies about what it does. It also drags along everything green touches that ISN'T brand — so the theme has to hand-patch <span style="font-family: var(--font-mono);">--status-positive-*</span> back with two raw hex values to undo its own override. The DS answer is to swap the three brand tokens only (<span style="font-family: var(--font-mono);">--action-brand</span>, <span style="font-family: var(--font-mono);">--on-action-brand</span>, <span style="font-family: var(--font-mono);">--border-focus</span>) and leave the ramp alone — then status needs no patching, because nothing overwrote it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Verdict</div><h2 class="sect-h">Four days, not a rebuild.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ plan }}" as="p" hint-placeholder-count="5">
+        <div class="lawrow"><span class="n">{{ p.k }}</span><span class="d">{{ p.v }}</span></div>
+      </sc-for>
+    </div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 820px;">
+      <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">The real finding</div>
+      <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">This portal is the DS's first outside consumer, and it drifted because it was <b style="font-weight: 650; color: var(--text-body);">copied rather than linked</b>. Nothing warned it that v3 became v4. If white-labelling is a real product line, the fix is not this audit — it is shipping the tokens as a versioned package the portal imports, so drift becomes an upgrade rather than an archaeology exercise. That is the gap behind all four gaps above.</div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Audit · WhoYou admin portal · read from the attached codebase 31 Jul 2026 · <span class="chip">frontend/src/theme/*</span> · <span class="chip">frontend/src/styles/dashboard.css</span> · <span class="chip">frontend/src/dashboard/Dashboard.tsx</span></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const P = (v) => ({ have: 'have', close: 'close', missing: 'missing' }[v]);
+    return {
+      headline: [
+        { k: 'Already on the DS', v: 'v3', sub: 'It runs a copied fork of our tokens, from before the 24 Jul Glass Engine reconciliation.', color: 'var(--amber-700)' },
+        { k: 'Components covered', v: '19/19', sub: 'All six gaps closed 31 Jul — accordion, step timeline, cap meter, transcript, topbar and sign-in now exist as DS pages.', color: 'var(--green-700)' },
+        { k: 'Genuinely missing', v: '0', sub: 'Three remain ADAPTATIONS rather than gaps: the slide-over panel, the stacked split bar and a shared empty state.', color: 'var(--green-700)' },
+        { k: 'Doctrine conflicts', v: '5', sub: 'Each one a rule written after the copy was taken \u2014 all mechanical to fix.', color: 'var(--ink-900)' }
+      ],
+      drift: [
+        { token: '--ink-700', a: '#3D3D3C', aLabel: '#3D3D3C warm', b: '#3A3C3E', bLabel: '#3A3C3E cool', visible: 'side by side', vColor: 'var(--amber-700)' },
+        { token: '--ink-500', a: '#6E6E6C', aLabel: '#6E6E6C warm', b: '#8A8D90', bLabel: '#8A8D90 cool', visible: 'YES', vColor: 'var(--red-700)' },
+        { token: '--ink-200', a: '#E0E0DE', aLabel: '#E0E0DE', b: '#E4E5E2', bLabel: '#E4E5E2', visible: 'no', vColor: 'var(--text-faint)' },
+        { token: '--ink-50', a: '#FAFAF9', aLabel: '#FAFAF9', b: '#F6F6F3', bLabel: '#F6F6F3', visible: 'side by side', vColor: 'var(--amber-700)' },
+        { token: '--green-600', a: '#00A458', aLabel: '#00A458', b: '#00A352', bLabel: '#00A352', visible: 'no', vColor: 'var(--text-faint)' },
+        { token: '--amber-500', a: '#E8A33D', aLabel: '#E8A33D muted', b: '#FFBE2C', bLabel: '#FFBE2C bright', visible: 'YES', vColor: 'var(--red-700)' },
+        { token: '--surface-app', a: '#FAFAF9', aLabel: 'ink-50, near white', b: '#F2F3F2', bLabel: 'cool grey canvas', visible: 'YES', vColor: 'var(--red-700)' },
+        { token: '--font-mono', a: '#1A1A1A', aLabel: "'Geist Mono' \u2014 live", b: '#1A1A1A', bLabel: 'RETIRED 27 Jul', visible: 'YES', vColor: 'var(--red-700)' }
+      ],
+      doctrine: [
+        { k: 'Mono is retired', v: 'The portal hardcodes <span style="font-family: var(--font-mono);">\'Geist Mono\'</span> in fourteen rules \u2014 IDs, PINs, dates, meta cells, usage figures. The DS retired mono on 27 July: one family everywhere, machine facts marked by <b style="font-weight: 650;">tabular-nums</b> and a quieter colour. This is the single most visible difference between the two products.' },
+        { k: 'Hover must settle,<br>not snap', v: 'Table rows transition at <span style="font-family: var(--font-mono);">0.12s</span>. 120ms is press-only in the soft-motion doctrine; every state change eases at 180ms. Exactly the bug found in our own bundle this morning across seven components.' },
+        { k: 'Nothing displaces', v: 'The login button uses <span style="font-family: var(--font-mono);">transform: translateY(1px)</span> on :active and <span style="font-family: var(--font-mono);">filter: brightness(1.04)</span> on hover. The DS retired displacement entirely \u2014 press is <b style="font-weight: 650;">brightness(0.94)</b>, hover is tint, and nothing moves.' },
+        { k: 'One focus expression', v: 'Inputs draw a 3px <span style="font-family: var(--font-mono);">color-mix</span> halo AND a border change. The DS settled on a single green inset ring plus the motion-base outline \u2014 running both is the double-ring bug fixed in our bundle today.' },
+        { k: 'Text tokens were<br>re-graded', v: 'Both semantic text tokens moved on 31 Jul after failing AA: <span class="chip">--text-muted</span> \u2192 <span class="chip">#63676A</span> and <span class="chip">--text-faint</span> \u2192 <span class="chip">#676B6E</span>, calibrated against <span class="chip">--ink-100</span> \u2014 the DARKEST common text background, not white. The portal\u2019s warm equivalents (<span class="chip">#6E6E6C</span>) were never checked against any surface, so its muted labels are likely below 4.5:1 wherever they sit on a tinted row.' },
+        { k: 'Status colours<br>from tokens', v: 'Seven raw hex values carry status: <span class="chip">#1E7A3E</span> <span class="chip">#E8F6ED</span> <span class="chip">#C0392B</span> <span class="chip">#FBE9E7</span> plus three more. All four status pairs already exist as tokens; these bypass them, so a theme change cannot reach them.' },
+        { k: 'Rhythm', v: 'Gaps run 14 \u00b7 16 \u00b7 18 \u00b7 22 px \u2014 none on the seven-rung ladder (3 \u00b7 8 \u00b7 12 \u00b7 20 \u00b7 34 \u00b7 64 \u00b7 104). A mechanical sweep, and the cheapest win of the five. The 7th rung (104 \u00b7 Chapter) was FOUND not designed \u2014 every component page was already using 84\u2013100 for page-level breaks and no rung could say it, so the portal\u2019s larger gaps may map there rather than to 64.' }
+      ],
+      coverage: [
+        { k: 'Sidebar', v: 'Rail with brand lockup, active item, count pills and a BETA/temp pill \u2014 the DS Sidebar covers all of it, including the 2px active edge.', status: 'have', cls: P('have') },
+        { k: 'Table', v: 'Sortable headers, hover rows, click-to-open, ellipsis cells, mono-ish ID column. Maps cleanly; the ID column loses mono.', status: 'have', cls: P('have') },
+        { k: 'Card / Stat', v: 'KPI tiles with label, value and delta; flush cards for tables. Stat exists with the same anatomy.', status: 'have', cls: P('have') },
+        { k: 'Badge', v: 'Six outcome tags (resolved, unresolved, abandoned, out-of-scope, open, blocker) with dots. Badge has five tones \u2014 “blocker” needs mapping to negative.', status: 'have', cls: P('have') },
+        { k: 'Button / Input / Select', v: 'Outline button, text filters, category selects. All three exist; chrome differs only by the drift above.', status: 'have', cls: P('have') },
+        { k: 'Tooltip', v: 'The InfoTip explaining how each metric is measured. DS Tooltip covers it \u2014 but see the gap below on its pending-sign-off variant.', status: 'have', cls: P('have') },
+        { k: 'Skeleton', v: 'Shimmer rows at 1.4s while diagnostics load. Exists, and is already marked essential motion in our reduced-motion contract.', status: 'have', cls: P('have') },
+        { k: 'Slide-over panel', v: 'The diagnostic detail drawer over a scrim \u2014 header, scrolling body, meta grid. Very close to Pattern \u00b7 Artifact panel, but that panel assumes an artifact payload and a decision footer; this one is read-only detail.', status: 'adapt', cls: P('close') },
+        { k: 'Stacked split bar', v: 'One horizontal bar segmented by outcome, with a legend beneath. Chart Kit has hbar (one row per category) but no single stacked bar.', status: 'adapt', cls: P('close') },
+        { k: 'Accordion', v: 'Issue-category cards that expand to sub-issue breakdowns. <b>Built 31 Jul</b> \u2014 and deliberately NOT the portal\u2019s card-per-category shape: it is one Table card whose rows disclose their own breakdown, because our doctrine says one table card on the quiet grid.', status: 'have', cls: P('have') },
+        { k: 'Step timeline', v: 'The diagnostic path as a record of what happened. <b>Built 31 Jul</b> from the console\u2019s deploy theater \u2014 machine-advanced, no tab stop, rail is aria-hidden because the live label carries the meaning. The Stepper/timeline distinction is now written down.', status: 'have', cls: P('have') },
+        { k: 'Meter against a cap', v: 'Spend versus the monthly cap. <b>Built 31 Jul</b> on Chart Kit hbar geometry, with the ruling the portal will need: <b>amber at the cap, never red</b> \u2014 a cap you paid for is the plan working \u2014 and an over-cap hatch beyond the fill.', status: 'have', cls: P('have') },
+        { k: 'Read-only transcript', v: 'The conversation log as evidence. <b>Built 31 Jul</b> \u2014 the live chat\u2019s anatomy with every verb removed, and NO composer at all, not even disabled: a greyed input invites typing then refuses it.', status: 'have', cls: P('have') },
+        { k: 'Sign-in screen', v: 'Key-based admin gate. <b>Built 31 Jul</b> as a split screen \u2014 a dark glass plate the partner owns beside an identical form every deployment ships. Four gates including <b>key</b>, with the session note mandatory, plus in-place recovery. Errors never leak which half was wrong.', status: 'have', cls: P('have') },
+        { k: 'Empty state', v: 'Centred tile, heading, one sentence. Specified per component in our states tables but never extracted as a shared component.', status: 'adapt', cls: P('close') },
+        { k: 'Topbar', v: 'Client lockup, live pulse, avatar, sign-out. <b>Built 31 Jul</b> as glass floating 12px off the canvas \u2014 the rail\u2019s treatment turned horizontal, never a bordered full-bleed strip.', status: 'have', cls: P('have') },
+        { k: 'Chart \u00b7 line + bars', v: 'Conversation volume over days, issues by category. Chart Kit covers both, and its laws (horizontal grid only, \u22642 series) already match what the portal draws.', status: 'have', cls: P('have') },
+        { k: 'Avatar / Tabs / Modal', v: 'Present and unremarkable \u2014 direct swaps.', status: 'have', cls: P('have') }
+      ],
+      plan: [
+        { k: '1 \u00b7 Relink, don\u2019t re-copy', v: 'Point the portal at the current <span class="chip">tokens/*.css</span> instead of its v3 fork. That single change closes every drift row above, and it is the only step that prevents the next drift.' },
+        { k: '2 \u00b7 Fix the theme lever', v: 'Rewrite <span class="chip">whoyou-theme.css</span> to swap the three brand tokens rather than the green ramp, and delete the two hand-patched status hexes it currently needs to undo itself.' },
+        { k: '3 \u00b7 Sweep the debt', v: 'Retire mono to tabular-nums, move hover to 180ms, replace the press translate with brightness, drop the input halo, route the seven status hexes through their tokens, and sweep gaps onto the ladder. All mechanical \u2014 the same passes run on our own surfaces today.' },
+        { k: '4 \u00b7 \u2713 The six are built', v: '<b style="font-weight: 650;">Done 31 Jul.</b> Accordion, step timeline, cap meter, transcript, topbar and sign-in all exist as DS pages at the V1 bar. Sign-in got the most thought, as predicted \u2014 it landed as a split screen so a partner gets a stage instead of a tinted button, which is what stops them wanting to recolour the CTA.' },
+        { k: '5 \u00b7 Then judge density', v: 'Only after the above is it worth arguing about the 30px stat values or the 21px page title. Right now those read as differences; they are actually just an older scale.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

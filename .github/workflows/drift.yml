@@ -1,0 +1,44 @@
+name: drift
+
+# The drift test is what makes the design-system rules durable — prose does not
+# hold; a failing test does (see CLAUDE.md and scripts/drift-test.mjs).
+# The freshness job enforces the regeneration contract: _ds_bundle.js and
+# _ds_manifest.json are generated from sources by scripts/build-bundle.mjs
+# and must be committed in the same change as the sources they were built from.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Drift test
+        run: npm run drift
+
+  bundle-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Bundle parses
+        run: node --check _ds_bundle.js
+      - name: Manifest is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('_ds_manifest.json','utf8'))"
+      - name: Bundle and manifest match sources
+        run: |
+          node scripts/build-bundle.mjs
+          git diff --exit-code _ds_bundle.js _ds_manifest.json || {
+            echo "::error::_ds_bundle.js/_ds_manifest.json are stale — run 'node scripts/build-bundle.mjs' and commit the result."
+            exit 1
+          }

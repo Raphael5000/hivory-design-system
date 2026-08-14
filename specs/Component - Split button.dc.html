@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+
+    /* ── the component ── */
+    .sb { position: relative; display: inline-flex; align-items: stretch; }
+    .sb button { appearance: none; border: none; font-family: var(--font-sans); font-weight: var(--weight-semibold); cursor: pointer; white-space: nowrap; transition: background var(--transition-soft); }
+    .sb .main { height: 33px; padding: 0 18px; border-radius: var(--radius-pill) 0 0 var(--radius-pill); font-size: var(--text-sm); }
+    .sb .chev { height: 33px; width: 30px; padding: 0; border-radius: 0 var(--radius-pill) var(--radius-pill) 0; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 1px 0 0 rgba(255,255,255,0.18); }
+    .sb.sm .main { height: 26px; padding: 0 13px; font-size: var(--text-label); }
+    .sb.sm .chev { height: 26px; width: 25px; }
+    .sb.ink .main, .sb.ink .chev { background: var(--action-primary); color: var(--on-action-primary); }
+    .sb.ink .main:hover, .sb.ink .chev:hover { background: var(--action-primary-hover); }
+    .sb.brand .main, .sb.brand .chev { background: var(--action-brand); color: var(--on-action-brand); font-weight: 650; }
+    .sb.brand .main:hover, .sb.brand .chev:hover { background: var(--action-brand-hover); }
+    .sb.brand .chev { box-shadow: inset 1px 0 0 rgba(8,16,11,0.18); }
+    .sb.off .main, .sb.off .chev { opacity: .45; cursor: not-allowed; }
+    /* the DS Menu's chrome, value for value — only the direction differs (see anatomy) */
+    .sb .menu { position: absolute; bottom: calc(100% + 6px); right: 0; min-width: 208px; background: var(--surface-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-overlay); padding: 5px; z-index: 30; font-family: var(--font-sans); }
+    .mi { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: 100%; box-sizing: border-box; padding: 7px 10px; border-radius: var(--radius-sm); font-size: var(--text-base); color: var(--ink-900); text-align: left; cursor: pointer; transition: background-color var(--duration-soft) var(--ease-out); }
+    .mi:hover { background: var(--ink-50); }
+    .mi .sub { font-size: var(--text-label); color: var(--text-faint); }
+    .anat { position: relative; }
+    .anat .part { outline: 1px dashed rgba(0,163,82,0.45); outline-offset: 2px; }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Split button</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">Approve now, or on your terms.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Every publishing verb in the console is a split button: the main segment approves with the default schedule, the chevron opens the alternatives. It exists so the common case takes one click and the rare case still takes one menu — never a dialog.</p>
+
+    <!-- SPECIMEN -->
+    <div class="card" style="margin-top: 34px; padding: 44px 36px 34px; display: flex; justify-content: center;">
+      <div class="sb ink">
+        <button class="main" onClick="{{ approve }}">{{ mainLabel }}</button>
+        <button class="chev" onClick="{{ toggle }}" aria-haspopup="menu" aria-expanded="{{ openStr }}" aria-label="Choose when to publish"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button>
+        <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+          <div class="menu" role="menu">
+            <div class="mi" role="menuitem" tabindex="0" onClick="{{ pickNow }}" onKeyDown="{{ keyActivate }}">Publish now</div>
+            <div class="mi" role="menuitem" tabindex="0" onClick="{{ pickSlot }}" onKeyDown="{{ keyActivate }}">Best slot — 4 Aug 09:00<div class="sub">Your top-performing slot</div></div>
+            <div class="mi" role="menuitem" tabindex="0" onClick="{{ pickDate }}" onKeyDown="{{ keyActivate }}">Pick a date &amp; time…</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint); text-align: center;">{{ status }}</div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">Two segments, one object.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 44px 36px; display: flex; justify-content: center;">
+      <div class="sb ink anat">
+        <button class="main part" style="pointer-events: none;">Approve &amp; publish</button>
+        <button class="chev part" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="6">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- VARIANTS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Variants</div><h2 class="sect-h">Two, and only for shipping.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+        <span style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+          <span class="sb ink"><button class="main" style="pointer-events: none;">Approve &amp; publish</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button></span>
+          <span style="font-size: var(--text-meta); color: var(--text-muted);">Ink — the default, every artifact footer</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+          <span class="sb brand"><button class="main" style="pointer-events: none;">Sign &amp; accept</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button></span>
+          <span style="font-size: var(--text-meta); color: var(--text-muted);">Brand — one per view, hero moment only</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+          <span class="sb ink off"><button class="main" style="pointer-events: none;">Approve &amp; publish</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button></span>
+          <span style="font-size: var(--text-meta); color: var(--text-muted);">Disabled — both segments, never one</span>
+        </span>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 760px; text-wrap: pretty;">There is no outline, ghost or danger split. A split button always ships something — if the action is reversible or secondary it does not earn two segments, and a destructive action must never hide alternatives behind a chevron.</div>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Sizes</div><h2 class="sect-h">Two rungs, both Button's.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 680px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">The split button borrows Button's ladder rather than inventing one, so a split and a plain action sit at the same height in the same footer. There is no lg split — a hero CTA is a single decision, and offering a schedule menu on it would undercut the moment.</p>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: flex; align-items: flex-end; gap: 44px; flex-wrap: wrap;">
+        <span style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <span class="sb ink"><button class="main" style="pointer-events: none;">Approve &amp; publish</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button></span>
+          <span style="font-size: var(--text-meta); color: var(--text-muted);"><b style="font-weight: 650; color: var(--text-body);">md</b> · 33px · 18px pad · 12.5px — the default, artifact footers</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <span class="sb ink sm"><button class="main" style="pointer-events: none;">Approve &amp; publish</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 11px;"></i></button></span>
+          <span style="font-size: var(--text-meta); color: var(--text-muted);"><b style="font-weight: 650; color: var(--text-body);">sm</b> · 26px · 13px pad · 11.5px — dense rows only</span>
+        </span>
+      </div>
+      <div style="margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--hairline);">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Beside a plain Button</div>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span style="height: 33px; padding: 0 18px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--ink-900); box-shadow: inset 0 0 0 1px rgba(23,24,26,0.13);">Request changes</span>
+          <span class="sb ink"><button class="main" style="pointer-events: none;">Approve &amp; publish</button><button class="chev" style="pointer-events: none;"><i class="ti ti-chevron-up" style="font-size: 12px;"></i></button></span>
+        </div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 680px; text-wrap: pretty;">The real test: a decision bar pairs an outline Button with a split. Both are 33px on the same baseline — if the split were a rung smaller the footer would read as broken, which is what the console’s hand-rolled 27px version did.</div>
+      </div>
+    </div>
+
+    
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Two segments to keep honest.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- TOKENS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Tokens used</div><h2 class="sect-h">Button's set, plus a menu.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ tokens }}" as="g" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">{{ g.role }}</span>
+          <span style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ g.list }}" as="tk" hint-placeholder-count="4"><span class="chip">{{ tk }}</span></sc-for></span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">This component adds no chrome of its own: the segments are <b style="font-weight: 650;">Button</b> and the panel is <b style="font-weight: 650;">Menu</b>, both at their published values. The divider is an <b style="font-weight: 650;">inset box-shadow at 18% white</b>, not a border — a border would add a pixel to the object's width and break the pill's symmetry.</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Content rules</div><h2 class="sect-h">The label names the default.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 760px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">The main segment says the verb and its real consequence — <b style="font-weight: 650;">“Approve &amp; publish”</b>, <b style="font-weight: 650;">“Approve &amp; send”</b>, <b style="font-weight: 650;">“Commit &amp; publish”</b> — never “release”, never “Submit”. It never describes the chevron: no “Approve &amp; publish ▾”, no “…options”. Menu rows are the alternatives in plain words, ordered soonest-first: <b style="font-weight: 650;">Publish now</b> · <b style="font-weight: 650;">Best slot — &lt;date time&gt;</b> with “Your top-performing slot” beneath · <b style="font-weight: 650;">Pick a date &amp; time…</b> (the only row that earns an ellipsis, because it opens something). Every choice resolves to the same confirmation the plain Button gives: “✓ Added to the Work queue — &lt;schedule&gt;”.</div>
+
+    <!-- ACCESSIBILITY -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Accessibility</div><h2 class="sect-h">Two tab stops, not one.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 760px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Both segments are real <b style="font-weight: 650;">button</b> elements and both take a tab stop — collapsing them into one stop would make the alternatives unreachable. The chevron carries <span style="font-family: var(--font-mono);">aria-haspopup="menu"</span>, <span style="font-family: var(--font-mono);">aria-expanded</span> and its own label (“Choose when to publish”), because a chevron glyph alone announces nothing. The menu is <span style="font-family: var(--font-mono);">role="menu"</span> with <span style="font-family: var(--font-mono);">role="menuitem"</span> rows; Enter and Space activate, Esc closes and returns focus to the chevron. Disabling disables <b style="font-weight: 650;">both</b> segments — an open menu on a dead button offers choices that cannot happen.</div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Put the most common schedule in the main segment. Open the menu upward — a split button lives in a footer, and a downward menu would leave the viewport. Keep the divider inset. Give the chevron its own accessible name.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A caret in the label. A destructive split. More than three menu rows — beyond that the alternatives are a screen, not a menu. Different consequences in the two segments: the chevron changes only <i>when</i>, never <i>what</i>.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Split button · used by every publishing verb in <a href="Product - Console.dc.html">the console</a> · tokens listed in full above</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: false, chosen: null };
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+  componentDidMount() {
+    this._esc = (e) => { if (e.key === 'Escape' && this.state.open) this.setState({ open: false }); };
+    document.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { document.removeEventListener('keydown', this._esc); }
+  pick(label) { this.setState({ open: false, chosen: label }); }
+  renderVals() {
+    const s = this.state;
+    const S = [
+      ['Rest', 'Both segments filled, divided by an inset 18% white rule. Radius is a pill on the outer edges only — the inner corners are square, which is what makes them read as one object.'],
+      ['Hover', 'Each segment tints independently on --duration-soft, so the pointer says which half will act. This is the one component where a split hover is correct rather than sloppy.'],
+      ['Pressed', 'brightness(0.94) from motion-base, on the pressed segment only.'],
+      ['Focus', 'Each segment takes its own ring. Two tab stops, never one — collapsing them makes the alternatives unreachable by keyboard.'],
+      ['Selected', 'n/a \u2014 a split button ships and returns. What was chosen is reported by the status strip and the Work queue, never by the button holding a state.'],
+      ['Disabled', 'BOTH segments at opacity .45, and the menu cannot open. Disabling only the main segment leaves a chevron offering schedules for something that cannot ship.'],
+      ['Loading', 'The main segment holds its width and takes the Spinner in its glyph slot; the chevron disables so a second schedule cannot be chosen mid-flight.'],
+      ['Empty', 'n/a \u2014 with no alternatives to offer there is no chevron, and it is a plain Button. A split button with a one-row menu is a lie about the choice available.']
+    ];
+    return {
+      open: s.open, openStr: s.open ? 'true' : 'false',
+      mainLabel: 'Approve & publish',
+      status: s.chosen ? '\u2713 Added to the Work queue \u2014 ' + s.chosen : 'Press the chevron \u2014 or Tab to it and press Enter.',
+      toggle: () => this.setState((p) => ({ open: !p.open })),
+      approve: () => this.pick('publishing Thu 09:00'),
+      pickNow: () => this.pick('publishing now'),
+      pickSlot: () => this.pick('publishing 4 Aug 09:00'),
+      pickDate: () => this.pick('date picker opens'),
+      keyActivate: this.keyActivate,
+      anatomy: [
+        { k: 'Main segment', v: 'h33, padding 0 18, --text-sm at weight 600 (md). The sm rung is h26/13/--text-label for dense footers. Radius --radius-pill on the LEFT corners, square on the right. Carries the default schedule.' },
+        { k: 'Divider', v: 'inset 1px 0 0 rgba(255,255,255,0.18) \u2014 a shadow, not a border, so the object\u2019s width is unchanged and the two halves stay symmetrical.' },
+        { k: 'Chevron segment', v: 'h33 \u00d7 30px, glyph only, ti-chevron-up at 12px. Radius pill on the RIGHT corners. Never wider than a third of the main segment \u2014 past that it competes with the verb.' },
+        { k: 'Menu', v: 'The DS <b style="font-weight: 650;">Menu</b>, value for value \u2014 --radius-xl, --shadow-overlay, 5px padding, rows at 7px 10px and --text-base. The ONE deviation is direction: it opens UPWARD (bottom: calc(100% + 6px)) because a split button lives in a footer and a downward menu would leave the viewport.' },
+        { k: 'Menu rows', v: 'Menu item geometry exactly: 7px 10px, --radius-sm, --text-base at --ink-900, --ink-50 on hover over --duration-soft. The middle row adds a --text-label sub line naming why that slot is best.' },
+        { k: 'Confirmation', v: 'Every path resolves to the same line the plain Button gives \u2014 the choice changes the schedule, never the outcome.' }
+      ],
+      states: S.map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      tokens: [
+        { role: 'Surface', list: ['--surface-card', '--shadow-overlay'] },
+        { role: 'Ink', list: ['--ink-50', '--ink-900', '--on-action-primary', '--on-action-brand'] },
+        { role: 'Signal', list: ['--action-primary', '--action-primary-hover', '--action-brand', '--action-brand-hover', '--border-focus'] },
+        { role: 'Geometry', list: ['--radius-pill', '--radius-xl', '--radius-sm'] },
+        { role: 'Motion', list: ['--transition-soft'] },
+        { role: 'Type', list: ['--font-sans', '--text-base', '--text-sm', '--text-label', '--weight-semibold'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

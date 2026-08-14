@@ -2,8 +2,8 @@
 const hvSwitchCss = `
 .hv-switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--font-sans);font-size:13.5px;color:var(--ink-900)}
 .hv-switch input{position:absolute;opacity:0;width:0;height:0}
-.hv-switch__track{width:34px;height:18px;flex:none;border-radius:999px;background:var(--ink-200);position:relative;transition:background-color var(--duration-fast) var(--ease-out);box-sizing:border-box}
-.hv-switch__thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:999px;background:var(--white);box-shadow:0 1px 2px rgba(13,13,13,0.18);transition:transform var(--duration-fast) var(--ease-out)}
+.hv-switch__track{width:34px;height:18px;flex:none;border-radius:999px;background:var(--ink-200);position:relative;transition:background-color var(--duration-soft) var(--ease-out);box-sizing:border-box}
+.hv-switch__thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:999px;background:var(--white);box-shadow:0 1px 2px rgba(13,13,13,0.18);transition:transform var(--duration-soft) var(--ease-out)}
 .hv-switch input:checked+.hv-switch__track{background:var(--ink-950)}
 .hv-switch input:checked+.hv-switch__track .hv-switch__thumb{transform:translateX(16px)}
 .hv-switch input:focus-visible+.hv-switch__track{outline:2px solid var(--border-focus);outline-offset:2px}

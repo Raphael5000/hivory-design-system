@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+html,body{margin:0;background:var(--ink-50)}@keyframes ckShimmer{0%{background-position:-200px 0}100%{background-position:420px 0}}
+.ck-pt .ck-tip{opacity:0;transition:opacity 120ms cubic-bezier(0.2,0.8,0.2,1);pointer-events:none}
+.ck-pt:hover .ck-tip{opacity:1}
+.ck-pt .ck-dot{opacity:0;transition:opacity 120ms cubic-bezier(0.2,0.8,0.2,1)}
+.ck-pt:hover .ck-dot{opacity:1}
+.ck-bar{transition:opacity 120ms cubic-bezier(0.2,0.8,0.2,1),fill 120ms cubic-bezier(0.2,0.8,0.2,1)}
+.ck-bar:hover{opacity:1 !important}
+.ck-trow{transition:background 120ms cubic-bezier(0.2,0.8,0.2,1)}
+.ck-trow:hover{background:rgba(23,24,26,0.02)}
+.ck-hrow{position:relative}
+.ck-hrow .ck-htip,.ck-sc .ck-htip{opacity:0;transition:opacity 120ms cubic-bezier(0.2,0.8,0.2,1);pointer-events:none;position:absolute;right:60px;top:-34px;background:var(--ink-800);color:var(--white);border-radius:8px;padding:7px 12px;font-size:10px;white-space:nowrap;z-index:5}
+.ck-hrow:hover .ck-htip{opacity:1}
+.ck-hrow .ck-htip b,.ck-sc .ck-htip b{font-size:11px;font-weight:600;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif}
+.ck-sc{position:relative}
+.ck-sc .ck-htip{right:10px;top:8px}
+.ck-sc:hover .ck-htip{opacity:1}a{color:var(--green-800)}a:hover{color:var(--green-600)}</style>
+</helmet>
+<div style="min-height: 100vh; background: var(--ink-50); font-family: 'Hanken Grotesk', -apple-system, sans-serif; color: var(--ink-900); padding: 52px 24px 80px;">
+<div style="max-width: 760px; margin: 0 auto;">
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#00EE7F" stroke-width="1.3" stroke-linejoin="round"><path d="M8 3 12.33 5.5v5L8 13 3.67 10.5v-5Z"></path><path d="M13 8l-2.5 4.33h-5L3 8l2.5-4.33h5Z" opacity="0.55"></path></svg>
+    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-500); white-space: nowrap;">HIVORY DESIGN SYSTEM · CHART KIT v1</span>
+  </div>
+  <h1 style="margin: 12px 0 0; font-size: 30px; font-weight: 700; letter-spacing: -0.025em;">The Chart Kit</h1>
+  <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-600); max-width: 620px;">Four chart forms, one grammar. Every graph the platform generates — by hand or by the Analyst — is one of these, rendered from a typed payload. Rules: horizontal grid only (var(--chart-grid)), no axis lines, 10px mono labels on the platform time standard, mono tabular numerals, green-600 primary series, one chart per card.</p>
+
+  <div style="display: flex; flex-direction: column; gap: 22px; margin-top: 34px;">
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">chart/line</span><span style="font-size: 11.5px; color: var(--ink-500);">the default for anything over time · 2px line, round joins, 7% area, terminal dot · header carries name + mono value + delta</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 10px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Site sessions</span>
+          <span style="font-size: 11px; color: var(--ink-500);">last 30 days</span>
+          <span style="flex: 1;"></span>
+          <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;">18.2K</span>
+          <span style="font-size: 11px; font-weight: 650; color: var(--green-700);">↑ 14%</span>
+        </div>
+        <svg viewBox="0 0 600 170" style="display: block; width: 100%; height: auto; margin-top: 8px;" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif">
+          <line x1="40" y1="24" x2="590" y2="24" stroke="#EEF0EE"></line>
+          <line x1="40" y1="64" x2="590" y2="64" stroke="#EEF0EE"></line>
+          <line x1="40" y1="104" x2="590" y2="104" stroke="#EEF0EE"></line>
+          <line x1="40" y1="144" x2="590" y2="144" stroke="#EEF0EE"></line>
+          <text x="34" y="27" text-anchor="end" font-size="10" fill="#9DA0A3">900</text>
+          <text x="34" y="67" text-anchor="end" font-size="10" fill="#9DA0A3">600</text>
+          <text x="34" y="107" text-anchor="end" font-size="10" fill="#9DA0A3">300</text>
+          <text x="34" y="147" text-anchor="end" font-size="10" fill="#9DA0A3">0</text>
+          <path d="M40,96 L100,90 L160,99 L220,82 L280,86 L340,68 L400,73 L460,52 L520,57 L585,37 L585,144 L40,144 Z" fill="rgba(0,163,82,0.07)"></path>
+          <path d="M40,96 L100,90 L160,99 L220,82 L280,86 L340,68 L400,73 L460,52 L520,57 L585,37" fill="none" stroke="#00A352" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+          <circle cx="585" cy="37" r="3" fill="#00A352"></circle>
+          <text x="40" y="164" font-size="10" fill="#9DA0A3">24 Jun</text>
+          <text x="300" y="164" text-anchor="middle" font-size="10" fill="#9DA0A3">8 Jul</text>
+          <text x="570" y="164" text-anchor="end" font-size="10" fill="#9DA0A3">23 Jul</text>
+          <g class="ck-pt"><rect x="175" y="10" width="90" height="150" fill="transparent"></rect><line class="ck-tip" x1="220" y1="24" x2="220" y2="144" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="220" cy="82" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="168" y="30" width="103" height="38" rx="8" fill="#17181A"></rect><text x="180" y="45" font-size="10" fill="#9DA0A3">12 Jul</text><text x="180" y="60" font-size="11" font-weight="600" fill="#fff">465 sessions</text></g></g>
+          <g class="ck-pt"><rect x="355" y="10" width="90" height="150" fill="transparent"></rect><line class="ck-tip" x1="400" y1="24" x2="400" y2="144" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="400" cy="73" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="348" y="21" width="103" height="38" rx="8" fill="#17181A"></rect><text x="360" y="36" font-size="10" fill="#9DA0A3">17 Jul</text><text x="360" y="51" font-size="11" font-weight="600" fill="#fff">532 sessions</text></g></g>
+          <g class="ck-pt"><rect x="535" y="10" width="55" height="150" fill="transparent"></rect><line class="ck-tip" x1="585" y1="24" x2="585" y2="144" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="585" cy="37" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="491" y="49" width="103" height="38" rx="8" fill="#17181A"></rect><text x="503" y="64" font-size="10" fill="#9DA0A3">23 Jul</text><text x="503" y="79" font-size="11" font-weight="600" fill="#fff">802 sessions</text></g></g>
+        </svg>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">chart/compare</span><span style="font-size: 11.5px; color: var(--ink-500);">comparison colors: current = green solid · previous period = ink dashed, no area, no dot · legend mandatory at 2 series</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 10px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Site sessions</span>
+          <span style="flex: 1;"></span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ink-600);"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--green-600);"></span>This 30 days</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ink-500); margin-left: 10px;"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--ink-250);"></span>Previous</span>
+        </div>
+        <svg viewBox="0 0 600 150" style="display: block; width: 100%; height: auto; margin-top: 8px;" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif">
+          <line x1="16" y1="20" x2="590" y2="20" stroke="#EEF0EE"></line>
+          <line x1="16" y1="60" x2="590" y2="60" stroke="#EEF0EE"></line>
+          <line x1="16" y1="100" x2="590" y2="100" stroke="#EEF0EE"></line>
+          <line x1="16" y1="130" x2="590" y2="130" stroke="#EEF0EE"></line>
+          <path d="M16,108 L100,112 L184,104 L268,110 L352,100 L436,106 L520,96 L585,100" fill="none" stroke="#C6C8C6" stroke-width="1.5" stroke-dasharray="4 4" stroke-linejoin="round" stroke-linecap="round"></path>
+          <path d="M16,96 L100,88 L184,94 L268,76 L352,82 L436,62 L520,68 L585,40" fill="none" stroke="#00A352" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+          <circle cx="585" cy="40" r="3" fill="#00A352"></circle>
+          <g class="ck-pt"><rect x="130" y="10" width="120" height="140" fill="transparent"></rect><line class="ck-tip" x1="184" y1="20" x2="184" y2="130" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="184" cy="94" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="128" y="28" width="112" height="54" rx="8" fill="#17181A"></rect><text x="140" y="43" font-size="10" fill="#9DA0A3">5 Jul</text><circle cx="144" cy="55.5" r="3" fill="#00A352"></circle><text x="152" y="59" font-size="11" font-weight="600" fill="#fff">486 sessions</text><circle cx="144" cy="69.5" r="3" fill="#C6C8C6"></circle><text x="152" y="73" font-size="10" fill="#B4B7B9">512 sessions</text></g></g>
+          <g class="ck-pt"><rect x="300" y="10" width="120" height="140" fill="transparent"></rect><line class="ck-tip" x1="352" y1="20" x2="352" y2="130" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="352" cy="82" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="296" y="16" width="112" height="54" rx="8" fill="#17181A"></rect><text x="308" y="31" font-size="10" fill="#9DA0A3">13 Jul</text><circle cx="312" cy="43.5" r="3" fill="#00A352"></circle><text x="320" y="47" font-size="11" font-weight="600" fill="#fff">561 sessions</text><circle cx="312" cy="57.5" r="3" fill="#C6C8C6"></circle><text x="320" y="61" font-size="10" fill="#B4B7B9">498 sessions</text></g></g>
+          <g class="ck-pt"><rect x="450" y="10" width="120" height="140" fill="transparent"></rect><line class="ck-tip" x1="520" y1="20" x2="520" y2="130" stroke="rgba(23,24,26,0.12)"></line><circle class="ck-dot" cx="520" cy="68" r="4" fill="#fff" stroke="#00A352" stroke-width="2"></circle><g class="ck-tip"><rect x="452" y="6" width="112" height="54" rx="8" fill="#17181A"></rect><text x="464" y="21" font-size="10" fill="#9DA0A3">20 Jul</text><circle cx="468" cy="33.5" r="3" fill="#00A352"></circle><text x="476" y="37" font-size="11" font-weight="600" fill="#fff">648 sessions</text><circle cx="468" cy="47.5" r="3" fill="#C6C8C6"></circle><text x="476" y="51" font-size="10" fill="#B4B7B9">531 sessions</text></g></g>
+        </svg>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">chart/bars</span><span style="font-size: 11.5px; color: var(--ink-500);">discrete buckets, ≤12 · 3px top radius, 60% band · beyond 12 buckets use chart/line</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 10px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Blog reads by week</span>
+          <span style="flex: 1;"></span>
+          <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;">12.4K</span>
+          <span style="font-size: 11px; font-weight: 650; color: var(--green-700);">↑ 18%</span>
+        </div>
+        <svg viewBox="0 0 600 150" style="display: block; width: 100%; height: auto; margin-top: 8px;" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif">
+          <line x1="16" y1="16" x2="590" y2="16" stroke="#EEF0EE"></line>
+          <line x1="16" y1="72" x2="590" y2="72" stroke="#EEF0EE"></line>
+          <line x1="16" y1="126" x2="590" y2="126" stroke="#EEF0EE"></line>
+          <rect x="42" y="78" width="52" height="48" class="ck-bar" rx="3" fill="#00A352" opacity="0.55"></rect>
+          <rect x="132" y="66" width="52" height="60" class="ck-bar" rx="3" fill="#00A352" opacity="0.55"></rect>
+          <rect x="222" y="84" width="52" height="42" class="ck-bar" rx="3" fill="#00A352" opacity="0.55"></rect>
+          <rect x="312" y="52" width="52" height="74" class="ck-bar" rx="3" fill="#00A352" opacity="0.55"></rect>
+          <rect x="402" y="40" width="52" height="86" class="ck-bar" rx="3" fill="#00A352" opacity="0.55"></rect>
+          <rect x="492" y="24" width="52" height="102" rx="3" fill="#00A352"></rect>
+          <text x="68" y="143" text-anchor="middle" font-size="10" fill="#9DA0A3">15 Jun</text>
+          <text x="248" y="143" text-anchor="middle" font-size="10" fill="#9DA0A3">29 Jun</text>
+          <text x="428" y="143" text-anchor="middle" font-size="10" fill="#9DA0A3">13 Jul</text>
+          <text x="518" y="143" text-anchor="middle" font-size="10" fill="#9DA0A3">20 Jul</text>
+          <g class="ck-pt"><rect x="36" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="20" y="26" width="90" height="38" rx="8" fill="#17181A"></rect><text x="32" y="41" font-size="10" fill="#9DA0A3">w/ 15 Jun</text><text x="32" y="56" font-size="11" font-weight="600" fill="#fff">1.6K reads</text></g></g>
+          <g class="ck-pt"><rect x="126" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="106" y="14" width="90" height="38" rx="8" fill="#17181A"></rect><text x="118" y="29" font-size="10" fill="#9DA0A3">w/ 22 Jun</text><text x="118" y="44" font-size="11" font-weight="600" fill="#fff">2.0K reads</text></g></g>
+          <g class="ck-pt"><rect x="216" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="196" y="32" width="90" height="38" rx="8" fill="#17181A"></rect><text x="208" y="47" font-size="10" fill="#9DA0A3">w/ 29 Jun</text><text x="208" y="62" font-size="11" font-weight="600" fill="#fff">1.4K reads</text></g></g>
+          <g class="ck-pt"><rect x="306" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="286" y="6" width="90" height="38" rx="8" fill="#17181A"></rect><text x="298" y="21" font-size="10" fill="#9DA0A3">w/ 6 Jul</text><text x="298" y="36" font-size="11" font-weight="600" fill="#fff">2.4K reads</text></g></g>
+          <g class="ck-pt"><rect x="396" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="376" y="6" width="90" height="38" rx="8" fill="#17181A"></rect><text x="388" y="21" font-size="10" fill="#9DA0A3">w/ 13 Jul</text><text x="388" y="36" font-size="11" font-weight="600" fill="#fff">2.8K reads</text></g></g>
+          <g class="ck-pt"><rect x="486" y="10" width="64" height="130" fill="transparent"></rect><g class="ck-tip"><rect x="466" y="6" width="90" height="38" rx="8" fill="#17181A"></rect><text x="478" y="21" font-size="10" fill="#9DA0A3">w/ 20 Jul</text><text x="478" y="36" font-size="11" font-weight="600" fill="#fff">3.3K reads</text></g></g>
+        </svg>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">chart/hbar</span><span style="font-size: 11.5px; color: var(--ink-500);">category comparison, ≤6 rows · HTML tracks, not SVG · label left, mono value right</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 14px;">
+        <div style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Sessions by channel</div>
+        <div style="display: flex; flex-direction: column; gap: 9px; margin-top: 12px;">
+          <div class="ck-trow ck-hrow" style="display: grid; grid-template-columns: 110px 1fr 52px; gap: 12px; align-items: center; border-radius: 6px;"><span class="ck-htip"><span style="color: var(--ink-400);">Organic · 61% of sessions · </span><b>11.1K</b></span><span style="font-size: 12px;">Organic</span><div style="height: 8px; border-radius: 999px; background: var(--ink-50);"><div style="width: 61%; height: 8px; border-radius: 999px; background: var(--green-600);"></div></div><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; text-align: right; font-variant-numeric: tabular-nums;">11.1K</span></div>
+          <div class="ck-trow ck-hrow" style="display: grid; grid-template-columns: 110px 1fr 52px; gap: 12px; align-items: center; border-radius: 6px;"><span class="ck-htip"><span style="color: var(--ink-400);">LinkedIn · 19% of sessions · </span><b>3.4K</b></span><span style="font-size: 12px;">LinkedIn</span><div style="height: 8px; border-radius: 999px; background: var(--ink-50);"><div style="width: 19%; height: 8px; border-radius: 999px; background: var(--green-600);"></div></div><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; text-align: right; font-variant-numeric: tabular-nums;">3.4K</span></div>
+          <div class="ck-trow ck-hrow" style="display: grid; grid-template-columns: 110px 1fr 52px; gap: 12px; align-items: center; border-radius: 6px;"><span class="ck-htip"><span style="color: var(--ink-400);">Direct · 14% of sessions · </span><b>2.6K</b></span><span style="font-size: 12px;">Direct</span><div style="height: 8px; border-radius: 999px; background: var(--ink-50);"><div style="width: 14%; height: 8px; border-radius: 999px; background: var(--green-600);"></div></div><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; text-align: right; font-variant-numeric: tabular-nums;">2.6K</span></div>
+          <div class="ck-trow ck-hrow" style="display: grid; grid-template-columns: 110px 1fr 52px; gap: 12px; align-items: center; border-radius: 6px;"><span class="ck-htip"><span style="color: var(--ink-400);">Referral · 6% of sessions · </span><b>1.1K</b></span><span style="font-size: 12px;">Referral</span><div style="height: 8px; border-radius: 999px; background: var(--ink-50);"><div style="width: 6%; height: 8px; border-radius: 999px; background: var(--green-600);"></div></div><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; text-align: right; font-variant-numeric: tabular-nums;">1.1K</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">scorecard/spine</span><span style="font-size: 11.5px; color: var(--ink-500);">the fixed 4-card row · label + pinned delta · mono value + spark (64px) · only place scorecards exist</span></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <div class="ck-sc" style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 12px 14px 10px;"><span class="ck-htip"><span style="color: var(--ink-400);">30 days: 15.9K → </span><b>18.2K</b></span>
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span style="flex: 1; min-width: 0; font-size: 11px; font-weight: 600; color: var(--ink-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Site sessions</span><span style="font-size: 11px; font-weight: 650; white-space: nowrap; flex-shrink: 0; margin-left: 8px; color: var(--green-700);">↑ 14%</span></div>
+          <div style="margin-top: 3px; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;">
+            <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">18.2K</span>
+            <svg viewBox="0 0 120 36" style="width: 64px; height: 22px; flex-shrink: 0;"><path d="M2,26 L18,23 L34,27 L50,20 L66,22 L82,15 L98,17 L114,8" fill="none" stroke="#00A352" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div class="ck-sc" style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 12px 14px 10px;"><span class="ck-htip"><span style="color: var(--ink-400);">30 days: 10.5K → </span><b>12.4K</b></span>
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span style="flex: 1; min-width: 0; font-size: 11px; font-weight: 600; color: var(--ink-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Blog reads</span><span style="font-size: 11px; font-weight: 650; white-space: nowrap; flex-shrink: 0; margin-left: 8px; color: var(--green-700);">↑ 18%</span></div>
+          <div style="margin-top: 3px; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;">
+            <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">12.4K</span>
+            <svg viewBox="0 0 120 36" style="width: 64px; height: 22px; flex-shrink: 0;"><path d="M2,28 L18,24 L34,26 L50,18 L66,21 L82,13 L98,15 L114,7" fill="none" stroke="#00A352" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div class="ck-sc" style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 12px 14px 10px;"><span class="ck-htip"><span style="color: var(--ink-400);">30 days: 3,887 → </span><b>4,120</b></span>
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span style="flex: 1; min-width: 0; font-size: 11px; font-weight: 600; color: var(--ink-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Followers</span><span style="font-size: 11px; font-weight: 650; white-space: nowrap; flex-shrink: 0; margin-left: 8px; color: var(--green-700);">↑ 6%</span></div>
+          <div style="margin-top: 3px; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;">
+            <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">4,120</span>
+            <svg viewBox="0 0 120 36" style="width: 64px; height: 22px; flex-shrink: 0;"><path d="M2,24 L18,23 L34,21 L50,22 L66,19 L82,18 L98,15 L114,12" fill="none" stroke="#00A352" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div class="ck-sc" style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 12px 14px 10px;"><span class="ck-htip"><span style="color: var(--ink-400);">30 days: $70K → </span><b>$86K</b></span>
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span style="flex: 1; min-width: 0; font-size: 11px; font-weight: 600; color: var(--ink-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Pipeline</span><span style="font-size: 11px; font-weight: 650; white-space: nowrap; flex-shrink: 0; margin-left: 8px; color: var(--green-700);">↑ 22%</span></div>
+          <div style="margin-top: 3px; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;">
+            <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">$86K</span>
+            <svg viewBox="0 0 120 36" style="width: 64px; height: 22px; flex-shrink: 0;"><path d="M2,30 L18,28 L34,24 L50,26 L66,18 L82,20 L98,12 L114,6" fill="none" stroke="#00A352" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">table/view</span><span style="font-size: 11.5px; color: var(--ink-500);">the generated table · ≤4 columns, label + numerics right in mono, Δ last · ≤8 rows · provenance foot always</span></div>
+      <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 12px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Traffic sources</span>
+          <span style="font-size: 11px; color: var(--ink-500);">last 30 days</span>
+          <span style="flex: 1;"></span>
+          <span style="font-size: 11px; color: var(--ink-300);">remove</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 84px 84px 56px; gap: 12px; padding: 10px 0 6px; border-bottom: 1px solid rgba(23,24,26,0.08);"><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400);">SOURCE</span><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400); text-align: right;">SESSIONS</span><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400); text-align: right;">CONV.</span><span style="font-size: 10.5px; font-weight: 650; letter-spacing: 0.08em; color: var(--ink-400); text-align: right;">Δ</span></div>
+        <div class="ck-trow" style="display: grid; grid-template-columns: 1fr 84px 84px 56px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px;">Organic search</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">11.1K</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">214</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; color: var(--green-700); font-variant-numeric: tabular-nums;">+16%</span></div>
+        <div class="ck-trow" style="display: grid; grid-template-columns: 1fr 84px 84px 56px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px;">LinkedIn</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">3.4K</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">96</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; color: var(--green-700); font-variant-numeric: tabular-nums;">+9%</span></div>
+        <div class="ck-trow" style="display: grid; grid-template-columns: 1fr 84px 84px 56px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px;">Direct</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">2.6K</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">71</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; color: var(--green-700); font-variant-numeric: tabular-nums;">+4%</span></div>
+        <div class="ck-trow" style="display: grid; grid-template-columns: 1fr 84px 84px 56px; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(23,24,26,0.05);"><span style="font-size: 12.5px;">Referral</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">1.1K</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums;">22</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; text-align: right; color: var(--green-700); font-variant-numeric: tabular-nums;">+2%</span></div>
+        <div style="margin-top: 8px; font-size: 10.5px; color: var(--ink-300);">Analytics · synced 12 min ago</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;"><span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; color: var(--green-700);">chart/states</span><span style="font-size: 11.5px; color: var(--ink-500);">loading = skeleton shimmer in the plot area, header stays real · empty = an honest sentence + the fix — never invented numbers, never a spinner</span></div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+        <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 12px;">
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Site sessions</span>
+            <span style="font-size: 11px; color: var(--ink-500);">last 30 days</span>
+          </div>
+          <div data-motion="essential" style="margin-top: 12px; height: 110px; border-radius: 8px; background: linear-gradient(90deg, var(--ink-50) 25%, #F8F9F8 50%, var(--ink-50) 75%); background-size: 420px 100%; animation: ckShimmer 1var(--duration-screen) linear infinite;"></div>
+          <div style="margin-top: 8px; display: flex; justify-content: space-between;"><span style="width: 38px; height: 8px; border-radius: 4px; background: var(--ink-50);"></span><span style="width: 38px; height: 8px; border-radius: 4px; background: var(--ink-50);"></span><span style="width: 38px; height: 8px; border-radius: 4px; background: var(--ink-50);"></span></div>
+        </div>
+        <div style="background: var(--white); border-radius: 14px; box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.05); padding: 14px 18px 12px; display: flex; flex-direction: column;">
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 650; letter-spacing: -0.01em; white-space: nowrap;">Search rankings</span>
+            <span style="font-size: 11px; color: var(--ink-500);">last 30 days</span>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 18px 0;">
+            <div style="font-size: 12.5px; font-weight: 600;">Not enough data</div>
+            <div style="font-size: 11.5px; color: var(--ink-500); margin-top: 3px;">Connect Search Console to power this view</div>
+            <div style="font-size: 11.5px; font-weight: 600; color: var(--green-700); margin-top: 12px; cursor: pointer;">Connect ›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 34px; padding: 18px 22px; background: var(--ink-800); border-radius: 14px; color: var(--white); font-size: 12.5px; line-height: 1.7;">
+    <span style="color: var(--green-500); font-weight: 700;">Kit law:</span> one chart per card · EVERY chart element answers on hover — lines, bars, compare series (one chip, both values), hbar tracks and sparkline cards alike: ink chip (10px context over 11px mono value), hairline guide + ring dot where there is a series, 120ms ease, never persisting · rows and bars tint on hover · Skeleton shimmer for first paint (the dual-hex Spinner is for actions in flight, never charts) · comparison = previous period in ink dashed 1.5px, no fill, no dot · series 1 is always green-600 on light / green-500 on dark, series 2–4 come from the token ramp (teal · amber · ink), 2 series max in generated views · legend only at ≥2 series (dot + 11px label, top-right) — one series means the header IS the legend · deltas green-700 up / var(--red-700) down, inverted for cost metrics · every value mono tabular, abbreviated (18.2K · $41K · 1.8×) · axis dates follow the platform time standard · empty means "Not enough data — connect &lt;source&gt;", never invented numbers. <span style="color: var(--ink-300);">Banned forever: pies, donuts, gauges, radars, dual axes, 3D, vertical grid lines, y-axis lines, per-chart date pickers.</span>
+  </div>
+
+</div>
+</div>
+
+</x-dc>
+</body>
+</html>

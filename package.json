@@ -1,0 +1,13 @@
+{
+  "name": "hivory-design-system",
+  "version": "4.1.0",
+  "private": true,
+  "description": "Hivory Design System — v4.1 \"Glass Engine\". Tokens are the source of truth; tokens/tokens.json is the diffable version record. This package.json is the canonical version marker.",
+  "type": "module",
+  "scripts": {
+    "drift": "node scripts/drift-test.mjs components guidelines templates specs styles.css"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

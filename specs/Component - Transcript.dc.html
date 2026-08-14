@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/styles.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .h2 { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .row { display: grid; grid-template-columns: 148px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .row:last-child { border-bottom: none; }
+    .row .n { font-size: 12.5px; font-weight: 650; color: var(--text-body); }
+    .row .d { font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+    .num { font-variant-numeric: tabular-nums; }
+    .stage { border-radius: var(--radius-2xl); background: var(--canvas-wash); padding: 34px; display: flex; justify-content: center; }
+
+    /* ── the transcript ── */
+    .tr { width: 100%; max-width: 520px; }
+    .tr .head { display: flex; align-items: baseline; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--hairline); }
+    .tr .msg { display: grid; grid-template-columns: 28px 1fr; margin-top: 20px; }
+    .tr .gut { padding-top: 2px; }
+    .tr .you { justify-content: flex-end; display: flex; }
+    .tr .bub { max-width: 78%; border-radius: 16px 16px 5px 16px; background: rgba(23,24,26,0.055); padding: 11px 14px; font-size: 13.5px; line-height: 1.6; color: var(--text-body); }
+    .tr .eng { font-size: 13.5px; line-height: 1.7; color: var(--text-body); }
+    .tr .steps { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); }
+    .tr .art { margin-top: 12px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .tr .when { font-size: 11px; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 64px 48px 104px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="eye">Component · Transcript</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">Where this came from.</h1>
+    <p style="margin: 12px 0 0; max-width: 660px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The conversation that produced a job, shown as history. Same anatomy as the live chat, every affordance removed — because the chat IS the permanent comment record, and a record you can edit is not a record.</p>
+
+    <!-- ═══ LIVE ═══ -->
+    <div style="margin-top: 64px;"><div class="eye">Specimen</div><h2 class="h2">The ask that made the job.</h2></div>
+    <div class="stage" style="margin-top: 20px;">
+      <div class="tr">
+        <div class="head">
+          <span style="font-size: 12.5px; font-weight: 650;">Refill launch — social</span>
+          <span style="flex: 1;"></span>
+          <span class="when">24 Jul</span>
+        </div>
+
+        <div class="msg you" style="grid-template-columns: 1fr;">
+          <span class="bub">Can we get something out about the compostable switch? The anniversary is next week.</span>
+        </div>
+
+        <div class="msg">
+          <span class="gut"><svg width="16" height="18" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.2" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path></svg></span>
+          <span>
+            <span class="eng">A year is the right hook — I'll lead on the margin cost rather than the sustainability claim, since that's the part competitors can't copy.</span>
+            <span class="steps"><i class="ti ti-chevron-right" style="font-size: 11px;"></i>4 steps · 41s</span>
+            <span class="art">
+              <span style="width: 24px; height: 24px; border-radius: 7px; background: var(--ink-50); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="ti ti-brand-linkedin" style="font-size: 13px; color: var(--ink-600);"></i></span>
+              <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 550;">Refill loyalty — LinkedIn thread</span><span style="display: block; margin-top: 3px; font-size: 11px; color: var(--text-muted);">Approved 24 Jul · published 25 Jul, 14:00</span></span>
+            </span>
+          </span>
+        </div>
+
+        <div class="msg you" style="grid-template-columns: 1fr;">
+          <span class="bub">Softer on the last line — we don't need the call to action.</span>
+        </div>
+
+        <div class="msg">
+          <span class="gut"><svg width="16" height="18" viewBox="0 0 16 16" fill="none" stroke="var(--green-600)" stroke-width="1.2" stroke-linejoin="round"><path d="M8 2.6 12.68 5.3v5.4L8 13.4 3.32 10.7V5.3Z"></path></svg></span>
+          <span class="eng">Done — it ends on the number now. Held for you again.</span>
+        </div>
+
+        <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--hairline); display: flex; align-items: baseline; gap: 10px;">
+          <span style="font-size: 11px; color: var(--text-faint);">Read-only · this is the record</span>
+          <span style="flex: 1;"></span>
+          <a href="#" onClick="{{ noop }}" style="font-size: 11px; font-weight: 600;">Open the session ›</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ANATOMY ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Anatomy</div><h2 class="h2">The live chat, with the verbs taken out.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">The left gutter</span><span class="d">28px, holding the 16px hex mark OUTSIDE the content column — so engine text, artifact cards and the client's own bubbles all share one left edge. Inherited from the live chat unchanged; it is what stops a transcript reading as two ragged columns.</span></div>
+      <div class="row"><span class="n">You</span><span class="d">Ink-5.5% wash bubble, radius <span class="num">16/16/5/16</span>, right-aligned, max 78%. The sharp corner is the speaker's corner.</span></div>
+      <div class="row"><span class="n">The engine</span><span class="d">Plain text on the canvas at 13.5/1.7 — no bubble, no card. The asymmetry is deliberate: the client's words are quoted, the engine's are simply the page talking.</span></div>
+      <div class="row"><span class="n">Steps, collapsed</span><span class="d">"4 steps · 41s" renders as static text with the chevron at rest. It never expands here — what the engine did belongs to the live session, and a transcript that unfolds becomes a log.</span></div>
+      <div class="row"><span class="n">Artifact cards<br>are inert</span><span class="d">They render in full, with their OUTCOME in the sub line ("Approved 24 Jul · published 25 Jul, 14:00") rather than a state. Not clickable: opening a panel from inside a history view would put a workspace inside a record.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">One way out</span><span class="d">A single "Open the session ›" link at the foot — the same one-way-out rule the Mock Kit uses. It goes to the live chat where acting is legitimate. Everything else stays dead.</span></div>
+    </div>
+
+    <!-- ═══ WHERE ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Where it appears</div><h2 class="h2">Three places, one reason.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Work queue job</span><span class="d">Opened from a row's provenance. Answers "why does this job exist" without making the client hunt through sessions — the queue is the ledger, and this is the ledger's citation.</span></div>
+      <div class="row"><span class="n">Performance chain</span><span class="d">Behind a shipped outcome: the ask, the drafts, the approval, the result. The chain's credibility comes from being able to walk back to the sentence that started it.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Proposal context</span><span class="d">In read mode, showing a prospect how the loop actually sounds. Nothing is live there anyway, so the read-only contract costs nothing — and the same component means the proposal can never drift from the product.</span></div>
+    </div>
+
+    <!-- ═══ STATES ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">The eight states</div><h2 class="h2">A record has almost none.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Rest</span><span class="d">The only state. Every message is final; nothing is pending, thinking or in flight.</span></div>
+      <div class="row"><span class="n">Hover</span><span class="d">Nothing responds except the one footer link, which behaves as a link. No message hover, no "fix" ghost, no copy affordance — those all belong to editable surfaces.</span></div>
+      <div class="row"><span class="n">Pressed</span><span class="d"><b style="font-weight: 650;">Does not apply</b> except on the footer link.</span></div>
+      <div class="row"><span class="n">Focus</span><span class="d">One tab stop: the footer link. The transcript body is a document — a screen reader walks it as text, which is exactly right for a record.</span></div>
+      <div class="row"><span class="n">Selected</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> Text selection works because it is prose; there is no selectable message.</span></div>
+      <div class="row"><span class="n">Disabled</span><span class="d"><b style="font-weight: 650;">Does not apply.</b> Nothing is disabled, because nothing was ever enabled — this is the distinction from read mode on an artifact, where affordances exist and are suppressed.</span></div>
+      <div class="row"><span class="n">Loading</span><span class="d">Skeleton two bubbles and two prose blocks at their real measures, keeping the header real. Never the thinking spinner — that would claim the conversation is still happening.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Empty</span><span class="d">A job with no conversation behind it (a standing job's occurrence, a system-initiated run) shows one line: "No request — this ran on the weekly rule" with a link to the rule. Never an empty frame: the absence is itself the provenance.</span></div>
+    </div>
+
+    <!-- ═══ LAWS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Content &amp; laws</div><h2 class="h2">Verbatim, or it is not a record.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Never summarised</span><span class="d">The client's words appear exactly as typed — no tidying, no truncation with an ellipsis, no "the client requested changes to the tone". The whole value of the transcript is that it is not a paraphrase.</span></div>
+      <div class="row"><span class="n">No composer,<br>ever</span><span class="d">Not even disabled. A greyed input invites typing and then refuses it; its absence says plainly that this is somewhere else's conversation. The footer link is how you get to a place you can talk.</span></div>
+      <div class="row"><span class="n">Outcomes, not states</span><span class="d">Artifact sub lines read "published 25 Jul, 14:00", never "Held for you". A live state inside a historical view is a lie about the present, and it will be wrong within a day.</span></div>
+      <div class="row"><span class="n">Dates follow<br>the standard</span><span class="d">Sentence contexts may say "Today" or "2 h ago"; the header and outcome lines take the date form (<span class="num">24 Jul</span>). One clock everywhere, per the time standard.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">It is not a log</span><span class="d">No per-message timestamps, no agent names in the flow, no expanded steps, no tool calls. Those are ops chrome; the client sees the conversation they had, not the machinery that served it.</span></div>
+    </div>
+
+    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">Quote the client verbatim. Keep the left gutter so everything shares one edge. Render artifact cards with their outcome. Offer exactly one way out, at the foot. Say plainly that it is read-only.</div></div>
+      <div class="card" style="padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary);">A disabled composer. Expandable steps. Clickable artifact cards. Live states in sub lines. Per-message timestamps. Summarised or truncated client words. A thinking spinner. Agent names in the flow.</div></div>
+    </div>
+
+    <!-- ═══ TOKENS ═══ -->
+    <div style="margin-top: 104px;"><div class="eye">Tokens used</div><h2 class="h2">Every value, named.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="row"><span class="n">Colour</span><span class="d"><span class="num">rgba(23,24,26,0.055)</span> the client bubble wash (the live chat's own value) · <span class="num">--text-body</span> both speakers · <span class="num">--green-600</span> the hex mark, per the mark-usage rule for functional inline marks · <span class="num">--text-muted</span> steps and sub lines · <span class="num">--text-faint</span> the date and the read-only note · <span class="num">--surface-card</span> + <span class="num">--shadow-card</span> artifact cards.</span></div>
+      <div class="row"><span class="n">Motion</span><span class="d">None. A record does not animate — no entrance, no stagger, no fade. The live chat's arrival motion belongs to messages arriving; here they have all already arrived.</span></div>
+      <div class="row" style="border-bottom: none;"><span class="n">Geometry</span><span class="d">Bubble radius <span class="num">16/16/5/16</span>, max-width 78%, gutter 28px, artifact card <span class="num">--radius-lg</span>. Rhythm: 20 between messages (Block), 12 message→artifact and above the footer (Sibling), 8 to the steps line (Pair).</span></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Transcript · anatomy from Portal Design Language §Request chat · pairs with <a href="Pattern - Work queue ledger.dc.html">Work queue</a> and <a href="Pattern - Artifact panel.dc.html">Artifact panel</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { noop: (e) => { e.preventDefault(); } };
+  }
+}
+</script>
+</body>
+</html>

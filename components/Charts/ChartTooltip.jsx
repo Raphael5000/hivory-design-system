@@ -1,7 +1,7 @@
 /* Hivory ChartTooltip — dark ink panel (Toast chrome), mono values, series dots. */
 const hvChartTooltipCss = `
 .hv-charttip{display:inline-block;background:var(--ink-950);color:var(--white);border-radius:var(--radius-md);box-shadow:var(--shadow-overlay);padding:9px 12px;font-family:var(--font-sans);min-width:140px}
-.hv-charttip__label{font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-400);margin-bottom:6px}
+.hv-charttip__label{font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-400);margin-bottom:8px}
 .hv-charttip__row{display:flex;align-items:center;gap:7px;font-size:12.5px;line-height:1.7}
 .hv-charttip__dot{width:7px;height:7px;border-radius:2px;flex:none}
 .hv-charttip__val{margin-left:auto;font-family:var(--font-mono);font-size:12px;padding-left:14px}

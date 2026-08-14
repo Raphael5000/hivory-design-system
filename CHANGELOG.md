@@ -1,0 +1,45 @@
+# Changelog
+
+Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
+
+## 4.1.0 — "Glass Engine" (2026-07-31, landed 2026-08-14)
+
+Reconciled to the client-portal direction. The portal is canonical.
+
+### Tokens (24 Jul reconciliation)
+- Cool ink ladder `#1A1B1D → #C6C8C6` with new steps 800/750/600/250 (was the warm `#3D3D3C` family)
+- `--green-600` `#00A352` · radii `control 10 / xl 14` (cards) `/ 2xl 16` (panels) · green-tinted shadows, `--shadow-elevated` (the one elevated card per screen), `--shadow-glass-ring`, `--scrim`
+- Platform face → the system font stack; Hanken Grotesk demoted to `--font-brand` (marketing/brand moments)
+- Fractional weights 550/650/680 · dense platform type scale (eyebrow 10 → file 23)
+- Glass Engine theme layer: `--canvas`, `--glass-*`
+
+### Tokens (31 Jul)
+- `--text-muted` → `#63676A` and `--text-faint` → `#676B6E` — re-graded AA **against `--ink-100` `#ECEDEA`, the darkest common text background, never white** (this exact bug shipped twice when calibrated on white)
+- `--hover-lift` retired at `0px` — nothing displaces on hover, ever; kept so consumers resolve, never reintroduce
+- Full duration set: `--duration-modal` 140 · `--duration-soft` 180 (**the default**) · `--duration-screen` 200 · `--duration-slow` 240 · `--duration-gentle` 340 · `--duration-spinner` 1.15s · `--duration-pulse` 1.6s; `--duration-fast` 120 is **press-only**
+- **Mono retired** (27 Jul): `--font-mono` resolves to the system sans; machine facts are `font-variant-numeric: tabular-nums` + a quieter colour
+- Tabler icons webfont import added (`tokens/fonts.css`) — Tabler is the platform icon set (exemptions: brand marks, the 9–11px house checkmark, chart geometry)
+
+### Component bundle (31 Jul fixes, applied to bundle **and** `.jsx` sources)
+- Buttons are pills on the 26/33/40 height ladder, weight 600/650
+- 1px borders replaced with inset rings / hairlines across Input, Select, Textarea, Checkbox, Menu, Card, DateRangePicker, MetricChip, Sidebar
+- 16 state transitions moved 120ms → 180ms (`--duration-soft`; 120 is press-only)
+- Menu/segment chrome aligned to spec (13.5px rows, 7/10 padding, min-width 180)
+- Green caret on text fields; focus ring 1.5px `--green-600` inset
+- Carried forward from local v1 work: Table numerals `tabular-nums` (now doctrine)
+
+### New in the repo
+- `CLAUDE.md` — binding repo rules (rhythm ladder, motion/colour/keyboard/surfaces doctrine, completeness bar)
+- `scripts/drift-test.mjs` + `npm run drift` — nine rules, each a real defect found by hand on 31 Jul; escape hatch `/* drift-ok: reason */`
+- `tokens/tokens.json` — the 186-token diffable version record
+- `specs/` — 45 spec pages with live specimens (open in a browser; they are the acceptance criteria, not production code)
+- `docs/portal-design-language.md` — the full binding doctrine (portal + proposal + foundations)
+- Guideline cards updated to v4.1; new Rhythm, States & motion, and White label cards
+- 12 components implemented from their spec pages: SplitButton, ImageSlot, Stepper, SignatureBlock, SignIn, Topbar, Accordion, StepTimeline, CapMeter, Transcript, Gantt, FilterSelect
+
+### Compatibility
+- **No token renamed or removed.** `--text-xl`, `--tracking-display`, `--tracking-marketing-display` kept as a compat block in `tokens/typography.css`.
+
+## 1.0.0 — "Engine" (2026-07, superseded)
+
+Initial system: warm-gray light platform, Hanken Grotesk everywhere, Geist Mono for data, 4px grid, radii 6–14, borders over shadows. Known in later docs as the v3 token state.

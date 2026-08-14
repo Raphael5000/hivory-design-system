@@ -10,17 +10,17 @@
 <!-- @template name="Dashboard" description="App dashboard — sidebar, scorecards, performance chart and review queue, composed from the Hivory system" -->
 <helmet>
   <script src="./ds-base.js"></script>
-  <style>html,body{margin:0;height:100%;background:#F7F7F5}</style>
+  <style>html,body{margin:0;height:100%;background:var(--surface-app)}</style>
 </helmet>
 <div style="display:flex; height:100vh; background:var(--surface-app); font-family:var(--font-sans); color:var(--text-body); overflow:hidden;">
   <x-import component-from-global-scope="HivoryDesignSystem_354905.Sidebar" workspace="{{ workspace }}" top-items="{{ topItems }}" sections="{{ sections }}" footer-items="{{ footerItems }}" active-id="{{ activeId }}" on-navigate="{{ onNavigate }}" height="100%" hint-size="272px,100%" style="flex:none;"></x-import>
   <main style="flex:1; overflow-y:auto; min-width:0;" data-screen-label="Dashboard">
-    <div style="max-width:1060px; margin:0 auto; padding:26px 32px 56px; display:flex; flex-direction:column; gap:18px; box-sizing:border-box;">
+    <div style="max-width:1060px; margin:0 auto; padding:26px 32px 56px; display:flex; flex-direction:column; gap:20px; box-sizing:border-box;">
 
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
         <div>
-          <h1 style="margin:0; font-size:20px; font-weight:600; letter-spacing:-0.02em; color:var(--ink-950);">Dashboard</h1>
-          <p style="margin:4px 0 0; font-size:13px; color:var(--text-muted);">Acme Co. — growth overview</p>
+          <h1 style="margin:0; font-size:var(--text-title); font-weight:680; letter-spacing:-0.02em; color:var(--ink-950);">Dashboard</h1>
+          <p style="margin:3px 0 0; font-size:13px; color:var(--text-muted);">Acme Co. — growth overview</p>
         </div>
         <div style="display:flex; gap:10px; align-items:center;">
           <x-import component-from-global-scope="HivoryDesignSystem_354905.DateRangePicker" default-preset="30d" hint-size="150px,32px"></x-import>
@@ -29,10 +29,10 @@
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;">
-        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Sessions" value="412.8K" delta="18.2%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
-        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Qualified leads" value="1,284" delta="11.4%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
-        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="Pipeline value" value="$2.41M" delta="6.8%" direction="up" delta-tone="positive" hint-size="100%,108px"></x-import>
-        <x-import component-from-global-scope="HivoryDesignSystem_354905.Stat" label="CAC" value="$118" delta="3.1%" direction="down" delta-tone="caution" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Scorecard" label="Sessions" value="412.8K" change="+18.2%" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Scorecard" label="Qualified leads" value="1,284" change="+11.4%" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Scorecard" label="Pipeline value" value="$2.41M" change="+6.8%" hint-size="100%,108px"></x-import>
+        <x-import component-from-global-scope="HivoryDesignSystem_354905.Scorecard" label="CAC" value="$118" change="-3.1%" sentiment="down_is_good" hint-size="100%,108px"></x-import>
       </div>
 
       <x-import component-from-global-scope="HivoryDesignSystem_354905.Card" title="Acquisition" subtitle="Sessions by source, last 30 days" actions="{{ chartLegend }}" hint-size="100%,300px">

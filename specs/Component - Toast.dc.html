@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    @keyframes wrapIn { from { max-height: 0; padding-top: 0; } }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(12px) scale(0.97); } to { opacity: 1; transform: none; } }
+    .twrap { max-height: 64px; padding-top: 8px; overflow: hidden; display: flex; justify-content: flex-end; animation: wrapIn var(--duration-gentle) var(--ease-glide); transition: max-height var(--duration-gentle) var(--ease-glide), padding-top var(--duration-gentle) var(--ease-glide), opacity var(--duration-gentle) var(--ease-out); }
+    .twrap.out { max-height: 0; padding-top: 0; opacity: 0; }
+    .twrap.out .toast { transform: translateY(6px); }
+    .toast { display: flex; align-items: center; gap: 10px; background: var(--surface-dark); color: var(--white); border-radius: 12px; padding: 11px 14px; box-shadow: var(--shadow-overlay); font-size: 13px; font-weight: 550; animation: toastIn var(--duration-gentle) var(--ease-glide); transition: transform var(--duration-gentle) var(--ease-glide); max-width: 340px; }
+    .toast .dot { width: 6px; height: 6px; border-radius: 999px; flex-shrink: 0; }
+    .toast .act { appearance: none; border: none; background: none; padding: 0; margin-left: 6px; font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); cursor: pointer; white-space: nowrap; transition: color var(--duration-soft) var(--ease-out); }
+    .toast .act:hover { color: var(--white); }
+    .trig { height: 34px; padding: 0 16px; display: inline-flex; align-items: center; border: none; border-radius: var(--radius-pill); background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.09); font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text-body); cursor: pointer; transition: background var(--duration-soft) var(--ease-out); }
+    .trig:hover { background: var(--hover-on-white); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Toast</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">Noted, quietly.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The receipt for a decision already made. An ink notice settles into the bottom-right corner, carries one tone dot and one verb, and leaves on its own. Fire a few below.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); height: 380px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: -60px; top: 30px; width: 320px; height: 260px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--amber-100);"></div>
+        <div style="position: absolute; right: 230px; bottom: -60px; width: 240px; height: 150px; border-radius: 18px; background: var(--surface-dark);"></div>
+      </div>
+      <div style="position: absolute; left: 50%; top: 44px; transform: translateX(-50%); border-radius: 18px; padding: 16px 20px; background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-glass-ring), 0 14px 40px -18px rgba(20,40,30,0.34); display: flex; gap: 10px;">
+        <button class="trig" onClick="{{ fireApprove }}">Approve something</button>
+        <button class="trig" onClick="{{ fireHold }}">Hold something</button>
+        <button class="trig" onClick="{{ fireFail }}">Break something</button>
+      </div>
+      <div style="position: absolute; right: 22px; bottom: 22px; display: flex; flex-direction: column; align-items: stretch;">
+        <sc-for list="{{ toasts }}" as="t" hint-placeholder-count="0">
+          <div class="twrap {{ t.cls }}" key="{{ t.id }}">
+            <div class="toast">
+              <span class="dot" style="background: {{ t.dot }};"></span>
+              <span>{{ t.msg }}</span>
+              <button class="act" onClick="{{ t.dismiss }}">{{ t.action }}</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Settles in on <span style="font-family: var(--font-mono);">--duration-soft</span> — fade + 6px rise — holds ~5s, fades out. The stack grows upward, newest at the bottom.</div>
+
+    <!-- ANATOMY & TONES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy &amp; tones</div><h2 class="sect-h">One line, one verb.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 26px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+        <div class="toast" style="animation: none;"><span class="dot" style="background: var(--green-500);"></span><span>Approved — publishing now</span><button class="act">Undo</button></div>
+        <div class="toast" style="animation: none;"><span class="dot" style="background: var(--amber-500);"></span><span>Held for Thursday 09:00</span><button class="act">Change</button></div>
+        <div class="toast" style="animation: none;"><span class="dot" style="background: var(--red-500);"></span><span>Publish failed — retrying</span><button class="act">Details</button></div>
+        <div class="toast" style="animation: none;"><span class="dot" style="background: var(--ink-400);"></span><span>Draft saved</span></div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">The spec</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Ink card on <span style="font-family: var(--font-mono); font-size: 12px;">--surface-dark</span>, radius 12, 13px at weight 550. One 6px tone dot — green done · amber held · red failed · ink neutral. At most one action verb at 60% white, full white on hover. Bottom-right, 8px stack gap, three visible at most — older receipts collapse first. Hover pauses the clock; failures stay until dismissed.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Confirm what already happened — past tense, one line. Offer the one recovery verb (Undo, Change, Details). Let it leave on its own; keep failures until acted on. Say the consequence: "publishing now", not "success".</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Ask questions in a toast — decisions belong in a Modal. Stack more than three. Slide in from the edge or bounce. White cards, icons, titles, or progress bars — it's a receipt, not a panel. Toast something the user is looking at anyway.</div></div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">8 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--shadow-overlay</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-300</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-400</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-950</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--white</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-500</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-lg</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from the component’s own stylesheet, not from this page — anything else on this page is spec-page chrome.</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Tone dots: positive · info · caution · negative. Optional single action (“View ›”). ToastStack holds at most three; a fourth replaces the oldest. Presentational only — the app owns the queue.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Ink chip (--ink-950), white text at 12px, --radius-lg, bottom-right, with a tone dot. Rises in once over --duration-gentle on --ease-glide.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Auto-dismiss PAUSES while the pointer is over the chip; the action lightens.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Pressed</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">brightness(0.94) on the action and the dismiss.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">motion-base ring on the action. A toast never steals focus — it is announced politely, and its action must also exist on the surface it points to.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Selected <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;"></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Disabled <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a toast reports something that already happened; there is nothing to disable.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Loading <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a toast is the RESULT of work. Work in flight belongs to the Spinner or the status strip, never to a toast.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Empty <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">nothing to report means no toast. An empty toast is a bug that shipped.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Past tense, one line, naming what happened and where it went: “Deployed — staging.puregood.co is live”, “✓ Added to the Work queue — sending Thu 09:00”. Never “Success!”, never an exclamation mark, never a sentence that wraps. The action is a destination, not a verb (“View ›”, “Work queue ›”). Errors say what to do next and never blame the client.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Toast · tokens listed in full above</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { toasts: [], n: 0 };
+  componentWillUnmount() { (this._timers || []).forEach(clearTimeout); }
+  push(tone, dot, msg, action) {
+    const id = this.state.n + 1;
+    this.setState((s) => {
+      const toasts = [...s.toasts, { id, dot, msg, action, out: false }];
+      const alive = toasts.filter((t) => !t.out);
+      if (alive.length > 3) setTimeout(() => this.fade(alive[0].id), 0);
+      return { n: id, toasts };
+    });
+    this._timers = this._timers || [];
+    this._timers.push(setTimeout(() => this.fade(id), 4600));
+  }
+  fade(id) {
+    this._timers = this._timers || [];
+    this.setState((s) => ({ toasts: s.toasts.map((t) => t.id === id ? { ...t, out: true } : t) }));
+    this._timers.push(setTimeout(() => this.setState((s) => ({ toasts: s.toasts.filter((t) => t.id !== id) })), 360));
+  }
+  renderVals() {
+    return {
+      toasts: this.state.toasts.map((t) => ({ ...t, cls: t.out ? 'out' : '', dismiss: () => this.fade(t.id) })),
+      fireApprove: () => this.push('positive', 'var(--green-500)', 'Approved — publishing now', 'Undo'),
+      fireHold: () => this.push('caution', 'var(--amber-500)', 'Held for Thursday 09:00', 'Change'),
+      fireFail: () => this.push('negative', 'var(--red-500)', 'Publish failed — retrying', 'Details')
+    };
+  }
+}
+</script>
+</body>
+</html>

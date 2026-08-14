@@ -1,27 +1,32 @@
-<!-- @dsCard group="Colors" viewport="700x200" subtitle="How the green is used — fills on dark, text on light, hero CTA" name="Green in use" -->
+<!-- @dsCard group="Colors" viewport="700x230" subtitle="Green in use — full intensity on dark, AA text on tint, hero CTA; the single signal, never decoration" name="Green in use" -->
 <!DOCTYPE html>
-<html><head><link rel="stylesheet" href="../styles.css">
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
   body { margin: 0; background: var(--surface-page); font-family: var(--font-body); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 16px; }
-  .cell { border-radius: 12px; padding: 16px; min-height: 110px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+  .wrap { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .cell { border-radius: var(--radius-lg); padding: 16px; min-height: 110px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .big { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.02em; margin: 0; }
-  .tok { font-family: var(--font-mono); font-size: 9.5px; opacity: 0.7; }
-  .btn { align-self: flex-start; background: var(--action-brand); color: var(--on-action-brand); font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+  .tok { font-size: 9.5px; font-variant-numeric: tabular-nums; }
+  .btn { align-self: flex-start; background: var(--action-brand); color: var(--on-action-brand); font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: var(--radius-control); }
+  .law { font-size: 10.5px; color: var(--text-muted); }
 </style></head>
 <body>
-  <div class="grid">
-    <div class="cell" style="background: var(--surface-dark); color: var(--text-on-dark);">
-      <p class="big">Up <span style="color: var(--text-brand-on-dark);">+38%</span></p>
-      <span class="tok" style="color: var(--ink-300);">green-500 on dark — full intensity</span>
+  <div class="wrap">
+    <div class="grid">
+      <div class="cell" style="background: var(--surface-dark); color: var(--text-on-dark);">
+        <p class="big">Up <span style="color: var(--text-brand-on-dark);">+38%</span></p>
+        <span class="tok" style="color: var(--text-muted-on-dark);">green-500 on dark — full intensity</span>
+      </div>
+      <div class="cell" style="background: var(--surface-brand-tint); box-shadow: inset 0 0 0 1px var(--green-200);">
+        <p class="big" style="color: var(--text-brand);">Verified</p>
+        <span class="tok" style="color: var(--green-800);">green-700 text on green-50 tint</span>
+      </div>
+      <div class="cell" style="background: var(--white); box-shadow: inset 0 0 0 1px var(--border-subtle);">
+        <div class="btn">Start free</div>
+        <span class="tok" style="color: var(--text-muted);">hero CTA — black text on green-500</span>
+      </div>
     </div>
-    <div class="cell" style="background: var(--surface-brand-tint); border: 1px solid var(--green-200);">
-      <p class="big" style="color: var(--text-brand);">Verified</p>
-      <span class="tok" style="color: var(--green-800);">green-700 text on green-50 tint</span>
-    </div>
-    <div class="cell" style="background: #FFFFFF; border: 1px solid var(--border-subtle);">
-      <div class="btn">Start free</div>
-      <span class="tok" style="color: var(--text-muted);">hero CTA — ink text on green-500</span>
-    </div>
+    <p class="law" style="margin: 0;">Green is the single signal — live dots, deltas, the brand mark. Never decoration, never an icon colour, never a count badge.</p>
   </div>
 </body></html>

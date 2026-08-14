@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-700); text-decoration: none; }
+    a:hover { color: var(--green-800); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .panel { animation: panelIn var(--duration-gentle) var(--ease-out); }
+    .gbar { position: absolute; height: 30px; border-radius: 8px; background: rgba(23,24,26,0.07); display: flex; align-items: center; padding: 0 11px; box-sizing: border-box; cursor: pointer; transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .gbar span { font-size: 12px; font-weight: 600; color: var(--text-nav); white-space: nowrap; }
+    .gout { position: absolute; font-size: 11.5px; font-weight: 600; color: var(--text-nav); white-space: nowrap; cursor: pointer; }
+    .dlv { display: flex; align-items: baseline; gap: 9px; border-radius: 9px; background: rgba(23,24,26,0.035); padding: 10px 12px; font-size: 12.5px; line-height: 1.5; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Gantt</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 14ch;">The plan you can click.</h1>
+    <p style="margin: 20px 0 0; max-width: 640px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">A staircase of quiet ink bars on a week grid — first phase bottom-left, steady state top-right. Every bar is a control: selecting one fills it ink and opens its detail panel with the deliverables. A client's plan, not a PM tool.</p>
+
+    <!-- FEATURED -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; background: var(--canvas); box-shadow: var(--shadow-elevated); padding: 48px 64px;">
+      <div style="position: absolute; inset: 0;">
+        <div style="position: absolute; left: -70px; top: -50px; width: 360px; height: 240px; border-radius: 18px; background: var(--green-200);"></div>
+        <div style="position: absolute; right: -60px; top: 40px; width: 320px; height: 260px; border-radius: 18px; background: var(--teal-100);"></div>
+        <div style="position: absolute; left: 150px; bottom: -80px; width: 300px; height: 190px; border-radius: 18px; background: var(--amber-100);"></div>
+      </div>
+      <div style="position: relative; max-width: 620px; margin: 0 auto;">
+        <div style="border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.08), 0 24px 60px -30px rgba(20,40,30,0.2); padding: 16px 18px 10px;">
+          <div style="position: relative;">
+            <div style="position: absolute; inset: 0;">
+              <sc-for list="{{ gridLines }}" as="gl" hint-placeholder-count="9"><span style="position: absolute; top: 0; bottom: 0; left: {{ gl.left }}; border-left: 1px solid {{ gl.c }};"></span></sc-for>
+            </div>
+            <div style="position: relative; height: 156px;">
+              <sc-for list="{{ gbars }}" as="gb" hint-placeholder-count="4">
+                <div onClick="{{ gb.go }}" class="gbar" style="left: {{ gb.left }}; width: {{ gb.width }}; top: {{ gb.top }}; background: {{ gb.bg }}; box-shadow: {{ gb.shadow }};" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">
+                  <sc-if value="{{ gb.inLabel }}" hint-placeholder-val="{{ true }}"><span style="color: {{ gb.fg }};">{{ gb.label }}</span></sc-if>
+                </div>
+                <sc-if value="{{ gb.outLabel }}" hint-placeholder-val="{{ false }}">
+                  <span onClick="{{ gb.go }}" class="gout" style="left: {{ gb.outLeft }}; top: {{ gb.labelTop }}; font-weight: {{ gb.outW }}; color: {{ gb.outColor }};" role="button" tabindex="0" onKeyDown="{{ keyActivate }}">{{ gb.label }}</span>
+                </sc-if>
+              </sc-for>
+            </div>
+          </div>
+          <div style="margin-top: 12px; border-top: 1px solid rgba(23,24,26,0.08); padding-top: 8px; display: grid; grid-template-columns: repeat(8, 1fr);">
+            <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="8"><span style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-faint); text-align: center;">{{ w }}</span></sc-for>
+          </div>
+        </div>
+        <div class="panel" key="{{ phaseKey }}" style="margin-top: 20px; border-radius: 14px; background: var(--surface-card); box-shadow: 0 1px 2px rgba(20,40,30,0.05), 0 0 0 0.5px rgba(23,24,26,0.08); overflow: hidden;">
+          <div style="display: flex; align-items: baseline; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--hairline);">
+            <span style="font-size: 14px; font-weight: 650;">{{ selName }}</span>
+            <span style="flex: 1;"></span>
+            <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">{{ selRange }}</span>
+          </div>
+          <div style="padding: 14px 20px 16px;">
+            <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty;">{{ selDesc }}</p>
+            <div style="margin-top: 12px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--green-700); text-transform: uppercase;">Key deliverables</div>
+            <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <sc-for list="{{ selItems }}" as="d" hint-placeholder-count="4">
+                <div class="dlv"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#00A352" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transform: translateY(1px);"><path d="M3 8.5 6.5 12 13 4.5"></path></svg><span>{{ d }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: var(--text-meta); color: var(--text-faint);">Live — click any bar. Anatomy: faint week grid (heavier line every 4) · 30px bars on a 38px lane pitch, staircase bottom-up · selected = ink-950 fill, soft shadow · labels ride inside bars of 3+ weeks, outside-right below that · mono week axis · detail panel re-animates per phase.</div>
+
+    <!-- GRAMMAR -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The grammar</div><h2 class="sect-h">Bars are controls.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Selection, not decoration</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Every bar selects its phase; the detail panel below is the single source of names, dates and deliverables. Rest bars are a 7% ink wash with ink-600 labels; the selected bar fills ink-950 with a soft green-tinted shadow. No separate tab row — the bars ARE the tabs. Labels never truncate: inside the bar at 3+ weeks, outside to its right below that (bold ink when selected).</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="font-size: var(--text-row); font-weight: var(--weight-strong);">Time &amp; the detail panel</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Weeks (W1…W8) until a contract is signed — the gantt promises sequence and pace, not calendar dates; switch to months past 8 weeks. The detail panel carries one description paragraph and a KEY DELIVERABLES 2-column checklist (green checks, ink-3.5% rows, 4 items max). Green appears only in checks and the caps label — never as a bar fill.</div>
+      </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Four to five phases, staircase bottom-up — first phase bottom-left so the eye climbs with time. Client-language names ("First drafts, held", never "sprint 2"). A guideline caveat under the card. Compress the lane pitch before growing the card — whitespace must carry sequence, not padding.</div></div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;"><div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div><div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A color per phase — ink wash + ink-950 selected is the whole palette. Dependency arrows, percent-complete, avatars. Mid-word ellipsis on bar labels. A duplicate tab row. Calendar dates before signature. Horizontal scroll — compress the window instead.</div></div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Gantt · portal-canonical: <span style="font-family: var(--font-mono);">Hivory Proposal § Timeline</span> · source structure: <span style="font-family: var(--font-mono);">RoadmapTimeline.tsx</span> (client portal repo), re-dressed in Glass Engine</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { phase: 0 };
+  phases() {
+    return [
+      { t: 'Knowledge & onboarding', s: 1, e: 1, range: 'Week 1', sub: 'The engine reads the client\u2019s site, analytics and CRM; they review the brand kit and first knowledge file. One 45-minute call.', items: ['Brand kit approved', 'Knowledge file built', 'Console access', 'Kickoff call'] },
+      { t: 'First drafts, held', s: 2, e: 3, range: 'Weeks 2\u20133', sub: 'Work arrives in the review queue. The client edits and approves in place — their changes teach the engine.', items: ['Articles drafted', 'Posts held for review', 'Landing page on staging', 'Sequence for sign-off'] },
+      { t: 'First publishes', s: 3, e: 4, range: 'Weeks 3\u20134', sub: 'Approved work ships on the calendar. Outreach warms up at low volume while replies calibrate.', items: ['Publishing calendar live', 'Outreach warm-up', 'Replies logged to CRM', 'Weekly digest starts'] },
+      { t: 'Steady state', s: 5, e: 8, range: 'Weeks 5\u20138 \u2192', sub: 'The loop runs: propose → approve → publish → report. About 30 minutes a week from the client.', items: ['Full cadence', 'Monthly report', 'Quarterly strategy', '~30 min/week to approve'] }
+    ];
+  }
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+
+  renderVals() {
+    const s = this.state;
+    const P = this.phases();
+    return {
+      keyActivate: this.keyActivate,
+      weeks: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
+      gridLines: Array.from({ length: 9 }, (_, i) => ({ left: (i * 12.5) + '%', c: i % 4 === 0 ? 'rgba(23,24,26,0.12)' : 'rgba(23,24,26,0.05)' })),
+      gbars: P.map((p, i) => {
+        const sel = i === s.phase;
+        const span = p.e - p.s + 1, inLabel = span >= 3;
+        const rowTop = (P.length - 1 - i) * 38 + 4;
+        return { label: p.t, sel, inLabel, outLabel: !inLabel,
+          left: ((p.s - 1) * 12.5) + '%', width: (span * 12.5) + '%',
+          top: rowTop + 'px', labelTop: (rowTop + 8) + 'px',
+          outLeft: 'calc(' + (p.e * 12.5) + '% + 10px)',
+          outW: sel ? 650 : 600, outColor: sel ? '#17181A' : 'var(--text-nav)',
+          bg: sel ? '#17181A' : 'rgba(23,24,26,0.07)', fg: sel ? '#fff' : 'var(--text-nav)',
+          shadow: sel ? '0 8px 20px -6px rgba(20,40,30,0.35)' : 'none',
+          go: () => this.setState({ phase: i }) };
+      }),
+      phaseKey: 'ph' + s.phase,
+      selName: P[s.phase].t, selRange: P[s.phase].range, selDesc: P[s.phase].sub, selItems: P[s.phase].items
+    };
+  }
+}
+</script>
+</body>
+</html>

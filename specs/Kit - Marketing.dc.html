@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--mk-accent);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+
+    /* ── MARKETING TOKENS — read from the live site (globals.css) ──
+       A SEPARATE language from Glass Engine. Warm ivory, not cool grey.
+       Prefixed --mk-* so they can never be confused with product tokens. */
+    :root {
+      --mk-bg: #FAFAF8;
+      --mk-bg-subtle: #F4F3F0;
+      --mk-bg-muted: #EDECEA;
+      --mk-surface: #FFFFFF;
+      --mk-fg: #1A1A1A;
+      --mk-fg-muted: #6B6B6B;
+      --mk-fg-subtle: #9A9A9A;
+      --mk-border: #E5E4E1;
+      --mk-border-strong: #D1D0CC;
+      --mk-secondary: #F0EDE8;
+      --mk-accent: #00EE7F;
+      --mk-accent-hover: #00D470;
+      --mk-accent-muted: rgba(0, 238, 127, 0.12);
+      --mk-serif: "Martel", Georgia, "Times New Roman", serif;
+      --mk-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --mk-ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+    @keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .mk { background: var(--mk-bg); color: var(--mk-fg); font-family: var(--mk-sans); }
+    .mk-serif { font-family: var(--mk-serif); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
+    .mk-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mk-fg-muted); }
+    .mk-rule { height: 1px; width: 96px; background: var(--mk-accent); transform-origin: left; animation: growLine 1s 0.4s var(--mk-ease) both; }
+    .mk-body { font-size: 15px; line-height: 1.65; color: var(--mk-fg-muted); }
+    .mk-pill { display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--mk-border); padding: 3px 10px; font-size: 11px; font-weight: 500; color: var(--mk-fg-muted); transition: box-shadow var(--duration-slow) var(--mk-ease), color var(--duration-slow) var(--mk-ease); }
+    .mk-row:hover .mk-pill { box-shadow: inset 0 0 0 1px rgba(0,238,127,0.3); color: var(--mk-fg); }
+    .mk-row { display: grid; grid-template-columns: 1.2fr 2fr 1fr auto; gap: 24px; align-items: center; padding: 34px 0; border-bottom: 1px solid rgba(229,228,225,0.5); text-decoration: none; color: inherit; transition: background var(--duration-slow) var(--mk-ease), border-color var(--duration-slow) var(--mk-ease); }
+    .mk-row:hover { background: rgba(255,255,255,0.5); border-color: var(--mk-accent); }
+    .mk-row .go { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; opacity: 0; transform: translateX(-8px); transition: opacity var(--duration-slow) var(--mk-ease), transform var(--duration-slow) var(--mk-ease); }
+    .mk-row:hover .go { opacity: 1; transform: none; }
+    .mk-ctarow { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.15); text-decoration: none; }
+    .mk-ctarow span { display: inline-block; font-size: 20px; font-weight: 500; color: #fff; transition: transform var(--duration-slow) var(--mk-ease); }
+    .mk-ctarow:hover span { transform: translateX(8px); }
+
+    /* spec-page chrome (Glass Engine — this page is DOCUMENTATION, not marketing) */
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .lawrow { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+    .lawrow:last-child { border-bottom: none; }
+    .lawrow .n { font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body); }
+    .lawrow .d { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Kit · Marketing</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">The other half of the brand.</h1>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">hivory.io is a separate language from the console, and deliberately so: warm ivory rather than cool grey, Martel serif rather than the system face, editorial rhythm rather than dense rows. They share a logo, a green and an ink ladder — nothing else. Read from the live site on 31 July; the look is correct and this kit exists to preserve it while the product works its way in.</p>
+
+    <!-- THE TWO WORLDS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Two worlds</div><h2 class="sect-h">What is shared, and what is not.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ compare }}" as="c" hint-placeholder-count="7">
+        <div style="display: grid; grid-template-columns: 118px 1fr 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ c.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">{{ c.console }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">{{ c.site }}</span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Marketing tokens are prefixed <span class="chip">--mk-*</span> so the two vocabularies can never be mixed by accident. The only values that cross the line are the mark, <span class="chip">#00EE7F</span>, and the ink ladder's darkest step.</div>
+    </div>
+
+    <!-- SPECIMEN: HERO -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Sections</div><h2 class="sect-h">Hero.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">Left-aligned, bottom-anchored, with the accent hairline growing from the left after the words land. The site's signature opening.</p>
+    <div class="mk" style="margin-top: 20px; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card);">
+      <div style="padding: 64px 48px 48px;">
+        <div class="mk-eyebrow" style="animation: fadeInUp 0.6s var(--mk-ease) both;">What we do</div>
+        <h2 class="mk-serif" style="margin: 16px 0 0; font-size: 52px; max-width: 18ch; animation: fadeInUp 0.8s 0.15s var(--mk-ease) both;">Strategy, design, and technology — in action</h2>
+        <div class="mk-rule" style="margin-top: 34px;"></div>
+      </div>
+    </div>
+
+    <!-- SPECIMEN: EDITORIAL ROW -->
+    <div style="margin-top: 64px;"><h2 class="sect-h" style="font-size: 27px;">Editorial row.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">The site's list primitive — case studies, services, articles. Four columns, hairline rules, and the destination link that only appears on hover. Hover a row.</p>
+    <div class="mk" style="margin-top: 20px; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card);">
+      <div style="padding: 34px 48px 20px;">
+        <div style="border-top: 1px solid var(--mk-border);">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+            <a class="mk-row" href="#">
+              <span class="mk-serif" style="font-size: 27px;">{{ r.client }}</span>
+              <span style="font-size: 13.5px; line-height: 1.65; color: var(--mk-fg-muted);">{{ r.summary }}</span>
+              <span style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ r.tags }}" as="tg" hint-placeholder-count="2"><span class="mk-pill">{{ tg }}</span></sc-for></span>
+              <span class="go">View case study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIMEN: PRODUCT IN THE EDITORIAL -->
+    <div style="margin-top: 64px;"><h2 class="sect-h" style="font-size: 27px;">Product plate.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">The new one, and the reason this kit exists: how the console gets into the site without breaking its calm. The product sits on the ivory as a <b style="font-weight: 650;">quiet object</b> — one artifact, generous margin, a serif claim beside it. Never a screenshot collage, never a browser chrome frame, never a gradient behind it.</p>
+    <div class="mk" style="margin-top: 20px; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card);">
+      <div style="padding: 56px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
+        <div>
+          <div class="mk-eyebrow">The engine</div>
+          <h2 class="mk-serif" style="margin: 16px 0 0; font-size: 38px; max-width: 16ch;">You approve. It ships.</h2>
+          <p class="mk-body" style="margin: 20px 0 0; max-width: 42ch;">Every piece of work arrives as the real thing — a post, a page, a sequence — held for your review. Nothing goes live without you, and approving takes about thirty minutes a week.</p>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 7px; margin-top: 34px; font-size: 15px; font-weight: 500; color: var(--mk-fg); text-decoration: none; border-bottom: 1px solid var(--mk-accent); padding-bottom: 3px;">See how it works <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+        </div>
+        <div style="border-radius: 14px; background: var(--mk-surface); box-shadow: 0 20px 25px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04); overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--mk-border);">
+            <span style="width: 26px; height: 26px; border-radius: 8px; background: var(--mk-bg-muted); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="var(--mk-fg-muted)" stroke-width="1.4" stroke-linecap="round"><rect x="2.4" y="3.2" width="11.2" height="9.6" rx="2"></rect><path d="M2.4 6.4h11.2"></path></svg></span>
+            <span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 600;">Refill loyalty — LinkedIn thread</span><span style="display: block; font-size: 10.5px; color: var(--mk-fg-subtle);">Social · held for your review</span></span>
+          </div>
+          <div style="padding: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 34px; height: 34px; border-radius: 8px; background: #2A2622; color: #F7F2EA; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">PG</span>
+              <span style="min-width: 0;"><span style="display: block; font-size: 12.5px; font-weight: 600;">Pure Good</span><span style="display: block; font-size: 10.5px; color: var(--mk-fg-subtle);">4,120 followers · now</span></span>
+            </div>
+            <div style="margin-top: 12px; font-size: 12.5px; line-height: 1.55; color: var(--mk-fg);">A year ago we moved every product line to compostable packaging. Here's what nobody tells you.</div>
+            <div style="margin-top: 12px; aspect-ratio: 1.91 / 1; border-radius: 8px; background: var(--mk-bg-muted);"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-top: 1px solid var(--mk-border);">
+            <span style="font-size: 10.5px; color: var(--mk-fg-subtle);">Writer · draft 2</span><span style="flex: 1;"></span>
+            <span style="display: inline-flex; align-items: center; height: 27px; padding: 0 13px; border-radius: 999px; background: var(--mk-fg); color: #fff; font-size: 11.5px; font-weight: 600;">Approve &amp; publish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIMEN: CTA BAND -->
+    <div style="margin-top: 64px;"><h2 class="sect-h" style="font-size: 27px;">CTA band.</h2></div>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 15px; line-height: 1.6; color: var(--text-secondary);">Full-bleed video under a 60% black scrim, serif question on the left, a divided link list on the right. The site's one loud moment — and the only place the layout goes dark.</p>
+    <div style="margin-top: 20px; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card); background: linear-gradient(135deg, #1d2a22 0%, #14201a 60%, #0f1712 100%); position: relative;">
+      <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.35);"></div>
+      <div style="position: relative; padding: 64px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
+        <h2 class="mk-serif" style="margin: 0; font-size: 44px; color: #fff;">How can we help?</h2>
+        <div style="display: flex; flex-direction: column;">
+          <a class="mk-ctarow" href="#"><span>Work with us</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+          <a class="mk-ctarow" href="#"><span>Join our team</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+          <a class="mk-ctarow" href="#" style="border-bottom: none;"><span>Say hello</span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOKENS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Tokens used</div><h2 class="sect-h">Its own vocabulary.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ tokens }}" as="g" hint-placeholder-count="5">
+        <div style="display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">{{ g.role }}</span>
+          <span style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ g.list }}" as="tk" hint-placeholder-count="4"><span class="chip">{{ tk }}</span></sc-for></span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Read from <span class="chip">src/app/globals.css</span> at <span class="chip">Raphael5000/Hivory@main</span>. When the site changes, this page is what must be re-read \u2014 not the other way round.</div>
+    </div>
+
+    <!-- LAWS -->
+    <div style="margin-top: 104px;"><div class="sect-eye">The laws</div><h2 class="sect-h">Bringing the product in.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <div class="lawrow"><span class="n">The site stays airy</span><span class="d">Product enters slowly and never at the cost of the calm. One artifact per plate, generous margin, nothing tiled. If a section needs three screenshots to make its point, the point is wrong.</span></div>
+      <div class="lawrow"><span class="n">Show the WORK,<br>not the app</span><span class="d">The proof is what the engine made \u2014 a post, a page, a buyer list \u2014 rendered through the <a href="Kit - Mock.dc.html">Mock Kit</a> at the site's own scale. A console screenshot shows chrome the visitor has no context for; an artifact shows the thing they would receive.</span></div>
+      <div class="lawrow"><span class="n">No browser frames,<br>no device bezels</span><span class="d">The live site never wraps anything in fake chrome and must not start. A product plate is a white card on ivory with a real shadow \u2014 the same restraint the console uses, which is the one place the two languages agree.</span></div>
+      <div class="lawrow"><span class="n">Serif claims,<br>sans evidence</span><span class="d">Martel carries the claim; the system face carries the proof. A number, a caption or anything inside a product plate is sans \u2014 the serif is the agency talking, and product surfaces are not the agency talking.</span></div>
+      <div class="lawrow"><span class="n">One accent hairline<br>per section</span><span class="d">The 96px green rule that grows from the left is the site's punctuation. It opens a section and never appears twice in one; more than one turns a signature into decoration.</span></div>
+      <div class="lawrow"><span class="n">Reveal, never animate</span><span class="d">Content fades up 30px once, on scroll, at 600\u2013800ms on the reveal curve with a 60ms stagger, and then holds still. Nothing loops, nothing parallaxes. Reduced motion shows everything immediately \u2014 the live site already does this and it is not negotiable.</span></div>
+      <div class="lawrow" style="border-bottom: none;"><span class="n">Dark is for the band</span><span class="d">The layout goes dark exactly once per page, at the CTA. The site also ships a full dark mode (accent drops to <span class="chip">#00B25D</span>) \u2014 that is a user preference, not a design device, and no section may go dark on its own to look important.</span></div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Keep the ivory. Let sections breathe at 96\u2013128px. Put the claim in Martel and the evidence in sans. Use the editorial row for any list of things. Let the product appear as one calm object.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Glass Engine surfaces on the site, or ivory in the console. Martel below H2 or in product plates. A screenshot collage. Cool grey anywhere. Console density \u2014 13px rows belong to the tool, not the page selling it.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Kit · Marketing · read from <span class="chip">Raphael5000/Hivory@main</span> on 31 Jul 2026 · see <a href="github.md">github.md</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      compare: [
+        { k: '', console: 'CONSOLE \u00b7 Glass Engine', site: 'SITE \u00b7 Editorial' },
+        { k: 'Canvas', console: 'Cool grey #F2F3F2 with green and warm blooms', site: 'Warm ivory #FAFAF8, flat' },
+        { k: 'Headings', console: 'System face, 21\u201336px, weight 680', site: 'Martel serif, 36\u201372px, weight 400' },
+        { k: 'Body', console: '13\u201313.5px, dense rows', site: '15\u201318px, 1.65 leading' },
+        { k: 'Rhythm', console: '3 \u00b7 8 \u00b7 12 \u00b7 20 \u00b7 34 \u00b7 64 \u00b7 104', site: 'Sections at 96\u2013128px, container 1440' },
+        { k: 'Radius', console: '10 controls \u00b7 14 cards \u00b7 16 panels', site: 'Up to 24 on large surfaces' },
+        { k: 'Motion', console: '180ms settle, nothing lifts', site: '600\u2013800ms reveal on scroll, then still' },
+        { k: 'Shared', console: 'The mark \u00b7 #00EE7F \u00b7 the darkest ink', site: 'The mark \u00b7 #00EE7F \u00b7 the darkest ink' }
+      ],
+      rows: [
+        { client: 'WhoYou', summary: 'Identity verification for African markets \u2014 positioning, brand and a product site that closed enterprise deals.', tags: ['Strategy', 'Brand'] },
+        { client: 'Ammega', summary: 'Global belting manufacturer. A content engine that made a technical catalogue searchable and human.', tags: ['Content', 'Web'] },
+        { client: 'Moxii Africa', summary: 'From a single product to a category. Naming, identity and the launch that carried it.', tags: ['Brand', 'Launch'] }
+      ],
+      tokens: [
+        { role: 'Surface', list: ['--mk-bg', '--mk-bg-subtle', '--mk-bg-muted', '--mk-surface', '--mk-secondary'] },
+        { role: 'Ink', list: ['--mk-fg', '--mk-fg-muted', '--mk-fg-subtle'] },
+        { role: 'Line', list: ['--mk-border', '--mk-border-strong'] },
+        { role: 'Accent', list: ['--mk-accent', '--mk-accent-hover', '--mk-accent-muted'] },
+        { role: 'Type', list: ['--mk-serif', '--mk-sans'] },
+        { role: 'Motion', list: ['--mk-ease', '--mk-ease-reveal'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

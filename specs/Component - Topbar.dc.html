@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    :where(button, a, input, [tabindex], [role="button"]):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+    :where(button, a, [role="button"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"]):active { filter: brightness(0.94); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+      [data-motion="essential"] { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .pulse { animation: pulse var(--duration-pulse) var(--ease-out) infinite; }
+
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+
+    /* ══ THE COMPONENT ══ */
+    .tb { display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; box-sizing: border-box;
+      margin: 12px 12px 0; border-radius: var(--radius-2xl);
+      background: var(--glass-fill); -webkit-backdrop-filter: blur(36px) saturate(1.5); backdrop-filter: blur(36px) saturate(1.5);
+      box-shadow: var(--shadow-glass-ring); }
+    .tb .lock { display: flex; align-items: center; gap: 9px; min-width: 0; }
+    .tb .lock img { height: 18px; display: block; }
+    .tb .lock .div { width: 1px; height: 16px; background: rgba(23,24,26,0.16); flex-shrink: 0; }
+    .tb .lock .client { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tb .crumb { font-size: 13px; color: var(--text-muted); white-space: nowrap; }
+    .tb .sp { flex: 1; min-width: 0; }
+    .tb .live { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .tb .live .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--green-500); flex-shrink: 0; }
+    .tb .ib { appearance: none; border: none; width: 30px; height: 30px; border-radius: var(--radius-md); background: transparent;
+      display: inline-flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer;
+      transition: background var(--transition-soft), color var(--transition-soft); flex-shrink: 0; }
+    .tb .ib:hover { background: rgba(255,255,255,0.7); color: var(--ink-900); }
+    .tb .av { width: 28px; height: 28px; border-radius: 999px; background: var(--ink-100); color: var(--ink-700);
+      display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; flex-shrink: 0; cursor: pointer;
+      transition: box-shadow var(--transition-soft); }
+    .tb .av:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.7); }
+    .tb .pill { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: var(--radius-pill);
+      background: var(--status-caution-bg); color: var(--status-caution-text); font-size: 10.5px; font-weight: 650; white-space: nowrap; flex-shrink: 0; }
+    .shell { border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card);
+      background: radial-gradient(at 8% 0%, var(--canvas-glow-green) 0%, transparent 42%), radial-gradient(at 95% 100%, var(--canvas-glow-warm) 0%, transparent 40%), var(--canvas); }
+    .body { margin: 12px; padding: 22px 20px 26px; background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); min-height: 118px; }
+    @media (max-width: 640px) { .tb .crumb, .tb .live { display: none; } .tb { gap: 10px; padding: 0 12px; } }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Topbar</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 16ch;">Whose data am I looking at?</h1>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The console has no topbar — its rail carries identity, because there is only ever one client. A reseller portal serves many, so it needs a bar whose entire job is answering that question and letting you switch. It holds identity and account, never navigation — and it floats on the canvas as glass, the rail’s treatment turned horizontal.</p>
+
+    <!-- SPECIMEN -->
+    <div class="shell" style="margin-top: 34px;">
+      <div class="tb">
+        <span class="lock">
+          <img src="assets/logo/hivory/black-green.svg" alt="Hivory" />
+          <span class="div"></span>
+          <span class="client">{{ client }}</span>
+        </span>
+        <sc-if value="{{ hasCrumb }}" hint-placeholder-val="{{ true }}"><span class="crumb">/ Lorem ipsum</span></sc-if>
+        <span class="sp"></span>
+        <sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}"><span class="live"><span class="dot pulse" data-motion="essential"></span>Lorem ipsum dolor</span></sc-if>
+        <sc-if value="{{ isStale }}" hint-placeholder-val="{{ false }}"><span class="pill">Lorem ipsum</span></sc-if>
+        <button class="ib" onClick="{{ noop }}" aria-label="Search"><i class="ti ti-search" style="font-size: 15px;"></i></button>
+        <span class="av" role="button" tabindex="0" onClick="{{ noop }}" onKeyDown="{{ keyActivate }}" aria-label="Account">MK</span>
+      </div>
+      <div class="body">
+        <div style="font-size: 21px; font-weight: 680; letter-spacing: -0.02em;">Lorem ipsum dolor</div>
+        <div style="margin-top: 8px; font-size: 13px; color: var(--text-muted);">Consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="display: inline-flex; padding: 3px; border-radius: 999px; background: var(--ink-50); gap: 2px;">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3"><button style="appearance: none; border: none; height: 28px; padding: 0 13px; border-radius: 999px; background: {{ m.bg }}; box-shadow: {{ m.ring }}; font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; color: {{ m.fg }}; cursor: pointer;" onClick="{{ m.pick }}">{{ m.label }}</button></sc-for>
+      </span>
+      <span style="font-size: 11.5px; color: var(--text-faint);">{{ note }}</span>
+    </div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">Identity left, account right.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="6">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Mostly about the sync line.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- LAWS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The laws</div><h2 class="sect-h">What it must never become.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ laws }}" as="l" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 168px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ l.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ l.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- TOKENS + CONTENT -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Tokens used</div>
+        <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
+          <sc-for list="{{ tokens }}" as="tk" hint-placeholder-count="12"><span class="chip">{{ tk }}</span></sc-for>
+        </div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Content rules</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">The client name is the client's own name, never a code. The crumb is one level and names the screen, not the path. The sync line is a sentence a human would say — "synced 12 minutes ago", never a timestamp. Avatar initials come from the display name, never an email.</div>
+      </div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Put the client name where the eye lands first. Let the sync line degrade to a caution pill when it fails. Keep it to one row at 52px. Drop the crumb and sync line before the identity on small screens.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Navigation — that is the rail's job, and a bar with tabs makes two navigations. A second row. A notification bell. Unread badges. A brand-coloured bar. The page title, which belongs to the page.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Topbar · second of six gaps from the <a href="Audit - WhoYou admin portal.dc.html">portal audit</a> · pairs with <a href="Component - Sidebar.dc.html">Sidebar</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { mode: 0 };
+  keyActivate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.currentTarget && e.currentTarget.click) e.currentTarget.click();
+  };
+  renderVals() {
+    const MODES = [
+      { label: 'Live', note: 'A pulse dot and one plain sentence \u2014 the only animated thing in the bar.' },
+      { label: 'Sync failed', note: 'The sync line degrades to a caution pill. It never disappears silently.' },
+      { label: 'No client', note: 'Reseller root: the lockup stands alone, no crumb, no sync \u2014 nothing is selected yet.' }
+    ];
+    const i = this.state.mode;
+    return {
+      modes: MODES.map((m, k) => ({
+        label: m.label,
+        bg: k === i ? 'var(--surface-card)' : 'transparent',
+        ring: k === i ? 'var(--shadow-raised)' : 'none',
+        fg: k === i ? 'var(--text-body)' : 'var(--text-muted)',
+        pick: () => this.setState({ mode: k })
+      })),
+      note: MODES[i].note,
+      client: i === 2 ? 'All clients' : 'Lorem Ipsum Co.',
+      hasCrumb: i !== 2,
+      isLive: i === 0,
+      isStale: i === 1,
+      keyActivate: this.keyActivate,
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      anatomy: [
+        { k: 'Shell', v: 'The bar FLOATS \u2014 12px margin on the canvas, --radius-2xl, --glass-fill with blur(36px) and --shadow-glass-ring. It is the same object as the rail, rotated: a bordered full-bleed strip is a different product\u2019s shell convention and reads as generic the moment it sits beside our glass.' },
+        { k: 'Lockup', v: 'The partner mark at 18px, a hairline divider, then the CLIENT name at 13/600. The mark says whose product this is; the name says whose data \u2014 and the second is what the user actually needs.' },
+        { k: 'Crumb', v: 'One level, in --text-muted, naming the screen. Optional, and never a full path: a bar that shows three levels is doing the rail\u2019s job badly.' },
+        { k: 'Spacer', v: 'Everything after it is account and status. The split is the whole grammar of the component \u2014 identity left, account right, nothing in the middle.' },
+        { k: 'Sync line', v: 'A green pulse dot and one sentence. The bar\u2019s only animated element, marked data-motion="essential" so reduced motion calms it rather than freezing it.' },
+        { k: 'Icon button', v: '30px at --radius-md, ghost until hover, carrying <span class="chip">ti-search</span> at 15px \u2014 Tabler, per the iconography doctrine, never a hand-drawn SVG. Search only: every additional glyph here is a decision to make the bar a toolbar.' },
+        { k: 'Avatar', v: '28px, opens the account menu. It is the ONLY route to sign-out in a portal with no rail footer, so it is never an image without a fallback and never hidden on mobile.' }
+      ],
+      states: [
+        ['Rest', '52px of glass floating 12px off the canvas edges, with the inner light ring. The content below is its own card \u2014 two floating objects on one canvas, exactly as the console\u2019s rail and sheet do it.'],
+        ['Hover', 'Icon buttons take --hover-on-white; the avatar takes a 3px soft ring. The bar itself never responds.'],
+        ['Pressed', 'brightness(0.94) from motion-base.'],
+        ['Focus', 'Each control is its own tab stop, in reading order, and the avatar carries an aria-label \u2014 initials alone announce as two letters.'],
+        ['Selected', 'n/a \u2014 the bar holds no navigation, so nothing in it can be current.'],
+        ['Disabled', 'n/a \u2014 a bar with disabled identity is a bar that should not have rendered.'],
+        ['Loading', 'The lockup and avatar render immediately; only the client name and sync line are Skeletons. Identity must never wait for data \u2014 a blank bar is worse than a slow one.'],
+        ['Empty', 'Reseller root, before a client is chosen: lockup alone, no crumb, no sync line. It says \u201cnothing selected\u201d by omission rather than with the words.']
+      ].map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      laws: [
+        { k: 'Identity, not navigation', v: 'The rail navigates. A topbar with tabs gives the product two navigations and forces the user to learn which one owns what \u2014 the single most common way an admin portal turns confusing.' },
+        { k: 'Glass, and floating', v: 'The bar is the rail\u2019s treatment turned horizontal: --glass-fill, blur(36px), the inner light ring, 12px off every edge. Never a bordered full-bleed strip \u2014 that is a convention from another product, and it makes the shell look bought rather than designed.' },
+        { k: 'One row, 52px', v: 'Never two. A second row means something was added that belongs to the page \u2014 filters, a title, a range picker \u2014 and every one of those has a home already.' },
+        { k: 'The client name<br>is the point', v: 'In a portal serving many clients, showing the wrong one\u2019s data is the worst available failure. The name sits at the front, at 13/600, and truncates with an ellipsis rather than wrapping or shrinking.' },
+        { k: 'Failure is visible', v: 'When sync breaks the line becomes a caution pill in the same slot. It never vanishes \u2014 an absent sync line reads as \u201call fine\u201d, which is the opposite of true.' },
+        { k: 'No bell, no badges', v: 'Notifications live where the doctrine puts them: a toast while you are here, one arrival line on Home, email when you are away. A bell is a fourth place and a reason to keep checking.' },
+        { k: 'Never brand-coloured', v: 'The bar is --surface-card on every deployment. A partner-tinted bar competes with the artifacts below it, which carry the END client\u2019s colour \u2014 and that is the one that has to win.' }
+      ],
+      tokens: ['--glass-fill', '--shadow-glass-ring', '--surface-card', '--shadow-card', '--canvas', '--canvas-glow-green', '--canvas-glow-warm', '--radius-2xl', '--ink-100', '--ink-700', '--ink-900', '--text-muted', '--green-500', '--status-caution-bg', '--status-caution-text', '--radius-md', '--radius-pill', '--duration-pulse', '--transition-soft', '--font-sans']
+    };
+  }
+}
+</script>
+</body>
+</html>

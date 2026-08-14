@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    :where(button, a, input, [tabindex], [role="button"]):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+    :where(button, a, [role="button"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"]):active { filter: brightness(0.94); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+      [data-motion="essential"] { animation-duration: 2.4s !important; animation-iteration-count: infinite !important; }
+    }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+
+    /* ══ THE COMPONENT ══ */
+    /* ONE table card. Head and body share ONE grid, so every column lines up
+       from the ranked list straight through the breakdown. */
+    .acc { border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); overflow: hidden; }
+    .acc-row { border-top: 1px solid var(--hairline); }
+    .acc-row:first-child { border-top: none; }
+
+    .g { display: grid; grid-template-columns: 30px minmax(0, 1fr) 64px 120px 24px; gap: 16px; align-items: center; }
+
+    .acc-head { width: 100%; box-sizing: border-box; padding: 0 20px; height: 54px; background: none; border: none;
+      font-family: var(--font-sans); text-align: left; cursor: pointer; transition: background var(--transition-soft); }
+    .acc-head:hover { background: var(--hover-on-white); }
+    .acc-row.open .acc-head { background: var(--ink-50); }
+    .acc-head .rank { font-size: var(--text-meta); color: var(--text-faint); font-variant-numeric: tabular-nums; }
+    .acc-head .label { font-size: var(--text-base); font-weight: var(--weight-row); color: var(--ink-900); letter-spacing: -0.008em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .acc-head .n { text-align: right; font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--ink-900); font-variant-numeric: tabular-nums; }
+    .acc-head .car { display: inline-flex; justify-content: flex-end; color: var(--text-faint); transition: transform var(--duration-slow) var(--ease-glide), color var(--transition-soft); }
+    .acc-row.open .acc-head .car { transform: rotate(90deg); color: var(--ink-600); }
+    .acc-head:hover .car { color: var(--ink-600); }
+
+    /* tracks follow the Chart Kit hbar spec: 8px rounded, value right, no axis */
+    .track { height: 8px; border-radius: 999px; background: var(--ink-100); overflow: hidden; }
+    .fill { display: block; height: 100%; border-radius: 999px; background: var(--green-600); transform-origin: left; }
+    .acc-body .fill { background: var(--ink-300); }
+
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .acc-body { padding: 8px 20px 22px 66px; }
+    .acc-body .g { grid-template-columns: minmax(0, 1fr) 64px 120px 24px; padding: 7px 0; animation: rise var(--duration-soft) var(--ease-out) both; }
+    .acc-body .nm { font-size: var(--text-sm); color: var(--ink-700); }
+    .acc-body .ct { text-align: right; font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--ink-900); font-variant-numeric: tabular-nums; }
+    .acc-body .fill { animation: grow var(--duration-slow) var(--ease-glide) both; }
+    .acc-body .zero .nm, .acc-body .zero .ct { color: var(--text-faint); }
+    .acc-empty { padding: 10px 0 2px; font-size: var(--text-sm); color: var(--text-muted); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><i class="ti ti-chevron-left" style="font-size: 14px;"></i>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Accordion</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">A table row that opens.</h1>
+    <p style="margin: 12px 0 0; max-width: 700px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">Not a stack of cards. The system already says one table card per view with section heads inside it — so an accordion is that table, where a row can disclose its own breakdown. Ranked list on top, detail one level down, and the row never stops being a row.</p>
+
+    <!-- SPECIMEN -->
+    <div class="acc" style="margin-top: 34px;">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+        <div class="acc-row {{ r.cls }}">
+          <button class="acc-head g" onClick="{{ r.toggle }}" aria-expanded="{{ r.expanded }}">
+            <span class="rank">{{ r.rank }}</span>
+            <span class="label">{{ r.label }}</span>
+            <span class="n">{{ r.count }}</span>
+            <span class="track"><span class="fill" style="width: {{ r.pct }};"></span></span>
+            <span class="car"><i class="ti ti-chevron-right" style="font-size: 14px;"></i></span>
+          </button>
+          <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+            <div class="acc-body">
+              <sc-if value="{{ r.hasSubs }}" hint-placeholder-val="{{ true }}">
+                <sc-for list="{{ r.subs }}" as="s" hint-placeholder-count="3">
+                  <div class="g {{ s.cls }}" style="animation-delay: {{ s.delay }};">
+                    <span class="nm">{{ s.name }}</span>
+                    <span class="ct">{{ s.n }}</span>
+                    <span class="track"><span class="fill" style="width: {{ s.pct }}; animation-delay: {{ s.delay }};"></span></span>
+                    <span></span>
+                  </div>
+                </sc-for>
+              </sc-if>
+              <sc-if value="{{ r.noSubs }}" hint-placeholder-val="{{ false }}">
+                <div class="acc-empty">Lorem ipsum dolor sit amet — consectetur adipiscing elit.</div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: 12px; font-size: 11.5px; color: var(--text-faint);">{{ note }}</div>
+
+    <!-- ANATOMY -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Anatomy</div><h2 class="sect-h">The head is a table row.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="6">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ a.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Open is not selected.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- LAWS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The laws</div><h2 class="sect-h">Where our system differs.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 12px 28px;">
+      <sc-for list="{{ laws }}" as="l" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 168px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hairline);">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ l.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ l.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- TOKENS + CONTENT -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Tokens used</div>
+        <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
+          <sc-for list="{{ tokens }}" as="tk" hint-placeholder-count="14"><span class="chip">{{ tk }}</span></sc-for>
+        </div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Content rules</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Head labels are the category as the client would say it, sentence case, no counts in the words — the count has its own column. A row with nothing beneath it still opens, and says so in one plain sentence rather than showing an empty area.</div>
+      </div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Keep one card and put rows inside it. Rotate the chevron rather than swapping the glyph. Let many rows open at once. Indent the body to the label, not the card edge.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A card per row. A second meter column. Swapping + for −. A height animation. Nesting a second accordion inside one — two levels is the limit, and a third means the data wants a table of its own.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Accordion · third of six gaps from the <a href="Audit - WhoYou admin portal.dc.html">portal audit</a> · inherits <a href="Component - Table.dc.html">Table</a>'s row grammar</div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: { 0: true } };
+  renderVals() {
+    const DATA = [
+      { label: 'Lorem ipsum dolor', n: 412, pct: 100, subs: [['Sit amet consectetur', 186], ['Adipiscing elit sed', 124], ['Do eiusmod tempor', 68], ['Incididunt ut labore', 34]] },
+      { label: 'Consectetur adipiscing', n: 268, pct: 65, subs: [['Magna aliqua enim', 141], ['Ad minim veniam', 92], ['Quis nostrud', 35]] },
+      { label: 'Sed do eiusmod', n: 97, pct: 24, subs: [['Exercitation ullamco', 61], ['Laboris nisi ut', 36]] },
+      { label: 'Tempor incididunt', n: 12, pct: 3, subs: [] }
+    ];
+    const open = this.state.open;
+    const rows = DATA.map((d, i) => {
+      const isOpen = !!open[i];
+      const max = d.subs.length ? Math.max(...d.subs.map((s) => s[1])) : 1;
+      return {
+        rank: String(i + 1), label: d.label, count: d.n + ' lorem', pct: d.pct + '%',
+        open: isOpen, expanded: isOpen ? 'true' : 'false',
+        cls: isOpen ? 'open' : '',
+        hasSubs: isOpen && d.subs.length > 0,
+        noSubs: isOpen && d.subs.length === 0,
+        subs: d.subs.map(([name, n], k) => ({ name, n: String(n), pct: Math.round(n / max * 100) + '%', cls: n === 0 ? 'zero' : '', delay: (k * 45) + 'ms' })),
+        toggle: () => this.setState((p) => ({ open: Object.assign({}, p.open, { [i]: !p.open[i] }) }))
+      };
+    });
+    const count = Object.values(open).filter(Boolean).length;
+    return {
+      rows,
+      note: count === 0 ? 'All closed \u2014 the ranked list is the view.' : count + ' open. Many may be open at once: this is disclosure, not selection.',
+      anatomy: [
+        { k: 'The card', v: 'ONE card at --radius-xl holding every row \u2014 never a card per row. That is the queue table\u2019s law and it applies here for the same reason: consistency beats elevation, and eight stacked cards read as eight unrelated things.' },
+        { k: 'The head', v: 'A 46px grid \u2014 rank, label, count, meter, chevron \u2014 in Table\u2019s row grammar: label at --text-row/550, numerics tabular and right-aligned. It IS a table row; opening is something it can do, not something it is.' },
+        { k: 'One meter', v: 'A 40px track showing the row\u2019s share. One graded column per table, per the density doctrine \u2014 the sub rows get a lighter --ink-300 fill so the head\u2019s green stays the only signal.' },
+        { k: 'The chevron', v: '<span class="chip">ti-chevron-right</span> rotating 90\u00b0 on --duration-soft. The glyph never swaps to a minus or a caret \u2014 rotation shows the same object moved, which is what disclosure is.' },
+        { k: 'The body', v: 'Indented to 54px so it aligns with the LABEL, not the card edge. That indent is what says \u201cthis belongs to that row\u201d without drawing a single line.' },
+        { k: 'Sub rows', v: 'Name, a light track, a tabular count. Three columns, no verbs, no links \u2014 a breakdown is a reading, and anything actionable belongs in the row above or a panel.' }
+      ],
+      states: [
+        ['Rest', 'Closed row on --surface-card, hairline above. The ranked list reads top to bottom with no open state at all.'],
+        ['Hover', '--hover-on-white across the whole head, never just the label \u2014 the row is the target, so the row lights.'],
+        ['Pressed', 'brightness(0.94) from motion-base.'],
+        ['Focus', 'motion-base ring on the head. One tab stop per row; the sub rows are not focusable because they do nothing.'],
+        ['Selected', 'n/a \u2014 OPEN IS NOT SELECTED. Open rows take a quiet --ink-50 wash and rotate their chevron; they never take the ink fill or 2px edge a selected row would, because more than one can be open and selection is singular.'],
+        ['Disabled', 'n/a \u2014 a category with no data still opens and says so. Disabling it would hide that the category exists.'],
+        ['Loading', 'Heads render with real labels; counts and meters are Skeletons at the same 46px height. Never collapse the list while it loads \u2014 the ranking is the point and it arrives with the labels.'],
+        ['Empty', 'Two kinds. An open row with nothing beneath says it in one sentence. A whole accordion with no rows shows one line naming what will appear \u2014 not an illustration.']
+      ].map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      laws: [
+        { k: 'One card, rows inside', v: 'The portal this came from used a card per category. Our system puts one table card on the quiet grid with sections inside it \u2014 so that is what the accordion is, and the difference is the whole reason this page exists rather than a copy.' },
+        { k: 'Open is disclosure,<br>not selection', v: 'Many rows may be open at once, so the open state must not look selected. It gets a wash and a rotated chevron; the ink fill and 2px edge stay reserved for things that are singular.' },
+        { k: 'No height animation', v: 'The body appears; it does not slide. Animating height moves everything below it, and a list where the thing you were reading jumps is worse than one that simply changes.' },
+        { k: 'Two levels, never three', v: 'Category \u2192 breakdown. A third level means the data wants its own table, and the row should open a panel instead of growing.' },
+        { k: 'The indent does the work', v: 'The body aligns to the label at 54px, with no connector line, no left border and no nested card. Space is the grouping device \u2014 spend a rung before drawing anything.' },
+        { k: 'One meter column', v: 'The head carries the graded bar in green; sub rows use --ink-300. Two green columns in one table is the colour rash the density doctrine exists to prevent.' }
+      ],
+      tokens: ['--surface-card', '--shadow-card', '--hover-on-white', '--ink-50', '--ink-100', '--ink-300', '--ink-900', '--text-muted', '--text-faint', '--green-600', '--hairline', '--radius-xl', '--transition-soft', '--duration-soft', '--text-row', '--text-sm', '--weight-row', '--weight-strong', '--font-sans']
+    };
+  }
+}
+</script>
+</body>
+</html>

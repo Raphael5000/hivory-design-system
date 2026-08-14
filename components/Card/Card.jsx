@@ -1,6 +1,6 @@
 /* Hivory Card — Engine: white surface, subtle border, quiet shadow, radius 10. */
 const hvCardCss = `
-.hv-card{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);font-family:var(--font-sans);box-sizing:border-box}
+.hv-card{background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-card);font-family:var(--font-sans);box-sizing:border-box}
 .hv-card__head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 18px 0}
 .hv-card__title{margin:0;font-size:14.5px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-950)}
 .hv-card__sub{margin:3px 0 0;font-size:12.5px;color:var(--text-muted)}
@@ -70,7 +70,7 @@ export function Scorecard({ label, value, change, sentiment = 'up_is_good' }) {
   return (
     <div className="hv-card" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '0' }}>
       <span style={{ fontSize: '11px', fontWeight: 500, color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-data)', fontWeight: 600, color: 'var(--ink-950)', lineHeight: 1.1, marginTop: '3px', fontVariantNumeric: 'tabular-nums' }}>{value}</span>
       {showChange ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
           <span style={{

@@ -5,9 +5,9 @@
 const hvSpinnerCss = `
 .hv-spin{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans)}
 .hv-spin__svg{display:block;flex:none}
-.hv-spin__head{transform-origin:50% 50%;animation:hv-spin-cw 1.4s linear infinite}
-.hv-spin__track{transform-origin:50% 50%;animation:hv-spin-ccw 3.6s linear infinite}
-.hv-spin--calm .hv-spin__head{animation-duration:2.8s}
+.hv-spin__head{transform-origin:50% 50%;animation:hv-spin-cw var(--duration-spinner) linear infinite}
+.hv-spin__track{transform-origin:50% 50%;animation:hv-spin-ccw calc(var(--duration-spinner) * 3) linear infinite}
+.hv-spin--calm .hv-spin__head{animation-duration:2.4s}
 .hv-spin--calm .hv-spin__track{animation-duration:7s}
 .hv-spin__label{font-size:12.5px;font-weight:500;color:var(--text-muted);line-height:1}
 .hv-spin--on-dark .hv-spin__label{color:var(--ink-300)}
@@ -17,7 +17,7 @@ const hvSpinnerCss = `
   .hv-spin__head,.hv-spin__track{animation:none;opacity:.6}
 }
 .hv-pulsedot{position:relative;display:inline-block;border-radius:999px;flex:none}
-.hv-pulsedot::after{content:"";position:absolute;inset:0;border-radius:999px;background:inherit;animation:hv-pulse 1.8s cubic-bezier(0.2,0.8,0.2,1) infinite}
+.hv-pulsedot::after{content:"";position:absolute;inset:0;border-radius:999px;background:inherit;animation:hv-pulse var(--duration-pulse) var(--ease-out) infinite}
 @media (prefers-reduced-motion: reduce){.hv-pulsedot::after{animation:none}}
 @keyframes hv-pulse{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(2.6);opacity:0}}
 `;

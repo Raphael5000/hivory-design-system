@@ -1,13 +1,17 @@
-<!-- @dsCard group="Type" viewport="700x180" subtitle="Hanken Grotesk — all platform type incl. headings (400/500/600)" name="Platform display · Hanken Grotesk" -->
+<!-- @dsCard group="Type" viewport="700x220" subtitle="System face — eyebrow 10/700 · page title 21/680/−0.02em · file title 23/680" name="Platform display · system face" -->
 <!DOCTYPE html>
-<html><head><link rel="stylesheet" href="../styles.css">
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
-  body { margin: 0; background: var(--surface-page); color: var(--text-display); padding: 22px 24px; }
-  h1 { margin: 0; font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--text-3xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+  body { margin: 0; background: var(--surface-page); color: var(--text-display); padding: 22px 24px; font-family: var(--font-sans); }
+  .eyebrow { margin: 0; font-size: var(--text-eyebrow); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); }
+  h1 { margin: 12px 0 0; font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--text-title); line-height: var(--leading-title); letter-spacing: var(--tracking-tight); }
   h1 em { font-style: normal; color: var(--text-brand); }
-  .sub { margin-top: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .file { margin: 20px 0 0; font-weight: var(--weight-display); font-size: var(--text-file); line-height: var(--leading-title); letter-spacing: var(--tracking-title); }
+  .sub { margin-top: 20px; font-size: var(--text-meta); font-variant-numeric: tabular-nums; color: var(--text-muted); }
 </style></head>
 <body>
+  <div class="eyebrow">Growth engine</div>
   <h1>Pipeline up <em>+38%</em> this quarter.</h1>
-  <div class="sub">--font-display · Hanken Grotesk 600 · tracking -0.02em · platform headings & UI</div>
+  <div class="file">Acme — Growth Plan v4</div>
+  <div class="sub">--font-display = system face · eyebrow 10/700/+0.1em · page title 21/680/−0.02em · file title 23/680/−0.022em</div>
 </body></html>

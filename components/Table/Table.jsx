@@ -16,12 +16,12 @@ const hvTableCss = `
 .hv-table th{padding:10px 18px;text-align:left;font-size:11.5px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-400);border-bottom:1px solid var(--border-subtle);white-space:nowrap}
 .hv-table td{padding:12px 18px;color:var(--ink-900);border-bottom:1px solid var(--ink-50)}
 .hv-table tbody tr:last-child td{border-bottom:none}
-.hv-table tbody tr{transition:background-color var(--duration-fast) var(--ease-out)}
+.hv-table tbody tr{transition:background-color var(--duration-soft) var(--ease-out)}
 .hv-table--hover tbody tr:hover{background:var(--ink-50)}
 .hv-table .hv-table__num{text-align:right;font-family:var(--font-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
 .hv-table th.hv-table__num{font-family:var(--font-sans);font-size:11.5px;font-variant-numeric:normal}
 .hv-table .hv-table__strong{font-weight:500;color:var(--ink-950)}
-.hv-dtable{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden}
+.hv-dtable{background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-card);overflow:hidden}
 .hv-dtable__head{padding:12px 18px;border-bottom:1px solid var(--border-subtle)}
 .hv-dtable__title{margin:0;font-size:13px;font-weight:600;color:var(--ink-950)}
 `;

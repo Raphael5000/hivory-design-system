@@ -1,50 +1,70 @@
-/* Hivory typography tokens.
-   FAMILIES & SCOPE RULES:
-   · Hanken Grotesk — THE workhorse (replaced Söhne, 2026-06). All UI, body,
-     and headings on the PLATFORM; body and H3+ on the marketing site.
-     Weights in use: 400/500/600. Set tabular numerals on data surfaces
-     (font-variant-numeric: tabular-nums).
-   · Martel (serif) — MARKETING WEBSITE ONLY, and only for H1 and H2.
-     Never on the platform. Never below H2. Martel runs LIGHT:
-     200 for big display moments, 400 for standard marketing H1/H2.
-     (Italic Martel 300 is used for single-word accents inside display headings.)
-   · Geist Mono — data, metrics, code. */
+/* Hivory typography tokens — v4 "Glass Engine".
+   FAMILIES & SCOPE (unchanged):
+   · Hanken Grotesk — THE workhorse: all platform UI, body, headings. Weights in use
+     run 400 · 500 · 550 · 600 · 650 · 680 (the portal leans on the fractional weights
+     for titles). Set font-variant-numeric: tabular-nums on data surfaces.
+   · Martel (serif) — MARKETING WEBSITE ONLY, H1/H2 only, runs light (200/400, italic 300).
+     Never on the platform.
+   · Mono RETIRED (27 Jul) — one family across: data/metrics/timestamps/code use the system face with tabular-nums. */
 :root {
-  --font-sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-sans);              /* platform headings = Hanken */
+  /* Platform UI face = the system font (Apple direction, 24 Jul). SF on Apple,
+     Segoe/system elsewhere. Hanken retained for marketing/brand moments only. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-brand: "Hanken Grotesk", var(--font-sans);
+  --font-display: var(--font-sans);               /* platform headings = Hanken */
   --font-body: var(--font-sans);
   --font-marketing-display: "Martel", Georgia, serif; /* marketing H1/H2 ONLY */
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+  --font-mono: var(--font-sans); /* ONE FAMILY (27 Jul): mono retired — data runs in the system face, always with font-variant-numeric: tabular-nums */
 
-  /* Type scale */
+  /* ---- Type scale — platform (dense) ---- */
+  --text-eyebrow: 10px;   /* section eyebrows / uppercase micro-labels */
+  --text-meta: 11px;      /* meta, deltas, quiet counts */
+  --text-label: 11.5px;   /* colophon actions, small labels */
   --text-xs: 12px;
-  --text-sm: 13.5px;
-  --text-base: 15px;   /* platform app shell runs denser: 13px base */
-  --text-lg: 18px;
-  --text-xl: 22px;
+  --text-sm: 12.5px;      /* quiet list rows, secondary body */
+  --text-row: 13px;       /* row & card titles, nav items (dense UI) */
+  --text-base: 13.5px;    /* body / reading measure */
+  --text-lg: 15px;
+  --text-data: 20px;      /* mono metric values */
+  --text-title: 21px;     /* page title */
+  --text-file: 23px;      /* file / document title */
+  /* ---- larger display (marketing + hero moments) ---- */
   --text-2xl: 28px;
   --text-3xl: 36px;
   --text-4xl: 48px;
   --text-5xl: 64px;
 
-  /* Weights */
+  /* ---- Weights (the portal uses the fractional steps deliberately) ---- */
   --weight-regular: 400;
   --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-display: 600;             /* Hanken platform headings */
-  --weight-marketing-display: 200;   /* Martel big display (hero) */
+  --weight-row: 550;        /* row titles */
+  --weight-semibold: 600;   /* buttons, emphasis */
+  --weight-strong: 650;     /* card / section titles */
+  --weight-display: 680;    /* page & file titles */
+  --weight-marketing-display: 200;   /* Martel hero */
   --weight-marketing-heading: 400;   /* Martel standard H1/H2 */
 
-  /* Line heights */
-  --leading-tight: 1.1;              /* Hanken display */
-  --leading-marketing-display: 1.02; /* Martel 200 hero display */
-  --leading-marketing-heading: 1.4;  /* Martel 400 standard H1/H2 */
+  /* ---- Line heights ---- */
+  --leading-tight: 1.1;      /* large display */
+  --leading-title: 1.2;      /* page/file titles */
   --leading-snug: 1.25;
-  --leading-normal: 1.55;
+  --leading-data: 1.6;       /* mono data rows */
+  --leading-normal: 1.55;    /* dense prose */
+  --leading-body: 1.7;       /* reading body (13.5) */
+  --leading-marketing-display: 1.02;
+  --leading-marketing-heading: 1.4;
 
-  /* Tracking */
-  --tracking-display: -0.02em;            /* Hanken headings */
-  --tracking-marketing-display: -0.02em;  /* Martel display */
+  /* ---- Tracking ---- */
+  --tracking-tight: -0.02em;         /* titles */
+  --tracking-title: -0.022em;        /* file title */
+  --tracking-snug: -0.01em;          /* card/row titles */
   --tracking-body: 0;
+  --tracking-eyebrow: 0.1em;         /* uppercase eyebrows (0.09–0.13 in use) */
   --tracking-caps: 0.08em;
+
+  /* ---- Compatibility — v3 names. NEVER REMOVE a token name (see CLAUDE.md);
+     consumers resolve by name. Correct values or alias, don't delete. ---- */
+  --text-xl: 22px;                                  /* legacy step between --text-title 21 and --text-2xl 28 */
+  --tracking-display: var(--tracking-tight);        /* legacy alias */
+  --tracking-marketing-display: var(--tracking-tight); /* marketing H1/H2 tracking (unchanged value) */
 }

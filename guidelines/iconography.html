@@ -1,36 +1,57 @@
-<!-- @dsCard group="Brand" viewport="700x300" name="Iconography" subtitle="Custom Hivory set — hexagon signature, 1.5px round strokes, drawn in-house" -->
+<!-- @dsCard group="Brand" viewport="700x310" name="Iconography" subtitle="Tabler outline via webfont — 14/16/18 by font-size, muted → ink, never green; house glyphs only where exempt" -->
 <!DOCTYPE html>
 <html><head>
+<meta charset="utf-8">
 <link rel="stylesheet" href="../styles.css">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="../_ds_bundle.js"></script>
 <style>
-  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); color: var(--text-body); }
-  .wrap { padding: 18px 22px; }
-  .grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
-  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 11px 2px 8px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: var(--text-muted); }
-  .cell span { font-family: var(--font-mono); font-size: 8.5px; color: var(--text-faint); }
-  .rules { display: flex; gap: 18px; margin-top: 14px; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-  .rules b { color: var(--ink-900); font-weight: 600; display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-body); color: var(--text-body); }
+  .wrap { padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; }
+
+  .demo { box-shadow: inset 0 0 0 1px var(--border-subtle); border-radius: var(--radius-lg); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .sizerow { display: flex; align-items: center; gap: 12px; }
+  .sizerow .cap { width: 84px; flex: none; font-size: 9.5px; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+  .sizerow .glyphs { display: flex; align-items: center; gap: 12px; color: var(--text-muted); }
+  .s14 .glyphs i { font-size: 14px; }
+  .s16 .glyphs i { font-size: 16px; }
+  .s18 .glyphs i { font-size: 18px; }
+
+  .states { display: flex; align-items: center; gap: 20px; padding-top: 8px; box-shadow: inset 0 1px 0 var(--hairline); }
+  .state { display: flex; align-items: center; gap: 8px; font-size: 9.5px; color: var(--text-faint); }
+  .state i { font-size: 16px; }
+  .never { font-size: 10px; font-weight: var(--weight-semibold); color: var(--ink-950); }
+  code { font-family: var(--font-body); font-variant-numeric: tabular-nums; font-size: 10px; color: var(--text-muted); background: var(--surface-sunken); border-radius: var(--radius-sm); padding: 2px 6px; }
+
+  .rules { display: flex; gap: 18px; font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+  .rules b { color: var(--ink-900); font-weight: var(--weight-semibold); display: block; font-size: 10.5px; letter-spacing: var(--tracking-caps); text-transform: uppercase; margin-bottom: 3px; }
   .rules > div { flex: 1; }
 </style>
 </head><body>
 <div class="wrap">
-  <div class="grid" id="grid"></div>
+  <div class="demo">
+    <div class="sizerow s14">
+      <span class="cap">14 · dense</span>
+      <span class="glyphs"><i class="ti ti-search"></i><i class="ti ti-filter"></i><i class="ti ti-calendar"></i><i class="ti ti-chart-line"></i><i class="ti ti-settings"></i><i class="ti ti-upload"></i><i class="ti ti-bell"></i><i class="ti ti-arrow-up-right"></i><i class="ti ti-dots"></i></span>
+    </div>
+    <div class="sizerow s16">
+      <span class="cap">16 · default</span>
+      <span class="glyphs"><i class="ti ti-search"></i><i class="ti ti-filter"></i><i class="ti ti-calendar"></i><i class="ti ti-chart-line"></i><i class="ti ti-settings"></i><i class="ti ti-upload"></i><i class="ti ti-bell"></i><i class="ti ti-arrow-up-right"></i><i class="ti ti-dots"></i></span>
+    </div>
+    <div class="sizerow s18">
+      <span class="cap">18 · roomy</span>
+      <span class="glyphs"><i class="ti ti-search"></i><i class="ti ti-filter"></i><i class="ti ti-calendar"></i><i class="ti ti-chart-line"></i><i class="ti ti-settings"></i><i class="ti ti-upload"></i><i class="ti ti-bell"></i><i class="ti ti-arrow-up-right"></i><i class="ti ti-dots"></i></span>
+    </div>
+    <div class="states">
+      <span class="state"><i class="ti ti-adjustments" style="color: var(--text-muted);"></i>rest · text-muted</span>
+      <span class="state"><i class="ti ti-adjustments" style="color: var(--ink-950);"></i>active · ink-950</span>
+      <span class="state"><i class="ti ti-adjustments" style="color: var(--ink-200);"></i>disabled · ink-200</span>
+      <span class="never">Never green.</span>
+      <code>&lt;i class="ti ti-search"&gt;&lt;/i&gt;</code>
+    </div>
+  </div>
   <div class="rules">
-    <div><b>Grammar</b>16px grid, 1.5px even stroke, round caps + joins, no fills. Diagonals prefer the hexagon's 60° family over generic 45°.</div>
-    <div><b>Signature</b>The mark's hexagon replaces generic squares/circles — dashboard's fourth tile, the agent's body. Ours, not a pack's.</div>
-    <div><b>Color & fallback</b>Rest <code>text-muted</code> → active <code>ink-950</code> → disabled <code>ink-200</code>. Never green. Long-tail fallback in code: Phosphor (closest grammar).</div>
+    <div><b>The set</b>Tabler — outline only, MIT. Rendered via the webfont imported by <code>tokens/fonts.css</code>; sized by <code>font-size</code>, colored by <code>color</code>. No filled variants, ever.</div>
+    <div><b>Permanent exemptions</b>Brand marks (dual-hex spinner, hex agent mark, the lockup) · the house checkmark at 9–11px inside pills and nodes — <code>ti-check</code> is optically heavier there and only used at 14px+ · chart geometry, which is data drawn from values.</div>
+    <div><b>The house set</b>The in-house 20-glyph set (<code>components/Icon</code>) survives only for those exempted uses. Everything else in platform UI is Tabler — do not draw new glyphs.</div>
   </div>
 </div>
-<script>
-const e = React.createElement;
-const { Icon, ICON_NAMES } = window.HivoryDesignSystem_354905;
-ReactDOM.createRoot(document.getElementById('grid')).render(
-  e(React.Fragment, null, ICON_NAMES.map((n) =>
-    e('div', { className: 'cell', key: n }, e(Icon, { name: n }), e('span', null, n))
-  ))
-);
-</script>
 </body></html>

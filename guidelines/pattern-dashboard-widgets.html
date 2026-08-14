@@ -1,55 +1,112 @@
-<!-- @dsCard group="Components" viewport="760x440" name="Dashboard widget pattern" subtitle="Scorecard row → chart-in-Card → table-in-Card, all on the warm-gray app surface" -->
+<!-- @dsCard group="Components" viewport="760x540" name="Dashboard widget pattern" subtitle="Fixed 4-scorecard spine → ONE chart-in-card → table-in-card on the cool-grey canvas; exactly one elevated card" -->
 <!DOCTYPE html>
 <html><head>
+<meta charset="utf-8">
 <link rel="stylesheet" href="../styles.css">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="../_ds_bundle.js"></script>
 <style>
-body{margin:0;background:var(--surface-app);font-family:var(--font-sans)}
-.axis{font-family:var(--font-mono);font-size:10px;fill:var(--ink-400)}
+  body { margin: 0; background: var(--surface-app); font-family: var(--font-body); color: var(--text-body); }
+  .page { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .card { background: var(--surface-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); box-sizing: border-box; }
+  .card.elevated { box-shadow: var(--shadow-elevated); }
+
+  /* ── the spine: fixed 4-scorecard row, the ONLY place scorecards exist ── */
+  .spine { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .score { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .score .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .score .label { font-size: 11px; font-weight: var(--weight-medium); color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .score .delta { font-size: 11px; font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; color: var(--text-brand); flex: none; }
+  .score .delta.down { color: var(--status-negative-text); }
+  .score .mid { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+  .score .value { font-size: 20px; font-weight: var(--weight-semibold); color: var(--ink-950); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .score svg { width: 64px; height: 24px; flex: none; }
+
+  /* ── chart-in-card ── */
+  .chart { padding: 14px 16px; }
+  .chart .head { display: flex; align-items: baseline; justify-content: space-between; }
+  .chart .title { font-size: 13px; font-weight: var(--weight-strong); letter-spacing: var(--tracking-snug); color: var(--ink-950); }
+  .chart .range { font-size: 10.5px; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+  .chart .now { display: flex; align-items: baseline; gap: 8px; margin-top: 3px; }
+  .chart .now .value { font-size: 16px; font-weight: var(--weight-semibold); color: var(--ink-950); font-variant-numeric: tabular-nums; }
+  .chart .now .delta { font-size: 11px; font-weight: var(--weight-semibold); color: var(--text-brand); font-variant-numeric: tabular-nums; }
+  .chart svg.plot { display: block; width: 100%; height: 92px; margin-top: 8px; }
+  .chart .axis { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-faint); font-variant-numeric: tabular-nums; padding-top: 3px; }
+
+  /* ── table-in-card (generated view: ≤4 columns, ≤8 rows) ── */
+  .tcard { padding: 12px 16px 10px; }
+  .tcard .title { font-size: 13px; font-weight: var(--weight-strong); letter-spacing: var(--tracking-snug); color: var(--ink-950); }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th { font-size: 10px; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-faint); text-align: left; padding: 5px 0; }
+  td { font-size: 12.5px; padding: 7px 0; box-shadow: inset 0 1px 0 var(--hairline); }
+  td.strong { font-weight: var(--weight-row); color: var(--ink-950); }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.delta { color: var(--text-brand); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
+  td.delta.down { color: var(--status-negative-text); }
+  .prov { margin: 8px 0 0; font-size: 9.5px; color: var(--text-faint); }
+
+  .note { margin: 0; font-size: 10.5px; color: var(--text-muted); line-height: 1.5; }
+  .note b { color: var(--ink-950); font-weight: var(--weight-semibold); }
 </style>
 </head><body>
-<div id="root"></div>
-<script>
-const e = React.createElement;
-const { Stat, Card, Table, Badge, Button, ChartLegend } = window.HivoryDesignSystem_354905;
-const grid = [30, 60, 90].map(y =>
-  e('line', { key: y, x1: 0, x2: 420, y1: y, y2: y, stroke: 'var(--ink-100)', strokeWidth: 1 })
-);
-ReactDOM.createRoot(document.getElementById('root')).render(
-  e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' } },
-    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
-      e(Stat, { label: 'Pipeline', value: '$2.41M', delta: '38.2%', deltaTone: 'positive' }),
-      e(Stat, { label: 'CAC', value: '$118', delta: '12.4%', direction: 'down', deltaTone: 'caution' }),
-      e(Stat, { label: 'Win rate', value: '31%', delta: '4.1%', deltaTone: 'positive' })
-    ),
-    e('div', { style: { display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '12px', alignItems: 'start' } },
-      e(Card, { title: 'Pipeline by week', actions: e(Button, { variant: 'outline', size: 'sm' }, 'Last 30 days ▾') },
-        e('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
-          e('svg', { width: '100%', height: 110, viewBox: '0 0 420 110', preserveAspectRatio: 'none' },
-            grid,
-            e('polyline', { points: '0,86 60,74 120,80 180,58 240,52 300,34 360,40 420,18', fill: 'none', stroke: 'var(--data-1-on-light)', strokeWidth: 2, strokeLinejoin: 'round' })
-          ),
-          e(ChartLegend, { items: [ { label: 'Pipeline', value: '$2.41M' } ] })
-        )
-      ),
-      e(Card, { flush: true, title: 'Top campaigns' },
-        e(Table, {
-          columns: [
-            { key: 'name', label: 'Campaign', strong: true },
-            { key: 'status', label: 'Status' },
-            { key: 'roas', label: 'ROAS', num: true }
-          ],
-          rows: [
-            { name: 'Q3 demand engine', status: e(Badge, { status: 'positive', dot: true }, 'Live'), roas: '5.8×' },
-            { name: 'Founder content', status: e(Badge, { status: 'info', dot: true }, 'Testing'), roas: '3.1×' },
-            { name: 'Lifecycle winback', status: e(Badge, { status: 'caution', dot: true }, 'Queued'), roas: '—' }
-          ]
-        })
-      )
-    )
-  )
-);
-</script>
+<div class="page">
+
+  <div class="spine">
+    <div class="card score">
+      <div class="top"><span class="label">Sessions</span><span class="delta">+18.2%</span></div>
+      <div class="mid">
+        <span class="value">412.8K</span>
+        <svg viewBox="0 0 64 24"><path d="M0 20 L10 17 L20 18 L30 13 L40 11 L50 7 L62 4 L62 24 L0 24 Z" fill="var(--data-1-on-light)" fill-opacity="0.08"/><path d="M0 20 L10 17 L20 18 L30 13 L40 11 L50 7 L62 4" fill="none" stroke="var(--data-1-on-light)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="62" cy="4" r="2" fill="var(--data-1-on-light)"/></svg>
+      </div>
+    </div>
+    <div class="card score">
+      <div class="top"><span class="label">Qualified leads</span><span class="delta">+11.4%</span></div>
+      <div class="mid">
+        <span class="value">1,284</span>
+        <svg viewBox="0 0 64 24"><path d="M0 18 L10 15 L20 16 L30 12 L40 13 L50 9 L62 6 L62 24 L0 24 Z" fill="var(--data-1-on-light)" fill-opacity="0.08"/><path d="M0 18 L10 15 L20 16 L30 12 L40 13 L50 9 L62 6" fill="none" stroke="var(--data-1-on-light)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="62" cy="6" r="2" fill="var(--data-1-on-light)"/></svg>
+      </div>
+    </div>
+    <div class="card score">
+      <div class="top"><span class="label">CAC</span><span class="delta down">−3.1%</span></div>
+      <div class="mid">
+        <span class="value">$118</span>
+        <svg viewBox="0 0 64 24"><path d="M0 8 L10 10 L20 9 L30 13 L40 12 L50 15 L62 16 L62 24 L0 24 Z" fill="var(--data-1-on-light)" fill-opacity="0.08"/><path d="M0 8 L10 10 L20 9 L30 13 L40 12 L50 15 L62 16" fill="none" stroke="var(--data-1-on-light)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="62" cy="16" r="2" fill="var(--data-1-on-light)"/></svg>
+      </div>
+    </div>
+    <div class="card score">
+      <div class="top"><span class="label">Refill orders</span></div>
+      <div class="mid">
+        <span class="value" style="color: var(--text-faint);">—</span>
+        <svg viewBox="0 0 64 24"><path d="M0 12 L62 12" fill="none" stroke="var(--ink-300)" stroke-width="1.5"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="card elevated chart">
+    <div class="head"><span class="title">Sessions</span><span class="range">30 days · vs previous</span></div>
+    <div class="now"><span class="value">412.8K</span><span class="delta">+18.2%</span></div>
+    <svg class="plot" viewBox="0 0 680 92" preserveAspectRatio="none" aria-label="Sessions, 30 days">
+      <line x1="0" y1="23" x2="680" y2="23" stroke="var(--chart-grid)" stroke-width="1"/>
+      <line x1="0" y1="46" x2="680" y2="46" stroke="var(--chart-grid)" stroke-width="1"/>
+      <line x1="0" y1="69" x2="680" y2="69" stroke="var(--chart-grid)" stroke-width="1"/>
+      <path d="M0 74 C60 70 120 66 180 60 C240 54 300 56 360 46 C420 37 480 39 540 27 C600 17 640 14 674 10 L674 92 L0 92 Z" fill="var(--data-1-on-light)" fill-opacity="0.07"/>
+      <path d="M0 74 C60 70 120 66 180 60 C240 54 300 56 360 46 C420 37 480 39 540 27 C600 17 640 14 674 10" fill="none" stroke="var(--data-1-on-light)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="674" cy="10" r="3" fill="var(--data-1-on-light)"/>
+    </svg>
+    <div class="axis"><span>Jul 15</span><span>Jul 22</span><span>Jul 29</span><span>Aug 5</span><span>Aug 12</span></div>
+  </div>
+
+  <div class="card tcard">
+    <span class="title">Top campaigns</span>
+    <table>
+      <thead><tr><th>Campaign</th><th>Channel</th><th class="num">ROAS</th><th class="num">Δ</th></tr></thead>
+      <tbody>
+        <tr><td class="strong">Q3 demand engine</td><td>Paid social</td><td class="num">5.8×</td><td class="num delta">+12.0%</td></tr>
+        <tr><td class="strong">Founder content</td><td>Organic</td><td class="num">3.1×</td><td class="num delta">+4.1%</td></tr>
+        <tr><td class="strong">Lifecycle winback</td><td>Email</td><td class="num">1.8×</td><td class="num delta down">−2.2%</td></tr>
+      </tbody>
+    </table>
+    <p class="prov">Analytics · synced 12 min ago</p>
+  </div>
+
+  <p class="note"><b>The grammar:</b> canvas is the cool-grey <b>--surface-app</b> · exactly <b>one elevated card</b> per screen (<b>--shadow-elevated</b> — here the hero chart); everything else hairline ring + whisper shadow · charts draw horizontal grid lines only, no axis lines, green-600 2px series with area fill · <b>generated views:</b> only the spine may be scorecards; tables ≤ 4 columns, ≤ 8 rows; never pies, gauges or dual axes.</p>
+</div>
 </body></html>

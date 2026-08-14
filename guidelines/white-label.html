@@ -1,0 +1,58 @@
+<!-- @dsCard group="Brand" viewport="700x240" subtitle="Partner theming swaps exactly three tokens — status colours never follow the brand" name="White label" -->
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-app); font-family: var(--font-sans); color: var(--text-body); padding: 14px 18px; }
+  [data-brand-demo] {
+    --action-brand: #4F46E5; /* drift-ok: white-label demo swatch */
+    --on-action-brand: var(--white);
+    --border-focus: #4F46E5; /* drift-ok: white-label demo swatch */
+  }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .panel { background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 12px 14px; }
+  .panel h3 { margin: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); }
+  .row { margin-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; }
+  .cta { display: inline-flex; align-items: center; height: 26px; padding: 0 12px; border-radius: var(--radius-pill); background: var(--action-brand); color: var(--on-action-brand); font-size: var(--text-label); font-weight: 600; white-space: nowrap; }
+  .chip { display: inline-flex; align-items: center; height: 26px; padding: 0 12px; border-radius: var(--radius-control); background: var(--surface-card); color: var(--text-muted); font-size: var(--text-label); box-shadow: inset 0 0 0 1.5px var(--border-focus); white-space: nowrap; }
+  .status { margin-top: 12px; display: flex; gap: 12px; align-items: center; }
+  .status span { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+  .dot { width: 7px; height: 7px; border-radius: var(--radius-pill); display: inline-block; }
+  .laws { margin-top: 12px; display: flex; flex-direction: column; gap: 3px; }
+  .laws div { font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+  .laws b { color: var(--ink-950); font-weight: 600; }
+</style>
+</head><body>
+  <div class="cols">
+    <div class="panel">
+      <h3>Hivory default</h3>
+      <div class="row">
+        <span class="cta">Approve &amp; publish</span>
+        <span class="chip">Focused field</span>
+      </div>
+      <div class="status">
+        <span><span class="dot" style="background: var(--green-500);"></span>done</span>
+        <span><span class="dot" style="background: var(--amber-500);"></span>needs you</span>
+        <span><span class="dot" style="background: var(--red-500);"></span>failed</span>
+      </div>
+    </div>
+    <div class="panel" data-brand-demo>
+      <h3>Partner theme — three tokens swapped</h3>
+      <div class="row">
+        <span class="cta">Approve &amp; publish</span>
+        <span class="chip">Focused field</span>
+      </div>
+      <div class="status">
+        <span><span class="dot" style="background: var(--green-500);"></span>done</span>
+        <span><span class="dot" style="background: var(--amber-500);"></span>needs you</span>
+        <span><span class="dot" style="background: var(--red-500);"></span>failed</span>
+      </div>
+    </div>
+  </div>
+  <div class="laws">
+    <div><b>Partner theming swaps exactly three tokens:</b> --action-brand · --on-action-brand · --border-focus. Nothing else follows the brand.</div>
+    <div><b>Status colours never change:</b> green means done, amber means it needs you, red means it failed — in every deployment.</div>
+    <div><b>--on-action-brand is measured for contrast</b> against the brand fill — never chosen.</div>
+  </div>
+</body></html>

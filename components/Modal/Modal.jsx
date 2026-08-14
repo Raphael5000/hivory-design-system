@@ -1,10 +1,10 @@
 /* Hivory Modal — radius 14 panel on a soft ink scrim; quiet, border-led. */
 const hvModalCss = `
 .hv-modal-overlay{position:fixed;inset:0;background:rgba(13,15,14,0.40);display:flex;align-items:center;justify-content:center;padding:24px;z-index:100}
-.hv-modal{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);width:100%;font-family:var(--font-sans);box-sizing:border-box}
+.hv-modal{background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);width:100%;font-family:var(--font-sans);box-sizing:border-box}
 .hv-modal__head{padding:18px 20px 0}
 .hv-modal__title{margin:0;font-size:15.5px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-950)}
-.hv-modal__desc{margin:5px 0 0;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
+.hv-modal__desc{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--text-muted)}
 .hv-modal__body{padding:16px 20px}
 .hv-modal__foot{display:flex;justify-content:flex-end;gap:8px;padding:0 20px 18px}
 `;

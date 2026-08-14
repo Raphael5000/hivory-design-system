@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <script src="./image-slot.js"></script>
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green-800); }
+    a:hover { color: var(--green-700); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+    .card { border-radius: var(--radius-2xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+    .staterow { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+    .staterow:last-child { border-bottom: none; }
+    .chip { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px; }
+    .caption { margin-top: 8px; font-size: var(--text-meta); color: var(--text-muted); }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Image slot</div>
+    <h1 style="margin: 12px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 15ch;">Where the client's own picture goes.</h1>
+    <p style="margin: 12px 0 0; max-width: 680px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">The one place in a mock that isn't inert. Everything else in an artifact is drawn; the image slot accepts a real file, dropped straight onto the draft. Drag any image onto the frames below — they keep it.</p>
+
+    <!-- SPECIMEN -->
+    <div class="card" style="margin-top: 34px; padding: 34px 36px;">
+      <div style="display: grid; grid-template-columns: 1.91fr 1fr; gap: 20px; align-items: start;">
+        <div>
+          <div style="aspect-ratio: 1.91 / 1;"><image-slot id="isd-post" placeholder="Post image · 1200 × 627"></image-slot></div>
+          <div class="caption">Social post media — the aspect ratio the destination demands, never a square crop of it.</div>
+        </div>
+        <div>
+          <div style="aspect-ratio: 4 / 5;"><image-slot id="isd-portrait" placeholder="Founder portrait · 4:5"></image-slot></div>
+          <div class="caption">Portrait, from the client's own shoot.</div>
+        </div>
+      </div>
+      <div style="margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--hairline); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <div><div style="aspect-ratio: 1 / 1;"><image-slot id="isd-lib-1" placeholder="Team"></image-slot></div></div>
+        <div><div style="aspect-ratio: 1 / 1;"><image-slot id="isd-lib-2" placeholder="Packaging"></image-slot></div></div>
+        <div><div style="aspect-ratio: 1 / 1;"><image-slot id="isd-lib-3" placeholder="Delivery"></image-slot></div></div>
+        <div><div style="aspect-ratio: 1 / 1;"><image-slot id="isd-lib-4" placeholder="Compost"></image-slot></div></div>
+      </div>
+      <div class="caption">A library pool — square tiles, because the pool is about having the picture, not about where it lands.</div>
+    </div>
+
+    <!-- WHERE IT LIVES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Where it lives</div><h2 class="sect-h">Four surfaces, one behaviour.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ places }}" as="p" hint-placeholder-count="4">
+        <div class="staterow"><span style="font-size: var(--text-sm); font-weight: var(--weight-strong);">{{ p.k }}</span><span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ p.v }}</span></div>
+      </sc-for>
+    </div>
+
+    <!-- VARIANTS -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Variants</div><h2 class="sect-h">Shape follows the destination.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 34px 36px;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: end;">
+        <div><div style="aspect-ratio: 1.91 / 1;"><image-slot id="isv-rect" placeholder="1.91:1"></image-slot></div><div class="caption"><b style="font-weight: 650; color: var(--text-body);">rect</b> — feed media, hero images</div></div>
+        <div><div style="aspect-ratio: 1 / 1;"><image-slot id="isv-round" shape="rounded" radius="14" placeholder="rounded"></image-slot></div><div class="caption"><b style="font-weight: 650; color: var(--text-body);">rounded</b> — library tiles, cards</div></div>
+        <div><div style="width: 88px; height: 88px;"><image-slot id="isv-circle" shape="circle" placeholder="avatar"></image-slot></div><div class="caption"><b style="font-weight: 650; color: var(--text-body);">circle</b> — a person</div></div>
+        <div><div style="aspect-ratio: 16 / 9;"><image-slot id="isv-fit" fit="contain" placeholder="logo · contain"></image-slot></div><div class="caption"><b style="font-weight: 650; color: var(--text-body);">fit="contain"</b> — logos and marks, never cropped</div></div>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 760px; text-wrap: pretty;">The default is <b style="font-weight: 650;">cover</b> — the picture fills the frame, because the frame is the destination's real shape. <b style="font-weight: 650;">contain</b> is for artwork whose edges are the point: a lockup, a mark, a diagram. Getting this backwards is how a client's logo ends up cropped in their own brand kit.</div>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 64px;"><div class="sect-eye">The eight states</div><h2 class="sect-h">Mostly about the empty one.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="8">
+        <div class="staterow">
+          <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: {{ s.nameColor }};">{{ s.k }}</span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: {{ s.color }}; text-wrap: pretty;">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- API -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Attributes</div><h2 class="sect-h">Six, and one of them is mandatory.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 8px 24px 18px;">
+      <sc-for list="{{ api }}" as="a" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+          <span><span class="chip">{{ a.k }}</span></span>
+          <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">{{ a.v }}</span>
+        </div>
+      </sc-for>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">The slot fills its container by default, so <b style="font-weight: 650;">the parent owns the aspect ratio</b>. Give it explicit width and height only for a genuinely fixed-size slot such as an avatar.</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div style="margin-top: 64px;"><div class="sect-eye">Content rules</div><h2 class="sect-h">The placeholder is a brief.</h2></div>
+    <div class="card" style="margin-top: 20px; padding: 24px 26px; max-width: 760px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Say what belongs there and, where it matters, at what size: <b style="font-weight: 650;">“Post image · 1200 × 627”</b>, <b style="font-weight: 650;">“Primary lockup”</b>, <b style="font-weight: 650;">“Founder portrait · 4:5”</b>. Never <b style="font-weight: 650;">“Upload image”</b>, <b style="font-weight: 650;">“Drop file here”</b> or <b style="font-weight: 650;">“No image”</b> — the drop behaviour is already obvious from the frame, and the one thing the client cannot guess is what this particular picture is for. Sentence case, no full stop, no verb. Dimensions use × not x, and only when the destination genuinely constrains them.</div>
+
+    <!-- DO / DON'T -->
+    <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);">Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Give every slot a distinct, stable id — that is what makes a dropped picture survive a reload. Let the parent set the ratio. Use the destination's real proportions. Say what the picture is for.</div>
+      </div>
+      <div class="card" style="padding: 24px 26px;">
+        <div style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);">Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Reuse an id across surfaces — two slots sharing one id share one picture. A slot inside a mock's inert chrome. Stock photography as a placeholder image. <span style="font-family: var(--font-mono);">contain</span> on photography, or <span style="font-family: var(--font-mono);">cover</span> on a logo.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Image slot · in use across Design, Knowledge and the post and article artifacts · pairs with <a href="Kit - Mock.dc.html">Mock Kit</a></div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const S = [
+      ['Rest', 'A dashed-ring frame on --surface-card with the placeholder line centred. It reads as a hole waiting to be filled, not as a broken image.'],
+      ['Hover', 'The ring firms and a quiet Replace affordance appears over a filled slot. An empty slot needs no hover — the frame is already the invitation.'],
+      ['Pressed', 'brightness(0.94) from motion-base. The whole frame is the target, not a button inside it.'],
+      ['Focus', 'motion-base ring on the frame. The slot is a real control: it takes a tab stop and opens the file picker on Enter, because drag-and-drop alone is unreachable by keyboard.'],
+      ['Selected', 'n/a \u2014 a slot holds one picture. Choosing between options is art/visual\u2019s cycler, a different component.'],
+      ['Disabled', 'n/a \u2014 in read mode the slot is not disabled, it is simply not mounted: the mock renders the picture as plain media. A dead drop zone in a proposal invites an action that cannot happen.'],
+      ['Loading', 'The frame holds its exact size and takes a Skeleton shimmer. Never collapse to zero height while a picture loads \u2014 the reflow moves everything below it.'],
+      ['Empty', 'THE default state, and the one that matters. The placeholder names what belongs there. No illustration, no camera glyph, no \u201cdrag files here\u201d \u2014 the dashed frame already says that.']
+    ];
+    return {
+      places: [
+        { k: 'Design', v: 'Brand kit lockups (four colourways, drop-to-replace), the production photo library, and each template\u2019s reference and sample grids. The heaviest user by far.' },
+        { k: 'Knowledge', v: 'The Brand images document \u2014 the pictures the engine learns the client\u2019s look from.' },
+        { k: 'art/post', v: 'The post\u2019s media at 1.91:1. The client can drop a real photo straight into the draft, and the Designer job\u2019s pick fills the same slot.' },
+        { k: 'art/article', v: 'The hero figure and any in-body image block, at 16:9 with an editable caption.' }
+      ],
+      states: S.map(([k, v]) => {
+        const na = v.startsWith('n/a');
+        return { k, v: na ? v.replace(/^n\/a \u2014 /, '') + '  (not applicable)' : v,
+          nameColor: na ? 'var(--text-faint)' : 'var(--text-body)',
+          color: na ? 'var(--text-faint)' : 'var(--text-secondary)' };
+      }),
+      api: [
+        { k: 'id', v: 'MANDATORY and unique across the whole surface. The dropped picture is stored against it, so a duplicated id makes two slots share one image and a missing one loses the drop on reload.' },
+        { k: 'placeholder', v: 'What belongs there, in the client\u2019s words. See the content rules below.' },
+        { k: 'src', v: 'A starting image \u2014 a generated lockup, a Designer sample. The client\u2019s drop replaces it; the original is never lost, because src is the fallback.' },
+        { k: 'fit', v: 'cover (default) or contain. Cover for photography, contain for artwork whose edges are the point.' },
+        { k: 'shape', v: 'rect (default) \u00b7 rounded \u00b7 circle \u00b7 pill, with radius to tune rounded. Shape follows the destination, never decoration.' },
+        { k: 'credit', v: 'Optional attribution, with credit-href when it links. Used for licensed imagery, never for the client\u2019s own files.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/hivory-design-system-354905f9-6f73-4d5d-a981-4ee5ceeab772/tokens/typography.css">
+  <style>
+    /* ── motion-base (system, do not localise) ────────────────────────────
+       Keyboard focus, pressed feedback and the reduced-motion contract.
+       Cannot be inline: they are pseudo-class and media rules. */
+    :where(button, a, input, textarea, select, [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]):focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    :where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) { outline: none; }
+    :where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active { filter: brightness(0.94); }
+    :where(button, [role="button"])[disabled], :where(button, [role="button"])[aria-disabled="true"] { filter: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      /* motion that CARRIES INFORMATION keeps running, calmed — never removed */
+      [data-motion="essential"] {
+        animation-duration: 2.4s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    .fld { height: 44px; border: none; border-radius: var(--radius-control); background: var(--ink-50);
+      box-shadow: inset 0 0 0 1px rgba(23,24,26,0.04); padding: 0 15px; font-family: var(--font-sans);
+      font-size: 15px; color: var(--text-body); width: 100%; box-sizing: border-box; outline: none;
+      caret-color: var(--green-600); transition: background var(--duration-soft) var(--ease-out), box-shadow var(--duration-soft) var(--ease-out); }
+    .fld::placeholder { color: var(--text-faint); }
+    .fld:hover { background: #EEEFEB; }
+    .fld:focus { background: var(--surface-card); box-shadow: inset 0 0 0 1.5px var(--border-focus); }
+    .fld.err { background: var(--surface-card); box-shadow: inset 0 0 0 1.5px var(--action-danger); }
+    .fld:disabled { background: var(--ink-50); color: var(--text-ghost); box-shadow: none; cursor: not-allowed; }
+    textarea.fld { height: auto; padding: 12px 15px; line-height: 1.5; resize: none; }
+    select.fld { appearance: none; -webkit-appearance: none; cursor: pointer; }
+    .fld-lg { height: 52px; border-radius: var(--radius-lg); font-size: 16px; padding: 0 18px; }
+    .inl { border: none; outline: none; background: transparent; font-family: var(--font-sans); font-size: 15px; color: var(--text-body); caret-color: var(--green-600); padding: 0; width: 100%; }
+    .lbl { display: block; font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--text-secondary); margin-bottom: 8px; letter-spacing: -0.005em; }
+    .hint { font-size: var(--text-label); color: var(--text-muted); margin-top: 8px; }
+    .hint.err { color: var(--action-danger); }
+    .sect-eye { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--green-700); text-transform: uppercase; }
+    .sect-h { font-size: 34px; font-weight: var(--weight-display); letter-spacing: -0.03em; line-height: 1.03; margin: 12px 0 0; }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--canvas); font-family: var(--font-sans); color: var(--text-body);">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 84px 48px 120px;">
+
+    <!-- HERO -->
+    <a href="Hivory Design System.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"></path></svg>Design System</a>
+    <div style="margin-top: 34px;" class="sect-eye">Component · Input</div>
+    <h1 style="margin: 20px 0 0; font-size: 66px; font-weight: var(--weight-display); letter-spacing: -0.045em; line-height: 0.98; max-width: 13ch;">Type, it listens.</h1>
+    <p style="margin: 20px 0 0; max-width: 620px; font-size: 22px; line-height: 1.45; color: var(--text-secondary); text-wrap: pretty;">In the product, inputs are almost always <b style="font-weight: var(--weight-semibold); color: var(--text-body);">inline</b> — a green caret in a composer, a fix, a title. The standalone field is filled and recessed, never a bordered box, so it feels part of the surface.</p>
+
+    <!-- FEATURED: focused field -->
+    <div style="margin-top: 64px; position: relative; border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-elevated); background: var(--canvas); padding: 72px 0;">
+      <div style="width: 420px; margin: 0 auto;">
+        <label class="lbl" for="hero" style="font-size: 14px;">Work email</label>
+        <input id="hero" class="fld fld-lg" style="box-shadow: inset 0 0 0 1.5px var(--border-focus); background: var(--surface-card);" value="mara@puregood.co">
+        <div class="hint" style="font-size: 13px;">Focused — the field lifts to white, a crisp green ring, a green caret.</div>
+      </div>
+      <div style="position: absolute; left: 34px; bottom: 30px; max-width: 280px;"><div style="font-size: 20px; font-weight: 650; letter-spacing: -0.02em;">The filled field</div><div style="margin-top: 3px; font-size: 15px; color: var(--text-muted);">Recessed into the surface, never a bordered box.</div></div>
+    </div>
+
+    <!-- STATES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">States</div><h2 class="sect-h">Every state, quiet.</h2></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px 24px; margin-top: 34px;">
+      <div><input class="fld" placeholder="Placeholder"><div class="hint">Rest — recessed fill</div></div>
+      <div><input class="fld" value="Focused" style="box-shadow: inset 0 0 0 1.5px var(--border-focus); background: var(--surface-card);"><div class="hint">Focus — lifts to white</div></div>
+      <div><input class="fld" value="pure-good.com"><div class="hint">Filled</div></div>
+      <div><input class="fld err" value="not-an-email"><div class="hint err">Enter a valid email</div></div>
+      <div><input class="fld" value="Locked" disabled="disabled"><div class="hint">Disabled</div></div>
+      <div><input class="fld" placeholder="Hover me"><div class="hint">Fill warms on hover</div></div>
+    </div>
+
+    <!-- TYPES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Types</div><h2 class="sect-h">The kinds you'll use.</h2></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; margin-top: 34px;">
+      <div><label class="lbl">Text</label><input class="fld" placeholder="Company name"></div>
+      <div><label class="lbl">Select</label><div style="position: relative;"><select class="fld"><option>Invite as Editor</option><option>Invite as Approver</option></select><span style="position: absolute; right: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; display: flex;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"></path></svg></span></div></div>
+      <div><label class="lbl">Search</label><div style="position: relative;"><span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-faint); display: flex;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6.8" cy="6.8" r="4.2"></circle><path d="M13.4 13.4 10 10"></path></svg></span><input class="fld" placeholder="Search sources" style="padding-left: 38px;"></div></div>
+      <div><label class="lbl">Textarea</label><textarea class="fld" rows="3" placeholder="Tell us about your growth goals…"></textarea></div>
+    </div>
+
+    <!-- INLINE (the product default) -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Inline · the product default</div><h2 class="sect-h">Where it really lives.</h2></div>
+    <div style="margin-top: 12px; font-size: var(--text-sm); color: var(--text-muted); max-width: 560px;">Inside the app, a field almost never stands alone. It's borderless and lives in place — composer, memory fix, block title — carrying only the green caret.</div>
+    <div style="margin-top: 34px; display: flex; align-items: center; gap: 10px; background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 9px 9px 9px 18px; max-width: 620px;">
+      <input class="inl" placeholder="Draft a post about the refill milestone…" style="flex: 1;">
+      <button style="height: 34px; padding: 0 18px; border: none; border-radius: var(--radius-pill); background: var(--action-primary); color: var(--white); font-family: var(--font-sans); font-size: 14px; font-weight: var(--weight-semibold); cursor: pointer;">Send</button>
+    </div>
+    <div style="margin-top: 12px; background: var(--surface-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); padding: 16px 20px; max-width: 620px;">
+      <div style="display: flex; align-items: baseline; gap: 9px;"><span style="color: var(--green-600);">–</span><input class="inl" value="Refill stations now in 6 cities" style="flex: 1;"></div>
+    </div>
+
+    <!-- IN CONTEXT: marketing -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Standalone · marketing</div><h2 class="sect-h">Standing alone.</h2></div>
+    <div style="margin-top: 34px; border-radius: var(--radius-2xl); background: var(--surface-dark); padding: 48px 52px; overflow: hidden;">
+      <div style="font-size: 32px; font-weight: var(--weight-display); letter-spacing: -0.02em; color: var(--white);">Uncommon growth, in your inbox.</div>
+      <div style="margin-top: 20px; display: flex; gap: 10px; max-width: 460px;">
+        <input class="fld fld-lg" placeholder="you@company.com" style="flex: 1; background: rgba(255,255,255,0.08); color: var(--white); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);">
+        <button style="height: 52px; padding: 0 26px; border: none; border-radius: var(--radius-pill); background: var(--action-brand); color: var(--on-action-brand); font-family: var(--font-sans); font-size: 15px; font-weight: var(--weight-semibold); cursor: pointer; white-space: nowrap;">Subscribe</button>
+      </div>
+      <div style="margin-top: 12px; font-size: var(--text-label); color: var(--text-muted-on-dark);">On dark, the fill is a translucent white; the hero CTA is the one green moment.</div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div style="margin-top: 104px;"><div class="sect-eye">Guidelines</div><h2 class="sect-h">The discipline.</h2></div>
+    <div style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="display: flex; align-items: center; gap: 7px; font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--green-700);"><span style="width: 5px; height: 5px; border-radius: 999px; background: var(--green-500);"></span>Do</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Prefer inline in the product. Reach for the filled field only when a field must stand alone. Recessed at rest, white on focus, one crisp green ring, green caret. Error in plain language under the field.</div>
+      </div>
+      <div style="border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); padding: 24px 26px;">
+        <div style="display: flex; align-items: center; gap: 7px; font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--red-700);"><span style="width: 5px; height: 5px; border-radius: 999px; background: var(--red-700);"></span>Don't</div>
+        <div style="margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">A hard bordered rectangle. A coloured focus glow. Standalone fields where an inline edit belongs. Placeholder used as the label.</div>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Tokens used</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">17 tokens, read from the component's stylesheet. This is the contract: change one of these and the component changes everywhere.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Surface</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--surface-card</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Ink</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-300</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-50</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-700</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ink-900</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-faint</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--text-muted</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Signal</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-500</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--green-600</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--red-500</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--red-700</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Geometry</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--border-strong</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--radius-control</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Motion</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--duration-fast</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--ease-out</span><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--transition-soft</span></span>
+      </div>
+      <div style="display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-meta); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);">Type</span>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-700); background: var(--ink-50); padding: 3px 7px; border-radius: 5px;">--font-sans</span></span>
+      </div>
+      <div style="padding-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Focus is expressed as a <b style="font-weight: 650;">--green-600</b> inset ring, not a halo: motion-base owns the focus outline system-wide, and two rings on one field was a real bug (fixed 31 Jul).</div>
+    </div>
+
+  </div>
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Variants</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary);">Input · Select (chevron, no free text) · Textarea (min-height 72, resize vertical). Each takes label, hint and error. Error replaces hint — never both at once.</div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">The eight states</div>
+    <div style="margin-top: 3px; font-size: var(--text-sm); color: var(--text-muted);">Every interactive component provides all eight or declares which do not apply, with the reason. A silent omission is the bug this table exists to prevent.</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 8px 24px 18px; margin-top: 12px;">
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Rest</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">34px field, --radius-control, 1px --border-strong inset ring on --surface-card, caret --green-500.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Hover</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Ring deepens to --ink-300 at --duration-soft. The label never moves.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Pressed <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a field is not pressed; clicking it focuses it.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Focus</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Ring goes 1.5px --green-600 INSET. There is no 3px halo: motion-base owns the outline, and running both drew two rings on one field (real bug, fixed 31 Jul).</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Selected <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">text selection inside is the browser’s, not a component state.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Disabled</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">--ink-50 fill, --text-faint text, cursor not-allowed. A disabled field keeps its value visible — hiding it loses the reason it is disabled.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-faint);">Loading <span style="font-weight: 400; font-size: var(--text-meta);">n/a</span></span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-faint); text-wrap: pretty;">a field being validated stays editable. Blocking input to show a spinner loses keystrokes.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--hairline);">
+        <span style="font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--text-body);">Empty</span>
+        <span style="font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); text-wrap: pretty;">Placeholder only, in --text-faint: an example of the answer, never a restatement of the label.</span>
+      </div>
+    </div>
+
+    <div style="font-size: var(--text-eyebrow); font-weight: 700; letter-spacing: var(--tracking-eyebrow); color: var(--text-faint); text-transform: uppercase; margin-top: 64px;">Content rules</div>
+    <div style="background: var(--surface-card); border-radius: var(--radius-2xl); box-shadow: var(--shadow-card); padding: 20px 24px; margin-top: 12px; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 720px; text-wrap: pretty;">Label is a noun, sentence case, no colon: “Full legal name”. Placeholder shows the SHAPE of a valid answer (“Maya Osei”), never repeats the label and never says “Enter…”. Hint is one clause of help that is always true. Error names what to do, not what went wrong: “Add the name as it appears on the agreement”, not “Invalid input”. Never validate while someone is still typing.</div>
+
+    
+
+    <div style="margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--text-meta); color: var(--text-faint);">Hivory Design System · Component · Input · tokens listed in full above</div>
+</div>
+</x-dc>
+</body>
+</html>

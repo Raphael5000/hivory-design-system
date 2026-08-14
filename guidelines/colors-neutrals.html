@@ -1,24 +1,28 @@
-<!-- @dsCard group="Colors" viewport="700x160" subtitle="Pure neutral grays — the black & white platform scale" name="Neutrals" -->
+<!-- @dsCard group="Colors" viewport="700x160" subtitle="Cool-gray ink ladder — 13 steps, one job each" name="Neutrals" -->
 <!DOCTYPE html>
-<html><head><link rel="stylesheet" href="../styles.css">
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
-  body { margin: 0; font-family: var(--font-mono); background: var(--surface-page); }
-  .row { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; padding: 14px 16px; }
+  body { margin: 0; font-family: var(--font-body); background: var(--surface-page); }
+  .row { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; padding: 14px 16px; }
   .sw { display: flex; flex-direction: column; gap: 5px; }
-  .chip { height: 84px; border-radius: 8px; border: 1px solid var(--border-subtle); }
-  .lbl { font-size: 9.5px; color: var(--text-muted); text-align: center; }
+  .chip { height: 80px; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px var(--border-subtle); }
+  .lbl { font-size: 8.5px; font-variant-numeric: tabular-nums; color: var(--text-muted); text-align: center; }
   .lbl b { color: var(--text-body); font-weight: 500; display: block; }
 </style></head>
 <body>
   <div class="row">
-    <div class="sw"><div class="chip" style="background: var(--ink-950);"></div><span class="lbl"><b>950</b>display</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-950);"></div><span class="lbl"><b>950</b>dark</span></div>
     <div class="sw"><div class="chip" style="background: var(--ink-900);"></div><span class="lbl"><b>900</b>body</span></div>
-    <div class="sw"><div class="chip" style="background: var(--ink-700);"></div><span class="lbl"><b>700</b></span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-800);"></div><span class="lbl"><b>800</b>action</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-750);"></div><span class="lbl"><b>750</b>hover</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-700);"></div><span class="lbl"><b>700</b>second</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-600);"></div><span class="lbl"><b>600</b>nav</span></div>
     <div class="sw"><div class="chip" style="background: var(--ink-500);"></div><span class="lbl"><b>500</b>muted</span></div>
     <div class="sw"><div class="chip" style="background: var(--ink-400);"></div><span class="lbl"><b>400</b>faint</span></div>
-    <div class="sw"><div class="chip" style="background: var(--ink-300);"></div><span class="lbl"><b>300</b></span></div>
-    <div class="sw"><div class="chip" style="background: var(--ink-200);"></div><span class="lbl"><b>200</b>border</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-300);"></div><span class="lbl"><b>300</b>ghost</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-250);"></div><span class="lbl"><b>250</b>struck</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-200);"></div><span class="lbl"><b>200</b>border+</span></div>
     <div class="sw"><div class="chip" style="background: var(--ink-100);"></div><span class="lbl"><b>100</b>border</span></div>
-    <div class="sw"><div class="chip" style="background: var(--ink-50);"></div><span class="lbl"><b>50</b>sunken</span></div>
+    <div class="sw"><div class="chip" style="background: var(--ink-50);"></div><span class="lbl"><b>50</b>inset</span></div>
   </div>
 </body></html>
