@@ -12,6 +12,7 @@ First fruits of the production feedback loop: the WhoYou dashboard went live on 
 
 ### Doctrine
 - Rhythm: clarified Pair (8) vs Sibling (12) for text-over-text — page heading + lede is Sibling (12); the Pair rung's "title and subtitle" means compact surfaces (card titles, popover heads). WhoYou shipped page ledes at 8 by reading the table alone.
+- Surfaces: **identity appears once per screen** — a rail and a Topbar never both carry the product's name; when a rail owns the frame there is no Topbar, and its load-bearing content (the sync reading) moves into the rail. WhoYou shipped both and the duplication read as clutter within a day.
 
 ## 4.1.0 — "Glass Engine" (2026-07-31, landed 2026-08-14)
 

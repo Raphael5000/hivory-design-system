@@ -92,6 +92,8 @@ Permanent exemptions — do not "fix" these:
 
 No 1px borders anywhere — hairlines and whisper shadows do the work. **Exactly one elevated card per screen**, the thing needing the user. Glass appears exactly twice — the rail and the sign-in panel — and both are the *frame* that holds work, never the work itself. **Glass is the frame, never the field:** inputs stay opaque, because a translucent input puts typed text over whatever is behind the window.
 
+**Identity appears once per screen.** One frame names the product — one logo, one product name. A rail and a Topbar never both carry identity: when a rail owns the frame, there is no Topbar, and anything load-bearing the Topbar held (the sync reading) moves into the rail rather than dying with the chrome. The WhoYou dashboard shipped both and the duplication read as clutter within a day of going live.
+
 Radii: `sm 8 · md 9 · control 10 · lg 12 · xl 14` (cards) `· 2xl 16` (panels) `· pill 999`.
 Button heights: **sm 26 · md 33 · lg 40**. One control, three sizes — not five.
 
