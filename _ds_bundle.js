@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"HivoryDesignSystem_354905","components":[{"name":"Accordion","sourcePath":"components/Accordion/Accordion.jsx"},{"name":"Avatar","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge/Badge.jsx"},{"name":"Button","sourcePath":"components/Button/Button.jsx"},{"name":"CapMeter","sourcePath":"components/CapMeter/CapMeter.jsx"},{"name":"Card","sourcePath":"components/Card/Card.jsx"},{"name":"Scorecard","sourcePath":"components/Card/Card.jsx"},{"name":"Stat","sourcePath":"components/Card/Card.jsx"},{"name":"ChartLegend","sourcePath":"components/Charts/ChartLegend.jsx"},{"name":"ChartTooltip","sourcePath":"components/Charts/ChartTooltip.jsx"},{"name":"DateRangePicker","sourcePath":"components/DateRangePicker/DateRangePicker.jsx"},{"name":"FilterSelect","sourcePath":"components/FilterSelect/FilterSelect.jsx"},{"name":"Checkbox","sourcePath":"components/FormControls/Checkbox.jsx"},{"name":"Switch","sourcePath":"components/FormControls/Switch.jsx"},{"name":"Textarea","sourcePath":"components/FormControls/Textarea.jsx"},{"name":"Gantt","sourcePath":"components/Gantt/Gantt.jsx"},{"name":"Icon","sourcePath":"components/Icon/Icon.jsx"},{"name":"ICON_NAMES","sourcePath":"components/Icon/Icon.jsx"},{"name":"ImageSlot","sourcePath":"components/ImageSlot/ImageSlot.jsx"},{"name":"Input","sourcePath":"components/Input/Input.jsx"},{"name":"Separator","sourcePath":"components/LoadingDividers/Separator.jsx"},{"name":"Skeleton","sourcePath":"components/LoadingDividers/Skeleton.jsx"},{"name":"Menu","sourcePath":"components/Menu/Menu.jsx"},{"name":"MetricChip","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"DifficultyMeter","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"Modal","sourcePath":"components/Modal/Modal.jsx"},{"name":"IconButton","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"ReviewActions","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"Select","sourcePath":"components/Select/Select.jsx"},{"name":"SidebarIcon","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"Sidebar","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"SignIn","sourcePath":"components/SignIn/SignIn.jsx"},{"name":"SignatureBlock","sourcePath":"components/SignatureBlock/SignatureBlock.jsx"},{"name":"Spinner","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"PulseDot","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"SplitButton","sourcePath":"components/SplitButton/SplitButton.jsx"},{"name":"StepTimeline","sourcePath":"components/StepTimeline/StepTimeline.jsx"},{"name":"Stepper","sourcePath":"components/Stepper/Stepper.jsx"},{"name":"Table","sourcePath":"components/Table/Table.jsx"},{"name":"DataTable","sourcePath":"components/Table/Table.jsx"},{"name":"Tabs","sourcePath":"components/Tabs/Tabs.jsx"},{"name":"Toast","sourcePath":"components/Toast/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/Toast/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/Tooltip/Tooltip.jsx"},{"name":"Topbar","sourcePath":"components/Topbar/Topbar.jsx"},{"name":"Transcript","sourcePath":"components/Transcript/Transcript.jsx"}],"sourceHashes":{"components/Accordion/Accordion.jsx":"dd9d2dd783cf","components/Avatar/Avatar.jsx":"af91860e57a0","components/Badge/Badge.jsx":"ecd83cc1929e","components/Button/Button.jsx":"5a8a0360fcb3","components/CapMeter/CapMeter.jsx":"83dc0b9763cf","components/Card/Card.jsx":"2d6ba8489a80","components/Charts/ChartLegend.jsx":"019477cc7b67","components/Charts/ChartTooltip.jsx":"8f45a76190f0","components/DateRangePicker/DateRangePicker.jsx":"6d4a627d9cc0","components/FilterSelect/FilterSelect.jsx":"967dc1a76aaa","components/FormControls/Checkbox.jsx":"188a8d9c28e6","components/FormControls/Switch.jsx":"cb43564c512a","components/FormControls/Textarea.jsx":"be49e0726381","components/Gantt/Gantt.jsx":"8e8337bbc378","components/Icon/Icon.jsx":"24f2423182bc","components/ImageSlot/ImageSlot.jsx":"b9e577e7ea19","components/Input/Input.jsx":"dd09eb37755a","components/LoadingDividers/Separator.jsx":"cd977e095808","components/LoadingDividers/Skeleton.jsx":"a71340dc9e26","components/Menu/Menu.jsx":"eb5bc34e8d40","components/Metric/MetricChip.jsx":"bc96388b0cd0","components/Modal/Modal.jsx":"30cd1c50f098","components/ReviewActions/ReviewActions.jsx":"ccfa0161d1af","components/Select/Select.jsx":"318e84617a40","components/Sidebar/Sidebar.jsx":"f79f71710091","components/SignIn/SignIn.jsx":"ed831096d6d2","components/SignatureBlock/SignatureBlock.jsx":"2adb4f0748cb","components/Spinner/Spinner.jsx":"0121520180f9","components/SplitButton/SplitButton.jsx":"33dff875fe95","components/StepTimeline/StepTimeline.jsx":"3d638a63c81a","components/Stepper/Stepper.jsx":"bf1982c0f634","components/Table/Table.jsx":"0227840cff12","components/Tabs/Tabs.jsx":"8ff17fcadbcf","components/Toast/Toast.jsx":"6106958dc597","components/Tooltip/Tooltip.jsx":"4f1224edbdf1","components/Topbar/Topbar.jsx":"413cb0493c34","components/Transcript/Transcript.jsx":"1e883396fbc5"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"HivoryDesignSystem_354905","components":[{"name":"Accordion","sourcePath":"components/Accordion/Accordion.jsx"},{"name":"Avatar","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge/Badge.jsx"},{"name":"Button","sourcePath":"components/Button/Button.jsx"},{"name":"CapMeter","sourcePath":"components/CapMeter/CapMeter.jsx"},{"name":"Card","sourcePath":"components/Card/Card.jsx"},{"name":"Scorecard","sourcePath":"components/Card/Card.jsx"},{"name":"Stat","sourcePath":"components/Card/Card.jsx"},{"name":"ChartLegend","sourcePath":"components/Charts/ChartLegend.jsx"},{"name":"ChartTooltip","sourcePath":"components/Charts/ChartTooltip.jsx"},{"name":"DateRangePicker","sourcePath":"components/DateRangePicker/DateRangePicker.jsx"},{"name":"FilterSelect","sourcePath":"components/FilterSelect/FilterSelect.jsx"},{"name":"Checkbox","sourcePath":"components/FormControls/Checkbox.jsx"},{"name":"Switch","sourcePath":"components/FormControls/Switch.jsx"},{"name":"Textarea","sourcePath":"components/FormControls/Textarea.jsx"},{"name":"Gantt","sourcePath":"components/Gantt/Gantt.jsx"},{"name":"Icon","sourcePath":"components/Icon/Icon.jsx"},{"name":"ICON_NAMES","sourcePath":"components/Icon/Icon.jsx"},{"name":"ImageSlot","sourcePath":"components/ImageSlot/ImageSlot.jsx"},{"name":"Input","sourcePath":"components/Input/Input.jsx"},{"name":"Separator","sourcePath":"components/LoadingDividers/Separator.jsx"},{"name":"Skeleton","sourcePath":"components/LoadingDividers/Skeleton.jsx"},{"name":"Menu","sourcePath":"components/Menu/Menu.jsx"},{"name":"MetricChip","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"DifficultyMeter","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"Modal","sourcePath":"components/Modal/Modal.jsx"},{"name":"IconButton","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"ReviewActions","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"Select","sourcePath":"components/Select/Select.jsx"},{"name":"SidebarIcon","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"Sidebar","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"SignIn","sourcePath":"components/SignIn/SignIn.jsx"},{"name":"SignatureBlock","sourcePath":"components/SignatureBlock/SignatureBlock.jsx"},{"name":"Spinner","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"PulseDot","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"SplitButton","sourcePath":"components/SplitButton/SplitButton.jsx"},{"name":"StatCard","sourcePath":"components/StatCard/StatCard.jsx"},{"name":"StepTimeline","sourcePath":"components/StepTimeline/StepTimeline.jsx"},{"name":"Stepper","sourcePath":"components/Stepper/Stepper.jsx"},{"name":"Table","sourcePath":"components/Table/Table.jsx"},{"name":"DataTable","sourcePath":"components/Table/Table.jsx"},{"name":"Tabs","sourcePath":"components/Tabs/Tabs.jsx"},{"name":"Toast","sourcePath":"components/Toast/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/Toast/Toast.jsx"},{"name":"InfoTip","sourcePath":"components/Tooltip/InfoTip.jsx"},{"name":"Tooltip","sourcePath":"components/Tooltip/Tooltip.jsx"},{"name":"Topbar","sourcePath":"components/Topbar/Topbar.jsx"},{"name":"Transcript","sourcePath":"components/Transcript/Transcript.jsx"}],"sourceHashes":{"components/Accordion/Accordion.jsx":"d63883001699","components/Avatar/Avatar.jsx":"af91860e57a0","components/Badge/Badge.jsx":"ecd83cc1929e","components/Button/Button.jsx":"5a8a0360fcb3","components/CapMeter/CapMeter.jsx":"9fdd9931dec7","components/Card/Card.jsx":"2d6ba8489a80","components/Charts/ChartLegend.jsx":"019477cc7b67","components/Charts/ChartTooltip.jsx":"8f45a76190f0","components/DateRangePicker/DateRangePicker.jsx":"6d4a627d9cc0","components/FilterSelect/FilterSelect.jsx":"2660394ebdb4","components/FormControls/Checkbox.jsx":"188a8d9c28e6","components/FormControls/Switch.jsx":"cb43564c512a","components/FormControls/Textarea.jsx":"be49e0726381","components/Gantt/Gantt.jsx":"8e8337bbc378","components/Icon/Icon.jsx":"24f2423182bc","components/ImageSlot/ImageSlot.jsx":"b9e577e7ea19","components/Input/Input.jsx":"dd09eb37755a","components/LoadingDividers/Separator.jsx":"cd977e095808","components/LoadingDividers/Skeleton.jsx":"a71340dc9e26","components/Menu/Menu.jsx":"eb5bc34e8d40","components/Metric/MetricChip.jsx":"bc96388b0cd0","components/Modal/Modal.jsx":"30cd1c50f098","components/ReviewActions/ReviewActions.jsx":"ccfa0161d1af","components/Select/Select.jsx":"318e84617a40","components/Sidebar/Sidebar.jsx":"f79f71710091","components/SignIn/SignIn.jsx":"ed831096d6d2","components/SignatureBlock/SignatureBlock.jsx":"2adb4f0748cb","components/Spinner/Spinner.jsx":"0121520180f9","components/SplitButton/SplitButton.jsx":"33dff875fe95","components/StatCard/StatCard.jsx":"00ab307f3194","components/StepTimeline/StepTimeline.jsx":"3d638a63c81a","components/Stepper/Stepper.jsx":"bf1982c0f634","components/Table/Table.jsx":"0227840cff12","components/Tabs/Tabs.jsx":"8ff17fcadbcf","components/Toast/Toast.jsx":"6106958dc597","components/Tooltip/InfoTip.jsx":"f282c0984fc3","components/Tooltip/Tooltip.jsx":"4f1224edbdf1","components/Topbar/Topbar.jsx":"413cb0493c34","components/Transcript/Transcript.jsx":"1e883396fbc5"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -92,7 +92,7 @@ function Accordion({
         disabled: loading,
         onClick: () => toggle(it.id)
       },
-      /* @__PURE__ */ React.createElement("span", { className: "hv-acc__rank" }, i + 1),
+      /* @__PURE__ */ React.createElement("span", { className: "hv-acc__rank" }, it.rank ?? i + 1),
       /* @__PURE__ */ React.createElement("span", { className: "hv-acc__label" }, it.label),
       loading ? /* @__PURE__ */ React.createElement("span", { style: { textAlign: "right" } }, /* @__PURE__ */ React.createElement("span", { className: "hv-acc__skel hv-acc__skel--count", "data-motion": "essential" })) : /* @__PURE__ */ React.createElement("span", { className: "hv-acc__count" }, it.count),
       loading ? /* @__PURE__ */ React.createElement("span", { className: "hv-acc__skel hv-acc__skel--meter", "data-motion": "essential" }) : /* @__PURE__ */ React.createElement("span", { className: "hv-acc__track" }, /* @__PURE__ */ React.createElement("span", { className: "hv-acc__fill", style: { width: `${Math.max(0, Math.min(100, pct))}%` } })),
@@ -209,8 +209,8 @@ Object.assign(__ds_scope, { Button });
 try { (() => {
 const hvCapMeterCss = `
 .hv-capmeter{font-family:var(--font-sans);color:var(--text-body)}
-.hv-capmeter__row{display:grid;grid-template-columns:110px 1fr 72px;gap:16px;align-items:center}
-.hv-capmeter--bare .hv-capmeter__row{grid-template-columns:1fr 60px;gap:12px}
+.hv-capmeter__row{display:grid;grid-template-columns:110px 1fr max-content;gap:16px;align-items:center}
+.hv-capmeter--bare .hv-capmeter__row{grid-template-columns:1fr max-content;gap:12px}
 .hv-capmeter__label{font-size:12.5px;color:var(--text-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hv-capmeter--excluded .hv-capmeter__label{color:var(--text-faint)}
 .hv-capmeter__track{position:relative;height:8px;border-radius:var(--radius-pill);background:var(--ink-100);overflow:hidden}
@@ -221,7 +221,7 @@ const hvCapMeterCss = `
 .hv-capmeter__val--capped{color:var(--ink-900);font-weight:650}
 .hv-capmeter__val--excluded{font-size:var(--text-meta);color:var(--text-faint)}
 .hv-capmeter__note{margin-top:8px;font-size:11.5px;line-height:1.55;color:var(--status-caution-text)}
-.hv-capmeter--bare .hv-capmeter__note{padding-right:72px}
+.hv-capmeter--bare .hv-capmeter__note{padding-right:0}
 .hv-capmeter__skel{height:8px;border-radius:var(--radius-pill);background:var(--ink-100)}
 .hv-capmeter__skel--val{height:12px;width:44px;justify-self:end;border-radius:var(--radius-sm)}
 `;
@@ -473,17 +473,18 @@ const hvFilterSelectCss = `
 .hv-fsel__trigger--active:hover:not(:disabled){color:var(--white);background-image:none;background-color:var(--action-primary-hover)}
 .hv-fsel__trigger:disabled{color:var(--text-ghost);cursor:not-allowed}
 .hv-fsel__chevron{flex:none;opacity:0.65}
-.hv-fsel__menu{position:absolute;top:calc(100% + 6px);min-width:190px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;box-sizing:border-box;transform-origin:top center;animation:hv-fsel-in var(--duration-soft) var(--ease-out)}
+.hv-fsel__menu{position:absolute;top:calc(100% + 6px);min-width:190px;max-width:320px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;box-sizing:border-box;transform-origin:top center;animation:hv-fsel-in var(--duration-soft) var(--ease-out)}
 .hv-fsel__menu--left{left:0}
 .hv-fsel__menu--right{right:0}
 @keyframes hv-fsel-in{from{opacity:0;transform:translateY(-6px) scale(0.985)}to{opacity:1;transform:none}}
-.hv-fsel__row{display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;height:32px;padding:0 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;color:var(--text-body);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out),filter var(--duration-fast) var(--ease-out)}
+.hv-fsel__row{display:flex;align-items:flex-start;gap:9px;width:100%;box-sizing:border-box;min-height:32px;padding:7px 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;line-height:1.35;color:var(--text-body);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out),filter var(--duration-fast) var(--ease-out)}
+.hv-fsel__label{flex:1;min-width:0}
 .hv-fsel__row:hover{background:var(--ink-50)}
 .hv-fsel__row:active{filter:brightness(0.94)}
 .hv-fsel__row:focus-visible{outline:2px solid var(--border-focus);outline-offset:-2px}
-.hv-fsel__box{width:15px;height:15px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
+.hv-fsel__box{width:15px;height:15px;margin-top:1.5px;/* drift-ok: optical centering of a 15px glyph on the 18px first text line, not a rhythm gap */border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
 .hv-fsel__row--on .hv-fsel__box{background-color:var(--action-primary);box-shadow:none}
-.hv-fsel__dot{margin-left:auto;width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
+.hv-fsel__dot{margin-left:auto;margin-top:6px;/* drift-ok: optical centering of the 6px dot on the 18px first text line, not a rhythm gap */width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
 .hv-fsel__row--clear{color:var(--text-muted)}
 .hv-fsel__sep{height:1px;background:var(--hairline);margin:3px 6px}
 .hv-fsel__empty{height:32px;display:flex;align-items:center;box-sizing:border-box;padding:0 10px;font-size:13px;color:var(--text-faint)}
@@ -567,7 +568,7 @@ function FilterSelect({
         onClick: () => toggleOpt(o.id)
       },
       /* @__PURE__ */ React.createElement("span", { className: "hv-fsel__box", "aria-hidden": "true" }, on ? /* @__PURE__ */ React.createElement("svg", { width: "9", height: "9", viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "2.6", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M3 8.5 6.5 12 13 4.5" })) : null),
-      o.label,
+      /* @__PURE__ */ React.createElement("span", { className: "hv-fsel__label" }, o.label),
       o.tone ? /* @__PURE__ */ React.createElement("span", { className: "hv-fsel__dot", style: { background: HV_FSEL_TONES[o.tone] || "transparent" } }) : null
     );
   }) : /* @__PURE__ */ React.createElement("div", { className: "hv-fsel__empty" }, emptyText), n ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "hv-fsel__sep" }), /* @__PURE__ */ React.createElement("button", { type: "button", role: "menuitem", className: "hv-fsel__row hv-fsel__row--clear", onClick: () => commit([]) }, "Clear")) : null) : null);
@@ -1819,6 +1820,36 @@ function SplitButton({
 Object.assign(__ds_scope, { SplitButton });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/SplitButton/SplitButton.jsx", error: String((e && e.message) || e) }); }
 
+// components/StatCard/StatCard.jsx
+try { (() => {
+const hvStatCardCss = `
+.hv-statcard{display:flex;flex-direction:column;justify-content:space-between;min-height:108px;padding:16px 18px;border-radius:var(--radius-xl);background:var(--surface-card);box-shadow:var(--shadow-card);font-family:var(--font-sans);color:var(--text-body)}
+.hv-statcard__label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-muted)}
+.hv-statcard__value{font-size:28px;font-weight:var(--weight-display);letter-spacing:-0.02em;line-height:1.05;color:var(--ink-950);font-variant-numeric:tabular-nums}
+.hv-statcard__value--absent{color:var(--text-faint)}
+.hv-statcard__sub{margin-top:3px;font-size:11.5px;line-height:1.4;color:var(--text-faint)}
+.hv-statcard__skel{height:28px;width:76px;border-radius:var(--radius-sm);background:var(--ink-100)}
+.hv-statcard__skel--sub{height:11px;width:52px;margin-top:3px}
+`;
+function hvEnsureStatCardCss() {
+  if (typeof document === "undefined" || document.getElementById("hv-statcard-css")) return;
+  const s = document.createElement("style");
+  s.id = "hv-statcard-css";
+  s.textContent = hvStatCardCss;
+  document.head.appendChild(s);
+}
+function StatCard({ label, value, sub, info = null, loading = false }) {
+  hvEnsureStatCardCss();
+  const absent = value == null;
+  return /* @__PURE__ */ React.createElement("div", { className: "hv-statcard" }, /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__label" }, /* @__PURE__ */ React.createElement("span", null, label), info), loading ? (
+    /* Skeleton the reading and qualifier at their exact heights; the label
+       stays real — it is known before the number is. */
+    /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__skel" }), sub ? /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__skel hv-statcard__skel--sub" }) : null)
+  ) : /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: `hv-statcard__value${absent ? " hv-statcard__value--absent" : ""}` }, absent ? "—" : value), sub ? /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__sub" }, sub) : null));
+}
+Object.assign(__ds_scope, { StatCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/StatCard/StatCard.jsx", error: String((e && e.message) || e) }); }
+
 // components/StepTimeline/StepTimeline.jsx
 try { (() => {
 const hvStepTimelineCss = `
@@ -2070,6 +2101,32 @@ function ToastStack({ static: isStatic = false, children }) {
 Object.assign(__ds_scope, { Toast, ToastStack });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/Toast/Toast.jsx", error: String((e && e.message) || e) }); }
 
+// components/Tooltip/InfoTip.jsx
+try { (() => {
+const hvInfoTipCss = `
+.hv-infotip{position:relative;display:inline-flex}
+.hv-infotip__btn{display:inline-flex;align-items:center;justify-content:center;padding:0;border:0;background:none;color:var(--text-muted);cursor:help}
+.hv-infotip__btn:hover,.hv-infotip:focus-within .hv-infotip__btn{color:var(--ink-950);transition:color var(--duration-soft) var(--ease-out)}
+.hv-infotip__pop{position:absolute;top:calc(100% + 8px);left:-10px;z-index:60;width:290px;padding:12px 14px;border-radius:var(--radius-lg);background:var(--surface-card);box-shadow:var(--shadow-overlay);font-family:var(--font-sans);font-size:12px;line-height:1.55;color:var(--text-body);text-align:left;white-space:normal;opacity:0;visibility:hidden;transform:translateY(2px);transition:opacity var(--duration-soft) var(--ease-out),transform var(--duration-soft) var(--ease-out),visibility 0s linear var(--duration-soft)}
+.hv-infotip--end .hv-infotip__pop{left:auto;right:-10px}
+.hv-infotip:hover .hv-infotip__pop,.hv-infotip:focus-within .hv-infotip__pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.hv-infotip__title{display:block;font-weight:650;color:var(--ink-950);margin:0 0 8px}
+.hv-infotip__note{display:block;margin-top:8px;font-size:11px;line-height:1.5;color:var(--status-caution-text)}
+`;
+function hvEnsureInfoTipCss() {
+  if (typeof document === "undefined" || document.getElementById("hv-infotip-css")) return;
+  const s = document.createElement("style");
+  s.id = "hv-infotip-css";
+  s.textContent = hvInfoTipCss;
+  document.head.appendChild(s);
+}
+function InfoTip({ title, children, note, align = "start", size = 14 }) {
+  hvEnsureInfoTipCss();
+  return /* @__PURE__ */ React.createElement("span", { className: `hv-infotip${align === "end" ? " hv-infotip--end" : ""}` }, /* @__PURE__ */ React.createElement("button", { type: "button", className: "hv-infotip__btn", "aria-label": `How ${title} is measured` }, /* @__PURE__ */ React.createElement("svg", { width: size, height: size, viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("circle", { cx: "8", cy: "8", r: "5.75" }), /* @__PURE__ */ React.createElement("path", { d: "M8 7.4v3.4M8 5.1v.2" }))), /* @__PURE__ */ React.createElement("span", { className: "hv-infotip__pop", role: "tooltip" }, /* @__PURE__ */ React.createElement("b", { className: "hv-infotip__title" }, title), children, note ? /* @__PURE__ */ React.createElement("span", { className: "hv-infotip__note" }, note) : null));
+}
+Object.assign(__ds_scope, { InfoTip });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/Tooltip/InfoTip.jsx", error: String((e && e.message) || e) }); }
+
 // components/Tooltip/Tooltip.jsx
 try { (() => {
 const hvTooltipCss = `
@@ -2318,6 +2375,8 @@ __ds_ns.PulseDot = __ds_scope.PulseDot;
 
 __ds_ns.SplitButton = __ds_scope.SplitButton;
 
+__ds_ns.StatCard = __ds_scope.StatCard;
+
 __ds_ns.StepTimeline = __ds_scope.StepTimeline;
 
 __ds_ns.Stepper = __ds_scope.Stepper;
@@ -2331,6 +2390,8 @@ __ds_ns.Tabs = __ds_scope.Tabs;
 __ds_ns.Toast = __ds_scope.Toast;
 
 __ds_ns.ToastStack = __ds_scope.ToastStack;
+
+__ds_ns.InfoTip = __ds_scope.InfoTip;
 
 __ds_ns.Tooltip = __ds_scope.Tooltip;
 

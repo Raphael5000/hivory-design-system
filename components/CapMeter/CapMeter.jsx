@@ -8,8 +8,8 @@
    the line", not "danger". It reports a fact; it never scolds or sells. */
 const hvCapMeterCss = `
 .hv-capmeter{font-family:var(--font-sans);color:var(--text-body)}
-.hv-capmeter__row{display:grid;grid-template-columns:110px 1fr 72px;gap:16px;align-items:center}
-.hv-capmeter--bare .hv-capmeter__row{grid-template-columns:1fr 60px;gap:12px}
+.hv-capmeter__row{display:grid;grid-template-columns:110px 1fr max-content;gap:16px;align-items:center}
+.hv-capmeter--bare .hv-capmeter__row{grid-template-columns:1fr max-content;gap:12px}
 .hv-capmeter__label{font-size:12.5px;color:var(--text-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hv-capmeter--excluded .hv-capmeter__label{color:var(--text-faint)}
 .hv-capmeter__track{position:relative;height:8px;border-radius:var(--radius-pill);background:var(--ink-100);overflow:hidden}
@@ -20,7 +20,7 @@ const hvCapMeterCss = `
 .hv-capmeter__val--capped{color:var(--ink-900);font-weight:650}
 .hv-capmeter__val--excluded{font-size:var(--text-meta);color:var(--text-faint)}
 .hv-capmeter__note{margin-top:8px;font-size:11.5px;line-height:1.55;color:var(--status-caution-text)}
-.hv-capmeter--bare .hv-capmeter__note{padding-right:72px}
+.hv-capmeter--bare .hv-capmeter__note{padding-right:0}
 .hv-capmeter__skel{height:8px;border-radius:var(--radius-pill);background:var(--ink-100)}
 .hv-capmeter__skel--val{height:12px;width:44px;justify-self:end;border-radius:var(--radius-sm)}
 `;

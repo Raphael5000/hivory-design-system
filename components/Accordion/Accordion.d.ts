@@ -22,6 +22,10 @@ export interface AccordionItem {
   value?: number;
   /** 0–100 share for the head meter. Computed relative to the largest item when omitted. */
   pct?: number;
+  /** Rank shown in the head's first column. Defaults to the item's position;
+   *  pass it when one ranking is split across stacked accordion instances so
+   *  the numbers stay true to the whole ranking, not the instance. */
+  rank?: number;
   /** The breakdown one level down. Two levels, never three — a third level means the
    *  data wants its own table. */
   rows?: AccordionSubRow[];

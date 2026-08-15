@@ -88,7 +88,9 @@ export function Accordion({
               disabled={loading}
               onClick={() => toggle(it.id)}
             >
-              <span className="hv-acc__rank">{i + 1}</span>
+              {/* rank prop overrides the positional number — needed when items
+                  of one ranking are split across stacked accordion instances. */}
+              <span className="hv-acc__rank">{it.rank ?? i + 1}</span>
               <span className="hv-acc__label">{it.label}</span>
               {loading ? (
                 <span style={{ textAlign: 'right' }}><span className="hv-acc__skel hv-acc__skel--count" data-motion="essential"></span></span>

@@ -25,6 +25,7 @@ The 4px grid governs the **inside** of controls (padding, heights, insets, icon 
 | 104 | Chapter | one page-level region from the next |
 
 - **Eyebrow, heading, lede are one unit** — all 12 apart *regardless of heading size*, then 34 to the first block. Scaling that gap with the type is what makes big headings float.
+- **Pair (8) vs Sibling (12) for text over text:** a page-level heading and its lede are Siblings (12). The Pair rung's "title and subtitle" means compact surfaces — card titles, popover heads — where 12 would float. The WhoYou dashboard shipped page ledes at 8 by reading the table alone; the table names the *relationship*, the scale picks the rung.
 - **Section gaps are asymmetric** — 64 above a heading, 12 below. Equal space orphans it.
 - **Gaps grow up the tree** — never let a child gap equal or exceed its parent's.
 - **Space is the only grouping device** — before reaching for a rule, card, wash or border, spend a rung. Most boxes in a first draft are a spacing problem wearing a container.
@@ -90,6 +91,8 @@ Permanent exemptions — do not "fix" these:
 ## Surfaces
 
 No 1px borders anywhere — hairlines and whisper shadows do the work. **Exactly one elevated card per screen**, the thing needing the user. Glass appears exactly twice — the rail and the sign-in panel — and both are the *frame* that holds work, never the work itself. **Glass is the frame, never the field:** inputs stay opaque, because a translucent input puts typed text over whatever is behind the window.
+
+**Identity appears once per screen.** One frame names the product — one logo, one product name. A rail and a Topbar never both carry identity: when a rail owns the frame, there is no Topbar, and anything load-bearing the Topbar held (the sync reading) moves into the rail rather than dying with the chrome. The WhoYou dashboard shipped both and the duplication read as clutter within a day of going live.
 
 Radii: `sm 8 · md 9 · control 10 · lg 12 · xl 14` (cards) `· 2xl 16` (panels) `· pill 999`.
 Button heights: **sm 26 · md 33 · lg 40**. One control, three sizes — not five.

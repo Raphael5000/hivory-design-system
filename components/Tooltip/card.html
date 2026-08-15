@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x130" name="Tooltip" subtitle="Ink chip on hover/focus — short labels only, top or bottom" -->
+<!-- @dsCard group="Components" viewport="700x260" name="Tooltip" subtitle="Ink chip on hover/focus — short labels only · InfoTip for metric definitions" -->
 <!DOCTYPE html>
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
@@ -10,12 +10,28 @@
 <div id="root"></div>
 <script>
 const e = React.createElement;
-const { Tooltip, Button, Badge } = window.HivoryDesignSystem_354905;
+const { Tooltip, Button, Badge, InfoTip } = window.HivoryDesignSystem_354905;
 ReactDOM.createRoot(document.getElementById('root')).render(
-  e('div', { style: { display: 'flex', gap: '28px', alignItems: 'center', padding: '40px 24px 24px' } },
-    e(Tooltip, { label: 'Refresh data (⌘R)', open: true }, e(Button, { variant: 'outline', size: 'sm' }, 'Refresh')),
-    e(Tooltip, { label: 'Last synced 4 min ago', side: 'bottom' }, e(Badge, { status: 'positive', dot: true }, 'Live')),
-    e('span', { style: { fontSize: '12.5px', color: 'var(--text-muted)' } }, '← hover the badge')
+  e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px 24px 24px' } },
+    e('div', { style: { display: 'flex', gap: '28px', alignItems: 'center' } },
+      e(Tooltip, { label: 'Refresh data (⌘R)', open: true }, e(Button, { variant: 'outline', size: 'sm' }, 'Refresh')),
+      e(Tooltip, { label: 'Last synced 4 min ago', side: 'bottom' }, e(Badge, { status: 'positive', dot: true }, 'Live')),
+      e('span', { style: { fontSize: '12.5px', color: 'var(--text-muted)' } }, '← hover the badge')
+    ),
+    e('div', { style: { display: 'flex', gap: '28px', alignItems: 'center', fontSize: '12.5px', color: 'var(--text-muted)' } },
+      e('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '8px' } },
+        'Resolved rate',
+        e(InfoTip, { title: 'Resolved rate' }, 'Sessions the user confirmed as fixed, over all completed sessions.')
+      ),
+      e('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '8px' } },
+        'Drop-off rate',
+        e(InfoTip, {
+          title: 'Drop-off rate', align: 'end',
+          note: 'Pending sign-off: whether abandoned chats count as drop-off.',
+        }, 'Visitors who opened the widget but never started a conversation.')
+      ),
+      e('span', null, '← hover an info glyph; align "end" for last columns')
+    )
   )
 );
 </script>
