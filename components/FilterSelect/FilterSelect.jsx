@@ -19,9 +19,9 @@ const hvFilterSelectCss = `
 .hv-fsel__row:hover{background:var(--ink-50)}
 .hv-fsel__row:active{filter:brightness(0.94)}
 .hv-fsel__row:focus-visible{outline:2px solid var(--border-focus);outline-offset:-2px}
-.hv-fsel__box{width:15px;height:15px;margin-top:1.5px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
+.hv-fsel__box{width:15px;height:15px;margin-top:1.5px;/* drift-ok: optical centering of a 15px glyph on the 18px first text line, not a rhythm gap */border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
 .hv-fsel__row--on .hv-fsel__box{background-color:var(--action-primary);box-shadow:none}
-.hv-fsel__dot{margin-left:auto;margin-top:6px;width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
+.hv-fsel__dot{margin-left:auto;margin-top:6px;/* drift-ok: optical centering of the 6px dot on the 18px first text line, not a rhythm gap */width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
 .hv-fsel__row--clear{color:var(--text-muted)}
 .hv-fsel__sep{height:1px;background:var(--hairline);margin:3px 6px}
 .hv-fsel__empty{height:32px;display:flex;align-items:center;box-sizing:border-box;padding:0 10px;font-size:13px;color:var(--text-faint)}
