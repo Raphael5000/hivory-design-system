@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x430" name="StatCard" subtitle="One KPI tile — label top, reading bottom; em-dash is absence, 0 is a reading" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--surface-canvas); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 20px; display: flex; flex-direction: column; gap: 20px; max-width: 640px; }
+  .grp { display: flex; flex-direction: column; gap: 12px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cap { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { StatCard, InfoTip } = window.HivoryDesignSystem_354905;
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  e('div', { className: 'wrap' },
+    e('div', { className: 'grp' },
+      e('span', { className: 'cap' }, 'rest · with a definition · with a qualifier'),
+      e('div', { className: 'row' },
+        e(StatCard, { label: 'Visited privacy policy', value: '1284' }),
+        e(StatCard, {
+          label: 'Resolved rate', value: '63%',
+          info: e(InfoTip, { title: 'Resolved rate' }, 'Sessions the user confirmed as fixed, over all completed sessions.'),
+        }),
+        e(StatCard, { label: 'Conversations started', value: '217', sub: 'This month' })
+      )
+    ),
+    e('div', { className: 'grp' },
+      e('span', { className: 'cap' }, 'absence (em-dash) · a measured zero · loading'),
+      e('div', { className: 'row' },
+        e(StatCard, { label: 'Resolved rate', value: null, sub: 'No completed sessions yet' }),
+        e(StatCard, { label: 'Escalations', value: 0, sub: 'This month' }),
+        e(StatCard, { label: 'Cost per chat', loading: true, sub: 'All chats' })
+      )
+    )
+  )
+);
+</script>
+</body></html>

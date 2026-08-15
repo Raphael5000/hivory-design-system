@@ -25,6 +25,7 @@ The 4px grid governs the **inside** of controls (padding, heights, insets, icon 
 | 104 | Chapter | one page-level region from the next |
 
 - **Eyebrow, heading, lede are one unit** — all 12 apart *regardless of heading size*, then 34 to the first block. Scaling that gap with the type is what makes big headings float.
+- **Pair (8) vs Sibling (12) for text over text:** a page-level heading and its lede are Siblings (12). The Pair rung's "title and subtitle" means compact surfaces — card titles, popover heads — where 12 would float. The WhoYou dashboard shipped page ledes at 8 by reading the table alone; the table names the *relationship*, the scale picks the rung.
 - **Section gaps are asymmetric** — 64 above a heading, 12 below. Equal space orphans it.
 - **Gaps grow up the tree** — never let a child gap equal or exceed its parent's.
 - **Space is the only grouping device** — before reaching for a rule, card, wash or border, spend a rung. Most boxes in a first draft are a spacing problem wearing a container.
