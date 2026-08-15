@@ -28,6 +28,10 @@ export interface FilterSelectOption {
  *   unusable. Esc closes (returning focus to the trigger); click-away closes.
  * - Once anything is picked, a "Clear" ghost row sits below a hairline. "Clear",
  *   never "Reset" or "Remove all".
+ * - Long labels WRAP — a filter option is never truncated (a filter the reader
+ *   can't read is a filter they can't trust). Rows grow from min-height 32; the
+ *   checkbox and tone dot pin to the first text line; the panel caps at 320px
+ *   so wrapping is deliberate, not accidental.
  * - Declared state exemptions: disabled (a dimension with nothing to filter is not
  *   rendered — the prop exists only for spec-strip parity) and loading (options are
  *   known before the trigger appears).

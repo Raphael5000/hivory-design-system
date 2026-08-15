@@ -35,6 +35,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         { id: 'email', label: 'Email' }
       ]
     }),
+    // Long labels wrap (never truncate a filter option); box + dot pin to the first line
+    e(FilterSelect, {
+      label: 'Category',
+      defaultOpen: true,
+      options: [
+        { id: 'camera', label: "My camera isn't working" },
+        { id: 'selfie', label: "My selfie or face check won't go through", tone: 'caution' },
+        { id: 'other', label: "Other / I'm still stuck" }
+      ]
+    }),
     // Disabled (spec-strip parity — normally an empty dimension is simply not rendered)
     e(FilterSelect, { label: 'Owner', disabled: true, options: [] }),
     // Empty: a --text-faint row saying no options match

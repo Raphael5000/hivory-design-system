@@ -10,6 +10,9 @@ First fruits of the production feedback loop: the WhoYou dashboard went live on 
 - **StatCard** — the KPI tile every analytics screen was about to hand-roll (and WhoYou did, drifting from the Card canon within a week). Label top, 28px tabular reading bottom, Card canon geometry; `null` renders an em-dash (absence), a measured zero renders `0` (a reading) — the caller decides, per the empty-cell doctrine.
 - **InfoTip** (in Tooltip) — "how is this measured": a definition popover behind an info glyph drawn on the house icon grammar. Focus reveals it (the tab stop has a function); `note` carries a caution-toned pending-sign-off line; `align="end"` for last columns.
 
+### Fixed
+- **FilterSelect**: rows had a fixed 32px height, so a label long enough to wrap collided with the next row (found with WhoYou's real category copy). Rows now grow from min-32 with the checkbox and tone dot pinned to the first text line; the panel caps at 320px so wrapping is deliberate. Doctrine: a filter option is never truncated.
+
 ### Doctrine
 - Rhythm: clarified Pair (8) vs Sibling (12) for text-over-text — page heading + lede is Sibling (12); the Pair rung's "title and subtitle" means compact surfaces (card titles, popover heads). WhoYou shipped page ledes at 8 by reading the table alone.
 - Surfaces: **identity appears once per screen** — a rail and a Topbar never both carry the product's name; when a rail owns the frame there is no Topbar, and its load-bearing content (the sync reading) moves into the rail. WhoYou shipped both and the duplication read as clutter within a day.

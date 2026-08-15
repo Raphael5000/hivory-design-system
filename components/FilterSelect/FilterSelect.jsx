@@ -10,17 +10,18 @@ const hvFilterSelectCss = `
 .hv-fsel__trigger--active:hover:not(:disabled){color:var(--white);background-image:none;background-color:var(--action-primary-hover)}
 .hv-fsel__trigger:disabled{color:var(--text-ghost);cursor:not-allowed}
 .hv-fsel__chevron{flex:none;opacity:0.65}
-.hv-fsel__menu{position:absolute;top:calc(100% + 6px);min-width:190px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;box-sizing:border-box;transform-origin:top center;animation:hv-fsel-in var(--duration-soft) var(--ease-out)}
+.hv-fsel__menu{position:absolute;top:calc(100% + 6px);min-width:190px;max-width:320px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;box-sizing:border-box;transform-origin:top center;animation:hv-fsel-in var(--duration-soft) var(--ease-out)}
 .hv-fsel__menu--left{left:0}
 .hv-fsel__menu--right{right:0}
 @keyframes hv-fsel-in{from{opacity:0;transform:translateY(-6px) scale(0.985)}to{opacity:1;transform:none}}
-.hv-fsel__row{display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;height:32px;padding:0 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;color:var(--text-body);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out),filter var(--duration-fast) var(--ease-out)}
+.hv-fsel__row{display:flex;align-items:flex-start;gap:9px;width:100%;box-sizing:border-box;min-height:32px;padding:7px 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13px;line-height:1.35;color:var(--text-body);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out),filter var(--duration-fast) var(--ease-out)}
+.hv-fsel__label{flex:1;min-width:0}
 .hv-fsel__row:hover{background:var(--ink-50)}
 .hv-fsel__row:active{filter:brightness(0.94)}
 .hv-fsel__row:focus-visible{outline:2px solid var(--border-focus);outline-offset:-2px}
-.hv-fsel__box{width:15px;height:15px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
+.hv-fsel__box{width:15px;height:15px;margin-top:1.5px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(23,24,26,0.16);flex:none;transition:background-color var(--duration-soft) var(--ease-out),box-shadow var(--duration-soft) var(--ease-out)}
 .hv-fsel__row--on .hv-fsel__box{background-color:var(--action-primary);box-shadow:none}
-.hv-fsel__dot{margin-left:auto;width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
+.hv-fsel__dot{margin-left:auto;margin-top:6px;width:6px;height:6px;border-radius:var(--radius-pill);flex:none}
 .hv-fsel__row--clear{color:var(--text-muted)}
 .hv-fsel__sep{height:1px;background:var(--hairline);margin:3px 6px}
 .hv-fsel__empty{height:32px;display:flex;align-items:center;box-sizing:border-box;padding:0 10px;font-size:13px;color:var(--text-faint)}
@@ -108,7 +109,9 @@ export function FilterSelect({
                     <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>
                   ) : null}
                 </span>
-                {o.label}
+                {/* Long labels wrap — a filter option is never truncated. The box
+                    and dot pin to the first line; the row grows from min-32. */}
+                <span className="hv-fsel__label">{o.label}</span>
                 {o.tone ? <span className="hv-fsel__dot" style={{ background: HV_FSEL_TONES[o.tone] || 'transparent' }}></span> : null}
               </button>
             );
