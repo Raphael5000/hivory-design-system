@@ -2,6 +2,12 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.1.5 (2026-08-21)
+
+### Menu
+- **`side="top"`** — the panel can now hang above its trigger. A trigger anchored at the bottom of its frame (an account row at the foot of a rail) had nowhere to put a downward panel, which is exactly the case that forces consumers to hand-roll a menu and drift from the system.
+- **Esc closes it.** `FilterSelect` documents Esc as required and honoured it; `Menu` only had click-away. A menu you can open from the keyboard and cannot close from the keyboard is a trap.
+
 ## 4.1.4 (2026-08-21)
 
 ### Added

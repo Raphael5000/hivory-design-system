@@ -2,7 +2,9 @@ import * as React from 'react';
 /* Hivory Menu — dropdown for row actions and switchers. White panel, overlay shadow. */
 const hvMenuCss = `
 .hv-menu-wrap{position:relative;display:inline-block}
-.hv-menu{position:absolute;top:calc(100% + 6px);min-width:180px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;font-family:var(--font-sans)}
+.hv-menu{position:absolute;min-width:180px;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-overlay);padding:5px;z-index:50;font-family:var(--font-sans)}
+.hv-menu--bottom{top:calc(100% + 6px)}
+.hv-menu--top{bottom:calc(100% + 6px)}
 .hv-menu--left{left:0}
 .hv-menu--right{right:0}
 .hv-menu__item{display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;padding:7px 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13.5px;color:var(--ink-900);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out)}
@@ -22,21 +24,28 @@ function hvEnsureMenuCss() {
 }
 
 /* items: [{ id, label, hint?, danger?, disabled? } | { type: 'separator' }] */
-export function Menu({ trigger, items = [], onSelect, align = 'left', defaultOpen = false }) {
+export function Menu({ trigger, items = [], onSelect, align = 'left', side = 'bottom', defaultOpen = false }) {
   hvEnsureMenuCss();
   const [open, setOpen] = React.useState(defaultOpen);
   const ref = React.useRef(null);
   React.useEffect(() => {
     if (!open) return;
     const onDoc = (ev) => { if (ref.current && !ref.current.contains(ev.target)) setOpen(false); };
+    // Esc closes, as it does on FilterSelect: a menu you can open with the
+    // keyboard and cannot close with it is a trap.
+    const onKey = (ev) => { if (ev.key === 'Escape') setOpen(false); };
     document.addEventListener('mousedown', onDoc);
-    return () => document.removeEventListener('mousedown', onDoc);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDoc);
+      window.removeEventListener('keydown', onKey);
+    };
   }, [open]);
   return (
     <span className="hv-menu-wrap" ref={ref}>
       <span onClick={() => setOpen(!open)}>{trigger}</span>
       {open ? (
-        <div className={`hv-menu hv-menu--${align}`} role="menu">
+        <div className={`hv-menu hv-menu--${side} hv-menu--${align}`} role="menu">
           {items.map((it, i) =>
             it.type === 'separator' ? (
               <div key={i} className="hv-menu__sep"></div>

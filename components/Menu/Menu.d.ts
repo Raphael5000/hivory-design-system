@@ -17,6 +17,12 @@ export interface MenuProps {
   items?: MenuItem[];
   onSelect?: (id: string) => void;
   align?: 'left' | 'right';
+  /**
+   * Which way the panel hangs. 'top' for a trigger anchored at the bottom of
+   * its frame (an account row in a rail), where a downward panel would open
+   * off-screen.
+   */
+  side?: 'top' | 'bottom';
   defaultOpen?: boolean;
 }
 
