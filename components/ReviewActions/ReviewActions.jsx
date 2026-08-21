@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory ReviewActions — repeated inline approve/reject pairs.
    Rule: quiet at rest (ghost ink-400 glyphs), tone only on hover, collapse to a
    status chip once decided. Filled buttons are NEVER used for repeated row actions. */

@@ -1,6 +1,6 @@
 {
   "name": "hivory-design-system",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "private": true,
   "description": "Hivory Design System — v4.1 \"Glass Engine\". Tokens are the source of truth; tokens/tokens.json is the diffable version record. This package.json is the canonical version marker.",
   "type": "module",

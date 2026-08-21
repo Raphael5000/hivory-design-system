@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory ImageSlot — the one place in a mock that isn't inert: a droppable image placeholder.
    Empty is THE state that matters — a quiet ringed frame (no 1px borders) whose placeholder is a
    brief, not an instruction. A dropped picture is stored against the slot's id so it survives a

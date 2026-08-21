@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Gantt — the plan you can click: quiet ink bars on a week grid, staircase bottom-up.
  *
  * The bars ARE the control. No tab row, no colour-per-phase: rest bars are a 7% ink

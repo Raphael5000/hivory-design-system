@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory SignatureBlock — type-to-sign: the typed name becomes the signature preview.
  *
  * The only screen with legal weight. Five parts in one order: summary (the deal

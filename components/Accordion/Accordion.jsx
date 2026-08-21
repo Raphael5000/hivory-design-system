@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Accordion — a table row that opens. ONE card holding ranked disclosure rows:
    rank · label · count · meter · chevron; the chevron rotates 90°, the body indents to the label.
    Open is disclosure, not selection — many rows may be open at once. */

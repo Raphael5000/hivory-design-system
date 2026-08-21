@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory SplitButton — a publishing verb split in two: the main segment fires the default action,
    the chevron opens a Menu of schedule alternatives (upward by default — it lives in footers). */
 const hvSplitButtonCss = `

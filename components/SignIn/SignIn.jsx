@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory SignIn — the gate. Left: the plate, the one surface a partner completely owns (dark ramp,
    green bloom, one line). Right: the same disciplined form every console ships — providers first,
    42px opaque fields, an ink verb, recovery resolving in place. Glass may frame the panel (one of

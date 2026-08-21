@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Sidebar — app navigation rail, faithful to the portal's real Sidebar.tsx:
    272px card surface (56 collapsed), workspace chip header, uppercase group headers
    with chevron expand, 13px items / 14px icons / radius 7, active = ink-50 fill +

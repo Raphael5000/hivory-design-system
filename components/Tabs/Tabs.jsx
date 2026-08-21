@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Tabs — Engine: quiet underline tabs, ink active, 120ms. */
 const hvTabsCss = `
 .hv-tabs{display:flex;gap:2px;border-bottom:1px solid var(--border-subtle);font-family:var(--font-sans)}

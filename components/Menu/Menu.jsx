@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Menu — dropdown for row actions and switchers. White panel, overlay shadow. */
 const hvMenuCss = `
 .hv-menu-wrap{position:relative;display:inline-block}

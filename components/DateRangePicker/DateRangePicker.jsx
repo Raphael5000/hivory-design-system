@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory DateRangePicker — preset rail + month calendar. Ink range ends, green-50 span. */
 const hvDrpCss = `
 .hv-drp{position:relative;display:inline-block;font-family:var(--font-sans)}

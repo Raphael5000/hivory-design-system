@@ -42,7 +42,12 @@ for (const path of sources) {
 
   // collect export names in declaration order; strip `export ` for the IIFE scope
   const names = [...raw.matchAll(/^export\s+(?:function|const|let|class)\s+([A-Za-z_$][\w$]*)/gm)].map((m) => m[1]);
-  const stripped = raw.replace(/^export\s+(function|const|let|class)\s+/gm, '$1 ');
+  // The bundle supplies React as a global and wraps each source in an IIFE, where an
+  // import statement is a syntax error. Sources carry a real `import * as React` so they
+  // work as ES modules (SSR, bundlers); strip it here.
+  const stripped = raw
+    .replace(/^import\s+\*\s+as\s+React\s+from\s+'react';\n/gm, '')
+    .replace(/^export\s+(function|const|let|class)\s+/gm, '$1 ');
 
   const { code } = transformSync(stripped, {
     loader: 'jsx',

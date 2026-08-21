@@ -2,6 +2,15 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.1.2 (2026-08-21)
+
+Distribution fixes. The system was consumable as a browser bundle and, it turns out, as almost nothing else — both bugs surfaced the first time a real bundler tried to import it (portal v2). No component behaviour, geometry or token changed; `_ds_bundle.js` is byte-identical below the header.
+
+### Fixed
+- **13 components assumed a `React` global.** Accordion, DateRangePicker, FilterSelect, Gantt, ImageSlot, Menu, Modal, ReviewActions, Sidebar, SignIn, SignatureBlock, SplitButton and Tabs call `React.useState` / `React.useId` / `React.Fragment` with no import. That works only inside `_ds_bundle.js`, which sets `window.React`; imported as ES modules — the documented path for consumers — they throw `ReferenceError: React is not defined` on any server render. That was the whole interactive half of the system, unusable in Next, Remix or any SSR framework. Sources now carry `import * as React from 'react'`, and `scripts/build-bundle.mjs` strips it before the IIFE wrap (an import inside a function body is a syntax error, so the bundle would not have built otherwise). The bundle still supplies React as a global; browser consumers are unaffected.
+- **`styles.css` could not be imported by a bundler.** Its `@import "tokens/fonts.css"` had no leading `./`, so postcss/webpack/Turbopack resolved each as a *package* name and the build failed — while the readme instructs consumers to import exactly this file. Now `./tokens/…`.
+- `package-lock.json` version was stale at 4.1.0.
+
 ## 4.1.1 (2026-08-15)
 
 First fruits of the production feedback loop: the WhoYou dashboard went live on v4.1.0 and every hole it exposed lands here as system, not as app-side patches.

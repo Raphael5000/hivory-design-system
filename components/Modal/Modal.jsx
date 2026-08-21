@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory Modal — radius 14 panel on a soft ink scrim; quiet, border-led. */
 const hvModalCss = `
 .hv-modal-overlay{position:fixed;inset:0;background:rgba(13,15,14,0.40);display:flex;align-items:center;justify-content:center;padding:24px;z-index:100}

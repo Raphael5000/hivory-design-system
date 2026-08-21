@@ -1,3 +1,4 @@
+import * as React from 'react';
 /* Hivory FilterSelect — multiselect dropdown filter. Quiet pill trigger tallies picks ("Status · 2");
    Menu-chrome checkbox list with optional status tone dots stays open across picks. Never a row of option pills. */
 const hvFilterSelectCss = `
