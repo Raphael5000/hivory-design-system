@@ -4,12 +4,14 @@
 
 ti-adjustments
 ti-adjustments-horizontal
+ti-alert-circle
 ti-arrow-right
 ti-arrow-up-right
 ti-arrows-diagonal
 ti-arrows-diagonal-minimize-2
 ti-article
 ti-bell
+ti-book
 ti-brand-linkedin
 ti-calendar
 ti-chart-bar
@@ -23,15 +25,18 @@ ti-clock
 ti-dots
 ti-file-text
 ti-filter
+ti-home
 ti-info-circle
 ti-layout-dashboard
 ti-logout
 ti-mail
+ti-palette
 ti-paperclip
 ti-pencil
 ti-player-pause
 ti-refresh
 ti-search
+ti-selector
 ti-settings
 ti-sparkles
 ti-trash

@@ -10,7 +10,8 @@
  */
 
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, extname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { dirname, extname, join } from 'node:path';
 
 const ROOTS = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const SRC = ROOTS.length ? ROOTS : ['src'];
@@ -73,7 +74,36 @@ const nearestRung = (n) => LADDER.reduce((b, r) => (Math.abs(r - n) < Math.abs(b
  * Each rule: { id, why, scan(line) -> null | message }
  * `why` is printed on failure — a rule nobody understands gets disabled.
  */
+/* The glyphs the system actually ships, from icons.txt. The webfont is
+   subsetted, so a glyph outside this list renders as nothing at all — a silent
+   visual failure with no error anywhere. This turns it into a build failure. */
+const SHIPPED_GLYPHS = (() => {
+  try {
+    const here = dirname(fileURLToPath(import.meta.url));
+    return new Set(
+      readFileSync(join(here, '..', 'icons.txt'), 'utf8')
+        .split('\n')
+        .map((l) => l.replace(/#.*$/, '').trim())
+        .filter(Boolean),
+    );
+  } catch {
+    return null;
+  }
+})();
+
 const RULES = [
+  {
+    id: 'icon-not-shipped',
+    why: 'The Tabler webfont is subsetted to icons.txt. A glyph outside it renders as blank space with no error — add it to icons.txt in the design system and rebuild (scripts/build-icons.mjs).',
+    scan(line) {
+      if (!SHIPPED_GLYPHS) return null;
+      const m = line.match(/\bti\s+(ti-[a-z0-9-]+)|\bclassName=\{?[`"'][^`"']*\b(ti-[a-z0-9-]+)/);
+      const name = m && (m[1] || m[2]);
+      if (!name || SHIPPED_GLYPHS.has(name)) return null;
+      return `${name} is not in the shipped icon subset`;
+    }
+  },
+
   {
     id: 'raw-hex',
     why: 'A raw hex bypasses the tokens, so a theme change cannot reach it. This is exactly how the WhoYou theme ended up hand-patching --status-positive-* to undo its own override.',

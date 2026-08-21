@@ -2,6 +2,14 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.4.1 (2026-08-21)
+
+### Fixed
+- The 4.4.0 subset was built from the glyphs the system's OWN sources reference, which left out five that a consumer used — and a glyph outside the subset renders as blank space with no error anywhere. Portal v2 lost its Home, Knowledge, Design, alert and switcher icons. Added them; the subset is 41 glyphs, 5.1KB.
+
+### Added
+- **`icon-not-shipped` drift rule.** A missing glyph is now a build failure with the fix in the message, rather than an icon that silently is not there. Consumers already run `npm run drift`, so the check arrives with the constraint that created it.
+
 ## 4.4.0 (2026-08-21)
 
 ### Changed
