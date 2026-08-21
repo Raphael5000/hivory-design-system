@@ -3,3 +3,8 @@
 @import "./tokens/layout.css";
 @import "./tokens/typography.css";
 @import "./tokens/brands/meaning.css";
+
+/* Component rules, so server-rendered consumers paint them on the first frame.
+   The bundle still injects at runtime for browser-only consumers; the rules are
+   identical, so loading both changes nothing. */
+@import "./components.css";

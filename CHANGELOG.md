@@ -2,6 +2,19 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.2.0 (2026-08-21)
+
+### Added
+- **`components.css`** — every component's rules as a real stylesheet, generated from the same CSS the bundle injects, and imported by `styles.css`. Nothing to do but keep importing `styles.css`.
+
+### Why
+Components carry their CSS as a template literal and inject it at runtime with `document.createElement('style')`. That is fine in a browser and **cannot work while a server renders**: the markup arrives carrying `hv-*` class names with no rules behind them, so every component is unstyled until hydration finishes. In portal v2 that showed up as a sign-in button with no styling at all, a click that did nothing because handlers were not attached yet, and the layout jumping when the CSS finally landed. Any consumer that server-renders had the same problem and no way to fix it from their side.
+
+The bundle still injects at runtime, so browser-only consumers and the spec pages are unaffected; the rules are identical, so loading both changes nothing.
+
+### Note
+`components.css` is generated. Change the CSS in the component source and rebuild — never edit it directly.
+
 ## 4.1.5 (2026-08-21)
 
 ### Menu

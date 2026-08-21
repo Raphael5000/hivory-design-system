@@ -81,7 +81,7 @@ Each lives at `components/<Name>/` as dependency-free `.jsx` (CSS-in-template-st
 
 The WhoYou portal drifted because it **copied** tokens and nothing announced that values changed. The contract now:
 
-1. **Consumers import `tokens/*.css` + `styles.css` from this repo** (pin a commit/tag); never copy values out.
+1. **Consumers import `tokens/*.css` + `styles.css` from this repo** (pin a commit/tag); never copy values out. `styles.css` pulls in `components.css` too, which is what makes the components render correctly when the consumer **server-renders** — the runtime CSS injection cannot run before hydration.
 2. **`tokens/tokens.json` is the changelog**: diff it between versions to see exactly what changed. Regenerated from the CSS — never hand-edit.
 3. **`scripts/drift-test.mjs` goes in every consumer's CI** (`npm run drift` here): nine rules, each a real defect found by hand. Escape hatch: `/* drift-ok: reason */` with a reason.
 4. **Never rename an existing token.** Correct values or add new ones (`--hover-lift` is held at `0px` for exactly this reason; `--text-xl` and the tracking aliases live in the compat block of `tokens/typography.css`).
@@ -89,7 +89,8 @@ The WhoYou portal drifted because it **copied** tokens and nothing announced tha
 
 ## Index
 
-- `styles.css` — global entry; imports everything under `tokens/`
+- `styles.css` — global entry; imports everything under `tokens/` plus `components.css`
+- `components.css` — GENERATED component rules (from the sources, by `scripts/build-bundle.mjs`)
 - `tokens/` — colors · typography · layout · fonts · `brands/meaning.css` · `tokens.json` (version record)
 - `CLAUDE.md` — binding repo rules · `docs/portal-design-language.md` — full doctrine · `CHANGELOG.md`
 - `scripts/drift-test.mjs` — `npm run drift`
