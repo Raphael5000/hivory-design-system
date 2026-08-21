@@ -2,6 +2,14 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.4.3 (2026-08-21)
+
+### Removed
+- `handoff/portal/` — the v1 portal runbook, superseded by portal v2 and kept "for the record" when git already keeps the record.
+- `_adherence.oxlintrc.json` — 21KB of lint config referenced by no script, no CI job and no documentation. The drift test is what enforces adherence now.
+
+Nothing else went: an unused component in a design system is inventory, not debt. `templates/`, `guidelines/` and the 45 spec pages are the system's product and its acceptance criteria.
+
 ## 4.4.2 (2026-08-21)
 
 ### Fixed

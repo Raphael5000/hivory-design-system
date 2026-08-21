@@ -100,7 +100,6 @@ The WhoYou portal drifted because it **copied** tokens and nothing announced tha
 - `guidelines/` — specimen cards (Brand · Colors · Type · Spacing · Components groups)
 - `specs/` — the 45 spec pages + `support.js`
 - `templates/dashboard` — the Dashboard template · `templates/email-audit` — email template audit harness
-- `handoff/portal/` — superseded v1 portal runbook (kept for the record)
 - `assets/logo/hivory/` & `assets/logo/meaning/` — four lockups per brand (+ Hivory `mark-*.svg`)
 
 ## Deferred (deliberately)
