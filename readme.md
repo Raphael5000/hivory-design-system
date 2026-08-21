@@ -91,6 +91,7 @@ The WhoYou portal drifted because it **copied** tokens and nothing announced tha
 
 - `styles.css` — global entry; imports everything under `tokens/` plus `components.css` and `base.css`
 - `base.css` — motion base: focus rings, press feedback, reduced-motion contract (applies to consumer-built markup too)
+- `icons.css` + `assets/fonts/` — GENERATED Tabler subset (`icons.txt` lists the glyphs; rebuild with `scripts/build-icons.mjs`)
 - `components.css` — GENERATED component rules (from the sources, by `scripts/build-bundle.mjs`)
 - `tokens/` — colors · typography · layout · fonts · `brands/meaning.css` · `tokens.json` (version record)
 - `CLAUDE.md` — binding repo rules · `docs/portal-design-language.md` — full doctrine · `CHANGELOG.md`

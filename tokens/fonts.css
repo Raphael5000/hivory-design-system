@@ -10,4 +10,8 @@
 /* ICONS (27 Jul): Tabler is THE system icon set — outline only, round caps/joins,
    24-grid webfont rendered at 14/16/18px via font-size. Usage: <i class="ti ti-search">.
    Ink ladder colors, never green. The dual-hex spinner + hex agent stay custom brand marks. */
-@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css');
+/* Tabler, subsetted to the glyphs the system ships and served from here.
+   The full set is 5,193 glyphs — 451KB of font and 206KB of CSS from a
+   third-party CDN — to render the few dozen this system uses. See icons.txt
+   and scripts/build-icons.mjs. */
+@import "../icons.css";

@@ -1,0 +1,40 @@
+# Glyphs the design system ships, subsetted from Tabler.
+# Adding one is a design decision: add the line, rebuild, commit.
+# Rebuild: node scripts/build-icons.mjs
+
+ti-adjustments
+ti-adjustments-horizontal
+ti-arrow-right
+ti-arrow-up-right
+ti-arrows-diagonal
+ti-arrows-diagonal-minimize-2
+ti-article
+ti-bell
+ti-brand-linkedin
+ti-calendar
+ti-chart-bar
+ti-chart-line
+ti-check
+ti-chevron-down
+ti-chevron-left
+ti-chevron-right
+ti-chevron-up
+ti-clock
+ti-dots
+ti-file-text
+ti-filter
+ti-info-circle
+ti-layout-dashboard
+ti-logout
+ti-mail
+ti-paperclip
+ti-pencil
+ti-player-pause
+ti-refresh
+ti-search
+ti-settings
+ti-sparkles
+ti-trash
+ti-upload
+ti-users
+ti-world
