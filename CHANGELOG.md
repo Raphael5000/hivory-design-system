@@ -2,6 +2,14 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.0 (2026-08-21)
+
+### Fixed
+- **`SignIn` drew a generic ring.** The gate's busy state hand-rolled `.hv-signin__spin` — a rotating bordered circle — while the system's own rule (StepTimeline, readme) is that in-flight work is the dual-hex at `--duration-spinner`, **never a generic ring**. The one screen every client sees first was the one screen breaking the rule. It now renders `Spinner` at `tone="on-dark"`, and the local ring, its keyframes and its reduced-motion override are gone.
+
+### Changed
+- **Components can compose components.** Each source is wrapped in its own IIFE in `_ds_bundle.js`, where an `import` is a syntax error — so until now a component could only reuse a sibling by copying it, which is how a design system grows two of the same mark. `build-bundle.mjs` now rewrites a relative named import into a lazy forward through the shared scope (`const Spinner = (...a) => __ds_scope.Spinner(...a)`). Lazy, so the emitted block order stays irrelevant. Both consumption paths are verified: ES module under the automatic JSX runtime, and the browser bundle (49 exports, no `__errors`).
+
 ## 4.4.3 (2026-08-21)
 
 ### Removed

@@ -48,6 +48,18 @@ for (const path of sources) {
   // work as ES modules (SSR, bundlers); strip it here.
   const stripped = raw
     .replace(/^import\s+\*\s+as\s+React\s+from\s+'react';\n/gm, '')
+    /* A component may compose a sibling — SignIn uses the dual-hex Spinner
+       rather than hand-rolling a ring. As an ES module that is a plain named
+       import. Inside the bundle each source is its own IIFE, so the import
+       becomes a lazy forward through the shared scope: read at call time, not
+       at definition time, which makes the emitted block order irrelevant. */
+    .replace(/^import\s*\{([^}]+)\}\s*from\s*'\.\.\/[^']+';$/gm, (_m, list) =>
+      list
+        .split(',')
+        .map((n) => n.trim())
+        .filter(Boolean)
+        .map((n) => `const ${n} = (...a) => __ds_scope.${n}(...a);`)
+        .join('\n'))
     .replace(/^export\s+(function|const|let|class)\s+/gm, '$1 ');
 
   /* Every component carries its CSS as a plain template literal and injects it

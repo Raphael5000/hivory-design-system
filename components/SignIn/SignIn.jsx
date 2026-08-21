@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Spinner } from '../Spinner/Spinner';
 /* Hivory SignIn — the gate. Left: the plate, the one surface a partner completely owns (dark ramp,
    green bloom, one line). Right: the same disciplined form every console ships — providers first,
    42px opaque fields, an ink verb, recovery resolving in place. Glass may frame the panel (one of
@@ -44,8 +45,6 @@ const hvSignInCss = `
 .hv-signin__cta:active{filter:brightness(0.94)}
 .hv-signin__cta:disabled{opacity:0.4;cursor:not-allowed;filter:none}
 .hv-signin__cta:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
-.hv-signin__spin{width:13px;height:13px;border-radius:var(--radius-pill);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.3);border-top:1.5px solid var(--white);display:inline-block;box-sizing:border-box;animation:hv-signin-spin var(--duration-spinner) linear infinite}
-@keyframes hv-signin-spin{to{transform:rotate(360deg)}}
 .hv-signin__provs{margin-top:34px;display:flex;flex-direction:column;gap:12px}
 .hv-signin__sso{width:100%;height:42px;border:none;border-radius:var(--radius-pill);background:var(--surface-card);box-shadow:inset 0 0 0 1px var(--border-strong);font-family:var(--font-sans);font-size:13.5px;font-weight:550;color:var(--ink-900);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:box-shadow var(--transition-soft)}
 .hv-signin__sso:hover:not(:disabled){box-shadow:inset 0 0 0 1px var(--ink-300)}
@@ -80,7 +79,6 @@ const hvSignInCss = `
   .hv-signin__h{font-size:24px}
   .hv-signin__mlinks{display:flex}
 }
-@media (prefers-reduced-motion:reduce){.hv-signin__spin{animation-duration:2.4s}}
 `;
 function hvEnsureSignInCss() {
   if (typeof document === 'undefined' || document.getElementById('hv-signin-css')) return;
@@ -267,7 +265,7 @@ export function SignIn({
       {gate !== 'sso' ? (
         <div className="hv-signin__ctarow">
           <button type="submit" className="hv-signin__cta" disabled={blocked}>
-            {busy ? <span className="hv-signin__spin" data-motion="essential"></span> : null}
+            {busy ? <Spinner size={13} tone="on-dark" /> : null}
             {busy ? busyLabel : (cta || gateDef.cta)}
           </button>
         </div>
