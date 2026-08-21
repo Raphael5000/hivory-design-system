@@ -2,6 +2,15 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.1.4 (2026-08-21)
+
+### Added
+- **`--shadow-panel`** — the artifact sheet at rest: the overlay ramp one step down (0.2 against overlay's 0.3), so expanding a panel to `--shadow-overlay` reads as a lift. It was the one shadow in the system with no token, which is why the console spec carried it as a literal.
+
+### Fixed
+- **The artifact panel's expanded lift never applied.** `[data-artpanel][data-artwide="1"]` declared the 0.3 shadow without `!important`, while the panel sets `box-shadow` inline — and an inline style always beats a plain rule, so the panel expanded at its resting shadow and never lifted. This is the exact failure `CLAUDE.md` warns about for press states ("inline styles beat stylesheet rules"); the `width` declaration beside it already carried `!important` for the same reason. Now `var(--shadow-overlay) !important`. Audited the rest of the console's `[data-*]` override rules for the same collision — `artdoc`, `artpost`, `artvis`, `glidepill` and `artmeta` are all clean.
+- `tokens/tokens.json` recorded `4.1.0` three versions late.
+
 ## 4.1.3 (2026-08-21)
 
 ### Changed
