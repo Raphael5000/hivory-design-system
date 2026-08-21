@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.2.1 (2026-08-21)
+
+### Fixed
+- `components.css` would not parse. Its generated header comment contained a glob with `*/` in it, which closed the CSS comment two lines early and broke every consumer's build on the first line of the file. Caught immediately by portal v2's build; 4.2.0 should not be used.
+
 ## 4.2.0 (2026-08-21)
 
 ### Added
