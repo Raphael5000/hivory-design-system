@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.4.2 (2026-08-21)
+
+### Fixed
+- `ti-x` was missing from the subset — the close glyph, used on nearly every panel and dismissible control in the system. The scan that seeded `icons.txt` required two or more characters after `ti-`, so the shortest name in the set fell through it. Found by the `icon-not-shipped` rule added in 4.4.1, in a consumer, within minutes of shipping.
+
 ## 4.4.1 (2026-08-21)
 
 ### Fixed
