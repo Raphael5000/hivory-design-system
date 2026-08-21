@@ -8,3 +8,7 @@
    The bundle still injects at runtime for browser-only consumers; the rules are
    identical, so loading both changes nothing. */
 @import "./components.css";
+
+/* Focus, press and reduced motion for everything — including whatever the
+   consumer builds themselves. Marked "do not localise" on every spec page. */
+@import "./base.css";

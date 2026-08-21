@@ -2,6 +2,14 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.3.0 (2026-08-21)
+
+### Added
+- **`base.css`** — the motion base: keyboard focus rings, pressed feedback, and the reduced-motion contract, including `[data-motion="essential"]`. Imported by `styles.css`.
+
+### Why
+Every one of the 45 spec pages carries this block marked *"system, do not localise"*, and it shipped in none of them. Components carried their own `:focus-visible`, so the system's own controls were fine — but **anything a consumer builds had no focus ring, no press feedback and no reduced-motion contract**, with no way to get them except copying the block, which is how it drifts. Portal v2 built a sidebar, a queue table and a chat with none of the three.
+
 ## 4.2.1 (2026-08-21)
 
 ### Fixed

@@ -1,0 +1,51 @@
+/* Hivory Design System — motion base.
+   Keyboard focus, pressed feedback and the reduced-motion contract.
+
+   Every spec page carries this block marked "system, do not localise", because
+   it cannot be expressed inline: these are pseudo-class and media rules. It
+   belongs to the system, so it ships with it — a consumer building anything of
+   their own gets focus rings, press feedback and the reduced-motion contract
+   without copying a block that would then drift.
+
+   Imported by styles.css. */
+
+:where(
+  button, a, input, textarea, select,
+  [tabindex], [role="button"], [role="tab"], [role="switch"], [role="checkbox"], [role="link"]
+):focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+:where(button, a, [role="button"], [role="tab"]):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Press is brightness, never opacity or transform: an inline style beats a
+   stylesheet rule, so an opacity press loses on anything setting its own. */
+:where(button, a, [role="button"], [role="tab"], [role="switch"], [role="checkbox"]):active {
+  filter: brightness(0.94);
+}
+
+:where(button, [role="button"])[disabled],
+:where(button, [role="button"])[aria-disabled="true"] {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Motion that CARRIES INFORMATION keeps running, calmed — never removed.
+     Freezing a spinner deletes the only signal that work is in flight. */
+  [data-motion="essential"] {
+    animation-duration: 2.4s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
