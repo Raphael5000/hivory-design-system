@@ -2,6 +2,12 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.1.3 (2026-08-21)
+
+### Changed
+- **SignIn is full bleed.** The gate is a screen, not a card: it now fills the viewport (`min-height: 100dvh`) with no radius and no elevation, instead of rendering as a 660px plate that had to be centred by every consumer. Consumers should place it directly — no centring frame. On mobile it stays full bleed, the plate collapsing to a band over a form that takes the rest (`grid-template-rows: auto 1fr`).
+- `plate: false` (`.hv-signin--solo`) is unaffected and keeps its card chrome. It is a form panel embedded in someone else's layout, not a screen, so it carries the radius and elevation explicitly now that the base no longer supplies them.
+
 ## 4.1.2 (2026-08-21)
 
 Distribution fixes. The system was consumable as a browser bundle and, it turns out, as almost nothing else — both bugs surfaced the first time a real bundler tried to import it (portal v2). No component behaviour, geometry or token changed; `_ds_bundle.js` is byte-identical below the header.

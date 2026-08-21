@@ -29,6 +29,8 @@ export interface SignInRecoveryCopy {
 
 /**
  * SignIn — the gate. Design rules (binding):
+ * - The gate is a SCREEN, not a card: full bleed, no radius, no elevation. It owns
+ *   the viewport it is placed in — do not wrap it in a centring frame.
  * - The plate is a stage, not a billboard: mark, one line, one sub — no screenshot,
  *   no testimonial, no widgets. All partner expression happens there; the form stays
  *   identical in every deployment.

@@ -4,8 +4,8 @@ import * as React from 'react';
    42px opaque fields, an ink verb, recovery resolving in place. Glass may frame the panel (one of
    the system's two glass surfaces) but is never the field: inputs stay opaque on every deployment. */
 const hvSignInCss = `
-.hv-signin{display:grid;grid-template-columns:0.92fr 1fr;min-height:660px;border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-elevated);font-family:var(--font-sans);color:var(--text-body)}
-.hv-signin--solo{grid-template-columns:1fr;min-height:0}
+.hv-signin{display:grid;grid-template-columns:0.92fr 1fr;min-height:100vh;min-height:100dvh;overflow:hidden;font-family:var(--font-sans);color:var(--text-body)}
+.hv-signin--solo{grid-template-columns:1fr;grid-template-rows:1fr;min-height:0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-elevated)}
 .hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(158deg,#1C2B22 0%,var(--surface-dark) 54%,#0B120E 100%)} /* drift-ok: plate-local dark ramp per spec — no token equivalent */
 .hv-signin__glow{position:absolute;width:520px;height:520px;left:-170px;top:-190px;border-radius:var(--radius-pill);background:radial-gradient(circle,rgba(0,238,127,0.22) 0%,transparent 66%)}
 .hv-signin__dots{position:absolute;inset:0;opacity:0.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.10) 1px,transparent 0);background-size:24px 24px;mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%);-webkit-mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%)}
@@ -70,7 +70,7 @@ const hvSignInCss = `
 .hv-signin__mlinks a:hover{color:var(--ink-900)}
 .hv-signin__mlinks .hv-signin__sep{background:var(--ink-300)}
 @media (max-width:860px){
-  .hv-signin{grid-template-columns:1fr;min-height:0}
+  .hv-signin{grid-template-columns:1fr;grid-template-rows:auto 1fr}
   .hv-signin__plate{padding:20px 22px}
   .hv-signin__line{margin-top:20px;font-size:21px;max-width:26ch}
   .hv-signin__platesub{display:none}
