@@ -7,6 +7,7 @@ const hvMenuCss = `
 .hv-menu--top{bottom:calc(100% + 6px)}
 .hv-menu--left{left:0}
 .hv-menu--right{right:0}
+.hv-menu--stretch{left:0;right:0}
 .hv-menu__item{display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;padding:7px 10px;border:none;background:none;text-align:left;font-family:var(--font-sans);font-size:13.5px;color:var(--ink-900);border-radius:var(--radius-sm);cursor:pointer;transition:background-color var(--duration-soft) var(--ease-out)}
 .hv-menu__item:hover:not(:disabled){background:var(--ink-50)}
 .hv-menu__item:disabled{color:var(--text-faint);cursor:not-allowed}

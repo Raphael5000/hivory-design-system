@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.1 (2026-08-21)
+
+### Added
+- **`Menu` takes `align="stretch"`** — pins the panel to both edges of its trigger so it takes the trigger's exact width. The console spec's account menu is drawn `left: 0; right: 0` and there was no prop for it: shrink-wrapped to its longest item the panel stopped 10px short of the 200px row it hangs off, which reads as a misalignment rather than as a menu. Without the prop the only way to draw the spec was a hard-coded width in the consumer.
+
 ## 4.5.0 (2026-08-21)
 
 ### Fixed
