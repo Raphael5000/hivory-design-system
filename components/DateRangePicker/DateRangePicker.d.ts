@@ -5,7 +5,7 @@ export interface DateRange {
 }
 
 export interface DateRangePickerProps {
-  /** '7d' | '30d' | '90d' | 'ytd' | 'custom' — initial preset. */
+  /** '7d' | '30d' | '90d' | '12m' | 'ytd' | 'custom' — initial preset. */
   defaultPreset?: string;
   /** Open the panel initially (for specs/demos). */
   defaultOpen?: boolean;

@@ -2,6 +2,10 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.2 (2026-09-08)
+
+- DateRangePicker: **Last 12 months** preset (`12m`) — calendar months including the current one; presets carry `days` or `months`. Asked for by AMMEGA Insights' exec Overview, whose monthly charts need to reach back to a Sept-2025 backfill.
+
 ## 4.5.1 (2026-08-21)
 
 ### Added

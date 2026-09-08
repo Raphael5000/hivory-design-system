@@ -36,6 +36,7 @@ const HV_DRP_PRESETS = [
   { id: '7d', label: 'Last 7 days', days: 7 },
   { id: '30d', label: 'Last 30 days', days: 30 },
   { id: '90d', label: 'Last quarter', days: 90 },
+  { id: '12m', label: 'Last 12 months', months: 12 }, // calendar months incl. the current one
   { id: 'ytd', label: 'Year to date' },
   { id: 'custom', label: 'Custom range' }
 ];
@@ -62,7 +63,9 @@ export function DateRangePicker({ defaultPreset = '30d', defaultOpen = false, on
     setPreset(p.id);
     if (p.id !== 'custom') {
       const e2 = new Date(today);
-      const s2 = p.days ? new Date(today.getTime() - p.days * 864e5) : new Date(today.getFullYear(), 0, 1);
+      const s2 = p.days ? new Date(today.getTime() - p.days * 864e5)
+        : p.months ? new Date(today.getFullYear(), today.getMonth() - (p.months - 1), 1)
+        : new Date(today.getFullYear(), 0, 1);
       setStart(s2); setEnd(e2);
       if (onChange) onChange({ preset: p.id, start: s2, end: e2 });
       setOpen(false);
