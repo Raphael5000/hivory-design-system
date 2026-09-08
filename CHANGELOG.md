@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.5 (2026-09-08)
+
+- **`--plate-ramp`** — the sign-in plate's dark stage is a token (it was a plate-local literal), so a brand scope can carry its own.
+- **AMMEGA scope tints the canvas and the plate** in the client's petrol — an owner's ruling that relaxes the white-label spec's "no tinted canvas": same wash geometry and strength as Hivory's, only the hue is the client's. The spec page should say so on its next edit.
+
 ## 4.5.4 (2026-09-08)
 
 - **AMMEGA white label completed.** `tokens/brands/ammega.css` now carries the signal-colour triplet — petrol `#005762` (the client site's primary), hover `#004550`, on-colour white (measured 8.3:1), focus ring — and `assets/logo/ammega/` ships the lockup and the mark in petrol, white and black (mono marks from the client's site, recoloured; the guidelines' colour artwork replaces them when supplied).

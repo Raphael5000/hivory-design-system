@@ -26,6 +26,16 @@
   --action-brand-hover: #004550; /* @kind color — client signal colour, hover */
   --on-action-brand: #FFFFFF;    /* @kind color — measured on-colour */
   --border-focus: #005762;       /* @kind color — client signal colour */
+
+  /* Canvas and plate in the client's own tint — the owner's ruling for
+     AMMEGA (2026-09-08), relaxing the white-label spec's "no tinted canvas":
+     the wash keeps Hivory's geometry and strength, only the hue is the
+     client's. Petrol at ~14% over the off-white ground; a sand second wash
+     from the client's palette (--ax-gf-sand) at the same quietness. */
+  --canvas: radial-gradient(at 8% 0%, #D9E7E8 0%, transparent 42%),
+            radial-gradient(at 95% 100%, #F5F1E8 0%, transparent 45%),
+            var(--surface-app); /* @kind color — client canvas wash */
+  --plate-ramp: linear-gradient(158deg, #0E3237 0%, #072124 54%, #04171A 100%); /* @kind color — client plate */
   --series-megadyne: #D6332B;       /* @kind color — client brand, provisional */
   --series-ammeraalbeltech: #2F6BD1; /* @kind color — client brand, provisional */
   --series-ammega: #0F5F5E;          /* @kind color — client brand, provisional */

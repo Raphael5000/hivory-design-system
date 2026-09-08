@@ -7,7 +7,7 @@ import { Spinner } from '../Spinner/Spinner';
 const hvSignInCss = `
 .hv-signin{display:grid;grid-template-columns:0.92fr 1fr;min-height:100vh;min-height:100dvh;overflow:hidden;font-family:var(--font-sans);color:var(--text-body)}
 .hv-signin--solo{grid-template-columns:1fr;grid-template-rows:1fr;min-height:0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-elevated)}
-.hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(158deg,#1C2B22 0%,var(--surface-dark) 54%,#0B120E 100%)} /* drift-ok: plate-local dark ramp per spec — no token equivalent */
+.hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:var(--plate-ramp)}
 .hv-signin__glow{position:absolute;width:520px;height:520px;left:-170px;top:-190px;border-radius:var(--radius-pill);background:radial-gradient(circle,rgba(0,238,127,0.22) 0%,transparent 66%)}
 .hv-signin__dots{position:absolute;inset:0;opacity:0.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.10) 1px,transparent 0);background-size:24px 24px;mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%);-webkit-mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%)}
 .hv-signin__platein{position:relative;display:flex;flex-direction:column;height:100%}

@@ -146,6 +146,8 @@
   --canvas-wash: radial-gradient(at 8% 0%, #DFF4E9 0%, transparent 42%),
                  radial-gradient(at 95% 100%, #EDEEE8 0%, transparent 45%);
   --canvas: var(--canvas-wash), var(--surface-app);
+  /* The sign-in plate's dark stage. A brand scope may carry its own. */
+  --plate-ramp: linear-gradient(158deg, #1C2B22 0%, var(--surface-dark) 54%, #0B120E 100%);
 
   /* The ONE glass object per screen — the sidebar. */
   --glass-fill: rgba(255, 255, 255, 0.5);
