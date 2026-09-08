@@ -2,6 +2,10 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.4 (2026-09-08)
+
+- **AMMEGA white label completed.** `tokens/brands/ammega.css` now carries the signal-colour triplet — petrol `#005762` (the client site's primary), hover `#004550`, on-colour white (measured 8.3:1), focus ring — and `assets/logo/ammega/` ships the lockup and the mark in petrol, white and black (mono marks from the client's site, recoloured; the guidelines' colour artwork replaces them when supplied).
+
 ## 4.5.3 (2026-09-08)
 
 - **`tokens/brands/ammega.css`** — the AMMEGA white-label scope (`[data-brand="ammega"]`). First contents: the end client's series palette for its own brands inside charts (`--series-megadyne`, `--series-ammeraalbeltech`, `--series-ammega`), provisional values from the legacy executive dashboard until the brand guidelines land. The signal-colour triplet follows when supplied. Imported by `styles.css`.
