@@ -2,6 +2,10 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.3 (2026-09-08)
+
+- **`tokens/brands/ammega.css`** — the AMMEGA white-label scope (`[data-brand="ammega"]`). First contents: the end client's series palette for its own brands inside charts (`--series-megadyne`, `--series-ammeraalbeltech`, `--series-ammega`), provisional values from the legacy executive dashboard until the brand guidelines land. The signal-colour triplet follows when supplied. Imported by `styles.css`.
+
 ## 4.5.2 (2026-09-08)
 
 - DateRangePicker: **Last 12 months** preset (`12m`) — calendar months including the current one; presets carry `days` or `months`. Asked for by AMMEGA Insights' exec Overview, whose monthly charts need to reach back to a Sept-2025 backfill.

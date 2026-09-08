@@ -1,0 +1,24 @@
+/* AMMEGA — white-label brand scope for AMMEGA Insights.
+   Apply with <body data-brand="ammega">.
+
+   The console's chrome stays Hivory's (white-label spec: the canvas, the
+   ink, the geometry and the status colours never follow the brand; the
+   partner's signal colour lands here as --action-brand / --on-action-brand /
+   --border-focus once supplied).
+
+   What this file adds is the END CLIENT's palette for the data itself:
+   AMMEGA's product brands are series inside every chart, and reading a
+   stack means knowing which brand is which at a glance. Artifacts carry the
+   end client's palette (spec: "the mock interiors") — chart series are the
+   artifact here. Series tokens are keyed by the canonical brand_key.
+
+   PROVISIONAL VALUES — sampled from the client's legacy executive dashboard
+   (Megadyne red, Ammeraal Beltech blue, AMMEGA corporate teal) until the
+   brand guidelines supply the exact hex. Replace the three values, nothing
+   else. */
+[data-brand="ammega"] {
+  --brand-name: "AMMEGA"; /* @kind other */
+  --series-megadyne: #D6332B;       /* @kind color — client brand, provisional */
+  --series-ammeraalbeltech: #2F6BD1; /* @kind color — client brand, provisional */
+  --series-ammega: #0F5F5E;          /* @kind color — client brand, provisional */
+}
