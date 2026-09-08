@@ -2,6 +2,10 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.6 (2026-09-08)
+
+- AMMEGA scope: **per-brand chart palettes** (`--palette-<brand>-1…5`) — when one brand is selected, a consumer draws every series in that brand's family (base, deep, two tints, deepest). Provisional with the series bases.
+
 ## 4.5.5 (2026-09-08)
 
 - **`--plate-ramp`** — the sign-in plate's dark stage is a token (it was a plate-local literal), so a brand scope can carry its own.

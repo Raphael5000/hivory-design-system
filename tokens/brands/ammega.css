@@ -39,4 +39,25 @@
   --series-megadyne: #D6332B;       /* @kind color — client brand, provisional */
   --series-ammeraalbeltech: #2F6BD1; /* @kind color — client brand, provisional */
   --series-ammega: #0F5F5E;          /* @kind color — client brand, provisional */
+
+  /* Per-brand chart palettes — when ONE brand is selected, every series on
+     the screen draws in that brand's family: -1 the brand colour, -2 its
+     deep, -3 / -4 its tints, -5 its deepest. Ordered so any two adjacent
+     ranks still separate (base vs deep, then tints). Provisional with the
+     bases above. */
+  --palette-megadyne-1: #D6332B;       /* @kind color */
+  --palette-megadyne-2: #8E1F1A;       /* @kind color */
+  --palette-megadyne-3: #EE8A84;       /* @kind color */
+  --palette-megadyne-4: #F5C2BE;       /* @kind color */
+  --palette-megadyne-5: #5C1410;       /* @kind color */
+  --palette-ammeraalbeltech-1: #2F6BD1; /* @kind color */
+  --palette-ammeraalbeltech-2: #1B3F80; /* @kind color */
+  --palette-ammeraalbeltech-3: #7FA5E6; /* @kind color */
+  --palette-ammeraalbeltech-4: #BFD2F3; /* @kind color */
+  --palette-ammeraalbeltech-5: #0F2650; /* @kind color */
+  --palette-ammega-1: #0F5F5E;          /* @kind color */
+  --palette-ammega-2: #1E9A97;          /* @kind color */
+  --palette-ammega-3: #7FBFBD;          /* @kind color */
+  --palette-ammega-4: #BFDFDE;          /* @kind color */
+  --palette-ammega-5: #06393A;          /* @kind color */
 }
