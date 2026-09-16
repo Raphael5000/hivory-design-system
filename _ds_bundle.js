@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"HivoryDesignSystem_354905","components":[{"name":"Accordion","sourcePath":"components/Accordion/Accordion.jsx"},{"name":"Avatar","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge/Badge.jsx"},{"name":"Button","sourcePath":"components/Button/Button.jsx"},{"name":"CapMeter","sourcePath":"components/CapMeter/CapMeter.jsx"},{"name":"Card","sourcePath":"components/Card/Card.jsx"},{"name":"Scorecard","sourcePath":"components/Card/Card.jsx"},{"name":"Stat","sourcePath":"components/Card/Card.jsx"},{"name":"ChartLegend","sourcePath":"components/Charts/ChartLegend.jsx"},{"name":"ChartTooltip","sourcePath":"components/Charts/ChartTooltip.jsx"},{"name":"DateRangePicker","sourcePath":"components/DateRangePicker/DateRangePicker.jsx"},{"name":"FilterSelect","sourcePath":"components/FilterSelect/FilterSelect.jsx"},{"name":"Checkbox","sourcePath":"components/FormControls/Checkbox.jsx"},{"name":"Switch","sourcePath":"components/FormControls/Switch.jsx"},{"name":"Textarea","sourcePath":"components/FormControls/Textarea.jsx"},{"name":"Gantt","sourcePath":"components/Gantt/Gantt.jsx"},{"name":"Icon","sourcePath":"components/Icon/Icon.jsx"},{"name":"ICON_NAMES","sourcePath":"components/Icon/Icon.jsx"},{"name":"ImageSlot","sourcePath":"components/ImageSlot/ImageSlot.jsx"},{"name":"Input","sourcePath":"components/Input/Input.jsx"},{"name":"Separator","sourcePath":"components/LoadingDividers/Separator.jsx"},{"name":"Skeleton","sourcePath":"components/LoadingDividers/Skeleton.jsx"},{"name":"Menu","sourcePath":"components/Menu/Menu.jsx"},{"name":"MetricChip","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"DifficultyMeter","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"Modal","sourcePath":"components/Modal/Modal.jsx"},{"name":"IconButton","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"ReviewActions","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"Select","sourcePath":"components/Select/Select.jsx"},{"name":"SidebarIcon","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"Sidebar","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"SignIn","sourcePath":"components/SignIn/SignIn.jsx"},{"name":"SignatureBlock","sourcePath":"components/SignatureBlock/SignatureBlock.jsx"},{"name":"Spinner","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"PulseDot","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"SplitButton","sourcePath":"components/SplitButton/SplitButton.jsx"},{"name":"StatCard","sourcePath":"components/StatCard/StatCard.jsx"},{"name":"StepTimeline","sourcePath":"components/StepTimeline/StepTimeline.jsx"},{"name":"Stepper","sourcePath":"components/Stepper/Stepper.jsx"},{"name":"Table","sourcePath":"components/Table/Table.jsx"},{"name":"DataTable","sourcePath":"components/Table/Table.jsx"},{"name":"Tabs","sourcePath":"components/Tabs/Tabs.jsx"},{"name":"Toast","sourcePath":"components/Toast/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/Toast/Toast.jsx"},{"name":"InfoTip","sourcePath":"components/Tooltip/InfoTip.jsx"},{"name":"Tooltip","sourcePath":"components/Tooltip/Tooltip.jsx"},{"name":"Topbar","sourcePath":"components/Topbar/Topbar.jsx"},{"name":"Transcript","sourcePath":"components/Transcript/Transcript.jsx"}],"sourceHashes":{"components/Accordion/Accordion.jsx":"ba9cf61f28e4","components/Avatar/Avatar.jsx":"af91860e57a0","components/Badge/Badge.jsx":"ecd83cc1929e","components/Button/Button.jsx":"5a8a0360fcb3","components/CapMeter/CapMeter.jsx":"9fdd9931dec7","components/Card/Card.jsx":"2d6ba8489a80","components/Charts/ChartLegend.jsx":"019477cc7b67","components/Charts/ChartTooltip.jsx":"8f45a76190f0","components/DateRangePicker/DateRangePicker.jsx":"f50336ed7dc9","components/FilterSelect/FilterSelect.jsx":"f32932f1adf1","components/FormControls/Checkbox.jsx":"188a8d9c28e6","components/FormControls/Switch.jsx":"cb43564c512a","components/FormControls/Textarea.jsx":"be49e0726381","components/Gantt/Gantt.jsx":"b75e6356af64","components/Icon/Icon.jsx":"24f2423182bc","components/ImageSlot/ImageSlot.jsx":"9eaf1a4b8b7d","components/Input/Input.jsx":"dd09eb37755a","components/LoadingDividers/Separator.jsx":"cd977e095808","components/LoadingDividers/Skeleton.jsx":"a71340dc9e26","components/Menu/Menu.jsx":"832331bb5714","components/Metric/MetricChip.jsx":"bc96388b0cd0","components/Modal/Modal.jsx":"9afe1ab21a70","components/ReviewActions/ReviewActions.jsx":"8a260928e385","components/Select/Select.jsx":"318e84617a40","components/Sidebar/Sidebar.jsx":"3dfb5ffeede2","components/SignIn/SignIn.jsx":"0025a04cc358","components/SignatureBlock/SignatureBlock.jsx":"e546f9524fa8","components/Spinner/Spinner.jsx":"0121520180f9","components/SplitButton/SplitButton.jsx":"10b454ec9c6b","components/StatCard/StatCard.jsx":"00ab307f3194","components/StepTimeline/StepTimeline.jsx":"3d638a63c81a","components/Stepper/Stepper.jsx":"bf1982c0f634","components/Table/Table.jsx":"0227840cff12","components/Tabs/Tabs.jsx":"2b248af0c371","components/Toast/Toast.jsx":"6106958dc597","components/Tooltip/InfoTip.jsx":"f282c0984fc3","components/Tooltip/Tooltip.jsx":"4f1224edbdf1","components/Topbar/Topbar.jsx":"413cb0493c34","components/Transcript/Transcript.jsx":"1e883396fbc5"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"HivoryDesignSystem_354905","components":[{"name":"Accordion","sourcePath":"components/Accordion/Accordion.jsx"},{"name":"Avatar","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/Avatar/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge/Badge.jsx"},{"name":"Button","sourcePath":"components/Button/Button.jsx"},{"name":"CapMeter","sourcePath":"components/CapMeter/CapMeter.jsx"},{"name":"Card","sourcePath":"components/Card/Card.jsx"},{"name":"Scorecard","sourcePath":"components/Card/Card.jsx"},{"name":"Stat","sourcePath":"components/Card/Card.jsx"},{"name":"ChartLegend","sourcePath":"components/Charts/ChartLegend.jsx"},{"name":"ChartTooltip","sourcePath":"components/Charts/ChartTooltip.jsx"},{"name":"DateRangePicker","sourcePath":"components/DateRangePicker/DateRangePicker.jsx"},{"name":"FilterSelect","sourcePath":"components/FilterSelect/FilterSelect.jsx"},{"name":"Checkbox","sourcePath":"components/FormControls/Checkbox.jsx"},{"name":"Switch","sourcePath":"components/FormControls/Switch.jsx"},{"name":"Textarea","sourcePath":"components/FormControls/Textarea.jsx"},{"name":"Gantt","sourcePath":"components/Gantt/Gantt.jsx"},{"name":"Icon","sourcePath":"components/Icon/Icon.jsx"},{"name":"ICON_NAMES","sourcePath":"components/Icon/Icon.jsx"},{"name":"ImageSlot","sourcePath":"components/ImageSlot/ImageSlot.jsx"},{"name":"Input","sourcePath":"components/Input/Input.jsx"},{"name":"Separator","sourcePath":"components/LoadingDividers/Separator.jsx"},{"name":"Skeleton","sourcePath":"components/LoadingDividers/Skeleton.jsx"},{"name":"Menu","sourcePath":"components/Menu/Menu.jsx"},{"name":"MetricChip","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"DifficultyMeter","sourcePath":"components/Metric/MetricChip.jsx"},{"name":"Modal","sourcePath":"components/Modal/Modal.jsx"},{"name":"IconButton","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"ReviewActions","sourcePath":"components/ReviewActions/ReviewActions.jsx"},{"name":"Select","sourcePath":"components/Select/Select.jsx"},{"name":"SidebarIcon","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"Sidebar","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"SignIn","sourcePath":"components/SignIn/SignIn.jsx"},{"name":"SignatureBlock","sourcePath":"components/SignatureBlock/SignatureBlock.jsx"},{"name":"Spinner","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"PulseDot","sourcePath":"components/Spinner/Spinner.jsx"},{"name":"SplitButton","sourcePath":"components/SplitButton/SplitButton.jsx"},{"name":"StatCard","sourcePath":"components/StatCard/StatCard.jsx"},{"name":"StepTimeline","sourcePath":"components/StepTimeline/StepTimeline.jsx"},{"name":"Stepper","sourcePath":"components/Stepper/Stepper.jsx"},{"name":"Table","sourcePath":"components/Table/Table.jsx"},{"name":"DataTable","sourcePath":"components/Table/Table.jsx"},{"name":"Tabs","sourcePath":"components/Tabs/Tabs.jsx"},{"name":"Toast","sourcePath":"components/Toast/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/Toast/Toast.jsx"},{"name":"InfoTip","sourcePath":"components/Tooltip/InfoTip.jsx"},{"name":"Tooltip","sourcePath":"components/Tooltip/Tooltip.jsx"},{"name":"Topbar","sourcePath":"components/Topbar/Topbar.jsx"},{"name":"Transcript","sourcePath":"components/Transcript/Transcript.jsx"}],"sourceHashes":{"components/Accordion/Accordion.jsx":"ba9cf61f28e4","components/Avatar/Avatar.jsx":"af91860e57a0","components/Badge/Badge.jsx":"ecd83cc1929e","components/Button/Button.jsx":"5a8a0360fcb3","components/CapMeter/CapMeter.jsx":"9fdd9931dec7","components/Card/Card.jsx":"ca3b8c6b4067","components/Charts/ChartLegend.jsx":"019477cc7b67","components/Charts/ChartTooltip.jsx":"8f45a76190f0","components/DateRangePicker/DateRangePicker.jsx":"ca5c69906007","components/FilterSelect/FilterSelect.jsx":"f32932f1adf1","components/FormControls/Checkbox.jsx":"188a8d9c28e6","components/FormControls/Switch.jsx":"cb43564c512a","components/FormControls/Textarea.jsx":"be49e0726381","components/Gantt/Gantt.jsx":"b75e6356af64","components/Icon/Icon.jsx":"24f2423182bc","components/ImageSlot/ImageSlot.jsx":"9eaf1a4b8b7d","components/Input/Input.jsx":"dd09eb37755a","components/LoadingDividers/Separator.jsx":"cd977e095808","components/LoadingDividers/Skeleton.jsx":"a71340dc9e26","components/Menu/Menu.jsx":"832331bb5714","components/Metric/MetricChip.jsx":"bc96388b0cd0","components/Modal/Modal.jsx":"9afe1ab21a70","components/ReviewActions/ReviewActions.jsx":"8a260928e385","components/Select/Select.jsx":"318e84617a40","components/Sidebar/Sidebar.jsx":"3dfb5ffeede2","components/SignIn/SignIn.jsx":"caff997bf447","components/SignatureBlock/SignatureBlock.jsx":"e546f9524fa8","components/Spinner/Spinner.jsx":"0121520180f9","components/SplitButton/SplitButton.jsx":"10b454ec9c6b","components/StatCard/StatCard.jsx":"7f03adc65896","components/StepTimeline/StepTimeline.jsx":"3d638a63c81a","components/Stepper/Stepper.jsx":"bf1982c0f634","components/Table/Table.jsx":"9532eea84243","components/Tabs/Tabs.jsx":"2b248af0c371","components/Toast/Toast.jsx":"6106958dc597","components/Tooltip/InfoTip.jsx":"f282c0984fc3","components/Tooltip/Tooltip.jsx":"4f1224edbdf1","components/Topbar/Topbar.jsx":"413cb0493c34","components/Transcript/Transcript.jsx":"1e883396fbc5"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -258,7 +258,7 @@ const hvCardCss = `
 .hv-card__title{margin:0;font-size:14.5px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-950)}
 .hv-card__sub{margin:3px 0 0;font-size:12.5px;color:var(--text-muted)}
 .hv-card__body{padding:16px 18px}
-.hv-card--flush .hv-card__body{padding:0}
+.hv-card--flush .hv-card__body{padding:0;overflow:hidden;border-radius:inherit}
 `;
 function hvEnsureCardCss() {
   if (typeof document === "undefined" || document.getElementById("hv-card-css")) return;
@@ -393,6 +393,8 @@ const HV_DRP_PRESETS = [
   { id: "7d", label: "Last 7 days", days: 7 },
   { id: "30d", label: "Last 30 days", days: 30 },
   { id: "90d", label: "Last quarter", days: 90 },
+  { id: "12m", label: "Last 12 months", months: 12 },
+  // calendar months incl. the current one
   { id: "ytd", label: "Year to date" },
   { id: "custom", label: "Custom range" }
 ];
@@ -418,7 +420,7 @@ function DateRangePicker({ defaultPreset = "30d", defaultOpen = false, onChange 
     setPreset(p.id);
     if (p.id !== "custom") {
       const e2 = new Date(today);
-      const s2 = p.days ? new Date(today.getTime() - p.days * 864e5) : new Date(today.getFullYear(), 0, 1);
+      const s2 = p.days ? new Date(today.getTime() - p.days * 864e5) : p.months ? new Date(today.getFullYear(), today.getMonth() - (p.months - 1), 1) : new Date(today.getFullYear(), 0, 1);
       setStart(s2);
       setEnd(e2);
       if (onChange) onChange({ preset: p.id, start: s2, end: e2 });
@@ -1360,7 +1362,7 @@ const Spinner = (...a) => __ds_scope.Spinner(...a);
 const hvSignInCss = `
 .hv-signin{display:grid;grid-template-columns:0.92fr 1fr;min-height:100vh;min-height:100dvh;overflow:hidden;font-family:var(--font-sans);color:var(--text-body)}
 .hv-signin--solo{grid-template-columns:1fr;grid-template-rows:1fr;min-height:0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-elevated)}
-.hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(158deg,#1C2B22 0%,var(--surface-dark) 54%,#0B120E 100%)} /* drift-ok: plate-local dark ramp per spec — no token equivalent */
+.hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:var(--plate-ramp)}
 .hv-signin__glow{position:absolute;width:520px;height:520px;left:-170px;top:-190px;border-radius:var(--radius-pill);background:radial-gradient(circle,rgba(0,238,127,0.22) 0%,transparent 66%)}
 .hv-signin__dots{position:absolute;inset:0;opacity:0.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.10) 1px,transparent 0);background-size:24px 24px;mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%);-webkit-mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%)}
 .hv-signin__platein{position:relative;display:flex;flex-direction:column;height:100%}
@@ -1832,12 +1834,24 @@ Object.assign(__ds_scope, { SplitButton });
 try { (() => {
 const hvStatCardCss = `
 .hv-statcard{display:flex;flex-direction:column;justify-content:space-between;min-height:108px;padding:16px 18px;border-radius:var(--radius-xl);background:var(--surface-card);box-shadow:var(--shadow-card);font-family:var(--font-sans);color:var(--text-body)}
+.hv-statcard--dense{min-height:0;gap:10px}
 .hv-statcard__label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-muted)}
 .hv-statcard__value{font-size:28px;font-weight:var(--weight-display);letter-spacing:-0.02em;line-height:1.05;color:var(--ink-950);font-variant-numeric:tabular-nums}
 .hv-statcard__value--absent{color:var(--text-faint)}
 .hv-statcard__sub{margin-top:3px;font-size:11.5px;line-height:1.4;color:var(--text-faint)}
 .hv-statcard__skel{height:28px;width:76px;border-radius:var(--radius-sm);background:var(--ink-100)}
 .hv-statcard__skel--sub{height:11px;width:52px;margin-top:3px}
+.hv-statcard--toggle{position:relative;overflow:hidden;width:100%;margin:0;border:0;text-align:left;cursor:pointer;font:inherit;-webkit-appearance:none;appearance:none}
+.hv-statcard--toggle::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--hv-statcard-accent,var(--series-1));opacity:0;transition:opacity var(--duration-soft) ease}
+.hv-statcard--toggle:hover{box-shadow:var(--shadow-raised)}
+.hv-statcard--toggle:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
+.hv-statcard--selected{background:color-mix(in srgb,var(--hv-statcard-accent,var(--series-1)) 9%,var(--surface-card))}
+.hv-statcard--selected::before{opacity:1}
+.hv-statcard--selected .hv-statcard__label{color:var(--text-body)}
+.hv-statcard__tick{flex:0 0 auto;width:14px;height:14px;border-radius:var(--radius-sm);border:1.5px solid var(--border-strong,var(--ink-300));background:var(--surface-card);display:inline-grid;place-items:center}
+.hv-statcard__tick svg{width:10px;height:10px;opacity:0}
+.hv-statcard--selected .hv-statcard__tick{border-color:var(--hv-statcard-accent,var(--series-1));background:var(--hv-statcard-accent,var(--series-1))}
+.hv-statcard--selected .hv-statcard__tick svg{opacity:1}
 `;
 function hvEnsureStatCardCss() {
   if (typeof document === "undefined" || document.getElementById("hv-statcard-css")) return;
@@ -1846,10 +1860,29 @@ function hvEnsureStatCardCss() {
   s.textContent = hvStatCardCss;
   document.head.appendChild(s);
 }
-function StatCard({ label, value, sub, info = null, loading = false }) {
+function StatCard({
+  label,
+  value,
+  sub,
+  info = null,
+  loading = false,
+  dense = false,
+  toggle = false,
+  selected = false,
+  onToggle,
+  accent
+}) {
   hvEnsureStatCardCss();
   const absent = value == null;
-  return /* @__PURE__ */ React.createElement("div", { className: "hv-statcard" }, /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__label" }, /* @__PURE__ */ React.createElement("span", null, label), info), loading ? (
+  const className = `hv-statcard${dense ? " hv-statcard--dense" : ""}${toggle ? " hv-statcard--toggle" : ""}${toggle && selected ? " hv-statcard--selected" : ""}`;
+  const Root = toggle ? "button" : "div";
+  const rootProps = toggle ? {
+    type: "button",
+    "aria-pressed": selected,
+    onClick: onToggle,
+    style: accent ? { "--hv-statcard-accent": accent } : void 0
+  } : {};
+  return /* @__PURE__ */ React.createElement(Root, { className, ...rootProps }, /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__label" }, toggle ? /* @__PURE__ */ React.createElement("span", { className: "hv-statcard__tick", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 10 10", fill: "none", stroke: "var(--on-action-brand)", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M2 5.2 4.2 7.4 8 3" }))) : null, /* @__PURE__ */ React.createElement("span", null, label), info), loading ? (
     /* Skeleton the reading and qualifier at their exact heights; the label
        stays real — it is known before the number is. */
     /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__skel" }), sub ? /* @__PURE__ */ React.createElement("div", { className: "hv-statcard__skel hv-statcard__skel--sub" }) : null)
@@ -2002,6 +2035,10 @@ Object.assign(__ds_scope, { Stepper });
 // components/Table/Table.jsx
 try { (() => {
 const hvTableCss = `
+.hv-table__scroll{overflow-x:auto;max-width:100%}
+.hv-table--sticky{border-collapse:separate;border-spacing:0}
+.hv-table--sticky th:first-child,.hv-table--sticky td:first-child{position:sticky;left:0;z-index:1;background:var(--surface-card)}
+.hv-table--sticky.hv-table--hover tbody tr:hover td:first-child{background:var(--ink-50)}
 .hv-table{width:100%;border-collapse:collapse;font-family:var(--font-sans);font-size:13.5px}
 .hv-table th{padding:10px 18px;text-align:left;font-size:11.5px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-400);border-bottom:1px solid var(--border-subtle);white-space:nowrap}
 .hv-table td{padding:12px 18px;color:var(--ink-900);border-bottom:1px solid var(--ink-50)}
@@ -2022,9 +2059,9 @@ function hvEnsureTableCss() {
   s.textContent = hvTableCss;
   document.head.appendChild(s);
 }
-function Table({ columns = [], rows = [], hover = true }) {
+function Table({ columns = [], rows = [], hover = true, stickyFirst = false }) {
   hvEnsureTableCss();
-  return /* @__PURE__ */ React.createElement("table", { className: `hv-table${hover ? " hv-table--hover" : ""}` }, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, columns.map((c) => /* @__PURE__ */ React.createElement("th", { key: c.key, className: c.num ? "hv-table__num" : "" }, c.label)))), /* @__PURE__ */ React.createElement("tbody", null, rows.map((row, i) => /* @__PURE__ */ React.createElement("tr", { key: i }, columns.map((c) => /* @__PURE__ */ React.createElement("td", { key: c.key, className: `${c.num ? "hv-table__num" : ""}${c.strong ? " hv-table__strong" : ""}` }, row[c.key]))))));
+  return /* @__PURE__ */ React.createElement("div", { className: "hv-table__scroll" }, /* @__PURE__ */ React.createElement("table", { className: `hv-table${hover ? " hv-table--hover" : ""}${stickyFirst ? " hv-table--sticky" : ""}` }, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, columns.map((c) => /* @__PURE__ */ React.createElement("th", { key: c.key, className: c.num ? "hv-table__num" : "" }, c.label)))), /* @__PURE__ */ React.createElement("tbody", null, rows.map((row, i) => /* @__PURE__ */ React.createElement("tr", { key: i }, columns.map((c) => /* @__PURE__ */ React.createElement("td", { key: c.key, className: `${c.num ? "hv-table__num" : ""}${c.strong ? " hv-table__strong" : ""}` }, row[c.key])))))));
 }
 function DataTable({ title, columns = [], rows = [], hover = true }) {
   hvEnsureTableCss();

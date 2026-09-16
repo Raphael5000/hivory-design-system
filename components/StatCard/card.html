@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x430" name="StatCard" subtitle="One KPI tile — label top, reading bottom; em-dash is absence, 0 is a reading" -->
+<!-- @dsCard group="Components" viewport="700x600" name="StatCard" subtitle="One KPI tile — label top, reading bottom; em-dash is absence, 0 is a reading" -->
 <!DOCTYPE html>
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
@@ -38,8 +38,23 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         e(StatCard, { label: 'Escalations', value: 0, sub: 'This month' }),
         e(StatCard, { label: 'Cost per chat', loading: true, sub: 'All chats' })
       )
-    )
+    ),
+    e(ToggleRow)
   )
 );
+
+// toggle: the tiles are the legend for a chart beneath them. Two of three on.
+function ToggleRow() {
+  const [on, setOn] = React.useState({ clicks: true, impressions: true, ctr: false });
+  const flip = (k) => setOn((o) => ({ ...o, [k]: !o[k] }));
+  return e('div', { className: 'grp' },
+    e('span', { className: 'cap' }, 'toggle · selected tiles drive the chart below them · the tile is the legend'),
+    e('div', { className: 'row' },
+      e(StatCard, { label: 'Clicks', value: '51.7K', dense: true, toggle: true, selected: on.clicks, onToggle: () => flip('clicks'), accent: 'var(--series-1)' }),
+      e(StatCard, { label: 'Impressions', value: '994K', dense: true, toggle: true, selected: on.impressions, onToggle: () => flip('impressions'), accent: 'var(--series-2)' }),
+      e(StatCard, { label: 'CTR', value: '5.2%', dense: true, toggle: true, selected: on.ctr, onToggle: () => flip('ctr'), accent: 'var(--series-3)' })
+    )
+  );
+}
 </script>
 </body></html>

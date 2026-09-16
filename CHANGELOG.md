@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.11 (2026-09-16)
+
+### Added
+- **`StatCard` takes `toggle`, `selected`, `onToggle`, `accent`.** A tile can be the control that shows or hides its own series on the chart beneath it — the way Search Console's four metric tiles work, where the tile is the legend and nobody matches a colour to a key. It renders as a real `<button aria-pressed>` with a tick box in the label row; selected = a 3px top rule and a faint wash in `accent` (a token reference, the same colour the chart draws that series in). Not a full fill: the ramps' lighter shades cannot carry on-colour text, and the reading is still a fact, so it stays ink. The "a StatCard is a reading, not a control" rule still holds everywhere else — `toggle` is only for a tile sitting on a chart it drives. Built for AMMEGA Insights' Search demand panel.
+
 ## 4.5.10 (2026-09-16)
 
 ### Changed

@@ -26,6 +26,19 @@ export interface StatCardProps {
    *  none do is uniformly too tall, and the label and reading drift apart.
    *  Set on every tile in the row, never on some of them. */
   dense?: boolean;
+  /** The tile is the control that shows or hides its own series on a chart
+   *  beneath it — the tile IS the legend. Renders a real <button> with
+   *  aria-pressed and a tick box in the label row. Use only above a chart
+   *  the tile drives; a tile that toggles nothing must not look pressable. */
+  toggle?: boolean;
+  /** Whether this tile's series is shown. Selected = 3px top rule and a faint
+   *  wash in `accent`; the reading stays ink. */
+  selected?: boolean;
+  onToggle?: () => void;
+  /** The series colour as a token reference — `var(--palette-megadyne-1)`,
+   *  `var(--series-2)` — never a raw value. Must be the colour the chart draws
+   *  this tile's series in, or the tile stops being the legend. */
+  accent?: string;
 }
 
 /**
@@ -40,7 +53,9 @@ export interface StatCardProps {
  *   a control. Hover / pressed / focus / selected / disabled: not applicable
  *   — nothing to press, and a tile that reacts to the cursor implies it can
  *   be clicked. If a stat must link somewhere, wrap it in a real <a> and put
- *   the ring on the anchor.
+ *   the ring on the anchor. The one exception is `toggle` (4.5.11): a tile
+ *   sitting on a chart it shows or hides, where the tile is the legend and
+ *   the control at once — a real button, with the ring on it.
  * · Empty: `null` renders an em-dash (absence); a measured zero renders 0
  *   (a reading). The caller decides, per the empty-cell doctrine.
  * · Loading: skeleton at exact heights (see `loading`).
