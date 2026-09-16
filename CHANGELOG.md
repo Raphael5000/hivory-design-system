@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.7 (2026-09-16)
+
+### Added
+- **`StatCard` takes `dense`.** The 108px min-height buys a shared baseline across a row — but only when some tiles carry a `sub`. A row where none do is uniformly too tall: `justify-content: space-between` pushes the label to the top and the reading to the bottom of a box sized for a qualifier that is not there, and the tile reads as half empty. `dense` sizes the card to its label and reading. Set it on every tile in a row, never on some. Found in AMMEGA Insights, whose scorecards lost their comparison line by client ruling.
+
 ## 4.5.6 (2026-09-08)
 
 - AMMEGA scope: **per-brand chart palettes** (`--palette-<brand>-1…5`) — when one brand is selected, a consumer draws every series in that brand's family (base, deep, two tints, deepest). Provisional with the series bases.

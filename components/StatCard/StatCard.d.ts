@@ -21,12 +21,18 @@ export interface StatCardProps {
    *  stays real — it is known before the number is. Never counts up on
    *  arrival: a stat is a fact, not a performance. */
   loading?: boolean;
+  /** Drop the reserved qualifier space. The default 108px min-height exists so
+   *  a row of tiles shares one baseline WHEN some carry a `sub`; a row where
+   *  none do is uniformly too tall, and the label and reading drift apart.
+   *  Set on every tile in the row, never on some of them. */
+  dense?: boolean;
 }
 
 /**
  * StatCard — one KPI tile: label top, reading bottom, on the Card canon
  * (16px 18px padding, --radius-xl, --shadow-card, min-height 108px so a row
- * of tiles shares one baseline).
+ * of tiles shares one baseline — or `dense` when no tile in the row carries a
+ * qualifier, which sizes the card to label + reading).
  *
  * Design rules:
  * · The reading is 28px --weight-display, tabular numerals, --ink-950.

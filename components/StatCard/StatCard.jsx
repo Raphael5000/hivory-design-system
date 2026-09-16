@@ -11,6 +11,7 @@
      reading it is. The component never decides which — the caller knows. */
 const hvStatCardCss = `
 .hv-statcard{display:flex;flex-direction:column;justify-content:space-between;min-height:108px;padding:16px 18px;border-radius:var(--radius-xl);background:var(--surface-card);box-shadow:var(--shadow-card);font-family:var(--font-sans);color:var(--text-body)}
+.hv-statcard--dense{min-height:0;gap:10px}
 .hv-statcard__label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-muted)}
 .hv-statcard__value{font-size:28px;font-weight:var(--weight-display);letter-spacing:-0.02em;line-height:1.05;color:var(--ink-950);font-variant-numeric:tabular-nums}
 .hv-statcard__value--absent{color:var(--text-faint)}
@@ -26,12 +27,12 @@ function hvEnsureStatCardCss() {
   document.head.appendChild(s);
 }
 
-export function StatCard({ label, value, sub, info = null, loading = false }) {
+export function StatCard({ label, value, sub, info = null, loading = false, dense = false }) {
   hvEnsureStatCardCss();
   const absent = value == null;
 
   return (
-    <div className="hv-statcard">
+    <div className={`hv-statcard${dense ? ' hv-statcard--dense' : ''}`}>
       <div className="hv-statcard__label">
         <span>{label}</span>
         {info}
