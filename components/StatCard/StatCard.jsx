@@ -13,7 +13,8 @@
      series on a chart beneath it — the tile IS the legend, so the reader
      never matches a colour to a key. It renders as a real <button> with
      aria-pressed, a tick box in the label row, and when selected a 3px top
-     rule and a faint wash in its series colour (`accent`, a token reference)
+     rule (an inset shadow — it follows the radius without clipping the
+     reading) and a faint wash in its series colour (`accent`, a token reference)
      — never a full fill, because the ramp's lighter shades cannot carry
      on-colour text. The reading stays ink: a selected tile is still a fact. */
 const hvStatCardCss = `
@@ -25,12 +26,11 @@ const hvStatCardCss = `
 .hv-statcard__sub{margin-top:3px;font-size:11.5px;line-height:1.4;color:var(--text-faint)}
 .hv-statcard__skel{height:28px;width:76px;border-radius:var(--radius-sm);background:var(--ink-100)}
 .hv-statcard__skel--sub{height:11px;width:52px;margin-top:3px}
-.hv-statcard--toggle{position:relative;overflow:hidden;width:100%;margin:0;border:0;text-align:left;cursor:pointer;font:inherit;-webkit-appearance:none;appearance:none}
-.hv-statcard--toggle::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--hv-statcard-accent,var(--series-1));opacity:0;transition:opacity var(--duration-soft) ease}
+.hv-statcard--toggle{position:relative;width:100%;margin:0;border:0;text-align:left;cursor:pointer;font:inherit;-webkit-appearance:none;appearance:none;transition:box-shadow var(--duration-soft) ease,background-color var(--duration-soft) ease}
 .hv-statcard--toggle:hover{box-shadow:var(--shadow-raised)}
 .hv-statcard--toggle:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
-.hv-statcard--selected{background:color-mix(in srgb,var(--hv-statcard-accent,var(--series-1)) 9%,var(--surface-card))}
-.hv-statcard--selected::before{opacity:1}
+.hv-statcard--selected{background:color-mix(in srgb,var(--hv-statcard-accent,var(--series-1)) 9%,var(--surface-card));box-shadow:var(--shadow-card),inset 0 3px 0 0 var(--hv-statcard-accent,var(--series-1))}
+.hv-statcard--selected:hover{box-shadow:var(--shadow-raised),inset 0 3px 0 0 var(--hv-statcard-accent,var(--series-1))}
 .hv-statcard--selected .hv-statcard__label{color:var(--text-body)}
 .hv-statcard__tick{flex:0 0 auto;width:14px;height:14px;border-radius:var(--radius-sm);border:1.5px solid var(--border-strong,var(--ink-300));background:var(--surface-card);display:inline-grid;place-items:center}
 .hv-statcard__tick svg{width:10px;height:10px;opacity:0}

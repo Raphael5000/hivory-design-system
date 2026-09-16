@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.12 (2026-09-16)
+
+### Fixed
+- **`StatCard toggle` no longer clips its reading.** The selected top rule was a pseudo-element under `overflow:hidden`, so a reading wider than a narrow tile was cut mid-digit ("38,90"). The rule is now an inset box-shadow, which follows the radius on its own; nothing is clipped.
+
 ## 4.5.11 (2026-09-16)
 
 ### Added
