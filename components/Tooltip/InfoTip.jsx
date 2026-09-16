@@ -14,6 +14,7 @@ const hvInfoTipCss = `
 .hv-infotip__pop{position:absolute;top:calc(100% + 8px);left:-10px;z-index:60;width:290px;padding:12px 14px;border-radius:var(--radius-lg);background:var(--surface-card);box-shadow:var(--shadow-overlay);font-family:var(--font-sans);font-size:12px;line-height:1.55;color:var(--text-body);text-align:left;white-space:normal;opacity:0;visibility:hidden;transform:translateY(2px);transition:opacity var(--duration-soft) var(--ease-out),transform var(--duration-soft) var(--ease-out),visibility 0s linear var(--duration-soft)}
 .hv-infotip--end .hv-infotip__pop{left:auto;right:-10px}
 .hv-infotip:hover .hv-infotip__pop,.hv-infotip:focus-within .hv-infotip__pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+@media (max-width:719px){.hv-infotip__pop{position:fixed;left:16px;right:16px;width:auto;top:var(--hv-infotip-top,auto)}}
 .hv-infotip__title{display:block;font-weight:650;color:var(--ink-950);margin:0 0 8px}
 .hv-infotip__note{display:block;margin-top:8px;font-size:11px;line-height:1.5;color:var(--status-caution-text)}
 `;
@@ -25,10 +26,24 @@ function hvEnsureInfoTipCss() {
   document.head.appendChild(s);
 }
 
+// Phone width (<720): the popover is fixed and full-width, so its top is
+// read from the trigger when it opens — the only geometry CSS cannot derive.
+function hvInfoTipPlace(e) {
+  const host = e.currentTarget;
+  const btn = host.querySelector('.hv-infotip__btn');
+  if (!btn) return;
+  const r = btn.getBoundingClientRect();
+  host.style.setProperty('--hv-infotip-top', `${Math.round(r.bottom + 8)}px`);
+}
+
 export function InfoTip({ title, children, note, align = 'start', size = 14 }) {
   hvEnsureInfoTipCss();
   return (
-    <span className={`hv-infotip${align === 'end' ? ' hv-infotip--end' : ''}`}>
+    <span
+      className={`hv-infotip${align === 'end' ? ' hv-infotip--end' : ''}`}
+      onMouseEnter={hvInfoTipPlace}
+      onFocus={hvInfoTipPlace}
+    >
       <button type="button" className="hv-infotip__btn" aria-label={`How ${title} is measured`}>
         <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="8" cy="8" r="5.75" />

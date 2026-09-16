@@ -49,3 +49,10 @@
     animation-iteration-count: infinite !important;
   }
 }
+
+/* Responsiveness doctrine: the page never scrolls sideways. Anything wider
+   than the viewport (a closed popover laid out past the edge, a table that
+   forgot its scroll wrapper) is clipped here rather than widening the mobile
+   layout viewport and dragging fixed chrome with it. Vertical scroll is
+   untouched. */
+html, body { overflow-x: clip; }

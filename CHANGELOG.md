@@ -2,6 +2,12 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.15 (2026-09-16)
+
+### Fixed
+- **The page never scrolls sideways — now a rule in `base.css`, not a hope.** `html, body { overflow-x: clip }`. A closed InfoTip popover is laid out (visibility hidden, 290px wide) past the right edge of a phone, which widened the mobile layout viewport and dragged the fixed chrome with it. Clipping the root is the responsiveness doctrine's own line ("Never: horizontal scroll") applied where it holds for every screen.
+- **InfoTip on phones pins under its trigger, full width.** Below 720px the popover is `position: fixed; left/right: 16px`, its top read from the trigger as it opens — a 290px popover anchored to a tile's ⓘ has nowhere to go on a 375px screen.
+
 ## 4.5.14 (2026-09-16)
 
 ### Changed

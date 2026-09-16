@@ -627,6 +627,7 @@ a.hv-imgslot__credit:focus-visible{outline:2px solid var(--border-focus);outline
 .hv-infotip__pop{position:absolute;top:calc(100% + 8px);left:-10px;z-index:60;width:290px;padding:12px 14px;border-radius:var(--radius-lg);background:var(--surface-card);box-shadow:var(--shadow-overlay);font-family:var(--font-sans);font-size:12px;line-height:1.55;color:var(--text-body);text-align:left;white-space:normal;opacity:0;visibility:hidden;transform:translateY(2px);transition:opacity var(--duration-soft) var(--ease-out),transform var(--duration-soft) var(--ease-out),visibility 0s linear var(--duration-soft)}
 .hv-infotip--end .hv-infotip__pop{left:auto;right:-10px}
 .hv-infotip:hover .hv-infotip__pop,.hv-infotip:focus-within .hv-infotip__pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+@media (max-width:719px){.hv-infotip__pop{position:fixed;left:16px;right:16px;width:auto;top:var(--hv-infotip-top,auto)}}
 .hv-infotip__title{display:block;font-weight:650;color:var(--ink-950);margin:0 0 8px}
 .hv-infotip__note{display:block;margin-top:8px;font-size:11px;line-height:1.5;color:var(--status-caution-text)}
 
