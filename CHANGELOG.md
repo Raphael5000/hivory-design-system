@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.13 (2026-09-16)
+
+### Changed
+- **Dual axes join pies as banned-by-default, not banned-forever.** The owner has ruled a single overlay chart in for AMMEGA's Search demand panel: it is the Search Console view, and its whole point is clicks and impressions moving together on one plot. The ruling is scoped — stacked strips stay the default answer to two magnitudes everywhere else — and the spec now names both AMMEGA exceptions in one sentence.
+
 ## 4.5.12 (2026-09-16)
 
 ### Fixed
