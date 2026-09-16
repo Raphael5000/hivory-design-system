@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.14 (2026-09-16)
+
+### Changed
+- **`StatCard toggle` shows its state in the checkbox alone.** The top rule and the wash made a selected tile look like a different component; the owner called it ugly, and it was. The tick box is now the DS checkbox geometry exactly (16px, 4px radius, hairline inset), filled in the series colour when on, and nothing else on the card moves — no wash, no rule, no hover shadow. A reading with a checkbox, which is all it needed to be.
+
 ## 4.5.13 (2026-09-16)
 
 ### Changed

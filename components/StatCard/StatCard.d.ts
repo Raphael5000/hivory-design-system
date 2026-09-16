@@ -31,8 +31,8 @@ export interface StatCardProps {
    *  aria-pressed and a tick box in the label row. Use only above a chart
    *  the tile drives; a tile that toggles nothing must not look pressable. */
   toggle?: boolean;
-  /** Whether this tile's series is shown. Selected = 3px top rule and a faint
-   *  wash in `accent`; the reading stays ink. */
+  /** Whether this tile's series is shown. The checkbox is the only state the
+   *  tile shows — filled in `accent` when on; the card itself never changes. */
   selected?: boolean;
   onToggle?: () => void;
   /** The series colour as a token reference — `var(--palette-megadyne-1)`,
