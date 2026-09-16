@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.10 (2026-09-16)
+
+### Changed
+- **Pies are no longer "banned forever" — they are banned by default.** The Chart Kit's line was absolute; the system's owner has ruled a pie in for AMMEGA's traffic-by-source card, so the spec now says what is actually true: the hbar stays the default category comparison, and a pie or donut is unbanned only by an owner's ruling for a named deployment, recorded here. A spec that forbids what the product ships is worse than one that states the exception.
+
 ## 4.5.9 (2026-09-16)
 
 ### Fixed
