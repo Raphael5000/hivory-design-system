@@ -11,6 +11,10 @@ export interface TableColumn {
 
 export interface TableProps {
   columns?: TableColumn[];
+  /** Freeze the first column while the rest scrolls. For grids wide enough to
+   *  scroll — a month-by-month KPI grid — where losing the row's identity
+   *  makes the numbers unreadable. Off by default. */
+  stickyFirst?: boolean;
   /** Objects keyed by column key; cell values may be strings, numbers, or React nodes (e.g. a Badge). */
   rows?: Record<string, ReactNode>[];
   /** Enable hover highlight on rows (default: true). */

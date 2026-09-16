@@ -2,6 +2,14 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.8 (2026-09-16)
+
+### Fixed
+- **`Table` scrolls horizontally.** It rendered a bare `<table>` at `width: 100%` with `white-space: nowrap` headers, so a table wider than its card pushed the layout instead of scrolling — every consumer's problem the moment a column count grows. It now carries its own overflow container; nothing to pass.
+
+### Added
+- **`Table` takes `stickyFirst`.** Freezes the first column while the rest scrolls, for grids wide enough to need it — scrolling a month-by-month KPI grid is useless once the row's identity has scrolled off. Off by default; switches the table to `border-collapse: separate` so the hairlines survive the sticky cells.
+
 ## 4.5.7 (2026-09-16)
 
 ### Added
