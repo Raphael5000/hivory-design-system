@@ -5,7 +5,10 @@ export interface CardProps {
   subtitle?: string;
   /** Right-aligned header slot — usually Buttons or a Select. */
   actions?: ReactNode;
-  /** Remove body padding (for tables and other full-bleed content). */
+  /** Table or media flush to the card edge: body padding goes, and the body
+   *  clips to the card's radius so a full-bleed row cannot paint square over
+   *  the rounded corners. A popover inside a flush body would clip — put
+   *  InfoTips and menus in the head, where the card grammar expects them. */
   flush?: boolean;
   children?: ReactNode;
 }

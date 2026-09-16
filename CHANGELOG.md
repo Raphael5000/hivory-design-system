@@ -2,6 +2,11 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.9 (2026-09-16)
+
+### Fixed
+- **A flush `Card` clips to its own radius.** `.hv-card` carried a `border-radius` and no clipping, so anything painting to the edge of a flush body — a table row's hover fill, the last row of a full-bleed table — drew square over the rounded corners. Every consumer with a flush table had square bottom corners on hover and never knew why. The flush body now inherits the radius and hides its overflow. A popover inside a flush body will clip; the card grammar already puts InfoTips and menus in the head.
+
 ## 4.5.8 (2026-09-16)
 
 ### Fixed

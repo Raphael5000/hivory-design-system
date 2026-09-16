@@ -5,7 +5,7 @@ const hvCardCss = `
 .hv-card__title{margin:0;font-size:14.5px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-950)}
 .hv-card__sub{margin:3px 0 0;font-size:12.5px;color:var(--text-muted)}
 .hv-card__body{padding:16px 18px}
-.hv-card--flush .hv-card__body{padding:0}
+.hv-card--flush .hv-card__body{padding:0;overflow:hidden;border-radius:inherit}
 `;
 function hvEnsureCardCss() {
   if (typeof document === 'undefined' || document.getElementById('hv-card-css')) return;
