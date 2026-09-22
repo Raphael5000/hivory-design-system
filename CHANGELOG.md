@@ -2,6 +2,12 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.16 (2026-09-22)
+
+### Fixed
+- **Table headers meet contrast.** `th` text was `--ink-400` (#9DA0A3) on the card surface — 2.6:1 at 11.5px, a WCAG AA failure axe reports as serious on every table. Now `--text-faint`, the token calibrated on 31 Jul for exactly this (4.58:1 on the darkest common text background).
+- **`Select` takes `ariaLabel`.** A select with no visible `label` had no accessible name (axe select-name, critical). `ariaLabel` names it; when `label` is present the `<label>` wrapper already does. Found by AMMEGA Insights' accessibility smoke test.
+
 ## 4.5.15 (2026-09-16)
 
 ### Fixed

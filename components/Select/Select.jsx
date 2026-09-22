@@ -1,4 +1,6 @@
-/* Hivory Select — same field chrome as Input, native select with chevron. */
+/* Hivory Select — same field chrome as Input, native select with chevron.
+   A select without a visible `label` MUST carry `ariaLabel`: a control with
+   no accessible name is a WCAG failure (axe select-name, critical). */
 const hvSelectCss = `
 .hv-selfield{display:flex;flex-direction:column;gap:6px;font-family:var(--font-sans)}
 .hv-selfield__label{font-size:12.5px;font-weight:500;color:var(--ink-700)}
@@ -16,12 +18,12 @@ function hvEnsureSelectCss() {
   document.head.appendChild(s);
 }
 
-export function Select({ label, options = [], value, defaultValue, onChange, hint, disabled = false }) {
+export function Select({ label, ariaLabel, options = [], value, defaultValue, onChange, hint, disabled = false }) {
   hvEnsureSelectCss();
   return (
     <label className="hv-selfield">
       {label ? <span className="hv-selfield__label">{label}</span> : null}
-      <select className="hv-select" value={value} defaultValue={defaultValue} onChange={onChange} disabled={disabled}>
+      <select className="hv-select" aria-label={label ? undefined : ariaLabel} value={value} defaultValue={defaultValue} onChange={onChange} disabled={disabled}>
         {options.map((opt) => {
           const o = typeof opt === 'string' ? { value: opt, label: opt } : opt;
           return <option key={o.value} value={o.value}>{o.label}</option>;

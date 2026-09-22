@@ -5,6 +5,9 @@ export interface SelectOption {
 
 export interface SelectProps {
   label?: string;
+  /** The accessible name when there is no visible `label` — required then;
+   *  a select nobody can name is a critical accessibility failure. */
+  ariaLabel?: string;
   /** Strings or { value, label } pairs. */
   options?: (string | SelectOption)[];
   value?: string;

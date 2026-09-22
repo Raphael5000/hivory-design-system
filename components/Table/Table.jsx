@@ -17,7 +17,7 @@ const hvTableCss = `
 .hv-table--sticky th:first-child,.hv-table--sticky td:first-child{position:sticky;left:0;z-index:1;background:var(--surface-card)}
 .hv-table--sticky.hv-table--hover tbody tr:hover td:first-child{background:var(--ink-50)}
 .hv-table{width:100%;border-collapse:collapse;font-family:var(--font-sans);font-size:13.5px}
-.hv-table th{padding:10px 18px;text-align:left;font-size:11.5px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-400);border-bottom:1px solid var(--border-subtle);white-space:nowrap}
+.hv-table th{padding:10px 18px;text-align:left;font-size:11.5px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-faint);border-bottom:1px solid var(--border-subtle);white-space:nowrap}
 .hv-table td{padding:12px 18px;color:var(--ink-900);border-bottom:1px solid var(--ink-50)}
 .hv-table tbody tr:last-child td{border-bottom:none}
 .hv-table tbody tr{transition:background-color var(--duration-soft) var(--ease-out)}
