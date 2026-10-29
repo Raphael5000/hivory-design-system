@@ -92,7 +92,13 @@
   --canvas: radial-gradient(at 8% 0%, #D9E7E8 0%, transparent 42%),
             radial-gradient(at 95% 100%, #F5F1E8 0%, transparent 45%),
             var(--surface-app); /* @kind color — client canvas wash */
-  --plate-ramp: linear-gradient(158deg, #0E3237 0%, #072124 54%, #04171A 100%); /* @kind color — client plate */
+  /* The sign-in plate. Re-cut 2026-10-29 from the design's own petrol ramp
+     (steps 30 / 20 / 10) — the previous ramp was a desaturated teal-green
+     that read as Hivory's dark surface tinted, not as this client's petrol.
+     The bloom over it is lime, the brand's other half; the system's default
+     is a green that would wash the plate in the wrong brand entirely. */
+  --plate-ramp: linear-gradient(158deg, #004F59 0%, #00363D 54%, #001F24 100%); /* @kind color — client plate */
+  --plate-glow: rgba(230, 237, 170, 0.18); /* @kind color — client plate bloom (lime) */
   --series-megadyne: #D6332B;       /* @kind color — client brand, provisional */
   --series-ammeraalbeltech: #2F6BD1; /* @kind color — client brand, provisional */
   --series-ammega: #0F5F5E;          /* @kind color — client brand, provisional */

@@ -2,6 +2,16 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.19 (2026-10-29)
+
+### Fixed
+- **A focused sign-in field followed Hivory green on every deployment.** `.hv-signin__fld:focus` ringed in `--green-600` with a hardcoded `rgba(0,163,82,0.13)` halo, while every other focus in the same component already used `--border-focus`. A white-label partner got its own colour everywhere except the one control a visitor actually focuses first. Both now derive from `--border-focus` (halo via `color-mix`, so any brand scope gets a correct one with no extra token).
+- **A field in error got a red ring and a green halo.** `.hv-signin__fld--bad:focus` kept the green glow beside `--red-500` — a copy-paste slip. The halo is now derived from the red.
+- **The sign-in plate's bloom was Hivory green, hardcoded.** It washed every partner's plate in the wrong brand however they set `--plate-ramp`. Now `--plate-glow`, a token beside the ramp it blooms over.
+
+### Changed
+- **AMMEGA's plate re-cut from the design's own petrol steps** (30 / 20 / 10) — the previous ramp was a desaturated teal-green that read as Hivory's dark surface tinted rather than as this client's petrol. Its bloom is lime.
+
 ## 4.5.18 (2026-10-29)
 
 ### Added

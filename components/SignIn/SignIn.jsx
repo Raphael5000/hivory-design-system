@@ -8,7 +8,7 @@ const hvSignInCss = `
 .hv-signin{display:grid;grid-template-columns:0.92fr 1fr;min-height:100vh;min-height:100dvh;overflow:hidden;font-family:var(--font-sans);color:var(--text-body)}
 .hv-signin--solo{grid-template-columns:1fr;grid-template-rows:1fr;min-height:0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-elevated)}
 .hv-signin__plate{position:relative;padding:38px;display:flex;flex-direction:column;overflow:hidden;background:var(--plate-ramp)}
-.hv-signin__glow{position:absolute;width:520px;height:520px;left:-170px;top:-190px;border-radius:var(--radius-pill);background:radial-gradient(circle,rgba(0,238,127,0.22) 0%,transparent 66%)}
+.hv-signin__glow{position:absolute;width:520px;height:520px;left:-170px;top:-190px;border-radius:var(--radius-pill);background:radial-gradient(circle,var(--plate-glow) 0%,transparent 66%)}
 .hv-signin__dots{position:absolute;inset:0;opacity:0.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.10) 1px,transparent 0);background-size:24px 24px;mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%);-webkit-mask-image:radial-gradient(at 20% 10%,#000 0%,transparent 74%)}
 .hv-signin__platein{position:relative;display:flex;flex-direction:column;height:100%}
 .hv-signin__lock{display:flex;align-items:center;gap:10px}
@@ -34,9 +34,9 @@ const hvSignInCss = `
 .hv-signin__fld{width:100%;box-sizing:border-box;height:42px;padding:0 14px;border:none;border-radius:var(--radius-control);background:var(--surface-card);box-shadow:inset 0 0 0 1px var(--border-strong);font-family:var(--font-sans);font-size:14px;color:var(--ink-900);caret-color:var(--green-500);outline:none;transition:box-shadow var(--transition-soft)}
 .hv-signin__fld::placeholder{color:var(--text-faint)}
 .hv-signin__fld:hover:not(:focus):not(:read-only){box-shadow:inset 0 0 0 1px var(--ink-300)}
-.hv-signin__fld:focus{box-shadow:inset 0 0 0 1.5px var(--green-600),0 0 0 4px rgba(0,163,82,0.13)}
+.hv-signin__fld:focus{box-shadow:inset 0 0 0 1.5px var(--border-focus),0 0 0 4px color-mix(in srgb,var(--border-focus) 13%,transparent)}
 .hv-signin__fld--bad{box-shadow:inset 0 0 0 1.5px var(--red-500)}
-.hv-signin__fld--bad:focus{box-shadow:inset 0 0 0 1.5px var(--red-500),0 0 0 4px rgba(0,163,82,0.13)}
+.hv-signin__fld--bad:focus{box-shadow:inset 0 0 0 1.5px var(--red-500),0 0 0 4px color-mix(in srgb,var(--red-500) 13%,transparent)}
 .hv-signin__err{display:flex;align-items:flex-start;gap:7px;margin-top:8px;font-size:12px;line-height:1.5;color:var(--red-700)}
 .hv-signin__err svg{flex:none;margin-top:3px}
 .hv-signin__ctarow{margin-top:20px}

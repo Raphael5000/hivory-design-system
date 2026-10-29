@@ -148,6 +148,10 @@
   --canvas: var(--canvas-wash), var(--surface-app);
   /* The sign-in plate's dark stage. A brand scope may carry its own. */
   --plate-ramp: linear-gradient(158deg, #1C2B22 0%, var(--surface-dark) 54%, #0B120E 100%);
+  /* The bloom the sign-in plate carries top-left, over that ramp. A token
+     because it was a hardcoded green inside the component, which washed every
+     white-label partner's plate in Hivory's colour however they set the ramp. */
+  --plate-glow: rgba(0, 238, 127, 0.22); /* @kind color */
 
   /* The ONE glass object per screen — the sidebar. */
   --glass-fill: rgba(255, 255, 255, 0.5);
