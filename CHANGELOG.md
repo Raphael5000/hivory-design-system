@@ -2,6 +2,23 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.17 (2026-10-29)
+
+### Added
+- **AMMEGA takes its own design language.** The client's DAM (AMMVault) ships an approved look that AMMEGA Insights is being reskinned to, so the `ammega` brand scope now carries it: the lime accent (`--accent-brand`, `-strong`, `-soft`) and the petrol ramp either side of the signal colour (`--action-brand-active`, `-deep`, `-light`).
+  - Lime's on-colour is **black** — 17.06:1, computed. Ink is 14.40:1 and white fails outright at 1.23:1. Same rule the system already applies to `--green-500`.
+  - `--action-brand-light` is 5.79:1 against white: **AA, not AAA**. Chrome and large text only.
+  - `--surface-brand-tint` is restated as petrol's quietest tint (#E8F2F3) rather than a new name beside it — a brand scope is how a role's value changes. `--surface-brand` is deliberately left green: whether a client's brand may take over the signal fill is a ruling, not a token edit.
+
+### Changed
+- **`--action-brand-hover` for AMMEGA now brightens instead of darkening** — #004550 → #095B66, step 35 of the design's own ramp. The old value came from ammega.com's button hover; the approved design hovers petrol upward. White on it is 7.78:1, still AAA.
+
+### Provenance
+Values follow `appstrax/ammweb_dam` `_brand.scss`, cross-checked against Figma `uzSeAzreUXIJ1jy0lMgcPO`. The Figma is a generated one-screen mock — no published variables, HTML-shaped layer names, Tailwind defaults still underneath the brand — so the DAM's rationalised SCSS is the authority. Lime #E6EDAA and #E8F2F3 were sampled from the Figma render and match it exactly.
+
+### Known
+`tokens/tokens.json` still reads 4.5.1 (generated 2026-08-21) and has not tracked the last fifteen releases. It is documented above as the diffable token record; it is not currently one, and no generator ships in this repo.
+
 ## 4.5.16 (2026-09-22)
 
 ### Fixed
