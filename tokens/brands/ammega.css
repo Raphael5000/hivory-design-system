@@ -1,10 +1,14 @@
 /* AMMEGA — white-label brand scope for AMMEGA Insights.
    Apply with <body data-brand="ammega">.
 
-   The console's chrome stays Hivory's (white-label spec: the canvas, the
-   ink, the geometry and the status colours never follow the brand). The
-   partner supplies its mark (assets/logo/ammega: all-* lockups and mark-*
-   in petrol / white / black) and its signal colour, below.
+   The console's chrome stayed Hivory's under the white-label spec: the
+   canvas, the ink, the geometry and the status colours never followed the
+   brand. Two owner's rulings have since relaxed that for AMMEGA only —
+   the canvas on 2026-09-08, and THE GEOMETRY on 2026-10-29, so that this
+   console reads as one product family with the client's own DAM
+   (AMMVault). The ink and the status colours still never follow the brand.
+   The partner supplies its mark (assets/logo/ammega: all-* lockups and
+   mark-* in petrol / white / black) and its signal colour, below.
 
    What this file adds is the END CLIENT's palette for the data itself:
    AMMEGA's product brands are series inside every chart, and reading a
@@ -113,4 +117,26 @@
   --palette-ammega-3: #7FBFBD;          /* @kind color */
   --palette-ammega-4: #BFDFDE;          /* @kind color */
   --palette-ammega-5: #06393A;          /* @kind color */
+
+  /* ── Shell geometry — owner's ruling, 2026-10-29 ───────────────────────
+     The AMMVault frame, so AMMEGA Insights and the client's DAM read as one
+     product: a petrol bar cut off by a lime rule, above a white sidebar.
+     Measured from appstrax/ammweb_dam's own --amm-topbar-* / --amm-sidebar-*.
+
+     This is a DEPARTURE from the white-label spec, which keeps the geometry
+     Hivory's, and is why it is recorded as a ruling rather than slipped in.
+     It is scoped to this brand: no other deployment grows a top bar.
+
+     IDENTITY IS NOT DUPLICATED. The design's own mock draws the lockup in
+     the bar AND again in the sidebar; the DAM as built dropped the second
+     one, and so do we. The bar owns identity, the sidebar is navigation
+     only — so "identity appears once per screen" still holds, unrelaxed.
+
+     The rule is lime and load-bearing: it is what makes the bar read as the
+     brand's rather than as a dark strip. Keep it at 2px — at 1px it reads
+     as a border, at 3px as a band. */
+  --shell-topbar-h: 56px;          /* @kind other — bar height, rule excluded */
+  --shell-topbar-rule: 2px;        /* @kind other — the lime cut under it */
+  --shell-sidebar-w: 256px;        /* @kind other — full nav */
+  --shell-sidebar-w-compact: 72px; /* @kind other — icons only, 720–1100 */
 }

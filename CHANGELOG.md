@@ -2,6 +2,16 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.5.18 (2026-10-29)
+
+### Added
+- **AMMEGA takes the AMMVault shell geometry** — `--shell-topbar-h` 56px, `--shell-topbar-rule` 2px, `--shell-sidebar-w` 256px, `--shell-sidebar-w-compact` 72px. Measured from the DAM's own `--amm-topbar-*` / `--amm-sidebar-*`.
+
+### Ruling (owner, 2026-10-29)
+The white-label spec keeps the geometry Hivory's. This relaxes it **for the `ammega` scope only**, so the console reads as one product family with the client's DAM. The ink and the status colours still never follow the brand, and no other deployment grows a top bar.
+
+**"Identity appears once per screen" is not relaxed.** The design's mock draws the lockup in the top bar *and* again in the sidebar; the DAM as built dropped the second, and so do we. The bar owns identity, the sidebar is navigation only.
+
 ## 4.5.17 (2026-10-29)
 
 ### Added
