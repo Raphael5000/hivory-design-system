@@ -19,9 +19,10 @@
 [data-brand="ammega"] {
   --brand-name: "AMMEGA"; /* @kind other */
   /* The white-label triplet (spec: Foundation · White label). Signal colour
-     = AMMEGA petrol, the site's primary (ammega.com --ax-gf-petrol); its
-     hover is the site's own (--ax-gf-btn-bg-hover). On-colour measured, not
-     chosen: #005762 reads 8.3:1 with white, 2.5:1 with black — white. */
+     = AMMEGA petrol, the site's primary (ammega.com --ax-gf-petrol).
+     On-colour measured, not chosen: #005762 reads 8.3:1 with white, 2.5:1
+     with black — white. The hover no longer comes from the site; see the
+     AMMVault block below for why it now brightens instead. */
   --action-brand: #005762;       /* @kind color — client signal colour */
   --action-brand-hover: #095B66; /* @kind color — client signal colour, hover */
   --on-action-brand: #FFFFFF;    /* @kind color — measured on-colour */
