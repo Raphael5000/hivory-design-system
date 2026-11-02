@@ -12,6 +12,8 @@ Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable t
 - **Geometry tightens**, reversing part of 4.5.18: `--radius-md` `9px → 6px` and `--radius-sm` `8px → 4px`, which the system holds deliberately tight "to echo the angular logo"; `--shadow-card` becomes its `shadow-1`, cast in petrol rather than neutral grey; `--weight-display` `680 → 700`.
 - **A semantic layer, as role overrides rather than new names**: `--ink-900` `#13292B` (petrol-tinted near-black), `--ink-600` and `--text-muted` `#4D5F5F`, `--surface-card` `#F4F7F6`, `--hairline` and `--hairline-strong` re-cast in petrol. `--text-display` becomes petrol `#005762` — the role already existed with nothing consuming it, so headings can go brand-coloured without taking body copy with them.
 
+- **The two live generic chart series follow the brand**: `--data-1-on-light` `#005762` and `--data-2` `#669AA1` (petrol and petrol-60, 27 L\* apart). They had been drawing in the base palette's green and teal on every screen. `--data-3` and `--data-4` are deliberately left alone — the approved system has no categorical chart palette, and four tints of one hue is not one.
+
 ### Added
 - **`--petrol-10` … `--petrol-90`** in the AMMEGA scope: the system's sanctioned way to extend the identity colour "when full-tone is too heavy (charts, quiet bands)". Nothing consumes them yet.
 

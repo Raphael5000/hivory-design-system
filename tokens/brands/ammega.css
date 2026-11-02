@@ -188,6 +188,24 @@
   --petrol-80: #337981; /* @kind color */
   --petrol-90: #1A6872; /* @kind color */
 
+  /* The two live generic chart series. These are the metric series (sessions
+     against events, and the like) — not the brand series, which carry their
+     own tokens above. Until now they resolved to the base palette's green and
+     teal on every screen, because the SVG resolver read :root, where a brand
+     scope does not reach; with that fixed they follow the brand, and the
+     approved system's own device for charts is the petrol family —
+     "extend petrol … when full-tone is too heavy (charts, quiet bands)".
+     Petrol against petrol-60 separates by 27 L*, which is lightness rather
+     than hue alone, as the system asks.
+
+     NOT SET: --data-3 and --data-4. The approved system has no categorical
+     chart palette — it is a marketing system with no data visualisation in
+     it — and four tints of one hue is not one. They stay on the base palette
+     until the client's system supplies a categorical set; that is a question
+     for the system's owner, not a value to invent here. */
+  --data-1-on-light: #005762; /* @kind color — client petrol */
+  --data-2: #669AA1;          /* @kind color — client petrol-60 */
+
   /* ── Shell geometry — owner's ruling, 2026-10-29 ───────────────────────
      The AMMVault frame, so AMMEGA Insights and the client's DAM read as one
      product: a petrol bar cut off by a lime rule, above a white sidebar.
