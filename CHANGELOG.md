@@ -2,6 +2,29 @@
 
 Versions are recorded in `package.json` and `tokens/tokens.json` (the diffable token record — diff it between versions to see exactly what changed; the WhoYou portal drifted precisely because CSS files don't announce changes).
 
+## 4.6.0 (2026-11-02)
+
+### Changed
+- **The AMMEGA brand scope now follows the client's own approved design system.** AMMEGA approved "AMMEGA Design System" on 2026-11-02; where it disagreed with the AmmWeb Figma the system recorded the conflict as undecided, and the owner ruled that the approved system wins. Petrol `#005762` and lime `#E6EDAA` were already identical — the 2026-10-29 reskin had sampled the same source — so this is an alignment, not a reskin.
+- **The three chart series are the client's official brand colours**, replacing values sampled from a legacy dashboard and marked provisional since they were written. `--series-megadyne` `#D6332B → #EE312D` (marker-md), `--series-ammeraalbeltech` `#2F6BD1 → #005FC1` (marker-ab), `--series-ammega` `#0F5F5E → #005762` (petrol). This is also an accessibility fix: the provisional Megadyne and Ammeraal values sat 1.5 L\* apart (contrast 1.05 — indistinguishable in a line chart), and the official three form an even ladder, L\* 52.5 / 41.3 / 33.3, worst pair 1.34. The five-step per-brand palettes are re-based on them: rank 1 is the brand's own value, ranks 2–5 keep their designed lightness and saturation, re-hued.
+- **Hover darkens instead of brightening.** `--action-brand-hover` `#095B66 → #00434B`, the system's `accent-hover`. The brightening value was inferred from the DAM in 4.5.17; the client's own system says otherwise.
+- **`--surface-brand-tint` is the system's `petrol-10`**, `#E8F2F3 → #E6EEEF`.
+- **Geometry tightens**, reversing part of 4.5.18: `--radius-md` `9px → 6px` and `--radius-sm` `8px → 4px`, which the system holds deliberately tight "to echo the angular logo"; `--shadow-card` becomes its `shadow-1`, cast in petrol rather than neutral grey; `--weight-display` `680 → 700`.
+- **A semantic layer, as role overrides rather than new names**: `--ink-900` `#13292B` (petrol-tinted near-black), `--ink-600` and `--text-muted` `#4D5F5F`, `--surface-card` `#F4F7F6`, `--hairline` and `--hairline-strong` re-cast in petrol. `--text-display` becomes petrol `#005762` — the role already existed with nothing consuming it, so headings can go brand-coloured without taking body copy with them.
+
+### Added
+- **`--petrol-10` … `--petrol-90`** in the AMMEGA scope: the system's sanctioned way to extend the identity colour "when full-tone is too heavy (charts, quiet bands)". Nothing consumes them yet.
+
+### Not taken, deliberately
+- The system's **type scale** (display 76px, h1 48px) and **96px section padding** are sized for a marketing site, not for eight screens of dense data; the console keeps its own.
+- Its **twelve components** are website furniture — header, nav, motif, brand tags, tool logos — with no table, chart or dashboard shell among them.
+- Its **dark theme**, which this console has no counterpart for.
+- **Cera Pro** still ships no files; the licence is unconfirmed, so the fallback stack stands.
+
+### Known gaps
+- `scripts/build-bundle.mjs` lists `tokens/brands/meaning.css` in `tokenFiles` but not `tokens/brands/ammega.css`, so a browser-only consumer loading the JS bundle gets Meaning's scope and not AMMEGA's. Consumers importing `styles.css` — which imports both — are unaffected.
+- `tokens/tokens.json` still reads 4.5.1 / 2026-08-21. It has been stale since then and there is no generator in the repo to rebuild it.
+
 ## 4.5.19 (2026-10-29)
 
 ### Fixed

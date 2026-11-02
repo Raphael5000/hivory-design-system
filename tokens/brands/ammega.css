@@ -16,10 +16,11 @@
    end client's palette (spec: "the mock interiors") — chart series are the
    artifact here. Series tokens are keyed by the canonical brand_key.
 
-   PROVISIONAL VALUES — sampled from the client's legacy executive dashboard
-   (Megadyne red, Ammeraal Beltech blue, AMMEGA corporate teal) until the
-   brand guidelines supply the exact hex. Replace the three values, nothing
-   else. */
+   The guidelines arrived on 2026-11-02 — the client's own approved
+   "AMMEGA Design System" — and the three provisional series values below
+   are now the official ones. The note that used to stand here said
+   "replace the three values, nothing else"; that is what happened, plus
+   the semantic layer and geometry the same system defines. */
 [data-brand="ammega"] {
   --brand-name: "AMMEGA"; /* @kind other */
   /* The white-label triplet (spec: Foundation · White label). Signal colour
@@ -28,7 +29,7 @@
      with black — white. The hover no longer comes from the site; see the
      AMMVault block below for why it now brightens instead. */
   --action-brand: #005762;       /* @kind color — client signal colour */
-  --action-brand-hover: #095B66; /* @kind color — client signal colour, hover */
+  --action-brand-hover: #00434B; /* @kind color — client accent-hover */
   --on-action-brand: #FFFFFF;    /* @kind color — measured on-colour */
   --border-focus: #005762;       /* @kind color — client signal colour */
 
@@ -82,7 +83,7 @@
      forbids. --surface-brand itself is deliberately NOT overridden here: it
      is the green signal fill, and whether a client's brand may take it over
      is a ruling, not a token edit. */
-  --surface-brand-tint: #E8F2F3; /* @kind color — client tinted surface */
+  --surface-brand-tint: #E6EEEF; /* @kind color — client petrol-10 */
 
   /* Canvas and plate in the client's own tint — the owner's ruling for
      AMMEGA (2026-09-08), relaxing the white-label spec's "no tinted canvas":
@@ -99,30 +100,93 @@
      is a green that would wash the plate in the wrong brand entirely. */
   --plate-ramp: linear-gradient(158deg, #004F59 0%, #00363D 54%, #001F24 100%); /* @kind color — client plate */
   --plate-glow: rgba(230, 237, 170, 0.18); /* @kind color — client plate bloom (lime) */
-  --series-megadyne: #D6332B;       /* @kind color — client brand, provisional */
-  --series-ammeraalbeltech: #2F6BD1; /* @kind color — client brand, provisional */
-  --series-ammega: #0F5F5E;          /* @kind color — client brand, provisional */
+  /* Official, from the approved system: marker-md and marker-ab are the
+     client's own brand markers; AMMEGA's colour is petrol itself. They
+     separate better than the values they replace — Megadyne against
+     Ammeraal was 1.05 on the provisional pair (L* 48.1 vs 46.6, a
+     difference no one can see in a line chart) and is 1.50 now, on an even
+     ladder of L* 52.5 / 41.3 / 33.3. */
+  --series-megadyne: #EE312D;        /* @kind color — client marker-md */
+  --series-ammeraalbeltech: #005FC1; /* @kind color — client marker-ab */
+  --series-ammega: #005762;          /* @kind color — client petrol */
 
   /* Per-brand chart palettes — when ONE brand is selected, every series on
      the screen draws in that brand's family: -1 the brand colour, -2 its
      deep, -3 / -4 its tints, -5 its deepest. Ordered so any two adjacent
-     ranks still separate (base vs deep, then tints). Provisional with the
-     bases above. */
-  --palette-megadyne-1: #D6332B;       /* @kind color */
-  --palette-megadyne-2: #8E1F1A;       /* @kind color */
-  --palette-megadyne-3: #EE8A84;       /* @kind color */
-  --palette-megadyne-4: #F5C2BE;       /* @kind color */
-  --palette-megadyne-5: #5C1410;       /* @kind color */
-  --palette-ammeraalbeltech-1: #2F6BD1; /* @kind color */
-  --palette-ammeraalbeltech-2: #1B3F80; /* @kind color */
-  --palette-ammeraalbeltech-3: #7FA5E6; /* @kind color */
-  --palette-ammeraalbeltech-4: #BFD2F3; /* @kind color */
-  --palette-ammeraalbeltech-5: #0F2650; /* @kind color */
-  --palette-ammega-1: #0F5F5E;          /* @kind color */
-  --palette-ammega-2: #1E9A97;          /* @kind color */
-  --palette-ammega-3: #7FBFBD;          /* @kind color */
-  --palette-ammega-4: #BFDFDE;          /* @kind color */
-  --palette-ammega-5: #06393A;          /* @kind color */
+     ranks still separate (base vs deep, then tints). Re-based 2026-11-02
+     on the official colours: rank 1 is the brand's own value, ranks 2–5
+     keep the lightness and saturation they were designed with, re-hued to
+     the official hue. */
+  --palette-megadyne-1: #EE312D;       /* @kind color */
+  --palette-megadyne-2: #8E1C1A;       /* @kind color */
+  --palette-megadyne-3: #EE8684;       /* @kind color */
+  --palette-megadyne-4: #F5BFBE;       /* @kind color */
+  --palette-megadyne-5: #5C1210;       /* @kind color */
+  --palette-ammeraalbeltech-1: #005FC1; /* @kind color */
+  --palette-ammeraalbeltech-2: #1B4D80; /* @kind color */
+  --palette-ammeraalbeltech-3: #7FB2E6; /* @kind color */
+  --palette-ammeraalbeltech-4: #BFD9F3; /* @kind color */
+  --palette-ammeraalbeltech-5: #0F2F50; /* @kind color */
+  --palette-ammega-1: #005762;          /* @kind color */
+  --palette-ammega-2: #1E8C9A;          /* @kind color */
+  --palette-ammega-3: #7FB8BF;          /* @kind color */
+  --palette-ammega-4: #BFDBDF;          /* @kind color */
+  --palette-ammega-5: #06343A;          /* @kind color */
+
+  /* ── The client's approved design system (2026-11-02) ─────────────────
+     Source: "AMMEGA Design System", the client's own, approved and
+     maintained by the agency. Where it disagreed with the AmmWeb Figma the
+     system itself recorded the conflict as undecided; the owner ruled on
+     2026-11-02 that the approved system wins. That ruling is what tightens
+     the geometry and turns headings petrol below, reversing two choices
+     shipped on 2026-10-29.
+
+     Taken as ROLE OVERRIDES, never as new names: the system's semantic
+     layer (ground / surface / ink / ink-soft / heading / line) maps onto
+     roles this system already has. NOT taken, deliberately: its type scale
+     (display 76px, h1 48px) and 96px section padding, both sized for a
+     marketing site rather than eight screens of dense data; its twelve
+     components, which are website furniture — header, nav, motif, brand
+     tags — with no table, chart or dashboard shell among them; and its
+     dark theme, which this console has no counterpart for yet. Its
+     typeface, Cera Pro, still ships no files: the licence is unconfirmed,
+     so the fallback stack stands. */
+
+  /* The semantic layer. ink is a petrol-tinted near-black rather than
+     Hivory's neutral, and ink-soft carries captions at 6.4:1 on white.
+     Headings become petrol: --text-display already existed as that role
+     with nothing consuming it, so the console now reads the role instead
+     of reaching past it to --ink-900. */
+  --ink-900: #13292B;                       /* @kind color — client ink */
+  --ink-600: #4D5F5F;                       /* @kind color — client ink-soft */
+  --text-muted: #4D5F5F;                    /* @kind color — client ink-soft */
+  --text-display: #005762;                  /* @kind color — client heading */
+  --surface-card: #F4F7F6;                  /* @kind color — client surface */
+  --hairline: rgba(0, 87, 98, 0.14);        /* @kind color — client line */
+  --hairline-strong: rgba(0, 87, 98, 0.30); /* @kind color — client line-strong */
+
+  /* Geometry. The system holds its corners tight "to echo the angular
+     logo" — 6px cards, 4px controls, against this system's 9px and 8px.
+     It is the change the brand would notice first. The card shadow is the
+     system's shadow-1, cast in petrol rather than neutral grey. */
+  --radius-md: 6px;                         /* @kind other — client radius-md */
+  --radius-sm: 4px;                         /* @kind other — client radius-sm */
+  --shadow-card: 0 1px 2px rgba(0, 50, 56, 0.06), 0 2px 8px rgba(0, 50, 56, 0.06); /* @kind other — client shadow-1 */
+  --weight-display: 700;                    /* @kind other — client heading weight */
+
+  /* The petrol ramp — the system's sanctioned way to extend the identity
+     colour "when full-tone is too heavy (charts, quiet bands)". Nothing
+     consumes these yet; they are here because the approved system defines
+     them and quiet bands are where they will land. */
+  --petrol-10: #E6EEEF; /* @kind color */
+  --petrol-20: #CCDDDF; /* @kind color */
+  --petrol-30: #B3CCCF; /* @kind color */
+  --petrol-40: #99BCC0; /* @kind color */
+  --petrol-50: #80ABB0; /* @kind color */
+  --petrol-60: #669AA1; /* @kind color */
+  --petrol-70: #4D8A91; /* @kind color */
+  --petrol-80: #337981; /* @kind color */
+  --petrol-90: #1A6872; /* @kind color */
 
   /* ── Shell geometry — owner's ruling, 2026-10-29 ───────────────────────
      The AMMVault frame, so AMMEGA Insights and the client's DAM read as one
